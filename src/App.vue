@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <label for="r1">修改颜色</label><input type="checkbox" v-model="use" id="r1">
-    <br><br>
-    <div v-bind:class="{'class1': use}">
-      v-bind:class 指令
-    </div>
+    {{5+5}}<br>
+    {{ ok ? 'YES' : 'NO' }}<br>
+    {{ message.split('').reverse().join('') }}
+    <div v-bind:id="'list-' + id">菜鸟教程</div>
   </div>
 </template>
 
@@ -13,7 +12,9 @@ export default {
   name: 'App',
   data () {
     return {
-      use: 'false'
+      ok: true,
+      message: 'RUNOOB',
+      id: 1
     }
   }
 }
