@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    {{5+5}}<br>
-    {{ ok ? 'YES' : 'NO' }}<br>
-    {{ message.split('').reverse().join('') }}
-    <div v-bind:id="'list-' + id">菜鸟教程</div>
+    {{ message }}
   </div>
 </template>
 
@@ -12,9 +9,7 @@ export default {
   name: 'App',
   data () {
     return {
-      ok: true,
-      message: 'RUNOOB',
-      id: 1
+      message: 'runoob'
     }
   }
 }
