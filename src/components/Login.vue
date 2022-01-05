@@ -1,40 +1,45 @@
 <template>
-  <el-form
-    :rules="rules"
-    class="login-container"
-    label-position="left"
-    label-width="0px"
-    v-loading="loading"
-  >
-    <h3 class="login_title">系统登录</h3>
-    <el-form-item prop="account">
-      <el-input
-        type="text"
-        v-model="loginForm.username"
-        auto-complete="off"
-        placeholder="账号"
-      ></el-input>
-    </el-form-item>
-    <el-form-item prop="checkPass">
-      <el-input
-        type="password"
-        v-model="loginForm.password"
-        auto-complete="off"
-        placeholder="密码"
-      ></el-input>
-    </el-form-item>
-    <el-checkbox class="login_remember" v-model="checked" label-position="left"
-      >记住密码</el-checkbox
+  <div class="xj_back">
+    <el-form
+      :rules="rules"
+      class="login-container"
+      label-position="left"
+      label-width="0px"
+      v-loading="loading"
     >
-    <el-form-item style="width: 100%">
-      <el-button
-        type="primary"
-        @click.native.prevent="submitClick"
-        style="width: 100%"
-        >登录</el-button
+      <h3 class="login_title">欢迎回家</h3>
+      <el-form-item prop="account">
+        <el-input
+          type="text"
+          v-model="loginForm.username"
+          auto-complete="off"
+          placeholder="身份（小鼹鼠）"
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="checkPass">
+        <el-input
+          type="password"
+          v-model="loginForm.password"
+          auto-complete="off"
+          placeholder="令牌（芝麻开门）"
+        ></el-input>
+      </el-form-item>
+      <el-checkbox
+        class="login_remember"
+        v-model="checked"
+        label-position="left"
+        >记住我</el-checkbox
       >
-    </el-form-item>
-  </el-form>
+      <el-form-item style="width: 100%">
+        <el-button
+          type="primary"
+          @click.native.prevent="submitClick"
+          style="width: 100%"
+          >开门进家</el-button
+        >
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 <script>
 export default {
@@ -83,5 +88,8 @@ export default {
 .login_remember {
   margin: 0px 0px 35px 0px;
   text-align: left;
+}
+.xj_back {
+  background-image: url("https://picgorepo.oss-cn-beijing.aliyuncs.com/img_repo_2022-01-05-16-47-40.png");
 }
 </style>
