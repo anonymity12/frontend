@@ -65,6 +65,7 @@ export default {
       var _this = this
       this.loading = true
       // tt 这个 /login 请求 会被 WebSecurityConfig 自动处理，不是程序员我处理 
+      // tt 这个请求，如果放在 postman 里面就是：post : http://101.43.166.211:8081/login?username=lkj&password=232323
       postRequest('/login', {
         username: this.loginForm.username,
         password: this.loginForm.password
@@ -73,6 +74,7 @@ export default {
         if (resp.status == 200) {
           //成功
           var json = resp.data
+          console.log("backend sent json: ", json)
           if (json.status == 'success') {
             _this.$router.replace({path: '/home'})
           } else {

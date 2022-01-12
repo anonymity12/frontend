@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let base = '';
+let base = ''
 export const postRequest = (url, params) => {
   return axios({
     method: 'post',
@@ -17,5 +17,5 @@ export const postRequest = (url, params) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-  });
+  })
 }
