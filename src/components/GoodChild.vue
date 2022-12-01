@@ -2,14 +2,14 @@
   <div id="app">
     <!-- see https://element.eleme.cn/#/zh-CN/component/layout#row-attributes -->
     <el-row type="flex" align="bottom" justify="start">
-      <el-col :span="6">
+      <el-col :span="12">
         <el-avatar :src="userHeadUrl" :size="150" shape="square" style="float: left;" ></el-avatar>
       </el-col>
         
-      <el-col :span="3" >
-        <p style="position: relative; left: 20px;  ">{{ username }}</p>
-        <p style="position: relative; left: 20px;  ">{{ userIntro }}</p>
-        <el-button @click="handleBox" style="position: relative; left: 20px; bottom: 0px; float: left">查看百宝箱</el-button>
+      <el-col :span="12" >
+        <p  >{{ username }}</p>
+        <p  >{{ userIntro }}</p>
+        <el-button @click="handleBox" style="float: left">查看百宝箱</el-button>
       </el-col>
     </el-row>
 
