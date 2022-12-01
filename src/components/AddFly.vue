@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dialog title="饲养新蝴蝶" :visible.sync="dialogAdd.show">
+        <el-dialog title="饲养新蝴蝶" :visible.sync="dialogAdd.show" width="100%">
             <el-form :model="formDate" ref="formdong" label-width="100px" :rules="formrules">
                 <el-form-item label="日期" prop="date">
                     <el-date-picker v-model="formDate.date" type="date" placeholder="选择日期"></el-date-picker>
@@ -16,7 +16,7 @@
                 </el-form-item>
                 <el-form-item label="你会得到 ：">
                     <span>{{formDate.evaluate >100 ? "花蝴蝶": "黑蝴蝶"}}</span>
-                    <img :src="formDate.evaluate >100?good_one:bad_one"/>
+                    <img :src="formDate.evaluate >100?good_one:bad_one" style="width: 30px; height: 30px"/>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">

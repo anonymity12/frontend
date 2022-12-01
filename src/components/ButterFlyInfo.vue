@@ -1,6 +1,10 @@
 <template>
     <div class="info">
-        <h1>蝴蝶园管理</h1>
+        <div class="divbg">
+            <h3>我管理的蝴蝶园</h3>
+            <br>
+        </div>
+        
         <el-row>
             <el-col :span="20" :push='2'>
                 <div>
@@ -16,32 +20,33 @@
                 </div>
                 <div class="table">
                     <el-table :data="searchFlyInfo(keyUser)" border style="width: 100%">
-                        <el-table-column type="index" label="序号" align="center" width="60">
+                        <el-table-column label="蝴蝶图案" align="center" width="100">
+                            <template slot-scope="scope">
+                                <img :src="scope.row.image" min-width="70" height="70">
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="蝴蝶来源" align="center" width="200">
+                            <template slot-scope="scope">
+                                <span>{{ scope.row.evaluate }}</span>
+                            </template>
                         </el-table-column>
                         <el-table-column label="蝴蝶名字" align="center" width="100">
                             <template slot-scope="scope">
                                 <span>{{ scope.row.name }}</span>
                             </template>
                         </el-table-column>
-                        <el-table-column label="蝴蝶图案" align="center" width="100">
-                            <template slot-scope="scope">
-                                <img :src="scope.row.image" min-width="70" height="70">
-                            </template>
-                        </el-table-column>
-                        <el-table-column label="日期" align="center" width="120">
+                        <el-table-column label="诞生时间" align="center" width="120">
                             <template slot-scope="scope">
                                 <span>{{ scope.row.date | moment }}</span>
                             </template>
                         </el-table-column>
-                        <el-table-column label="事件" align="center" width="200">
-                            <template slot-scope="scope">
-                                <span>{{ scope.row.evaluate }}</span>
-                            </template>
+                        <el-table-column type="index" label="序号" align="center" width="60">
                         </el-table-column>
+                        
                         <el-table-column label="操作" fixed="right">
                             <template slot-scope="scope">
-                                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除
+                                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" disabled>成年礼</el-button>
+                                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" disabled>放生它
                                 </el-button>
                             </template>
                         </el-table-column>
@@ -50,8 +55,9 @@
             </el-col>
         </el-row>
         <div>
-            <p>谁的蝴蝶多，谁就是优秀的蝴蝶管理家</p>
-            <img style="width: 100px; height:100px" src="https://picgorepo.oss-cn-beijing.aliyuncs.com/img_repo_2021-12-13-12-59-13.png"/>
+            <p>谁的蝴蝶多，谁就是优秀的蝴蝶管理家!你现在的排名是：</p>
+            <h2>{{now_order}}</h2>
+            <img style="width: 100px; height:100px" src="https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-01-18-29-10README.png"/>
             </div>
         <!-- tdo 2022-11-24 19:48:18: AddFly EditFly 2022-11-29 20:21:25 -->
         <AddFly :dialogAdd="dialogAdd" @update="getFlyInfo"></AddFly>
@@ -81,6 +87,7 @@ export default {
                 evaluate: '',
                 image: '',
             },
+            now_order: "2",
         }
     },
     methods: {
@@ -142,5 +149,9 @@ h1 {
     padding-bottom: 5px;
     border-bottom: 2px solid #409EFF;
     width: 300px
+}
+.divbg {
+    background: url(https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-01-18-18-19README.gif) repeat;
+    background-size: contain;
 }
 </style>
