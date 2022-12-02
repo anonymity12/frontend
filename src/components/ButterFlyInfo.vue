@@ -43,7 +43,7 @@
                         <el-table-column type="index" label="序号" align="center" width="60">
                         </el-table-column>
                         
-                        <el-table-column label="操作" fixed="right">
+                        <el-table-column label="操作">
                             <template slot-scope="scope">
                                 <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" disabled>成年礼</el-button>
                                 <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" disabled>放生它
