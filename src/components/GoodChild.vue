@@ -1,20 +1,21 @@
 <template>
+  <!-- this is yueyue's good child page, also the first good child in our world, 
+  later u can copy this page, for more good children! -->
   <div id="app">
-    <!-- see https://element.eleme.cn/#/zh-CN/component/layout#row-attributes -->
     <el-row type="flex" align="bottom" justify="start">
       <el-col :span="12">
-        <el-avatar :src="userHeadUrl" :size="150" shape="square" style="float: left;" ></el-avatar>
+        <el-avatar :src="user.userface" :size="150"  style="float: left;" ></el-avatar>
       </el-col>
         
       <el-col :span="12" >
-        <p  >{{ username }}</p>
-        <p  >{{ userIntro }}</p>
+        <p  >{{ user.cname }}</p>
+        <p  >{{ user.intro }}</p>
         <el-button @click="handleBox" style="float: left">查看百宝箱</el-button>
       </el-col>
     </el-row>
 
     <hr>
-    <ButterFlyInfo fly-owner="yy"></ButterFlyInfo>
+    <ButterFlyInfo :fly-owner="pageOwner"></ButterFlyInfo>
     <Baibao :boxShow="boxShow"></Baibao>
   </div>
 </template>
@@ -27,12 +28,19 @@ export default {
   name: 'app',
   data() {
     return {
-      userHeadUrl: 'https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-11-23-13-28-38README.png',
+      pageOwner: 'yy',
       boxShow: {
         show: false
       },
-      username: "玥玥3号",
-      userIntro: "我是一个樱花玫瑰仔的分身",
+      user: {
+        birthday: '',
+        name: '',
+        cname: '',
+        intro: '',
+        userface: '',
+        address: '',
+        phone: '',
+      },
     }
   },
   methods: {
@@ -47,7 +55,17 @@ export default {
     },
     handleBox() {
       this.boxShow.show = true 
+    },
+    getOwnerInfo() {
+      var _userInfoUrl = 'http://101.43.166.211:8081/users/' + this.pageOwner + '/getInfo'
+      this.$axios.get(_userInfoUrl).then(res => {
+        console.log("request for user info from: " + _userInfoUrl)
+        this.user = res.data
+      })
     }
+  },
+  created() {
+    this.getOwnerInfo()
   },
   components: {
     ButterFlyInfo,
