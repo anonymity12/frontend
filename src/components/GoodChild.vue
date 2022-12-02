@@ -14,7 +14,7 @@
     </el-row>
 
     <hr>
-    <ButterFlyInfo></ButterFlyInfo>
+    <ButterFlyInfo fly-owner="yy"></ButterFlyInfo>
     <Baibao :boxShow="boxShow"></Baibao>
   </div>
 </template>

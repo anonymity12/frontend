@@ -69,6 +69,7 @@ import AddFly from './AddFly'
 import EditFly from './EditFly'
 export default {
     name: 'info',
+    props: ['flyOwner'],
     data() {
         return {
             img_url: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/img_repo_2021-12-13-12-59-13.png',
@@ -92,8 +93,9 @@ export default {
     },
     methods: {
         getFlyInfo() {
-            this.$axios.get('http://101.43.166.211:8081/flies/getAll').then(res => {
-                console.log(res)
+            var _url = 'http://101.43.166.211:8081/flies/' + this.flyOwner + '/getAll'
+            this.$axios.get(_url).then(res => {
+                console.log("flyInfo request url is: "+ _url)
                 this.tableData = res.data
             })
         },
