@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import GoodChild from '@/components/GoodChild'
+import Yueyue from '@/components/Yueyue'
+import Xinxin from '@/components/Xinxin'
+import Guoguo from '@/components/Guoguo'
 import Login from '@/components/Login'
 
 Vue.use(Router)
@@ -9,9 +11,19 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'GoodChild',
-      component: GoodChild
+      path: '/yy',
+      name: 'Yueyue',
+      component: Yueyue
+    },
+    {
+      path: '/xx',
+      name: 'Xinxin',
+      component: Xinxin
+    },
+    {
+      path: '/gg',
+      name: 'Guoguo',
+      component: Guoguo
     },
     {
       path: '/login',
