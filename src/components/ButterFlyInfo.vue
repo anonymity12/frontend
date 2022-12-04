@@ -1,8 +1,11 @@
 <template>
     <div class="info">
-        <div class="divbg">
+        <div>
             <h3>我管理的蝴蝶园</h3>
-            <br>
+            <p>园子里今天有 {{tableData.length}} 个蝴蝶</p>
+            <div class="divbg">
+                <br><br>
+            </div>
         </div>
         
         <el-row>
@@ -22,10 +25,10 @@
                     <el-table :data="searchFlyInfo(keyUser)" border style="width: 100%">
                         <el-table-column label="蝴蝶图案" align="center" width="100">
                             <template slot-scope="scope">
-                                <img :src="scope.row.image" min-width="70" height="70">
+                                <img :src="scope.row.image" min-width="30" height="30">
                             </template>
                         </el-table-column>
-                        <el-table-column label="蝴蝶来源" align="center" width="200">
+                        <el-table-column label="蝴蝶来源" align="left" width="100">
                             <template slot-scope="scope">
                                 <span>{{ scope.row.evaluate }}</span>
                             </template>
@@ -40,8 +43,8 @@
                                 <span>{{ scope.row.date | moment }}</span>
                             </template>
                         </el-table-column>
-                        <el-table-column type="index" label="序号" align="center" width="60">
-                        </el-table-column>
+                        <!-- <el-table-column type="index" label="序号" align="center" width="60">
+                        </el-table-column> -->
                         
                         <el-table-column label="操作">
                             <template slot-scope="scope">
@@ -56,11 +59,11 @@
         </el-row>
         <div>
             <p>谁的蝴蝶多，谁就是优秀的蝴蝶管理家!你现在的排名是：</p>
-            <h2>{{now_order}}</h2>
+            <h2>{{myRank}}</h2>
             <img style="width: 100px; height:100px" src="https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-01-18-29-10README.png"/>
             </div>
         <!-- tdo 2022-11-24 19:48:18: AddFly EditFly 2022-11-29 20:21:25 -->
-        <AddFly :dialogAdd="dialogAdd" @update="getFlyInfo"></AddFly>
+        <AddFly :dialogAdd="dialogAdd" :owner="flyOwner" @update="getFlyInfo"></AddFly>
         <EditFly :dialogEdit="dialogEdit" :form="form" @updateEdit="getFlyInfo"></EditFly>
     </div>
 </template>
@@ -88,10 +91,18 @@ export default {
                 evaluate: '',
                 image: '',
             },
-            now_order: "2",
+            myRank: '9',
         }
     },
     methods: {
+        getMyRank() {
+            var rank_url = 'http://101.43.166.211:8081/ranks/' + this.flyOwner + '/getMyRank'
+            this.$axios.get(rank_url).then(res => {
+                console.log("my request url is", rank_url)
+                console.log("get user rank now:::", res.data)
+                this.myRank = res.data
+            })
+        },
         getFlyInfo() {
             var _url = 'http://101.43.166.211:8081/flies/' + this.flyOwner + '/getAll'
             this.$axios.get(_url).then(res => {
@@ -133,6 +144,7 @@ export default {
     },
     created() {
         this.getFlyInfo()
+        this.getMyRank()
     },
     components: {
         AddFly,
