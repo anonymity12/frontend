@@ -25,7 +25,7 @@
                     <el-table :data="searchFlyInfo(keyUser)" border style="width: 100%">
                         <el-table-column label="蝴蝶图案" align="center" width="100">
                             <template slot-scope="scope">
-                                <img :src="scope.row.image" min-width="30" height="30">
+                                <img :src="scope.row.image" min-width="30" width="90" height="90">
                             </template>
                         </el-table-column>
                         <el-table-column label="蝴蝶来源" align="left" width="100">
