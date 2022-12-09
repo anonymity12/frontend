@@ -1,3 +1,15 @@
+# how to build and move to nginx
+
+npm run build
+
+sudo cp -r dist/ /www/server/nginx/html/goodchild
+
+
+see:
+
+ls /www/server/nginx/html/goodchild
+
+should see dist
 # next todo
 
 add axios post to finish login 2022-01-05 16:54:08
