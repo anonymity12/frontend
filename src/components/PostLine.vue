@@ -1,13 +1,15 @@
 <template>
-    <div id="time-line">
+    <div id="building">
+      <div id="time-line">
         <span>蝴蝶谷编年史</span>
         <el-tag > {{items.length}} 条记录</el-tag>
-        
         <div class="item" v-for="item in items" :key="item.createTime">
             <div class="item-index">{{ item.createTime | formatDate }}</div>
             <div class="item-content">{{ item.content }}</div>
         </div>
     </div>
+    </div>
+
 </template>
 
 <script>
@@ -82,6 +84,14 @@ export default {
 </script>
 
 <style scoped>
+
+#building {
+    background-image: url(https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-09-16-11-15.png);
+    width:100%;			 
+    height:100%;			 
+    position:fixed;
+    background-size:100% 100%;
+}
 .item {
     margin-left: 30px;
     /*用左边margin显示时间线*/
@@ -93,7 +103,7 @@ export default {
     margin-bottom: 10px;
     cursor: pointer;
 }
-
+/* this is the circle  */
 .item::before {
     content: "";
     width: 11px;
@@ -103,7 +113,7 @@ export default {
     position: absolute;
     left: -15px;
 }
-
+/* this is the line */
 .item::after {
     content: "";
     width: 3px;
