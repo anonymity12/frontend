@@ -91,6 +91,8 @@ export default {
     height:100%;			 
     position:fixed;
     background-size:100% 100%;
+    text-align: left;
+    margin-top: 5px;
 }
 .item {
     margin-left: 30px;
