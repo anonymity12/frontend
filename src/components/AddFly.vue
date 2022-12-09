@@ -181,7 +181,7 @@ export default {
       formrules: {
         date: [
           {
-            require: true,
+            required: true,
             type: "date",
             message: "何时领养蝴蝶不能为空",
             trigger: "blur"
@@ -189,8 +189,7 @@ export default {
         ],
         evaluate: [
           {
-            require: true,
-            type: "string",
+            required: true,
             message: "具体事情不能为空",
             trigger: "blur"
           }
