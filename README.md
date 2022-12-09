@@ -1,4 +1,17 @@
+
+# notice 
+
+prod port =  8089
+
+dev port = 8091
+
 # how to build and move to nginx
+
+first we need back up old dist
+
+rm -rf dist-backup
+
+mv dist/ dist-backup/
 
 npm run build
 
