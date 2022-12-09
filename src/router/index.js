@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Yueyue from '@/components/Yueyue'
 import Xinxin from '@/components/Xinxin'
 import Guoguo from '@/components/Guoguo'
+import PostLine from '@/components/PostLine'
 import Login from '@/components/Login'
 
 Vue.use(Router)
@@ -29,6 +30,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/valley',
+      name: 'PostLine',
+      component: PostLine
     }
   ]
 })
