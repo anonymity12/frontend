@@ -88,7 +88,7 @@ export default {
             dialogAdd: {
                 show: false
             },
-            dialogParentValid: {
+            dialogParent: {
                 show: false
             },
             keyUser: "",
@@ -167,10 +167,9 @@ export default {
         },
         handleParentMode() { // 进入/退出 家长模式
             if (this.parent_flag == false) {// enter parent mode
-                //this.dialogParentValid.show = true 
-                this.parent_flag = true 
+                this.dialogParent.show = true 
             } else { // exit parent mode
-                // this.dialogParentValid.show = false 
+                this.dialogParent.show = false 
                 this.parent_flag = false // exit parent mode, goes into normal mode 
             }
             
@@ -182,7 +181,8 @@ export default {
     },
     components: {
         AddFly,
-        EditFly
+        EditFly,
+        ValidParent
     }
 }
 </script>
