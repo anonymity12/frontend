@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog title="家长模式验证" :visible.sync="dialogParent.show">
-      <el-form :model="formData" ref="formPass" :rules="formrules">
+      <el-form :model="formData" ref="formPass" :rules="formrules" v-loading="loading">
         <el-form-item label="密码" prop="parent_passwd">
           <el-input v-model="formData.parent_passwd"></el-input>
         </el-form-item>
@@ -31,7 +31,8 @@ export default {
         passOfParent: [
           { require: true, message: "请输入正确的家长密码", trigger: "blur" }
         ]
-      }
+      },
+      loading: false
     };
   },
   methods: {
@@ -43,16 +44,27 @@ export default {
 
 			else:// return invalid passwd:
         */
-       this.$refs[formPass].validate(valid => {
+       this.$refs['formPass'].validate(valid => {
         if (valid) {
+            var _this = this
+            this.loading = true
             var valid_pass_url = "http://101.43.166.211:8081/users/validParent"
-            this.$axios.post(valid_pass_url, formData).then(res => {
-                this.$message({
+            // 2022-12-10 15:40:38 看来混合使用 _this, this 是可以的
+            this.$axios.post(valid_pass_url, this.formData).then(res => {
+                _this.loading = false
+                console.log("res is: ", res)
+                // res.status 不是我们需要的，res.data里面返回的 才是一一对应 RespBean 的
+                if (res.data.status == 200) {
+                  this.$message({
                     type: "success",
-                    message: "通过家长验证！"
-                })
-                this.dialogParent.show = false 
-                this.$emit("validOk")
+                    message: res.data.msg
+                  })
+                  this.dialogParent.show = false 
+                  this.$emit("validOk")
+                }
+                else {
+                  _this.$alert('家长身份 验证失败!', '错误密码')
+                }
             })
             this.formData = {}
         } else {
