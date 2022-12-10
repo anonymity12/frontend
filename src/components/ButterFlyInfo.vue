@@ -68,13 +68,13 @@
         <!-- tdo 2022-11-24 19:48:18: AddFly EditFly 2022-11-29 20:21:25 -->
         <AddFly :dialogAdd="dialogAdd" :owner="flyOwner" @update="getFlyInfo"></AddFly>
         <EditFly :dialogEdit="dialogEdit" :form="form" @updateEdit="getFlyInfo"></EditFly>
-        <!-- <ValidParent :dialogParent="dialogParent" @validOk="validSuccess"></ValidParent> -->
+        <ValidParent :dialogParent="dialogParent" @validOk="validSuccess"></ValidParent>
     </div>
 </template>
 <script>
 import AddFly from './AddFly'
 import EditFly from './EditFly'
-// import ValidParent from './ValidParent'
+import ValidParent from './ValidParent'
 export default {
     name: 'info',
     props: ['flyOwner'],
