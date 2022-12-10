@@ -12,11 +12,12 @@
             <el-col :span="20" :push='2'>
                 <div>
                     <el-form :inline="true">
-                        <el-form-item style="float: left" label="查询蝴蝶信息:">
-                            <el-input v-model="keyUser" placeholder="哪一只蝴蝶呢"></el-input>
+                        <el-form-item style="float: left">
+                            <el-button type="danger" size="small" icon="el-icon-edit-outline" @click="handleParentMode()">{{parent_button_text}}
+                            </el-button>
                         </el-form-item>
                         <el-form-item style="float: right">
-                            <el-button type="primary" size="small" icon="el-icon-edit-outline" @click="handleAdd()">添加蝴蝶🦋
+                            <el-button type="primary" size="large" icon="el-icon-edit-outline" @click="handleAdd()">添加蝴蝶🦋
                             </el-button>
                         </el-form-item>
                     </el-form>
@@ -48,8 +49,8 @@
                         
                         <el-table-column label="操作">
                             <template slot-scope="scope">
-                                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" disabled>成年礼</el-button>
-                                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" disabled>放生它
+                                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" :disabled="!parent_flag">成年礼</el-button>
+                                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" :disabled="!parent_flag">放生它
                                 </el-button>
                             </template>
                         </el-table-column>
@@ -67,11 +68,13 @@
         <!-- tdo 2022-11-24 19:48:18: AddFly EditFly 2022-11-29 20:21:25 -->
         <AddFly :dialogAdd="dialogAdd" :owner="flyOwner" @update="getFlyInfo"></AddFly>
         <EditFly :dialogEdit="dialogEdit" :form="form" @updateEdit="getFlyInfo"></EditFly>
+        <!-- <ValidParent :dialogParent="dialogParent" @validOk="validSuccess"></ValidParent> -->
     </div>
 </template>
 <script>
 import AddFly from './AddFly'
 import EditFly from './EditFly'
+// import ValidParent from './ValidParent'
 export default {
     name: 'info',
     props: ['flyOwner'],
@@ -85,6 +88,9 @@ export default {
             dialogAdd: {
                 show: false
             },
+            dialogParentValid: {
+                show: false
+            },
             keyUser: "",
             form: {    //编辑信息
                 date: '',
@@ -94,8 +100,21 @@ export default {
                 image: '',
             },
             myRank: '9',
+            parent_flag: false, // false: now normal mode, true: now parent mode; default: false: normal mode
+            parent_button_text: '进入家长模式',
         }
     },
+    watch: {
+		parent_flag(new_parent_flag, old_parent_flag) {
+			if (new_parent_flag == true) {
+				// now parent in control
+				this.parent_button_text = '退出家长模式'
+			} else if (new_parent_flag == false) {
+				// now exit parent mode, to normal mode
+				this.parent_button_text = '进入家长模式'
+			}
+		}
+	},
     methods: {
         getMyRank() {
             var rank_url = 'http://101.43.166.211:8081/ranks/' + this.flyOwner + '/getMyRank'
@@ -111,6 +130,9 @@ export default {
                 console.log("flyInfo request url is: "+ _url)
                 this.tableData = res.data
             })
+        },
+        validSuccess() {
+            this.parent_flag = true
         },
         handleAdd() {  //添加
             this.dialogAdd.show = true;
@@ -142,6 +164,16 @@ export default {
                     return fly
                 }
             })
+        },
+        handleParentMode() { // 进入/退出 家长模式
+            if (this.parent_flag == false) {// enter parent mode
+                //this.dialogParentValid.show = true 
+                this.parent_flag = true 
+            } else { // exit parent mode
+                // this.dialogParentValid.show = false 
+                this.parent_flag = false // exit parent mode, goes into normal mode 
+            }
+            
         }
     },
     created() {
