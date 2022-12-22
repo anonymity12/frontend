@@ -27,6 +27,7 @@
                         <el-table-column label="蝴蝶图案" align="center" width="100">
                             <template slot-scope="scope">
                                 <img :src="scope.row.image" min-width="30" width="90" height="90">
+                                <span>蝴蝶状态：{{ scope.row.status }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column label="蝴蝶来源" align="left" width="100">
@@ -151,15 +152,9 @@ export default {
             this.dialogAdd.show = true;
         },
         handleGrow(index, row) {  //编辑
-            this.dialogEdit.show = true; //显示弹
-            this.form = {
-                date: row.date,
-                name: row.name,
-                image: row.image,
-                evaluate: row.evaluate,
-                id: row.id
-            }
             console.log("row is" ,row)
+            var _id = row.id 
+            this.$axios.post(`http://101.43.166.211:8081/flies/growStatus/${row.id}`)
         },
         handleRelease(index, row) {
             // 删除用户信息
