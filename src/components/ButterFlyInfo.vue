@@ -29,8 +29,7 @@
                             >
                         <el-table-column label="蝴蝶图案" align="center" width="100">
                             <template slot-scope="scope">
-                                <img :src="scope.row.image" min-width="30" width="90" height="90">
-                                <span>蝴蝶状态：{{ scope.row.status }}</span>
+                                <img :src="scope.row.image" min-width="30" width="60" height="60">
                             </template>
                         </el-table-column>
                         <el-table-column label="蝴蝶来源" align="left" width="100">
@@ -51,11 +50,11 @@
                         <!-- <el-table-column type="index" label="序号" align="center" width="60">
                         </el-table-column> -->
                         
-                        <el-table-column label="操作">
+                        <el-table-column label="家长操作">
                             <template slot-scope="scope">
                                 <el-button size="mini" @click="handleGrow(scope.$index, scope.row)" :disabled="!parent_flag">成年礼</el-button>
-                                <el-button size="mini" type="danger" @click="handleRelease(scope.$index, scope.row)" :disabled="!parent_flag">放生它
-                                </el-button>
+                                <el-button size="mini" type="danger" @click="handleRelease(scope.$index, scope.row)" :disabled="!parent_flag">放生它</el-button>
+                                <span>蝴蝶上次状态：{{ scope.row.status }}</span>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -65,7 +64,7 @@
                         :current-page="currentPage" 
                         :page-sizes="[1,5,10,20]" 
                         :page-size="pageSize" 
-                        layout="total, sizes, prev, pager, next, jumper" 
+                        layout="total, prev, pager, next" 
                         :total="tableData.length">
                         </el-pagination>
                     </div>
@@ -129,6 +128,7 @@ export default {
 			} else if (new_parent_flag == false) {
 				// now exit parent mode, to normal mode
 				this.parent_button_text = '进入家长模式'
+                this.getFlyInfo()
 			}
 		}
 	},
@@ -156,9 +156,37 @@ export default {
         },
         handleGrow(index, row) {  //编辑
             this.$axios.post(`http://101.43.166.211:8081/flies/growStatus/${row.id}`)
+                    .then(res => {
+                       if (res.data.status == 200) {
+                            this.$message({
+                                type: "success",
+                                message: res.data.msg
+                            })
+                            row.status == 1
+                       } else {
+                            this.$message({
+                                type: "warning",
+                                message: res.data.msg
+                            })
+                       }
+                    })
         },
         handleRelease(index, row) {
             this.$axios.post(`http://101.43.166.211:8081/flies/releaseStatus/${row.id}`)
+                    .then(res => {
+                       if (res.data.status == 200) {
+                            this.$message({
+                                type: "success",
+                                message: res.data.msg
+                            })
+                            row.status == -1
+                       } else {
+                            this.$message({
+                                type: "warning",
+                                message: res.data.msg
+                            })
+                       }
+                    })
         },
         searchFlyInfo(keyFly) {
             return this.tableData.filter((fly) => {
