@@ -23,7 +23,7 @@
                     </el-form>
                 </div>
                 <div class="table">
-                    <el-table :data="searchFlyInfo(keyUser)" border style="width: 100%">
+                    <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" border style="width: 100%">
                         <el-table-column label="蝴蝶图案" align="center" width="100">
                             <template slot-scope="scope">
                                 <img :src="scope.row.image" min-width="30" width="90" height="90">
@@ -49,12 +49,22 @@
                         
                         <el-table-column label="操作">
                             <template slot-scope="scope">
-                                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" :disabled="!parent_flag">成年礼</el-button>
-                                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)" :disabled="!parent_flag">放生它
+                                <el-button size="mini" @click="handleGrow(scope.$index, scope.row)" :disabled="!parent_flag">成年礼</el-button>
+                                <el-button size="mini" type="danger" @click="handleRelease(scope.$index, scope.row)" :disabled="!parent_flag">放生它
                                 </el-button>
                             </template>
                         </el-table-column>
                     </el-table>
+                    <!-- 分页器 -->
+                    <div class="block" style="margin-top:15px;">
+                        <el-pagination align='center' @size-change="handleSizeChange" @current-change="handlePageChange" 
+                        :current-page="currentPage" 
+                        :page-sizes="[1,5,10,20]" 
+                        :page-size="pageSize" 
+                        layout="total, sizes, prev, pager, next, jumper" 
+                        :total="tableData.length">
+                        </el-pagination>
+                    </div>
                 </div>
             </el-col>
         </el-row>
@@ -102,6 +112,9 @@ export default {
             myRank: '9',
             parent_flag: false, // false: now normal mode, true: now parent mode; default: false: normal mode
             parent_button_text: '进入家长模式',
+            currentPage: 1,
+            total: 100,
+            pageSize: 5,
         }
     },
     watch: {
@@ -137,7 +150,7 @@ export default {
         handleAdd() {  //添加
             this.dialogAdd.show = true;
         },
-        handleEdit(index, row) {  //编辑
+        handleGrow(index, row) {  //编辑
             this.dialogEdit.show = true; //显示弹
             this.form = {
                 date: row.date,
@@ -148,7 +161,7 @@ export default {
             }
             console.log("row is" ,row)
         },
-        handleDelete(index, row) {
+        handleRelease(index, row) {
             // 删除用户信息
             this.$axios.delete(`http://101.43.166.211:8081/data/${row.id}`).then(res => {
                 this.$message({
@@ -173,6 +186,15 @@ export default {
                 this.parent_flag = false // exit parent mode, goes into normal mode 
             }
             
+        },
+        handleSizeChange(val) {
+            console.log(`now each page has ${val} items`)
+            this.currentPage = 1
+            this.pageSize = val
+        },
+        handlePageChange(val) {
+            console.log(`now we are at page ${val}`)
+            this.currentPage = val 
         }
     },
     created() {
