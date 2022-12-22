@@ -23,7 +23,10 @@
                     </el-form>
                 </div>
                 <div class="table">
-                    <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" border style="width: 100%">
+                    <el-table :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)" border style="width: 100%" 
+                            :header-cell-style='tableHeaderStyle'
+                            :row-style="rowStyle"
+                            >
                         <el-table-column label="蝴蝶图案" align="center" width="100">
                             <template slot-scope="scope">
                                 <img :src="scope.row.image" min-width="30" width="90" height="90">
@@ -190,7 +193,14 @@ export default {
         handlePageChange(val) {
             console.log(`now we are at page ${val}`)
             this.currentPage = val 
-        }
+        },
+        rowStyle({row, rowIndex}) {
+            return  {background: 'linear-gradient(235deg,#bc6daf4f,#95b5179c,#00bbd496)'}
+            
+        },
+        tableHeaderStyle ({row, column, rowIndex, columnIndex}) {
+            return 'background-color:#1989fa;color:#fff;font-weight:400;'
+        },
     },
     created() {
         this.getFlyInfo()
