@@ -155,19 +155,10 @@ export default {
             this.dialogAdd.show = true;
         },
         handleGrow(index, row) {  //编辑
-            console.log("row is" ,row)
-            var _id = row.id 
             this.$axios.post(`http://101.43.166.211:8081/flies/growStatus/${row.id}`)
         },
         handleRelease(index, row) {
-            // 删除用户信息
-            this.$axios.delete(`http://101.43.166.211:8081/data/${row.id}`).then(res => {
-                this.$message({
-                    type: "success",
-                    message: "删除信息成功"
-                })
-                this.getFlyInfo()    //删除数据，更新视图
-            })
+            this.$axios.post(`http://101.43.166.211:8081/flies/releaseStatus/${row.id}`)
         },
         searchFlyInfo(keyFly) {
             return this.tableData.filter((fly) => {
@@ -197,6 +188,8 @@ export default {
         rowStyle({row, rowIndex}) {
             if (row.status == 1) {
                 return  {background: 'linear-gradient(235deg,#bc6daf4f,#95b5179c,#00bbd496)'}
+            } else if (row.status == -1) {
+                return  {background: 'linear-gradient(90deg,#180125b3,#4d5334a4,#2d2c2c96)'}
             }
             return {}            
         },
@@ -230,5 +223,8 @@ h1 {
 .divbg {
     background: url(https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-01-18-18-19README.gif) repeat;
     background-size: contain;
+}
+.test {
+    background: linear-gradient(90deg,#180125b3,#4d5334a4,#2d2c2c96)
 }
 </style>
