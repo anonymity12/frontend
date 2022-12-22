@@ -195,8 +195,10 @@ export default {
             this.currentPage = val 
         },
         rowStyle({row, rowIndex}) {
-            return  {background: 'linear-gradient(235deg,#bc6daf4f,#95b5179c,#00bbd496)'}
-            
+            if (row.status == 1) {
+                return  {background: 'linear-gradient(235deg,#bc6daf4f,#95b5179c,#00bbd496)'}
+            }
+            return {}            
         },
         tableHeaderStyle ({row, column, rowIndex, columnIndex}) {
             return 'background-color:#1989fa;color:#fff;font-weight:400;'
