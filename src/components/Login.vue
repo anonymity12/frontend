@@ -7,7 +7,7 @@
       label-width="0px"
       v-loading="loading"
     >
-      <h3 class="login_title">欢迎回家</h3>
+      <h3 class="login_title">欢迎进入蝴蝶谷</h3>
       <el-form-item prop="account">
         <el-input
           type="text"
@@ -42,7 +42,6 @@
   </div>
 </template>
 <script>
-import {postRequest} from '../utils/api'
 
 export default {
   name: 'Login',
@@ -54,8 +53,8 @@ export default {
       },
       checked: true,
       loginForm: {
-        username: 'sang',
-        password: '123'
+        username: 'yy',
+        password: '666'
       },
       loading: false
     }
@@ -66,7 +65,8 @@ export default {
       this.loading = true
       // tt 这个 /login 请求 会被 WebSecurityConfig 自动处理，不是程序员我处理 
       // tt 这个请求，如果放在 postman 里面就是：post : http://101.43.166.211:8081/login?username=lkj&password=232323
-      postRequest('/login', {
+      var loginUrl = 'http://101.43.166.211:8081/login'
+      this.$axios.post('/login', {
         username: this.loginForm.username,
         password: this.loginForm.password
       }).then(resp=> {
@@ -75,8 +75,9 @@ export default {
           //成功
           var json = resp.data
           console.log("backend sent json: ", json)
-          if (json.status == 'success') {
-            _this.$router.replace({path: '/home'})
+          if (json.status == 200) {
+            var _path = '/'+ username  // `username` in this module
+            _this.$router.replace({path: _path})
           } else {
             _this.$alert('登录失败!', '失败!')
           }
