@@ -1,4 +1,5 @@
 <template>
+<body id="login-page">
   <div class="login_background">
     <div>
       <el-form
@@ -42,6 +43,7 @@
       </el-form>
     </div>
   </div>
+</body>
 </template>
 <script>
 export default {
@@ -77,7 +79,7 @@ export default {
             var msg = resp.data.msg
             this.$message(msg)
             var _path = "/" + this.loginForm.username
-            this.$router.replace({path: _path})
+            this.$router.push({path: _path})
           } else {
             this.$message({
               type: "warning",
@@ -113,5 +115,13 @@ export default {
 .login_remember {
   margin: 0px 0px 35px 0px;
   text-align: left;
+}
+#login-page {
+  background: url("https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-02-04-17-37-11img_repo.png") no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
 }
 </style>
