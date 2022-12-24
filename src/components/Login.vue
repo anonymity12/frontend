@@ -71,7 +71,20 @@ export default {
       var loginUrl = "http://101.43.166.211:8081/doLogin";
       this.$axios.post(loginUrl, this.loginForm)
         .then(resp => {
+          this.loading = false 
           console.log(resp)
+          if (resp.data.status == 200) {
+            var msg = resp.data.msg
+            this.$message(msg)
+            var _path = "/" + this.loginForm.username
+            this.$router.replace({path: _path})
+          } else {
+            this.$message({
+              type: "warning",
+              message: "后端无法识别您的请求"
+            })
+          }
+
         })
 
     
