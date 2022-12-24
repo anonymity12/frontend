@@ -1,22 +1,23 @@
 <template>
-  <div class="xj_back">
+  <div class="login_background">
+    <div>
     <el-form
       :rules="rules"
+      :model="loginForm"
+      ref="formlogin"
       class="login-container"
       label-position="left"
-      label-width="0px"
       v-loading="loading"
     >
-      <h3 class="login_title">欢迎进入蝴蝶谷</h3>
-      <el-form-item prop="account">
+      <h3 class="login_title">欢迎你进入蝴蝶谷</h3>
+      <el-form-item label="用户名" prop="username">
         <el-input
           type="text"
           v-model="loginForm.username"
-          auto-complete="off"
           placeholder="身份（小鼹鼠）"
         ></el-input>
       </el-form-item>
-      <el-form-item prop="checkPass">
+      <el-form-item label="密码" prop="password">
         <el-input
           type="password"
           v-model="loginForm.password"
@@ -40,22 +41,24 @@
       </el-form-item>
     </el-form>
   </div>
+  </div>
 </template>
 <script>
 
 export default {
   name: 'Login',
-  data () {
+  data() {
     return {
-      rules: {
-        account: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        checkPass: [{ required: true, message: '请输入密码', trigger: 'blur' }]
-      },
-      checked: true,
       loginForm: {
         username: 'yy',
         password: '666'
       },
+      rules: {
+        username: [{ required: true, message: '用户名必须选择', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+      },
+      checked: true,
+      
       loading: false
     }
   },
@@ -66,17 +69,17 @@ export default {
       // tt 这个 /login 请求 会被 WebSecurityConfig 自动处理，不是程序员我处理 
       // tt 这个请求，如果放在 postman 里面就是：post : http://101.43.166.211:8081/login?username=lkj&password=232323
       var loginUrl = 'http://101.43.166.211:8081/login'
-      this.$axios.post('/login', {
-        username: this.loginForm.username,
-        password: this.loginForm.password
-      }).then(resp=> {
+      /*postRequest(loginUrl, {
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        }).then(resp=> {
         _this.loading = false
         if (resp.status == 200) {
           //成功
-          var json = resp.data
+          var json = resp
           console.log("backend sent json: ", json)
           if (json.status == 200) {
-            var _path = '/'+ username  // `username` in this module
+            var _path = '/'+ this.loginForm.username  // `username` in this module
             _this.$router.replace({path: _path})
           } else {
             _this.$alert('登录失败!', '失败!')
@@ -88,6 +91,50 @@ export default {
       }, resp=> {
         _this.loading = false;
         _this.$alert('找不到服务器⊙﹏⊙∥!', '失败!')
+      })*/
+      /*
+method: 'post',
+  url: '/user/12345',
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+      */
+ 
+      this.$axios({
+        method: 'post',
+        url: loginUrl,
+        data: this.loginForm,
+        transformRequest: [function(data) {
+          let ret = ''
+          for (let it in data) {
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+          }
+          console.log("ret", ret)
+          return ret
+        }],
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then(resp=> {
+        _this.loading = false
+        console.log("backend sent json: ", json)
+
+        if (resp.data.status == 200) {
+          //成功
+          var json = resp
+          var _path = '/'+ this.loginForm.username  // `username` in this module
+          _this.$router.replace({path: _path})
+        } else {
+          //失败
+          _this.$alert('登录失败!', '失败!')
+        }
+      }, resp=> {
+        _this.loading = false;
+        _this.$alert('找不到服务器⊙﹏⊙∥!', '失败!')
+      })
+      .catch((err) => {
+        console.log("err", err)
       })
     }
   }
@@ -115,7 +162,5 @@ export default {
   margin: 0px 0px 35px 0px;
   text-align: left;
 }
-.xj_back {
-  background-image: url("https://picgorepo.oss-cn-beijing.aliyuncs.com/img_repo_2022-01-05-16-47-40.png");
-}
+ 
 </style>
