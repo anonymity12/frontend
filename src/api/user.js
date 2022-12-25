@@ -16,6 +16,14 @@ export function pingpong(data) {
   })
 }
 
+// http://101.43.166.211:8081/flies/yy/getAll
+export function getFlyInfo(data) {
+  return request({
+    url: '/flies/' + data + '/getAll',
+    method: 'get'
+  })
+}
+
 //获取用户列表
 export function userList(data) {
   return request({

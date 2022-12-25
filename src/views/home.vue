@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       navList: [
-        { name: "/", title: "首页", icon: "el-icon-s-home" },
+        { name: "/gg", title: "gg", icon: "el-icon-s-home" },
         { name: "/user", title: "用户管理",icon:"el-icon-s-custom" },
       ],
     };

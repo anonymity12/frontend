@@ -85,6 +85,7 @@
     </div>
 </template>
 <script>
+import { getFlyInfo } from "@/api/user";
 import AddFly from './AddFly'
 import EditFly from './EditFly'
 import ValidParent from './ValidParent'
@@ -141,10 +142,10 @@ export default {
                 this.myRank = res.data
             })
         },
-        getFlyInfo() {
-            var _url = 'http://101.43.166.211:8081/flies/' + this.flyOwner + '/getAll'
-            this.$axios.get(_url).then(res => {
-                console.log("flyInfo request url is: "+ _url)
+        callGetFlyInfo() {
+            console.log("call for get fly info")
+            getFlyInfo(this.flyOwner).then(res => {
+                console.log("butterfly info", res)
                 this.tableData = res.data
             })
         },
@@ -226,7 +227,7 @@ export default {
         },
     },
     created() {
-        this.getFlyInfo()
+        this.callGetFlyInfo()
         this.getMyRank()
     },
     components: {
