@@ -58,7 +58,7 @@ export default {
       var _usernameUrl = 'http://101.43.166.211:8081/users/currentUsername'
       this.$axios.get(_usernameUrl).then(res => {
         console.log("request for user name from: " + _usernameUrl)
-        console.log("and response for username: " + res)
+        console.log("and response for username: " + res.data)
       })
     },
     getOwnerInfo() {

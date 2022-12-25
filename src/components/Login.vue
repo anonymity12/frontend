@@ -48,8 +48,8 @@ export default {
   data() {
     return {
       loginForm: {
-        username: "yy",
-        password: "666"
+        username: "libai",
+        password: "123"
       },
       rules: {
         username: [
@@ -76,11 +76,11 @@ export default {
             var msg = resp.data.msg
             this.$message(msg)
             var _path = "/" + this.loginForm.username
-            this.$router.push({path: _path})
+            this.$router.push({path: '/gg'})
           } else {
             this.$message({
               type: "warning",
-              message: "后端无法识别您的请求"
+              message: "登陆失败:" + resp.data.msg
             })
           }
 

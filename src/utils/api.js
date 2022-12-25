@@ -1,9 +1,10 @@
 import axios from 'axios'
-
+// axios.defaults.withCredentials=true;
 let base = '';
 export const postRequest = (url, params) => {
   return axios({
     method: 'post',
+    withCredentials: true, 
     url: `${base}${url}`,
     data: params,
     transformRequest: [function (data) {
@@ -23,6 +24,8 @@ export const uploadFileRequest = (url, params) => {
   return axios({
     method: 'post',
     url: `${base}${url}`,
+    withCredentials: true, 
+
     data: params,
     headers: {
       'Content-Type': 'multipart/form-data'
@@ -32,6 +35,8 @@ export const uploadFileRequest = (url, params) => {
 export const putRequest = (url, params) => {
   return axios({
     method: 'put',
+    withCredentials: true, 
+
     url: `${base}${url}`,
     data: params,
     transformRequest: [function (data) {
@@ -49,12 +54,15 @@ export const putRequest = (url, params) => {
 export const deleteRequest = (url) => {
   return axios({
     method: 'delete',
+    withCredentials: true, 
     url: `${base}${url}`
   });
 }
 export const getRequest = (url,params) => {
   return axios({
     method: 'get',
+    withCredentials: true, 
+
     data:params,
     transformRequest: [function (data) {
       let ret = ''
