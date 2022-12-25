@@ -70,7 +70,7 @@ export default {
     }
   },
   created() {
-    this.getUsername()
+    this.getOwnerInfo()
   },
   components: {
     ButterFlyInfo,
