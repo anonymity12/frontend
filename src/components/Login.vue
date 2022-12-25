@@ -1,7 +1,6 @@
 <template>
 <body id="login-page">
-  <div class="login_background">
-    <div>
+
       <el-form
         :rules="rules"
         :model="loginForm"
@@ -41,8 +40,6 @@
           >
         </el-form-item>
       </el-form>
-    </div>
-  </div>
 </body>
 </template>
 <script>
@@ -79,7 +76,7 @@ export default {
             var msg = resp.data.msg
             this.$message(msg)
             var _path = "/" + this.loginForm.username
-            this.$router.push({path: _path})
+            this.$router.push({path: '/guoguo'})
           } else {
             this.$message({
               type: "warning",
@@ -123,5 +120,8 @@ export default {
   width: 100%;
   background-size: cover;
   position: fixed;
+}
+body {
+  margin: 0px;
 }
 </style>
