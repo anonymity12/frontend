@@ -54,6 +54,13 @@ export default {
     handleBox() {
       this.boxShow.show = true 
     },
+    getUsername() {
+      var _usernameUrl = 'http://101.43.166.211:8081/users/currentUsername'
+      this.$axios.get(_usernameUrl).then(res => {
+        console.log("request for user name from: " + _usernameUrl)
+        console.log("and response for username: " + res)
+      })
+    },
     getOwnerInfo() {
       var _userInfoUrl = 'http://101.43.166.211:8081/users/' + this.pageOwner + '/getInfo'
       this.$axios.get(_userInfoUrl).then(res => {
@@ -63,7 +70,7 @@ export default {
     }
   },
   created() {
-    this.getOwnerInfo()
+    this.getUsername()
   },
   components: {
     ButterFlyInfo,
