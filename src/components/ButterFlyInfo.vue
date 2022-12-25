@@ -85,7 +85,10 @@
     </div>
 </template>
 <script>
-import { getFlyInfo } from "@/api/user";
+import { getFlyInfo } from "@/api/user"
+import { getMyRank } from "@/api/user"
+import { postGrowCmd } from "@/api/user"
+import { postReleaseCmd } from "@/api/user"
 import AddFly from './AddFly'
 import EditFly from './EditFly'
 import ValidParent from './ValidParent'
@@ -113,7 +116,7 @@ export default {
                 evaluate: '',
                 image: '',
             },
-            myRank: '9',
+            myRank: '99',
             parent_flag: false, // false: now normal mode, true: now parent mode; default: false: normal mode
             parent_button_text: '进入家长模式',
             currentPage: 1,
@@ -134,16 +137,12 @@ export default {
 		}
 	},
     methods: {
-        getMyRank() {
-            var rank_url = 'http://101.43.166.211:8081/ranks/' + this.flyOwner + '/getMyRank'
-            this.$axios.get(rank_url).then(res => {
-                console.log("my request url is", rank_url)
-                console.log("get user rank now:::", res.data)
+        callGetMyRank() {
+            getMyRank(this.flyOwner).then(res => {
                 this.myRank = res.data
             })
         },
         callGetFlyInfo() {
-            console.log("call for get fly info")
             getFlyInfo(this.flyOwner).then(res => {
                 console.log("butterfly info", res)
                 this.tableData = res.data
@@ -156,7 +155,7 @@ export default {
             this.dialogAdd.show = true;
         },
         handleGrow(index, row) {  //编辑
-            this.$axios.post(`http://101.43.166.211:8081/flies/growStatus/${row.id}`)
+            postGrowCmd(`${row.id}`)
                     .then(res => {
                        if (res.data.status == 200) {
                             this.$message({
@@ -173,7 +172,7 @@ export default {
                     })
         },
         handleRelease(index, row) {
-            this.$axios.post(`http://101.43.166.211:8081/flies/releaseStatus/${row.id}`)
+            postReleaseCmd(`${row.id}`)
                     .then(res => {
                        if (res.data.status == 200) {
                             this.$message({
@@ -228,7 +227,7 @@ export default {
     },
     created() {
         this.callGetFlyInfo()
-        this.getMyRank()
+        this.callGetMyRank()
     },
     components: {
         AddFly,

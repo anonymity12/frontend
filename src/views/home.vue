@@ -2,62 +2,79 @@
   <el-container class="home-container">
     <!--顶部-->
     <el-header style="margin-right: 15px; width: 100%">
-      <span class="head-title" >人生线</span>
+      <span class="head-intro" >{{this.$store.state.user.intro}}</span>
       <el-avatar
         style="color: #222; float: left; margin-top: 20px"
         :src="this.$store.state.user.userface"
         :size="50"
         ></el-avatar
       >
-      <span style="color: #222; padding-top: 20px;float: left;font-weight: bold;font-size: 20px; margin: 8px">{{ this.$store.state.user.cname }}</span>
+      <span 
+        style="color: #222; padding-top: 20px;float: left;font-weight: bold;font-size: 20px; margin: 8px"
+        >{{ this.$store.state.user.cname }}
+      </span>
+      <el-button 
+        size="small" 
+        @click="handleBox" 
+        style="float: right"
+        >
+        查看百宝箱
+      </el-button>
+
     </el-header>
     <!-- 主体 -->
     <el-container>
-      <!-- 侧边栏 -->
-      <el-aside width="20%">
-        <el-menu
-          :default-active="$route.path"
-          router
-          text-color="black"
-          active-text-color="red"
-        >
-          <el-menu-item
-            v-for="(item, i) in navList"
-            :key="i"
-            :index="item.name"
-          >
-            <i :class="item.icon"></i>
-            {{ item.title }}
-          </el-menu-item>
-        </el-menu>
-      </el-aside>
       <el-main>
-        <!--路由占位符-->
-        <router-view></router-view>
+        <ButterFlyInfo :fly-owner="pageOwner"></ButterFlyInfo>
+        <Baibao :boxShow="boxShow"></Baibao>
       </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
+import ButterFlyInfo from '@/components/ButterFlyInfo'
+import Baibao from '@/components/Baibao'
 import { pingpong } from "@/api/user";
 export default {
   name: "Home",
   data() {
     return {
-      navList: [
-        { name: "/index", title: "蝴蝶列表页", icon: "el-icon-s-home" },
-        { name: "/user", title: "用户管理",icon:"el-icon-s-custom" },
-      ],
+      pageOwner: 'gg',
+      boxShow: {
+        show: false
+      },
+      user: {
+        birthday: '',
+        name: '',
+        cname: '',
+        intro: '',
+        userface: '',
+        address: '',
+        phone: '',
+      },
     };
   },
   methods: {
+    handleBox() {
+      this.boxShow.show = true 
+    },
     ping() {
       var _this = this;
       pingpong().then((resp) => {
         console.log("wow ping return: ", resp)
       })
-    }
+    },
+    setOwner() {
+      this.pageOwner = this.$store.state.user.name
+    },
+  },
+  created() {
+    this.setOwner()
+  },
+  components: {
+    ButterFlyInfo,
+    Baibao
   }
 };
 </script>
@@ -70,11 +87,11 @@ export default {
   font-size: 40px;
 }
 
-.head-title {
+.head-intro {
   position: absolute;
   padding-top: 20px;
   right: 15%;
-  font-size: 20px;
+  font-size: 10px;
   font-weight: bold;
 }
 

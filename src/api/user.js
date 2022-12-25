@@ -23,6 +23,27 @@ export function getFlyInfo(data) {
     method: 'get'
   })
 }
+// http://101.43.166.211:8081/ranks/' + this.flyOwner + '/getMyRank'
+export function getMyRank(who) {
+  return request({
+    url: '/ranks/' + who + '/getMyRank',
+    method: 'get',
+  })
+}
+// this.$axios.post(`http://101.43.166.211:8081/flies/growStatus/${row.id}`)
+export function postGrowCmd(itemId) {
+  return request({
+    url: '/flies/growStatus/' + itemId,
+    method: 'post',
+  })
+}
+// this.$axios.post(`http://101.43.166.211:8081/flies/releaseStatus/${row.id}`)
+export function postReleaseCmd(itemId) {
+  return request({
+    url: '/flies/releaseStatus/' + itemId,
+    method: 'post',
+  })
+}
 
 //获取用户列表
 export function userList(data) {
