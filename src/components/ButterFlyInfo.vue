@@ -13,7 +13,11 @@
                 <div>
                     <el-form :inline="true">
                         <el-form-item style="float: left">
-                            <el-button type="danger" size="small" icon="el-icon-edit-outline" @click="handleParentMode()">{{parent_button_text}}
+                            <el-button type="danger" size="small" icon="el-icon-coordinate" @click="handleParentMode()">{{parent_button_text}}
+                            </el-button>
+                        </el-form-item>
+                        <el-form-item style="float: center">
+                            <el-button type="primary" size="large" icon="el-icon-refresh-left" @click="handleRefresh()">刷新
                             </el-button>
                         </el-form-item>
                         <el-form-item style="float: right">
@@ -151,6 +155,10 @@ export default {
         validSuccess() {
             this.parent_flag = true
         },
+        handleRefresh() {
+            this.callGetFlyInfo()
+            this.callGetMyRank()
+        },
         handleAdd() {  //添加
             this.dialogAdd.show = true;
         },
@@ -201,6 +209,7 @@ export default {
             } else { // exit parent mode
                 this.dialogParent.show = false 
                 this.parent_flag = false // exit parent mode, goes into normal mode 
+                this.callGetFlyInfo()
             }
             
         },
