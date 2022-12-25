@@ -76,7 +76,7 @@ export default {
             var msg = resp.data.msg
             this.$message(msg)
             var _path = "/" + this.loginForm.username
-            this.$router.push({path: '/guoguo'})
+            this.$router.push({path: _path})
           } else {
             this.$message({
               type: "warning",

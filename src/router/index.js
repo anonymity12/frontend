@@ -29,8 +29,8 @@ export default new Router({
     },
     {
       path: '/gg',
-      name: 'Guoguo',
-      component: Guoguo
+      name: '',
+      component: Guoguo,
     },
     {
       path: '/login',
