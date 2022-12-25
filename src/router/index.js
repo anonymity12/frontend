@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Yueyue from '@/components/Yueyue'
 import Xinxin from '@/components/Xinxin'
 import Guoguo from '@/components/Guoguo'
 import PostLine from '@/components/PostLine'
-import Login from '@/components/Login'
+import Login from '@/views/login.vue'
+import Home from '@/views/home.vue'
+
 
 Vue.use(Router)
 
@@ -13,9 +14,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '登录',
+      name: '主页',
       hidden: true,
-      component: Login
+      component: Home
     }, 
     {
       path: '/yy',
@@ -34,8 +35,13 @@ export default new Router({
     },
     {
       path: '/login',
-      name: 'login',
+      name: 'Login',
       component: Login
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/valley',
