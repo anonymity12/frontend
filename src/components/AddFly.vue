@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { addNewFly } from '@/api/user'
 export default {
   name: "AddFly",
   props: {
@@ -231,9 +232,8 @@ export default {
             evaluate: _eva,
             image: this.formDate.evaluate > 100 ? this.good_one : this.bad_one
           };
-          var add_item_url =
-            "http://101.43.166.211:8081/flies/" + this.owner + "/newItem";
-          this.$axios.post(add_item_url, myData).then(res => {
+          
+          addNewFly(this.owner, myData).then(res => {
             this.$message({
               type: "success",
               message: "你获得了新蝴蝶！"

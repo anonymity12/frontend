@@ -45,6 +45,24 @@ export function postReleaseCmd(itemId) {
   })
 }
 
+// "http://101.43.166.211:8081/flies/" + this.owner + "/newItem";
+export function addNewFly(owner, data) {
+  return request({
+    url: '/flies/' + owner + '/newItem',
+    method: 'post',
+    data
+  })
+
+}
+// "http://101.43.166.211:8081/users/validParent"
+export function validParent(data) {
+  return request({
+    url: '/users/validParent',
+    method: 'post',
+    data
+  })
+}
+
 //获取用户列表
 export function userList(data) {
   return request({

@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { validParent } from '@/api/user'
 export default {
   name: "edit",
   props: {
@@ -37,21 +38,12 @@ export default {
   },
   methods: {
     dialogParentValid() {
-        /*
-        post request to backend(password):
-			if return ok:
-				parent_flag = true
-
-			else:// return invalid passwd:
-        */
        this.$refs['formPass'].validate(valid => {
         if (valid) {
-            var _this = this
             this.loading = true
-            var valid_pass_url = "http://101.43.166.211:8081/users/validParent"
             // 2022-12-10 15:40:38 看来混合使用 _this, this 是可以的
-            this.$axios.post(valid_pass_url, this.formData).then(res => {
-                _this.loading = false
+            validParent(this.formData).then(res => {
+                this.loading = false
                 console.log("res is: ", res)
                 // res.status 不是我们需要的，res.data里面返回的 才是一一对应 RespBean 的
                 if (res.data.status == 200) {
@@ -63,7 +55,7 @@ export default {
                   this.$emit("validOk")
                 }
                 else {
-                  _this.$alert('家长身份 验证失败!', '错误密码')
+                  this.$alert('家长身份 验证失败!', '错误密码')
                 }
             })
             this.formData = {}
