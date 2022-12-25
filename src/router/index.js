@@ -14,9 +14,37 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '主页',
-      hidden: true,
+      name: 'Default',
+      redirect: '/home',
       component: Home
+    },
+    {
+       // home页面并不需要被访问，只是作为其它组件的父组件
+      path: '/home',
+      name: 'Home',
+      component: Home,
+      meta: {
+        requireAuth: true
+      },
+      redirect: '/index',
+      children:[
+        {
+          path:'/index',
+          name:'Index',
+          component:() => import('@/views/home/index'),
+          meta:{
+            requireAuth:true
+          }
+        },
+        {
+          path:'/user',
+          name:'User',
+          component:()=>import('@/views/user/index'),
+          meta:{
+            requireAuth:true
+          }
+        }
+      ]
     }, 
     {
       path: '/yy',
@@ -37,11 +65,6 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
-    },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
     },
     {
       path: '/valley',

@@ -2,7 +2,7 @@
   <el-container class="home-container">
     <!--顶部-->
     <el-header style="margin-right: 15px; width: 100%">
-      <span class="head-title" >蝴蝶园</span>
+      <span class="head-title" >人生线</span>
       <el-avatar
         style="color: #222; float: left; margin-top: 20px"
         :src="this.$store.state.user.userface"
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       navList: [
-        { name: "/gg", title: "gg", icon: "el-icon-s-home" },
+        { name: "/index", title: "蝴蝶列表页", icon: "el-icon-s-home" },
         { name: "/user", title: "用户管理",icon:"el-icon-s-custom" },
       ],
     };
