@@ -4,9 +4,17 @@
             <p>温馨提示：获得的蝴蝶越多，它们帮你找到的宝藏越多哦！</p>
                 <el-table :data="gridData" height="290" >
                     <el-table-column property="date" label="发现日期" width="150"></el-table-column>
-                    <el-table-column property="name" label="名字" width="200"></el-table-column>
-                    <el-table-column property="address" label="地点"></el-table-column>
-                    <el-table-column property="value" label="价值"></el-table-column>
+                    <el-table-column property="name" label="宝藏名字" width="200"></el-table-column>
+                    <el-table-column property="address" label="发现地点"></el-table-column>
+                    <el-table-column property="value" label="宝藏价值"></el-table-column>
+                    <el-table-column property="link" label="开启宝藏">
+                        <template slot-scope="scope">
+                        <el-button type="primary" size="small" icon="el-icon-edit-outline" 
+                            @click="handleOpen(scope.$index, scope.row)">
+                            打开
+                        </el-button>
+                        </template>
+                    </el-table-column>
                 </el-table>
         </el-dialog>
     </div>
@@ -22,7 +30,15 @@ export default {
         return {
             fits: ['fill', 'contain', 'cover', 'none', 'scale-down', 'fill', 'contain', 'cover', 'none', 'scale-down'],
             url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            gridData: [{
+            gridData: [
+            {
+                date: '2010-05-02',
+                name: '浮生六记',
+                address: '民权一高',
+                value: '¥5400998',
+                link: '/sixlog'
+            },
+            {
                 date: '2020-05-02',
                 name: '发光石',
                 address: '白银市日落大道',
@@ -55,6 +71,18 @@ export default {
                 value: '¥9999999'
             }
             ],
+        }
+    },
+    methods: {
+        handleOpen(index, row) {
+            console.log("row has link? :", row.link)
+            if (row.link) {
+                console.log("goes to sixlog now")
+                this.$router.push({path: '/sixlog'})
+            } else {
+                // dont have extra link for this treasure
+                console.log("no extra link")
+            }
         }
     }
 }

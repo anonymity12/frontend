@@ -6,7 +6,7 @@ import Guoguo from '@/components/Guoguo'
 import PostLine from '@/components/PostLine'
 import Login from '@/views/login.vue'
 import Home from '@/views/home.vue'
-
+import SixLog from '@/components/SixLog'
 
 Vue.use(Router)
 
@@ -51,6 +51,11 @@ export default new Router({
       path: '/valley',
       name: 'PostLine',
       component: PostLine
+    },
+    {
+      path: '/sixlog',
+      name: 'SixLog',
+      component: SixLog
     }
   ]
 })
