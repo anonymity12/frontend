@@ -17,12 +17,12 @@
 
 
     <!-- main list for posts: -->
-    <div style="margin-top: 40px">
+    <div class="main_list">
       <!--<el-button @click="addArticle()">添加文章</el-button>-->
-      <div style="width: 100%; type: flex; justify:center; align:middle">
-        <el-card style="text-align: left;width: 70%;">
+      <div style="width: 100%;">
+        <el-card style="text-align: left;width: 100%;">
           <div v-for="article in articles" :key="article.id">
-            <div style="float:left;width:85%;height: 150px;">
+            <div style="float:left;width:75%;height: 150px;">
               <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
                 <span style="font-size: 20px">
                 <strong>{{article.articleTitle}}</strong>
@@ -93,17 +93,26 @@ export default({
 })
 </script>
 <style scoped>
-  .articles-area {
-    margin :0 auto;
-    text-align: center;
-  }
+.articles-area {
+  margin :0 auto;
+  text-align: center;
+}
 
-  .article-link {
-    text-decoration: none;
-    color: #606266;
-  }
+.article-link {
+  text-decoration: none;
+  color: #606266;
+}
 
-  .article-link:hover {
-    color: #409EFF;
-  }
+.article-link:hover {
+  color: #409EFF;
+}
+.main_list {
+  margin: auto;
+  width: 60%;
+  /* border: 3px solid #73AD21; */
+  padding: 10px;
+  margin-top: 30px;
+}
+
+ 
 </style>
