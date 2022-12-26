@@ -109,3 +109,11 @@ export function userBatchDelete(data) {
     data
   })
 }
+
+
+export function getLogs(size, nthPage) {
+  return request({
+    url: '/api/sixlog/' + size + '/' + nthPage,
+    method: 'get',
+  })
+}

@@ -7,6 +7,7 @@ import PostLine from '@/components/PostLine'
 import Login from '@/views/login.vue'
 import Home from '@/views/home.vue'
 import SixLog from '@/components/SixLog'
+import LogDetail from '@/components/LogDetail'
 
 Vue.use(Router)
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/sixlog',
       name: 'SixLog',
       component: SixLog
-    }
+    },
+    {
+      path: '/sixlog/article',
+      name: 'LogDetail',
+      component: LogDetail
+    },
   ]
 })
