@@ -110,10 +110,19 @@ export function userBatchDelete(data) {
   })
 }
 
-
+// ------- sixlog related apis ⬇️ ------
 export function getLogs(size, nthPage) {
   return request({
     url: '/api/sixlog/' + size + '/' + nthPage,
     method: 'get',
   })
 }
+
+export function getSixLogTotalAmount() {
+  return request({
+    url: '/api/sixlog/getTotalAmount',
+    method: 'get'
+  })
+}
+
+// ------- sixlog related apis ⬆️ ------
