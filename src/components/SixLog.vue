@@ -54,18 +54,21 @@
 </template>
 <script>
 import { getLogs } from "@/api/user"
+import { getSixLogTotalAmount } from "@/api/user"
+
 export default({
   name: 'SixLog',
   data() {
     return {
       articles: [],
-      pageSize: 4,
+      pageSize: 5,
       total: 0,
       keywords: ''
     }
   },
   mounted() {
     this.loadArticles()
+    this.loadLogsAmount()
   },
   methods: {
     // these methods require backend to support pagination api
@@ -75,18 +78,27 @@ export default({
         console.log("api/sixlog return: ", resp)
         if (resp && resp.status === 200) {
           _this.articles = resp.data
-          _this.total = resp.data.length
+        }
+      })
+    },
+    loadLogsAmount() {
+      var _this = this 
+      getSixLogTotalAmount().then(resp => {
+        console.log("/api/sixlog/getTotalAmount return: ", resp)
+        if (resp && resp.status === 200) {
+          _this.total = resp.data.obj
         }
       })
     },
     handleCurrentChange(page) {
       var _this = this 
       getLogs(this.pageSize, page).then(resp => {
-        
         if (resp && resp.status === 200) {
           _this.articles = resp.data
-          _this.total = resp.data.length
         }
+      })
+      getSixLogTotalAmount().then(resp => {
+        _this.total = resp.data.obj 
       })
     }
   }
