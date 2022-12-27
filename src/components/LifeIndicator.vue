@@ -1,14 +1,17 @@
 <template>
   <div style="text-align: left">
     <h1>{{ msg }}</h1>
-    <li> {{ who }} already spent <strong>{{ dayPassed }}</strong> days, and {{ who }}
-        has <strong>{{ dayLeft }}</strong> days left </li>
+    <ul>
+    <li> 🔺{{ who }} has &nbsp;<strong>{{ lifeIndicator.dayPassed }}</strong>  &nbsp;days used</li>
+    <li> 🔻{{ who }}  has <strong>{{ dayLeft }}</strong> days more </li>
+    </ul>
     <el-progress :text-inside="true" :stroke-width="26" :percentage="calculatePerc()"></el-progress>
     <a>DreamList</a>
   </div>
 </template>
 
 <script>
+import { getLifeIndicator } from '@/api/user'
 export default {
   name: 'LogDetail',
   data () {
@@ -16,18 +19,35 @@ export default {
       msg: 'Life Indicator ⏳',
       who: '天天',
     //   calcPercent: 1,
-      dayPassed: 9987,
-      dayLeft: 32580,
-      dayAll: 32580
+       
+      dayLeft: 22580,
+      lifeIndicator: {
+        dayPassed: 1,
+        dayAll: 33000,
+        userId: 1
+      }
     }
   },
   methods: {
     calculatePerc() {
-        this.dayLeft = this.dayAll - this.dayPassed
-        var ret = this.dayPassed / this.dayAll * 100
+        var ret = this.lifeIndicator.dayPassed / this.lifeIndicator.dayAll * 100
         ret = ret.toFixed(2) 
         return ""+ret 
+    },
+    callGetLifeIndicator() {
+        getLifeIndicator().then(resp => {
+            if (resp.status === 200) {
+                if (resp.data.status == 200) {
+                    this.lifeIndicator = resp.data.obj
+                    this.dayLeft = this.lifeIndicator.dayAll - this.lifeIndicator.dayPassed
+                }
+            }
+        })
+        
     }
+  },
+  created() {
+    this.callGetLifeIndicator()
   }
 }
 </script>
@@ -43,9 +63,9 @@ ul {
   padding: 0;
 }
 li {
-  display: inline-block;
   margin: 0 4px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
 }
 a {
   color: #42b983;

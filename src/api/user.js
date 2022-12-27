@@ -126,3 +126,14 @@ export function getSixLogTotalAmount() {
 }
 
 // ------- sixlog related apis ⬆️ ------
+
+// ------- life related apis ⬇️ ------
+
+export function getLifeIndicator() {
+  return request({
+    url: '/users/lifeIndicator',
+    method: 'get'
+  })
+}
+
+// ------- life related apis ⬆️ ------
