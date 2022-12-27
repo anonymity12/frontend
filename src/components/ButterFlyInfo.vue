@@ -1,11 +1,10 @@
 <template>
     <div class="info">
         <div>
+            <!-- todo move to left, not center like now -->
             <h3>我管理的蝴蝶园</h3>
             <p>园子里今天有 {{tableData.length}} 个蝴蝶</p>
-            <div class="divbg">
-                <br><br>
-            </div>
+             
         </div>
         
         <el-row>
