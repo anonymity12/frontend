@@ -124,7 +124,14 @@ export function getSixLogTotalAmount() {
     method: 'get'
   })
 }
-
+// add new sixlog
+export function callSendSixLogApi(data) {
+  return request({
+    url: '/api/sixlog/add',
+    method: 'post',
+    data
+  })
+}
 // ------- sixlog related apis ⬆️ ------
 
 // ------- life related apis ⬇️ ------

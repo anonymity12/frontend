@@ -19,6 +19,34 @@
     <!-- main list for posts: -->
     <div class="main_list">
       <!--<el-button @click="addArticle()">添加文章</el-button>-->
+      <el-row>
+        <el-input
+          v-model="sixlog.articleTitle"
+          style="margin: 10px 0px;font-size: 18px;"
+          placeholder="请输入日志"></el-input>
+        <el-button @click="dialogVisible = true">添加图片</el-button>
+        <el-button @click="sendSixLog">OK，写入记录吧</el-button>
+      </el-row>
+      <el-dialog
+        :visible.sync="dialogVisible"
+        width="30%">
+        <el-divider content-position="left">额外备注</el-divider>
+        <el-input
+          type="textarea"
+          v-model="sixlog.articleAbstract"
+          rows="3"
+          maxlength="255"
+          show-word-limit></el-input>
+        <el-divider content-position="left">封面</el-divider>
+        <div style="margin-top: 20px">
+          <el-input v-model="sixlog.articleCover" autocomplete="off" placeholder="图片 URL"></el-input>
+          <img-upload @onUpload="uploadImg" ref="imgUpload" style="margin-top: 5px"></img-upload>
+        </div>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
       <div style="width: 100%;">
         <el-card style="text-align: left;width: 100%;">
           <div v-for="article in articles" :key="article.id">
@@ -55,7 +83,8 @@
 <script>
 import { getLogs } from "@/api/user"
 import { getSixLogTotalAmount } from "@/api/user"
-
+import ImgUpload from './ImgUpload'
+import { callSendSixLogApi } from "@/api/user"
 export default({
   name: 'SixLog',
   data() {
@@ -63,7 +92,13 @@ export default({
       articles: [],
       pageSize: 5,
       total: 0,
-      keywords: ''
+      keywords: '',
+      sixlog: {
+        articleAbstract: "",
+        articleCover: "",
+        articleTitle: ""
+      },
+      dialogVisible: false
     }
   },
   mounted() {
@@ -100,8 +135,27 @@ export default({
       getSixLogTotalAmount().then(resp => {
         _this.total = resp.data.obj 
       })
+    },
+    sendSixLog() {
+      console.log("ready to send sixlog to main server")
+      callSendSixLogApi({
+        "articleTitle": this.sixlog.articleTitle,
+        "articleAbstract": this.sixlog.articleAbstract,
+        "articleCover": this.sixlog.articleCover
+      }).then(resp => {
+        if (resp && resp.status === 200) {
+          this.$message({
+            type: 'info',
+            message: "已为您成功录入浮生记录"
+          })
+        }
+      })
+    },
+    uploadImg () {
+      this.sixlog.articleCover = this.$refs.imgUpload.url
     }
-  }
+  },
+  components: {ImgUpload}
 })
 </script>
 <style scoped>
