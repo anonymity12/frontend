@@ -23,37 +23,19 @@ see:
 ls /www/server/nginx/html/goodchild
 
 should see dist
+
 # next todo
 
-add axios post to finish login 2022-01-05 16:54:08
 
-# my-project
+2023-01-04 14:49:04:
 
-> A Vue.js project
+- [ ] 100% sixlog ui 
+- [ ] add UI layout update: submit text box, then, img, then ok, final: refresh
+- [ ] timer at user page
 
-## Build Setup
+0105 todo? 
 
-``` bash
-# install dependencies
-npm install
+- [ ] jiapu, family tree
 
-# serve with hot reload at localhost:8080
-npm run dev
+add axios post to finish login 2022-01-05 16:54:08 done(many days ago) 2023-01-04 14:48:20
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
