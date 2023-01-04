@@ -63,6 +63,6 @@
 
 <style scoped>
   .img-upload {
-    /*height: 200px;*/
+    /* height: 200px; */
   }
 </style>

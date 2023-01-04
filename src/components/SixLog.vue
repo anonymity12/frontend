@@ -19,18 +19,30 @@
     <!-- main list for posts: -->
     <div class="main_list">
       <!--<el-button @click="addArticle()">添加文章</el-button>-->
-      <el-row>
+      <el-row style="margin-bottom: 30px">
+        <el-col :span="18">
         <el-input
           v-model="sixlog.articleTitle"
-          style="margin: 10px 0px;font-size: 18px;"
-          placeholder="请输入日志"></el-input>
-        <el-button @click="dialogVisible = true">添加图片</el-button>
-        <el-button @click="sendSixLog">OK，写入记录吧</el-button>
+          style="margin: 0px 0px;font-size: 20px;"
+          placeholder="1. 请输入日志"></el-input>
+        </el-col>
+        
+        <el-col :span="2">
+        <el-button @click="dialogVisible = true">2. 添加图片</el-button>
+        </el-col>
+
+        <el-col :span="2">
+        <el-button @click="sendSixLog">3. 写入记录 </el-button>
+        </el-col>
+
+        <el-col :span="2">
+        <el-button @click="loadArticles">4. 刷新记录 </el-button>
+        </el-col>
       </el-row>
       <el-dialog
         :visible.sync="dialogVisible"
         width="30%">
-        <el-divider content-position="left">额外备注</el-divider>
+        <el-divider content-position="left">图片备注</el-divider>
         <el-input
           type="textarea"
           v-model="sixlog.articleAbstract"
@@ -47,10 +59,10 @@
           <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
         </span>
       </el-dialog>
-      <div style="width: 100%;">
+      <div style="width: 100%; margin-top: 20px;">
         <el-card style="text-align: left;width: 100%;">
           <div v-for="article in articles" :key="article.id">
-            <div style="float:left;width:75%;height: 150px;">
+            <div style="float:left;width:65%;height: 150px;">
               <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
                 <span style="font-size: 20px">
                 <strong>{{article.articleTitle}}</strong>
@@ -62,7 +74,7 @@
               </router-link>
             </div>
             <el-image
-              style="margin:18px 0 0 30px;width:100px;height: 100px"
+              style="margin:18px 0 0 30px;width:200px;height: 200px"
               :src="article.articleCover"
               fit="cover">
             </el-image>
@@ -174,7 +186,7 @@ export default({
 }
 .main_list {
   margin: auto;
-  width: 60%;
+  width: 90%;
   /* border: 3px solid #73AD21; */
   padding: 10px;
   margin-top: 30px;
