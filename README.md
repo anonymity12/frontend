@@ -26,16 +26,20 @@ should see dist
 
 # next todo
 
+2023-01-04 14:48:20
+
+- [x] add axios post to finish login 2023-01-04 14:48:20 done(many days ago) 
 
 2023-01-04 14:49:04:
 
-- [ ] 100% sixlog ui 
-- [ ] add UI layout update: submit text box, then, img, then ok, final: refresh
+- [x] 100% sixlog ui 
+- [x] add UI layout update: submit text box, then, img, then ok, final: refresh
 - [ ] timer at user page
 
-0105 todo? 
+0105 todo? yes doing
 
 - [ ] jiapu, family tree
 
-add axios post to finish login 2022-01-05 16:54:08 done(many days ago) 2023-01-04 14:48:20
+https://blog.csdn.net/ZYS10000/article/details/107601130
+
 

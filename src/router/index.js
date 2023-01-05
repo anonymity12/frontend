@@ -8,6 +8,7 @@ import Login from '@/views/login.vue'
 import Home from '@/views/home.vue'
 import SixLog from '@/components/SixLog'
 import LogDetail from '@/components/LogDetail'
+import JiaPu from '@/components/JiaPu'
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
       path: '/sixlog/article',
       name: 'LogDetail',
       component: LogDetail
+    },    
+    {
+      path: '/jiapu',
+      name: 'JiaPu',
+      component: JiaPu
     },
   ]
 })
