@@ -1,47 +1,6 @@
 <template>
     <div>
-        <el-tree
-            :data="menus"
-            :props="defaultProps"
-            :expand-on-click-node="false"
-            show-checkbox
-            ref="menuTree">
-            <span class="custom-tree-node" slot-scope="{ node, data }">
-            <span>{{ node.label }}</span>
-            <span>
-            <el-button v-if="node.level <=2" type="text" size="mini" @click="() => append(data)">添加</el-button>
-            <el-button type="text" size="mini" @click="edit(data)">编辑</el-button>
-            <el-button
-                v-if="node.childNodes.length==0"
-                type="text"
-                size="mini"
-                @click="() => remove(node, data)"
-            >删除</el-button>
-            </span>
-            </span>
-        </el-tree>
-        <el-dialog
-        :title="title"
-        :visible.sync="dialogVisible"
-        width="30%"
-        :close-on-click-modal="false"
-        >
-        <el-form :model="category">
-            <el-form-item label="分类名称">
-            <el-input v-model="category.name" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="图标">
-            <el-input v-model="category.icon" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="计量单位">
-            <el-input v-model="category.productUnit" autocomplete="off"></el-input>
-            </el-form-item>
-        </el-form>
-        <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="submitData">确 定</el-button>
-        </span>
-        </el-dialog>
+      <el-tree :data="menus" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
 
     </div>
 </template>
@@ -52,30 +11,46 @@ export default {
   props: {},
   data() {
     return {
-      pCid: [],
-      draggable: false,
-      updateNodes: [],
-      maxLevel: 0,
-      title: "",
-      dialogType: "", //edit,add
-      category: {
-        name: "",
-        parentCid: 0,
-        catLevel: 0,
-        showStatus: 1,
-        sort: 0,
-        productUnit: "",
-        icon: "",
-        catId: null
-      },
-      dialogVisible: false,
-      menus: [],
-      expandedKey: [],
+      menus: [{
+        label: '一级 1',
+        children: [{
+          label: '二级 1-1',
+          children: [{
+            label: '三级 1-1-1'
+          }]
+        }]
+      }, {
+        label: '一级 2',
+        children: [{
+          label: '二级 2-1',
+          children: [{
+            label: '三级 2-1-1'
+          }]
+        }, {
+          label: '二级 2-2',
+          children: [{
+            label: '三级 2-2-1'
+          }]
+        }]
+      }, {
+        label: '一级 3',
+        children: [{
+          label: '二级 3-1',
+          children: [{
+            label: '三级 3-1-1'
+          }]
+        }, {
+          label: '二级 3-2',
+          children: [{
+            label: '三级 3-2-1'
+          }]
+        }]
+      }],
       defaultProps: {
-        children: "children",
-        label: "name"
+        children: 'children',
+        label: 'label'
       }
-    };
+    }
   },
   //计算属性 类似于data概念
   computed: {},
@@ -93,6 +68,9 @@ export default {
         })
         .catch(() => {});
     },
+    handleNodeClick(data) {
+      console.log(data)
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
