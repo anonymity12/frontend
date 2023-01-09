@@ -1,6 +1,7 @@
 <template>
     <div>
-      <el-tree :data="menus" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+      <el-tree :data="menus" :props="defaultProps" 
+      @node-click="handleNodeClick"></el-tree>
 
     </div>
 </template>
@@ -11,44 +12,10 @@ export default {
   props: {},
   data() {
     return {
-      menus: [{
-        label: '一级 1',
-        children: [{
-          label: '二级 1-1',
-          children: [{
-            label: '三级 1-1-1'
-          }]
-        }]
-      }, {
-        label: '一级 2',
-        children: [{
-          label: '二级 2-1',
-          children: [{
-            label: '三级 2-1-1'
-          }]
-        }, {
-          label: '二级 2-2',
-          children: [{
-            label: '三级 2-2-1'
-          }]
-        }]
-      }, {
-        label: '一级 3',
-        children: [{
-          label: '二级 3-1',
-          children: [{
-            label: '三级 3-1-1'
-          }]
-        }, {
-          label: '二级 3-2',
-          children: [{
-            label: '三级 3-2-1'
-          }]
-        }]
-      }],
+      menus: [],
       defaultProps: {
         children: 'children',
-        label: 'label'
+        label: 'name'
       }
     }
   },
@@ -63,8 +30,9 @@ export default {
         url: "https://picgorepo.oss-cn-beijing.aliyuncs.com/family_data/jiapu.json",
         method: "get"
       })
-        .then(({ data }) => {
-          this.menus = data.data;
+        .then(resp => {
+          console.log("resp:::", resp.data.children)
+          this.menus = resp.data.children
         })
         .catch(() => {});
     },

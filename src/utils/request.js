@@ -28,14 +28,21 @@ service.interceptors.request.use(
 
 //response响应拦截
 axios.interceptors.response.use(response => {
+
+    return response 
+    /*
+    // omit, cause: when request aliyun, it's undefine
     let res = response.data;
     console.log(res)
 
     if (res.code === 200) {
+      console.log("res.code === 200")
       return response
     } else {
+      console.log("res.code != 200, it's ", res.code)// when request aliyun, it's undefine
       return Promise.reject(response.data.msg)
     }
+    */
   },
   error => {
     console.log(error)
