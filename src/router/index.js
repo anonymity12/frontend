@@ -9,6 +9,7 @@ import Home from '@/views/home.vue'
 import SixLog from '@/components/SixLog'
 import LogDetail from '@/components/LogDetail'
 import JiaPu from '@/components/JiaPu'
+import JiaPuOperationUI from '@/components/JiaPuOperationUI'
 
 Vue.use(Router)
 
@@ -68,6 +69,11 @@ export default new Router({
       path: '/jiapu',
       name: 'JiaPu',
       component: JiaPu
+    },    
+    {
+      path: '/jiapuoperation',
+      name: 'JiaPuOperationUI',
+      component: JiaPuOperationUI
     },
   ]
 })

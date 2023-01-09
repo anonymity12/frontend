@@ -43,7 +43,11 @@ should see dist
 https://blog.csdn.net/ZYS10000/article/details/107601130
 
 howto visit family tree
-http://101.43.166.211:8092/#/jiapu
+http://101.43.166.211:8091/#/jiapu
+
+
+family tree operation ui:
+http://101.43.166.211:8091/#/jiapuoperation
 
 
 
