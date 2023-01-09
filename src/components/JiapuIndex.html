@@ -1,21 +1,45 @@
-<template>
-  <div>
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8" />
+  <head>
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+  </head>
+  <style>
+    svg {
+      border: 1px solid black;
+    }
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+
+    .node {
+      font: 12px sans-serif;
+    }
+
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 1.5px;
+    }
+    #tooltip {
+      font-family: simsun;
+      font-size: 16px;
+      width: 120;
+      height: auto;
+      position: absolute;
+      text-align: center;
+      border-style: solid;
+      border-width: 1px;
+      background-color: white;
+      padding: 10px;
+    }
+  </style>
+  <body>
     <h1>家谱</h1>
     <svg width="700" height="1000"></svg>
-  </div>
-</template>
-
-<script>
-// 引入d3
-import * as d3 from 'd3'
-export default {
-  data(){
-    return{
-      
-    }
-  },
-  methods:{
-    draw(){
+    <script>
       var tooltip = d3
         .select("body")
         .append("div")
@@ -231,42 +255,6 @@ export default {
         }
         update(root);
       });
-    },
-  },
-  mounted(){
-    this.draw()
-  }
-}
-</script>
-<style>
-  svg {
-    border: 1px solid black;
-  }
-  .node circle {
-    fill: #fff;
-    stroke: steelblue;
-    stroke-width: 1.5px;
-  }
-
-  .node {
-    font: 12px sans-serif;
-  }
-
-  .link {
-    fill: none;
-    stroke: #ccc;
-    stroke-width: 1.5px;
-  }
-  #tooltip {
-    font-family: simsun;
-    font-size: 16px;
-    width: 120;
-    height: auto;
-    position: absolute;
-    text-align: center;
-    border-style: solid;
-    border-width: 1px;
-    background-color: white;
-    padding: 10px;
-  }
-</style>
+    </script>
+  </body>
+</html>
