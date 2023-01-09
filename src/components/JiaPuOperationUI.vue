@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-tree :data="menus" :props="defaultProps" 
+      <el-tree :data="people" :props="defaultProps" 
       @node-click="handleNodeClick"></el-tree>
 
     </div>
@@ -12,7 +12,7 @@ export default {
   props: {},
   data() {
     return {
-      menus: [],
+      people: [],
       defaultProps: {
         children: 'children',
         label: 'name'
@@ -25,14 +25,14 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    getMenus() {
+    getPeople() {
       this.$axios({
         url: "https://picgorepo.oss-cn-beijing.aliyuncs.com/family_data/jiapu.json",
         method: "get"
       })
         .then(resp => {
           console.log("resp:::", resp.data.children)
-          this.menus = resp.data.children
+          this.people = resp.data.children
         })
         .catch(() => {});
     },
@@ -42,7 +42,7 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.getMenus();
+    this.getPeople();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
