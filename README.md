@@ -29,6 +29,8 @@ should see dist
 2023-01-21 22:53:15
 
 - [ ] add username in sixlog list page
+- [x] register page code
+- [ ] register page test
 
 2023-01-04 14:48:20
 

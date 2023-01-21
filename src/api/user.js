@@ -8,6 +8,14 @@ export function userLogin(data) {
   })
 }
 
+export function userRegister(data) {
+  return request({
+    url: '/api/register',
+    method: 'post',
+    data
+  })
+}
+
 export function pingpong(data) {
   return request({
     url: '/api/ping',

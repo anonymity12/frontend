@@ -10,6 +10,7 @@ import SixLog from '@/components/SixLog'
 import LogDetail from '@/components/LogDetail'
 import JiaPu from '@/components/JiaPu'
 import JiaPuOperationUI from '@/components/JiaPuOperationUI'
+import Register from '@/components/Register'
 
 Vue.use(Router)
 
@@ -74,6 +75,11 @@ export default new Router({
       path: '/jiapuoperation',
       name: 'JiaPuOperationUI',
       component: JiaPuOperationUI
+    },    
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
   ]
 })
