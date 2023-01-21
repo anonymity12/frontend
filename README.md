@@ -26,6 +26,10 @@ should see dist
 
 # next todo
 
+2023-01-21 22:53:15
+
+- [ ] add username in sixlog list page
+
 2023-01-04 14:48:20
 
 - [x] add axios post to finish login 2023-01-04 14:48:20 done(many days ago) 
