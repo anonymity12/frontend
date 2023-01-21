@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 
 // http://101.43.166.211:8981/api
-const _baseURL= '/apis' //"http://localhost:8091/api"
+const _baseURL= 'http://101.43.166.211:8081' //"http://localhost:8091/api"
 // note: all /apis request will redirect to target: 'http://101.43.166.211:8081',
 // and replace /apis to empty
 // so /apis/api/login => http://101.43.166.211:8081/api/login
