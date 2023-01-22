@@ -7,7 +7,7 @@
       active-text-color="red"
       >
       <el-menu-item>
-        <a href="/home">返回主站</a>
+        <a href="#/home">返回主站</a>
       </el-menu-item>
       <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">
         浮生六记
@@ -19,23 +19,24 @@
     <!-- main list for posts: -->
     <div class="main_list">
       <!--<el-button @click="addArticle()">添加文章</el-button>-->
-      <el-row style="margin-bottom: 30px">
-        <el-col :span="18">
+      <el-row style="margin-bottom: 8px">
+        <el-col :span="24">
         <el-input
           v-model="sixlog.articleTitle"
           style="margin: 0px 0px;font-size: 20px;"
           placeholder="1. 请输入日志"></el-input>
         </el-col>
-        
-        <el-col :span="2">
+      </el-row>
+      <el-row style="margin-bottom: 30px">
+        <el-col :span="8">
         <el-button @click="dialogVisible = true">2. 添加图片</el-button>
         </el-col>
 
-        <el-col :span="2">
+        <el-col :span="8">
         <el-button @click="sendSixLog">3. 写入记录 </el-button>
         </el-col>
 
-        <el-col :span="2">
+        <el-col :span="8">
         <el-button @click="loadArticles">4. 刷新记录 </el-button>
         </el-col>
       </el-row>
