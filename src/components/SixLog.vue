@@ -69,7 +69,7 @@
                 <strong>{{article.articleTitle}}</strong>
                 </span>
               </router-link>
-              <el-divider content-position="left">{{article.articleDate}}</el-divider>
+              <el-divider content-position="left">{{article.articleDate | moment}} by {{ article.ownerName }}</el-divider>
               <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
                 <p>{{article.articleAbstract}}</p>
               </router-link>
