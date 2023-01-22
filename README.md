@@ -30,7 +30,8 @@ should see dist
 
 - [ ] add username in sixlog list page
 - [x] register page code
-- [ ] register page test
+- [x] register page test
+- [ ] sixlog 1,2,3,4 button for mobile update 2023-01-22 21:25:26
 
 2023-01-04 14:48:20
 
