@@ -63,17 +63,17 @@ export default {
             return time.getTime() > Date.now();
         },
         shortcuts: [{
+            text: '10年前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 10 * 365 * 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+        }, {
             text: '20年前',
             onClick(picker) {
               const date = new Date();
               date.setTime(date.getTime() - 20 * 365 * 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-        }, {
-            text: '30年前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 30 * 365 * 3600 * 1000 * 24);
               picker.$emit('pick', date);
             }
         }]
