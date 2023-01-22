@@ -88,10 +88,10 @@ export default {
         password: this.registerForm.password,
         birthday: this.registerForm.birthday,
       }).then((resp) => {
-        console.log("register ok", resp)
-        let code=resp.data.code;
-        if(code===200){
-          this.$router.replace({path: '/login'})
+        console.log("register resp", resp)
+        let statusCode = resp.data.status;
+        if(statusCode == 200){
+          this.$router.replace({path: 'login'})
         }
       });
     },
