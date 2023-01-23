@@ -22,9 +22,13 @@
       <el-row style="margin-bottom: 8px">
         <el-col :span="24">
         <el-input
+          type="textarea"
+          rows="3"
           v-model="sixlog.articleTitle"
           style="margin: 0px 0px;font-size: 20px;"
-          placeholder="1. 请输入日志"></el-input>
+          placeholder="1. 请输入日志"
+          >
+        </el-input>
         </el-col>
       </el-row>
       <el-row style="margin-bottom: 30px">
@@ -42,14 +46,15 @@
       </el-row>
       <el-dialog
         :visible.sync="dialogVisible"
-        width="30%">
+        width="90%">
         <el-divider content-position="left">图片备注</el-divider>
         <el-input
           type="textarea"
           v-model="sixlog.articleAbstract"
-          rows="3"
-          maxlength="255"
-          show-word-limit></el-input>
+          rows="1"
+          maxlength="50"
+          show-word-limit>
+        </el-input>
         <el-divider content-position="left">封面</el-divider>
         <div style="margin-top: 20px">
           <el-input v-model="sixlog.articleCover" autocomplete="off" placeholder="图片 URL"></el-input>
