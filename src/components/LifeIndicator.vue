@@ -2,8 +2,8 @@
   <div style="text-align: left">
     <h1>{{ msg }}</h1>
     <ul>
-    <li> 🔺{{ who }} has &nbsp;<strong>{{ lifeIndicator.dayPassed }}</strong>  &nbsp;days used</li>
-    <li> 🔻{{ who }}  has <strong>{{ dayLeft }}</strong> days more </li>
+    <li> 🔺{{ this.$store.state.user.cname }} has &nbsp;<strong>{{ lifeIndicator.dayPassed }}</strong>  &nbsp;days used</li>
+    <li> 🔻{{ this.$store.state.user.cname }}  has <strong>{{ dayLeft }}</strong> days more </li>
     </ul>
     <el-progress :text-inside="true" :stroke-width="26" :percentage="calculatePerc()"></el-progress>
     <a>DreamList</a>
@@ -40,6 +40,7 @@ export default {
                 if (resp.data.status == 200) {
                     this.lifeIndicator = resp.data.obj
                     this.dayLeft = this.lifeIndicator.dayAll - this.lifeIndicator.dayPassed
+                    this.who = this.lifeIndicator.username
                 }
             }
         })
