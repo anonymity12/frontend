@@ -152,3 +152,17 @@ export function getLifeIndicator() {
 }
 
 // ------- life related apis ⬆️ ------
+
+// ------- upload img start -----
+export function uploadImageToServer(data) {
+  return request({
+    url: '/api/sixlog/covers',
+    method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
+
+// ------- upload img end -----
