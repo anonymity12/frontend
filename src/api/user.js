@@ -146,7 +146,7 @@ export function callSendSixLogApi(data) {
 
 export function getLifeIndicator() {
   return request({
-    url: '/users/lifeIndicator',
+    url: '/api/lifeIndicator',
     method: 'get'
   })
 }

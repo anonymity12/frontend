@@ -16,7 +16,7 @@ export default {
   name: 'LogDetail',
   data () {
     return {
-      msg: 'Life Indicator ⏳',
+      msg: '生命指示器 ⏳',
       who: '天天',
     //   calcPercent: 1,
        
