@@ -5,7 +5,7 @@
             <el-form v-model="currentUser" ref="dataForm">
                 <el-form-item prop="userface">
                     <el-avatar 
-                        style="color: #222; float: left; margin-top: 20px"
+                        style="color: #222; margin-top: 20px"
                         :src="currentUser.userface"
                         :size="150">
                     </el-avatar>
