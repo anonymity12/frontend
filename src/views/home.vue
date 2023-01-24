@@ -3,12 +3,14 @@
     <!--顶部-->
     <el-header style="margin-right: 15px; width: 100%">
       <span class="head-intro" >{{this.$store.state.user.intro}}</span>
-      <el-avatar
-        style="color: #222; float: left; margin-top: 20px"
-        :src="this.$store.state.user.userface"
-        :size="50"
-        ></el-avatar
-      >
+      <span @click="avatarClick()">
+        <el-avatar
+          style="color: #222; float: left; margin-top: 20px"
+          :src="this.$store.state.user.userface"
+          :size="50"
+          >
+        </el-avatar>
+      </span>
       <span 
         style="color: #222; padding-top: 20px;float: left;font-weight: bold;font-size: 20px; margin: 8px"
         >{{ this.$store.state.user.cname }}
@@ -69,6 +71,9 @@ export default {
     },
     setOwner() {
       this.pageOwner = this.$store.state.user.name
+    },
+    avatarClick() {
+      console.log("avatar clicked")
     },
   },
   created() {
