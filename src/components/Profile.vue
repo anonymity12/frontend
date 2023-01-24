@@ -30,10 +30,10 @@
                     <el-input v-model="currentUser.intro" :disabled="widgetDisable"></el-input>
                 </el-form-item>
                 <el-form-item prop="id">
-                    <label>用户数据库id： {{ currentUser.id }}</label>
+                    <label>用户数据库id: {{ currentUser.id }}</label>
                 </el-form-item>
             </el-form>
-            <el-button @click="enterEditStatus()">编辑</el-button>
+            <el-button @click="enterEditStatus()">{{ buttonText }}</el-button>
             </el-col>
         </el-row>
 
@@ -56,6 +56,7 @@ export default {
                 password: "12333",
                 intro: "无定位的我",
             },
+            buttonText: '编辑我的信息',
         }
     },
     methods: {
@@ -66,11 +67,38 @@ export default {
             })
         },
         enterEditStatus() {
-            this.widgetDisable = false
+            if (this.widgetDisable == false) {
+                // want to update
+                this.widgetDisable = false
+                this.buttonText = '确定更新我的信息'
+            } else {
+                // want to submit
+                apiUpdateUserInfo(this.currentUser).then(res => {
+                    console.log("after api update user, res: ", res)
+                    if (res.data.status == 200) {
+                        // ok 
+                        this.$message({
+                            type: "success",
+                            message: "更新我的信息完成"
+                        })
+                        this.widgetDisable = true
+                        this.buttonText = '编辑我的信息'
+                    } else {
+                        this.$message({
+                            type: "warning",
+                            message: "更新我的信息失败"
+                        })
+                    }
+                })
+            }
+            
         },
         changeUserface() {
             console.log("change userface")
         }
+    },
+    mounted() {
+        fetchUserInfo()
     }
 }
 </script>
