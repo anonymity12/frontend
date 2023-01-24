@@ -74,6 +74,7 @@ export default {
     },
     avatarClick() {
       console.log("avatar clicked")
+      this.$router.push({path: '/profile'})
     },
   },
   created() {

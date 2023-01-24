@@ -166,3 +166,11 @@ export function uploadImageToServer(data) {
 }
 
 // ------- upload img end -----
+
+export function apiGetUserInfo(data) {
+
+}
+
+export function apiUpdateUserInfo(data) {
+
+}

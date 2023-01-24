@@ -11,6 +11,7 @@ import LogDetail from '@/components/LogDetail'
 import JiaPu from '@/components/JiaPu'
 import JiaPuOperationUI from '@/components/JiaPuOperationUI'
 import Register from '@/components/Register'
+import Profile from '@/components/Profile'
 
 Vue.use(Router)
 
@@ -80,6 +81,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     },
   ]
 })
