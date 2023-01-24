@@ -167,10 +167,17 @@ export function uploadImageToServer(data) {
 
 // ------- upload img end -----
 
-export function apiGetUserInfo(data) {
-
+export function apiGetUserInfo() {
+  return request({
+    url: '/api/user/profile',
+    method: 'get'
+  })
 }
 
 export function apiUpdateUserInfo(data) {
-
+  return request({
+    url: '/api/user/profile',
+    method: 'post',
+    data 
+  })
 }
