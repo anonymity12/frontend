@@ -181,3 +181,17 @@ export function apiUpdateUserInfo(data) {
     data 
   })
 }
+
+export function apiGetMyActions() {
+  return request({
+    url: '/api/user/action/list',
+    method: 'get'
+  })
+}
+export function apiUpdateMyActions(data) {
+  return request({
+    url: '/api/user/action/update',
+    method: 'post',
+    data
+  })
+}

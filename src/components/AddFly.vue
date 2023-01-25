@@ -51,6 +51,9 @@
 
 <script>
 import { addNewFly } from '@/api/user'
+import { apiGetMyActions } from '@/api/user'
+import { apiUpdateMyActions } from '@/api/user'
+
 export default {
   name: "AddFly",
   props: {
@@ -64,6 +67,9 @@ export default {
         evaluate: "",
         type: ""
       },
+      // actions(replace evaluates)
+      actions: [],
+      // working on: change evaluates to actions(for each user)
       evaluates: [
         {
           value: "99",
@@ -159,7 +165,7 @@ export default {
         }
       ],
       good_one:
-        "https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-11-29-11-34-37README.png",
+        "https://picgorepo.oss-cn-beijing.aliyuncs.com/smallBFalive.gif",
       bad_one:
         "https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-11-29-11-34-29README.png",
       types: [
@@ -199,6 +205,13 @@ export default {
     };
   },
   methods: {
+    getMyActions() {
+      apiGetMyActions().then(res=>{
+        console.log("apiGetMyActions return: ", res)
+        this.actions = res.data.obj 
+      })
+    }
+    ,
     dialogFormAdd(formdong) {
       this.$refs[formdong].validate(valid => {
         if (valid) {
