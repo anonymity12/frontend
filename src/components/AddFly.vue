@@ -93,11 +93,11 @@ export default {
         },
         {
           value: "103",
-          label: "早上对爷爷说了一句早上好"
+          label: "早上我说了一句早上好"
         },
         {
           value: "104",
-          label: "拿起来扫把"
+          label: "玩手机没有超过半小时"
         },
         {
           value: "105",
@@ -105,7 +105,7 @@ export default {
         },
         {
           value: "106",
-          label: "做了一件好事"
+          label: "帮爸爸妈妈做了一件事"
         },
         {
           value: "107",
@@ -125,7 +125,7 @@ export default {
         },
         {
           value: "111",
-          label: "跳了舞蹈"
+          label: "跳了舞"
         },
         {
           value: "112",
@@ -145,11 +145,11 @@ export default {
         },
         {
           value: "116",
-          label: "下午我画画了"
+          label: "算法练习"
         },
         {
           value: "117",
-          label: "中午好好吃饭了"
+          label: "写了一些输出的东西打卡"
         },
         {
           value: "118",
