@@ -28,6 +28,7 @@
     <el-container>
       <el-main>
         <life-indicator></life-indicator>
+        <tasks></tasks>
         <ButterFlyInfo :fly-owner="pageOwner"></ButterFlyInfo>
         <Baibao :boxShow="boxShow"></Baibao>
       </el-main>
@@ -40,6 +41,7 @@ import ButterFlyInfo from '@/components/ButterFlyInfo'
 import Baibao from '@/components/Baibao'
 import { pingpong } from "@/api/user"
 import LifeIndicator from '../components/LifeIndicator.vue'
+import Tasks from '../components/Tasks.vue'
 export default {
   name: "Home",
   data() {
@@ -83,7 +85,8 @@ export default {
   components: {
     ButterFlyInfo,
     Baibao,
-    LifeIndicator
+    LifeIndicator,
+    Tasks
   }
 };
 </script>
