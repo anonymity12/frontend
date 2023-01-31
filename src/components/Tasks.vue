@@ -2,7 +2,7 @@
     <div>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span style="float: left; font-family: '楷体GB_2312';
+                <span style="float: left;
                     font-size: x-large;
                     text-shadow: gray 6px 6px 4px;
                     font-weight: bold;">解决事情，获得蝴蝶</span>
@@ -10,22 +10,24 @@
             </div>
             <el-row type="flex" class="width: 100%;">
                 <textarea cols="50" rows="5" @keyup.enter="addTask" 
-                    style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTask"
+                    style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
                     placeholder="有什么事要搞定？回车确定要做这件事"></textarea>
             </el-row>
-            <el-row type="flex" v-for="(task, index) in tasks" :key='index'>
+            <el-table :data="tasks">
                 <!-- when u are just view a item, not editing -->
-                <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;" @dblclick="task.edit = true" :class="{ 'done': task.status }">
-                    <input type="checkbox" aria-label="Checkbox for following text input"
-                        @click="onCheckBoxClicked" :checked="task.status">
-                    {{ task.taskItem }} 
-                </label>
-                
-                <button type="button" class="cancel-task" @click="removeTask(index)">
-                    X
-                </button>
-                
-            </el-row>
+                <el-table-column label="item">
+                    <template slot-scope="scope">
+                        <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"  :class="{ 'done': scope.row.status }">
+                            <input type="checkbox" aria-label="Checkbox for following text input"
+                                @click="onCheckBoxClicked" :checked="scope.row.status">
+                            {{ scope.row.title }} 
+                        </label>
+                        <button type="button" class="cancel-task" @click="removeTask(scope.row)">
+                            X
+                        </button>
+                    </template>
+                </el-table-column>
+            </el-table>
         </el-card>
     </div>
 </template>
@@ -42,7 +44,7 @@ export default {
     data() {
         return {
             tasks: [],
-            newTask: ''
+            newTaskTitle: ''
         }
     },
     mounted() {
@@ -62,20 +64,19 @@ export default {
     },
     methods: {
         addTask: function () {
-            if (this.newTask !== '') {
+            if (this.newTaskTitle !== '') {
 
                 this.tasks.push({
-                    taskItem: this.newTask,
+                    title: this.newTaskTitle,
                     edit: false,
                     status: false
                 })
-                apiAddTask(this.newTask)
-                this.newTask = ''
+                this.newTaskTitle = ''
             }
         },
         removeTask: function () {
             if (confirm('不做这件事了？')) {
-                apiRemoveTask(index)
+                // apiRemoveTask(index)
                 this.tasks.splice(index, 1)
             }
         },
