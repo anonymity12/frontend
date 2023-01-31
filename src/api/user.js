@@ -182,6 +182,8 @@ export function apiUpdateUserInfo(data) {
   })
 }
 
+// ---- (deprecated)actions related api start --- 
+// deprecated by `task`
 export function apiGetMyActions() {
   return request({
     url: '/api/user/action/list',
@@ -195,6 +197,7 @@ export function apiUpdateMyActions(data) {
     data
   })
 }
+// ---- (deprecated)actions related api end --- 
 
 // ---- task related api start ----
 
@@ -212,9 +215,9 @@ export function apiAddTask(data) {
   })
 }
 
-export function apiRemoveTask(data) {
+export function apiCancelTask(data) {
   return request({
-    url: '/api/task/remove',
+    url: '/api/task/cancel',
     method: 'post',
     data
   })
