@@ -9,27 +9,22 @@
 
             </div>
             <el-row type="flex" class="width: 100%;">
-                <textarea cols="30" rows="5" @keyup.enter="addTask" 
-                    style="text-shadow: gray 4px 4px 6px; font-size: large;" v-model="newTask"
+                <textarea cols="50" rows="5" @keyup.enter="addTask" 
+                    style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTask"
                     placeholder="有什么事要搞定？回车确定要做这件事"></textarea>
             </el-row>
             <el-row type="flex" v-for="(task, index) in tasks" :key='index'>
                 <!-- when u are just view a item, not editing -->
-                <div v-if="task.edit == false" class="div-inline">
-                    <label style="text-shadow: gray 6px 6px 4px;" @dblclick="task.edit = true" :class="{ 'done': task.status }">
-                        <input type="checkbox" aria-label="Checkbox for following text input"
-                            @click="task.status = !task.status" :checked="task.status">
-                        {{ task.taskItem }}
-                    </label>
-                    <div class="action float-right div-inline">
-                        <button type="button" @click="removeTask(index)">
-                            X
-                        </button>
-                    </div>
-                </div>
-                <!-- when u are editing  -->
-                <input v-else type="text" v-model="task.taskItem" placeholder="Edit Task" @focusout="task.edit = false"
-                    @keyup.enter="task.edit = false">
+                <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;" @dblclick="task.edit = true" :class="{ 'done': task.status }">
+                    <input type="checkbox" aria-label="Checkbox for following text input"
+                        @click="onCheckBoxClicked" :checked="task.status">
+                    {{ task.taskItem }} 
+                </label>
+                
+                <button type="button" class="cancel-task" @click="removeTask(index)">
+                    X
+                </button>
+                
             </el-row>
         </el-card>
     </div>
@@ -40,7 +35,6 @@ export default {
     name: 'Tasks',
     props: {
         'taskTitle': String,
-
     },
     data() {
         return {
@@ -130,5 +124,10 @@ export default {
 
 .div-inline {
     display: inline-block;
+}
+.cancel-task{
+    background: #d10c0c89;
+    margin-left: 10px;
+    padding: 2px;
 }
 </style>
