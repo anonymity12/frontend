@@ -31,6 +31,9 @@
 </template>
 
 <script>
+import { apiAddTask } from '@/api/user'
+import { apiCancelTask } from '@/api/user'
+import { apiDoneTask } from '@/api/user'
 export default {
     name: 'Tasks',
     props: {
@@ -60,18 +63,24 @@ export default {
     methods: {
         addTask: function () {
             if (this.newTask !== '') {
+
                 this.tasks.push({
                     taskItem: this.newTask,
                     edit: false,
                     status: false
                 })
+                apiAddTask(this.newTask)
                 this.newTask = ''
             }
         },
         removeTask: function () {
             if (confirm('不做这件事了？')) {
+                apiRemoveTask(index)
                 this.tasks.splice(index, 1)
             }
+        },
+        onCheckBoxClicked: function() {
+            task.status = !task.status
         }
     }
 }
