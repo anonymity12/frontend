@@ -9,7 +9,7 @@
 
             </div>
             <el-row type="flex" class="width: 100%;">
-                <textarea cols="50" rows="5" @keyup.enter="addTask" 
+                <textarea cols="50" rows="5" @keyup.enter="addTask"
                     style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
                     placeholder="有什么事要搞定？回车确定要做这件事"></textarea>
             </el-row>
@@ -17,10 +17,11 @@
                 <!-- when u are just view a item, not editing -->
                 <el-table-column label="item">
                     <template slot-scope="scope">
-                        <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"  :class="{ 'done': scope.row.status }">
+                        <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
+                            :class="{ 'done': scope.row.status }">
                             <input type="checkbox" aria-label="Checkbox for following text input"
                                 @click="onCheckBoxClicked(scope.row)" :checked="scope.row.status">
-                            {{ scope.row.title }} 
+                            {{ scope.row.title }}
                         </label>
                         <button type="button" class="cancel-task" @click="cancelTask(scope.row)">
                             X
@@ -36,7 +37,7 @@
 import { apiAddTask } from '@/api/user'
 import { apiCancelTask } from '@/api/user'
 import { apiDoneTask } from '@/api/user'
-import { apiGetTasks} from '@/api/user'
+import { apiGetTasks } from '@/api/user'
 export default {
     name: 'Tasks',
     props: {
@@ -62,12 +63,12 @@ export default {
         }
     },
     methods: {
-        getAllTasks: function() {
+        getAllTasks: function () {
             apiGetTasks().then(res => {
-                console.log("get all tasks: " , res)
+                console.log("get all tasks: ", res)
                 var apiReady = false;
                 if (apiReady) {
-                    this.tasks = res.data.obj 
+                    this.tasks = res.data.obj
                 } else {
                     console.log("api not ready")
                 }
@@ -101,7 +102,7 @@ export default {
                 console.log("ready to remove row: ", row)
             }
         },
-        onCheckBoxClicked: function(row) {
+        onCheckBoxClicked: function (row) {
             console.log("box clicked for row:", row)
             row.status = !row.status
         }
@@ -157,7 +158,8 @@ export default {
 .div-inline {
     display: inline-block;
 }
-.cancel-task{
+
+.cancel-task {
     background: #d10c0c89;
     margin-left: 10px;
     padding: 2px;
