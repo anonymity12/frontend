@@ -52,7 +52,7 @@
           type="textarea"
           v-model="sixlog.articleAbstract"
           rows="1"
-          maxlength="50"
+          maxlength="999"
           show-word-limit>
         </el-input>
         <el-divider content-position="left">封面</el-divider>
