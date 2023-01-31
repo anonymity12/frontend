@@ -19,10 +19,10 @@
                     <template slot-scope="scope">
                         <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"  :class="{ 'done': scope.row.status }">
                             <input type="checkbox" aria-label="Checkbox for following text input"
-                                @click="onCheckBoxClicked" :checked="scope.row.status">
+                                @click="onCheckBoxClicked(scope.row)" :checked="scope.row.status">
                             {{ scope.row.title }} 
                         </label>
-                        <button type="button" class="cancel-task" @click="removeTask(scope.row)">
+                        <button type="button" class="cancel-task" @click="cancelTask(scope.row)">
                             X
                         </button>
                     </template>
@@ -36,6 +36,7 @@
 import { apiAddTask } from '@/api/user'
 import { apiCancelTask } from '@/api/user'
 import { apiDoneTask } from '@/api/user'
+import { apiGetTasks} from '@/api/user'
 export default {
     name: 'Tasks',
     props: {
@@ -48,9 +49,7 @@ export default {
         }
     },
     mounted() {
-        if (localStorage.getItem('matrix2')) {
-            this.tasks = JSON.parse(localStorage.getItem('matrix2')).tasks
-        }
+        this.getAllTasks()
     },
     watch: {
         tasks: {
@@ -63,25 +62,48 @@ export default {
         }
     },
     methods: {
+        getAllTasks: function() {
+            apiGetTasks().then(res => {
+                console.log("get all tasks: " , res)
+                var apiReady = false;
+                if (apiReady) {
+                    this.tasks = res.data.obj 
+                } else {
+                    console.log("api not ready")
+                }
+            })
+        },
+
         addTask: function () {
             if (this.newTaskTitle !== '') {
-
-                this.tasks.push({
-                    title: this.newTaskTitle,
+                newTask = {
+                    title: this.newTaskTitle && this.newTaskTitle.trim(),
                     edit: false,
                     status: false
+                }
+                apiAddTask(newTask).then(res => {
+                    console.log("ret res for add new task: ", res)
+                    if (1) {
+                        this.tasks.push({
+                            title: this.newTaskTitle,
+                            edit: false,
+                            status: false
+                        })
+                        this.newTaskTitle = ''
+                    } else {
+                        console.log("apiAddTask failed")
+                    }
                 })
-                this.newTaskTitle = ''
             }
         },
-        removeTask: function () {
+        cancelTask: function (row) {
             if (confirm('不做这件事了？')) {
-                // apiRemoveTask(index)
-                this.tasks.splice(index, 1)
+                console.log("ready to remove row: ", row)
             }
         },
-        onCheckBoxClicked: function() {
-            task.status = !task.status
+        onCheckBoxClicked: function(row) {
+            console.log("box clicked for row:", row)
+            row.status = !row.status
         }
     }
 }
