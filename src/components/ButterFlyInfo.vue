@@ -2,8 +2,8 @@
     <div class="info">
         <div>
             <!-- todo move to left, not center like now -->
-            <h3>我管理的蝴蝶园</h3>
-            <p>园子里今天有 {{tableData.length}} 个蝴蝶</p>
+            <h1> ⬇️ ⬇️ ⬇️ </h1>
+            <p class="little-summary">总计：我已完成{{tableData.length}} 件事情，合成了 {{tableData.length}} 个蝴蝶</p>
              
         </div>
         
@@ -262,5 +262,10 @@ h1 {
 }
 .test {
     background: linear-gradient(90deg,#180125b3,#4d5334a4,#2d2c2c96)
+}
+
+.little-summary {
+    font-size: small;
+    color: rgb(148, 67, 118);
 }
 </style>
