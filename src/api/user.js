@@ -195,3 +195,37 @@ export function apiUpdateMyActions(data) {
     data
   })
 }
+
+// ---- task related api start ----
+
+export function apiGetTasks() {
+  return request({
+    url: '/api/task/getAll',
+    method: 'get'
+  })
+}
+export function apiAddTask(data) {
+  return request({
+    url: '/api/task/add',
+    method: 'post',
+    data
+  })
+}
+
+export function apiRemoveTask(data) {
+  return request({
+    url: '/api/task/remove',
+    method: 'post',
+    data
+  })
+}
+
+export function apiDoneTask(data) {
+  return request({
+    url: '/api/task/done',
+    method: 'post',
+    data
+  })
+}
+
+// ---- task related api end ----
