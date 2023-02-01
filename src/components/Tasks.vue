@@ -18,8 +18,8 @@
                 <el-table-column label="item">
                     <template slot-scope="scope">
                         <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
-                            :class="{ 'done': scope.row.status==2 }" :disabled="scope.row.status==0">
-                            <input type="checkbox" aria-label="Checkbox for following text input"
+                            :class="{ 'done': scope.row.status==2 }">
+                            <input type="checkbox" aria-label="Checkbox for following text input" :disabled="scope.row.status==0"
                                 @click="onCheckBoxClicked(scope.row)" :checked="scope.row.status==2">
                             {{ scope.row.title }}
                         </label>
@@ -77,17 +77,19 @@ export default {
 
         addTask: function () {
             if (this.newTaskTitle !== '') {
-                newTask = {
-                    title: this.newTaskTitle && this.newTaskTitle.trim(),
-                    status: 1
-                }
-                apiAddTask(newTask).then(res => {
+                var title = this.newTaskTitle && this.newTaskTitle.trim()
+                console.log("front: title: ", title)
+                apiAddTask(title).then(res => {
                     console.log("ret res for add new task: ", res)
-                    if (1) {
-                        this.tasks.push({
-                            title: this.newTaskTitle,
-                            status: false
+                    if (res.data.status == 200) {
+                        this.$message({
+                            type: 'success',
+                            message: res.data.msg
                         })
+                        apiGetTasks().then(res => {
+                                this.tasks = res.data
+                            }
+                        )
                         this.newTaskTitle = ''
                     } else {
                         console.log("apiAddTask failed")
@@ -98,6 +100,15 @@ export default {
         cancelTask: function (row) {
             if (confirm('不做这件事了？')) {
                 console.log("ready to remove row: ", row)
+                apiCancelTask(row.id).then(res=>{
+                    if (res.data.status == 200) {
+                        this.$message({
+                            type: 'success',
+                            message: res.data.msg
+                        })
+                        row.status = 0
+                    }
+                })
             }
         },
         onCheckBoxClicked: function (row) {

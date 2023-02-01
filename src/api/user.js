@@ -207,19 +207,17 @@ export function apiGetTasks() {
     method: 'get'
   })
 }
-export function apiAddTask(data) {
+export function apiAddTask(title) {
   return request({
-    url: '/api/task/add',
-    method: 'post',
-    data
+    url: '/api/task/add?title='+title,
+    method: 'post'
   })
 }
 
-export function apiCancelTask(data) {
+export function apiCancelTask(taskId) {
   return request({
-    url: '/api/task/cancel',
-    method: 'post',
-    data
+    url: '/api/task/cancel?taskId='+taskId,
+    method: 'post'
   })
 }
 
