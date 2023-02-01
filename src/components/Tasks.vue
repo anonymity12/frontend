@@ -79,15 +79,13 @@ export default {
             if (this.newTaskTitle !== '') {
                 newTask = {
                     title: this.newTaskTitle && this.newTaskTitle.trim(),
-                    edit: false,
-                    status: false
+                    status: 1
                 }
                 apiAddTask(newTask).then(res => {
                     console.log("ret res for add new task: ", res)
                     if (1) {
                         this.tasks.push({
                             title: this.newTaskTitle,
-                            edit: false,
                             status: false
                         })
                         this.newTaskTitle = ''
@@ -105,9 +103,45 @@ export default {
         onCheckBoxClicked: function (row) {
             console.log("box clicked for row:", row)
             if (row.status == 1) {
-                row.status = 2
+              var taskDto = {
+                status: 2,
+                id: row.id
+              }
+              apiDoneTask(taskDto).then(res => {
+                if (res.data.status == 200) {
+                  this.$message({
+                    type: 'success',
+                    message: res.data.msg
+                  })
+                  row.status = 2
+                }
+                else {
+                  this.$message({
+                    type: 'warning',
+                    message: res.data.msg
+                  })
+                }
+              })
             } else if (row.status == 2) {
-                row.status = 1
+              var taskDto = {
+                status: 1,
+                id: row.id
+              }
+              apiDoneTask(taskDto).then(res => {
+                if (res.data.status == 200) {
+                  this.$message({
+                    type: 'success',
+                    message: res.data.msg
+                  })
+                  row.status = 1
+                }
+                else {
+                  this.$message({
+                    type: 'warning',
+                    message: res.data.msg
+                  })
+                }
+              })
             }
         }
     }
