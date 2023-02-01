@@ -18,9 +18,9 @@
                 <el-table-column label="item">
                     <template slot-scope="scope">
                         <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
-                            :class="{ 'done': scope.row.status }">
+                            :class="{ 'done': scope.row.status==2 }">
                             <input type="checkbox" aria-label="Checkbox for following text input"
-                                @click="onCheckBoxClicked(scope.row)" :checked="scope.row.status">
+                                @click="onCheckBoxClicked(scope.row)" :checked="scope.row.status==2">
                             {{ scope.row.title }}
                         </label>
                         <button type="button" class="cancel-task" @click="cancelTask(scope.row)">
@@ -104,7 +104,11 @@ export default {
         },
         onCheckBoxClicked: function (row) {
             console.log("box clicked for row:", row)
-            row.status = !row.status
+            if (row.status == 1) {
+                row.status = 2
+            } else if (row.status == 2) {
+                row.status = 1
+            }
         }
     }
 }
