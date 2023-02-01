@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       msg: '生命指示器 ⏳',
-      who: '天天',
+      // who: '天天', todo: remove all comment `who` later 0201 12:17
     //   calcPercent: 1,
        
       dayLeft: 22580,
@@ -40,7 +40,8 @@ export default {
                 if (resp.data.status == 200) {
                     this.lifeIndicator = resp.data.obj
                     this.dayLeft = this.lifeIndicator.dayAll - this.lifeIndicator.dayPassed
-                    this.who = this.lifeIndicator.username
+                    // this.who = this.lifeIndicator.username
+                    // comment above cause we dont use `who` all the way, we use store
                 }
             }
         })
