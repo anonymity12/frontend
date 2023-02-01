@@ -18,12 +18,12 @@
                 <el-table-column label="item">
                     <template slot-scope="scope">
                         <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
-                            :class="{ 'done': scope.row.status==2 }">
+                            :class="{ 'done': scope.row.status==2 }" :disabled="scope.row.status==0">
                             <input type="checkbox" aria-label="Checkbox for following text input"
                                 @click="onCheckBoxClicked(scope.row)" :checked="scope.row.status==2">
                             {{ scope.row.title }}
                         </label>
-                        <button type="button" class="cancel-task" @click="cancelTask(scope.row)">
+                        <button type="button" class="cancel-task" :disabled="scope.row.status==0" @click="cancelTask(scope.row)">
                             X
                         </button>
                     </template>
