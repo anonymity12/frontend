@@ -66,9 +66,9 @@ export default {
         getAllTasks: function () {
             apiGetTasks().then(res => {
                 console.log("get all tasks: ", res)
-                var apiReady = false;
+                var apiReady = true;
                 if (apiReady) {
-                    this.tasks = res.data.obj
+                    this.tasks = res.data
                 } else {
                     console.log("api not ready")
                 }
