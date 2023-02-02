@@ -3,7 +3,7 @@
         <div>
             <!-- todo move to left, not center like now -->
             <h1> ⬇️ ⬇️ ⬇️ </h1>
-            <p class="little-summary">总计：我已完成{{tableData.length}} 件事情，合成了 {{tableData.length}} 个蝴蝶</p>
+            <p class="little-summary">总计：我已完成{{tableData.length}} 件事情，养成了 {{finishedThingsCount}} 个蝴蝶</p>
              
         </div>
         
@@ -101,6 +101,7 @@ export default {
     data() {
         return {
             tableData: [],
+            finishedThingsCount: 1,
             dialogEdit: {
                 show: false,
             },
@@ -136,7 +137,7 @@ export default {
 				this.parent_button_text = '进入家长模式'
                 this.getFlyInfo()
 			}
-		}
+		},
 	},
     methods: {
         calImage(fly) {
@@ -163,6 +164,11 @@ export default {
             getFlyInfo(this.flyOwner).then(res => {
                 console.log("butterfly info", res)
                 this.tableData = res.data
+                var doneThings = this.tableData.filter(function(item) {
+                    return item.status == 1
+                })
+                this.finishedThingsCount = doneThings.length
+
             })
         },
         validSuccess() {
