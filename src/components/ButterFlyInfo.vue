@@ -32,7 +32,7 @@
                             >
                         <el-table-column label="蝴蝶图案" align="center" width="100">
                             <template slot-scope="scope">
-                                <img :src="scope.row.image" min-width="30" width="60" height="60">
+                                <img :src="calImage(scope.row)" min-width="30" width="60" height="60">
                             </template>
                         </el-table-column>
                         <el-table-column label="蝴蝶来源" align="left" width="100">
@@ -100,7 +100,6 @@ export default {
     props: ['flyOwner'],
     data() {
         return {
-            img_url: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/img_repo_2021-12-13-12-59-13.png',
             tableData: [],
             dialogEdit: {
                 show: false,
@@ -140,6 +139,21 @@ export default {
 		}
 	},
     methods: {
+        calImage(fly) {
+            var flyEgg = "https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-02-22-57-45.png"
+            var growedFly = "https://picgorepo.oss-cn-beijing.aliyuncs.com/smallBFalive.gif"
+            var dieFly = "https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-11-29-11-34-29README.png"
+            var finalFly = flyEgg
+            if (fly.status == 1) {
+                finalFly = growedFly
+            } else if (fly.status == -1) {
+                finalFly = dieFly
+            } else {
+                // status == 0
+                finalFly = flyEgg
+            }
+            return finalFly
+        },
         callGetMyRank() {
             getMyRank(this.flyOwner).then(res => {
                 this.myRank = res.data
