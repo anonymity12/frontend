@@ -2,11 +2,11 @@
   <div style="text-align: left">
     <h1>{{ msg }}</h1>
     <ul>
-    <li> 🔺{{ this.$store.state.user.cname }} has &nbsp;<strong>{{ lifeIndicator.dayPassed }}</strong>  &nbsp;days used</li>
-    <li> 🔻{{ this.$store.state.user.cname }}  has <strong>{{ dayLeft }}</strong> days more </li>
+    <li> 🔺{{ this.$store.state.user.cname }} 已有 &nbsp;<strong>{{ lifeIndicator.dayPassed }}</strong>  &nbsp;天使用</li>
+    <li> 🔻{{ this.$store.state.user.cname }}  还有 <strong>{{ dayLeft }}</strong> 天可用 </li>
     </ul>
     <el-progress :text-inside="true" :stroke-width="26" :percentage="calculatePerc()"></el-progress>
-    <a>DreamList</a>
+    <a>生命进度条&不断更新的乖娃娃应用</a>
   </div>
 </template>
 

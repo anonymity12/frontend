@@ -15,7 +15,7 @@
             </el-row>
             <el-table :data="tasks">
                 <!-- when u are just view a item, not editing -->
-                <el-table-column label="item">
+                <el-table-column label="最近一周的事儿：">
                     <template slot-scope="scope">
                         <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
                             :class="{ 'done': scope.row.status==2 }">
