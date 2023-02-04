@@ -23,7 +23,7 @@
         <el-col :span="24">
         <el-input
           type="textarea"
-          rows="3"
+          rows="1"
           v-model="sixlog.articleTitle"
           style="margin: 0px 0px;font-size: 20px;"
           placeholder="1. 请输入日志"
@@ -47,11 +47,11 @@
       <el-dialog
         :visible.sync="dialogVisible"
         width="90%">
-        <el-divider content-position="left">图片备注</el-divider>
+        <el-divider content-position="left">详情</el-divider>
         <el-input
           type="textarea"
           v-model="sixlog.articleAbstract"
-          rows="1"
+          rows="4"
           maxlength="999"
           show-word-limit>
         </el-input>
@@ -66,26 +66,25 @@
         </span>
       </el-dialog>
       <div style="width: 100%; margin-top: 20px;">
-        <el-card style="text-align: left;width: 100%;">
-          <div v-for="article in articles" :key="article.id">
-            <div style="float:left;width:65%;height: 150px;">
-              <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
-                <span style="font-size: 20px">
-                <strong>{{article.articleTitle}}</strong>
-                </span>
-              </router-link>
-              <el-divider content-position="left">{{article.articleDate | moment}} by {{ article.ownerName }}</el-divider>
-              <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
-                <p>{{article.articleAbstract}}</p>
-              </router-link>
-            </div>
-            <el-image
-              style="margin:18px 0 0 30px;width:200px;height: 200px"
-              :src="article.articleCover"
-              fit="cover">
-            </el-image>
-            <el-divider></el-divider>
+        <el-card v-for="article in articles" :key="article.id" style="text-align: left;width: 100%; margin-bottom: 6px;">
+          <div style="float:left;width:65%;">
+            <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
+              <span style="font-size: 20px">
+              <strong>{{article.articleTitle}}</strong>
+              </span>
+            </router-link>
           </div>
+          <div style="float:left;width:65%;height: 200px;">
+            <el-divider content-position="left">{{article.articleDate | moment}} by {{ article.ownerName }}</el-divider>
+            <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
+              <p>{{article.articleAbstract}}</p>
+            </router-link>
+          </div>
+          <el-image v-if="article.articleCover!=''"
+            style="margin:8px 0 0 8px;width:auto; height: 200px"
+            :src="article.articleCover"
+            fit="cover">
+          </el-image>
         </el-card>
       </div>
       <el-pagination
@@ -156,6 +155,13 @@ export default({
     },
     sendSixLog() {
       console.log("ready to send sixlog to main server")
+      if(this.sixlog.articleTitle == '') {
+        this.$message({
+          type: 'info',
+          message: '内容不可为空'
+        })
+        return
+      }
       callSendSixLogApi({
         "articleTitle": this.sixlog.articleTitle,
         "articleAbstract": this.sixlog.articleAbstract,
