@@ -76,8 +76,8 @@ export default {
         },
 
         addTask: function () {
-            if (this.newTaskTitle !== '') {
-                var title = this.newTaskTitle && this.newTaskTitle.trim()
+            var title = this.newTaskTitle && this.newTaskTitle.trim()
+            if (title !== '') {
                 console.log("front: title: ", title)
                 apiAddTask(title).then(res => {
                     console.log("ret res for add new task: ", res)
@@ -96,6 +96,13 @@ export default {
                     }
                 })
             }
+            else {
+                this.$message({
+                    type: 'warning',
+                    message: "任务不能空白"
+                })
+            }
+            this.newTaskTitle = ''
         },
         cancelTask: function (row) {
             if (confirm('不做这件事了？')) {
