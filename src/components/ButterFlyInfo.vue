@@ -79,7 +79,7 @@
             <h2>{{myRank}}</h2>
             <img style="width: 100px; height:100px" src="https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-01-18-29-10README.png"/>
             <br/>
-            <a href="/#/valley">进入秘密王国</a>
+            <a href="/#/ranks">🔥🔥查看蝴蝶谷排行榜🔥</a>
         </div>
         <!-- tdo 2022-11-24 19:48:18: AddFly EditFly 2022-11-29 20:21:25 -->
         <AddFly :dialogAdd="dialogAdd" :owner="flyOwner" @update="callGetFlyInfo"></AddFly>

@@ -12,6 +12,7 @@ import JiaPu from '@/components/JiaPu'
 import JiaPuOperationUI from '@/components/JiaPuOperationUI'
 import Register from '@/components/Register'
 import Profile from '@/components/Profile'
+import RankList from '@/components/RankList'
 
 Vue.use(Router)
 
@@ -86,6 +87,11 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile
+    },
+    {
+      path: '/ranks',
+      name: 'RankList',
+      component: RankList
     },
   ]
 })

@@ -230,3 +230,13 @@ export function apiDoneTask(data) {
 }
 
 // ---- task related api end ----
+
+// ---- rank related api start ----
+export function apiGetRankList() {
+  return request({
+    url: '/ranks/getRanksForShow',
+    method: 'get'
+  })
+}
+
+// ---- rank related api end ----
