@@ -65,3 +65,9 @@ here is the butterfly egg pic:
 
 ![2023-02-02-22-57-45](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-02-22-57-45.png)
 
+## register page
+
+new background
+
+![2023-02-06-13-17-14](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-06-13-17-14.png)
+

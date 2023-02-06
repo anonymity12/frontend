@@ -1,6 +1,6 @@
 <template>
-  <body id="login-page">
-    <el-form class="login-container" label-position="left" label-width="0px">
+  <body id="register-page">
+    <el-form class="login-container" label-position="left">
       <h3 class="login_title">加入🦋元宇宙</h3>
       <el-form-item>
         <el-input
@@ -18,7 +18,7 @@
           placeholder="密码"
         ></el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item label="出生日期">
         <el-date-picker
         v-model="registerForm.birthday"
         align="right"
@@ -27,14 +27,7 @@
         :picker-options="pickerOptions">
         </el-date-picker>
       </el-form-item>
-      <el-form-item>
-        <el-input
-          type="text"
-          v-model="registerForm.userface"
-          auto-complete="off"
-          placeholder="头像，现在手动吧"
-        ></el-input>
-      </el-form-item>
+      
       <el-form-item style="width: 100%">
         <el-button
           type="primary"
@@ -100,8 +93,8 @@ export default {
 </script>
 
 <style scoped>
-#login-page {
-  background: url("../assets/img/bg.jpg") no-repeat;
+#register-page {
+  background: url("https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-06-13-17-14.png") no-repeat;
   background-position: center;
   height: 100%;
   width: 100%;

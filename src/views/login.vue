@@ -72,7 +72,7 @@ export default {
 
 <style scoped>
 #login-page {
-  background: url("../assets/img/bg.jpg") no-repeat;
+  background: url("https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-06-13-17-14.png") no-repeat;
   background-position: center;
   height: 100%;
   width: 100%;
