@@ -77,9 +77,11 @@
         <div>
             <p>谁的蝴蝶多，谁就是优秀的蝴蝶管理家!你现在的排名是：</p>
             <h2>{{myRank}}</h2>
-            <img style="width: 100px; height:100px" src="https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-01-18-29-10README.png"/>
             <br/>
-            <a href="/#/ranks">🔥🔥查看蝴蝶谷排行榜🔥</a>
+            <a class="link-button" href="/#/ranks">
+                <img style="width: 100px; height:100px" src="https://picgorepo.oss-cn-beijing.aliyuncs.com//2022-12-01-18-29-10README.png"/>
+                <p>🔥查看蝴蝶谷排行榜🔥</p>
+            </a>
         </div>
         <!-- tdo 2022-11-24 19:48:18: AddFly EditFly 2022-11-29 20:21:25 -->
         <AddFly :dialogAdd="dialogAdd" :owner="flyOwner" @update="callGetFlyInfo"></AddFly>
@@ -287,5 +289,10 @@ h1 {
 .little-summary {
     font-size: small;
     color: rgb(148, 67, 118);
+}
+.link-button {
+    display: inline-block;
+    text-decoration: none;
+    font-size: large;
 }
 </style>
