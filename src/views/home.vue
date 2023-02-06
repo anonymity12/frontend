@@ -13,7 +13,7 @@
         
       </el-col>
       <el-col :span="22" >
-        <el-row type="flex" justify="start" style="margin-left: 50px;">
+        <el-row type="flex" justify="start" style="margin-left: 60px;">
           <p 
           style="color: #222; padding-top: 20px;font-weight: bold;font-size: 20px; margin: 8px; font-family:'Times New Roman', Times, serif;"
           >{{ this.$store.state.user.cname }}
@@ -93,7 +93,7 @@ export default {
 
 .head-intro {
   float: left;
-  margin-left: 50px;
+  margin-left: 60px;
 
   font-size: 10px;
   font-weight: bold;
