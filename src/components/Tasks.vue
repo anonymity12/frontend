@@ -2,10 +2,11 @@
     <div>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span style="float: left;
-                    font-size: x-large;
+                <span style="float: left;font-size: x-large;
                     text-shadow: gray 6px 6px 4px;
-                    font-weight: bold;">解决事情，获得蝴蝶</span>
+                    font-weight: bold;">
+                    解决事情，获得蝴蝶
+                </span>
 
             </div>
             <el-row type="flex" class="width: 100%;">
@@ -30,6 +31,17 @@
                 </el-table-column>
             </el-table>
         </el-card>
+        <el-dialog title="关闭这件事情？" :visible.sync="cancelBoxShow">
+            <p style="font-size:x-large">
+                😭 将会得到一个死去的黑蝴蝶 🐛
+            </p>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="cancelBoxShow = false">取 消</el-button>
+                <el-button type="primary" @click="dialogCancelConfirm()"
+                >确 定</el-button
+                >
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -46,7 +58,9 @@ export default {
     data() {
         return {
             tasks: [],
-            newTaskTitle: ''
+            newTaskTitle: '',
+            cancelBoxShow: false,
+            currentCancelRow: {}
         }
     },
     mounted() {
@@ -105,18 +119,21 @@ export default {
             this.newTaskTitle = ''
         },
         cancelTask: function (row) {
-            if (confirm('不做这件事了？')) {
-                console.log("ready to remove row: ", row)
-                apiCancelTask(row.id).then(res=>{
+            this.cancelBoxShow = true 
+            this.currentCancelRow = row
+        },
+        dialogCancelConfirm: function() {
+            apiCancelTask(this.currentCancelRow.id).then(res=>{
                     if (res.data.status == 200) {
+                        this.cancelBoxShow = false 
+
                         this.$message({
                             type: 'success',
                             message: res.data.msg
                         })
-                        row.status = 0
+                        this.currentCancelRow.status = 0
                     }
                 })
-            }
         },
         onCheckBoxClicked: function (row) {
             console.log("box clicked for row:", row)
