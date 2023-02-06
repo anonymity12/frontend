@@ -3,10 +3,6 @@
         <el-dialog title="百宝箱" :visible.sync="boxShow.show" width="100%">
             <p>温馨提示：获得的蝴蝶越多，它们帮你找到的宝藏越多哦！</p>
                 <el-table :data="gridData" height="290" >
-                    <el-table-column property="date" label="发现日期" width="150"></el-table-column>
-                    <el-table-column property="name" label="宝藏名字" width="200"></el-table-column>
-                    <el-table-column property="address" label="发现地点"></el-table-column>
-                    <el-table-column property="value" label="宝藏价值"></el-table-column>
                     <el-table-column property="link" label="开启宝藏">
                         <template slot-scope="scope">
                         <el-button type="primary" size="small" icon="el-icon-edit-outline" 
@@ -15,6 +11,11 @@
                         </el-button>
                         </template>
                     </el-table-column>
+                    <el-table-column property="name" label="宝藏名字" width="200"></el-table-column>
+                    <el-table-column property="date" label="发现日期" width="150"></el-table-column>
+                    <el-table-column property="address" label="发现地点"></el-table-column>
+                    <el-table-column property="value" label="宝藏价值"></el-table-column>
+                    
                 </el-table>
         </el-dialog>
     </div>
