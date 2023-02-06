@@ -9,18 +9,21 @@
       <el-menu-item>
         <a href="#/home"> ⬅️ </a>
       </el-menu-item>
-      <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">
-        现在蝴蝶谷的排名情况如下：（每3分钟更新）
+      <span style="position: absolute;padding-top: 20px;font-size: 15px;font-weight: bold">
+        排名
       </span>
       
     </el-menu>
       
     <el-card v-for="item in rankList" :key="item.userId"
-        style="width: 60%; margin-bottom: 12px;">
+        style="margin-bottom: 12px;">
         <el-avatar 
             :src="item.userface"
-            :size="150"></el-avatar>
+            :size="100"></el-avatar>
         <p>{{ item.cname }}</p>
+        <span>🦋：{{ item.growFlyCnt }}</span>
+        <span>🥚：{{ item.babyFlyCnt }}</span>
+        <span>🐛：{{ item.diedFlyCnt }}</span>
     </el-card>
     </div>
 </template>
