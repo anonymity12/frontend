@@ -3,7 +3,7 @@
         <div>
             <!-- todo move to left, not center like now -->
             <h1> ⬇️ ⬇️ ⬇️ </h1>
-            <p class="little-summary">总计：我已完成{{tableData.length}} 件事情，养成了 {{finishedThingsCount}} 个蝴蝶</p>
+            <p class="little-summary">总计：我已安排了{{tableData.length}} 件事情，完毕养成了 {{finishedThingsCount}} 个蝴蝶</p>
              
         </div>
         

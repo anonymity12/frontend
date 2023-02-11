@@ -10,9 +10,10 @@
           >
         </el-avatar>
         </p>
-        
       </el-col>
-      <el-col :span="22" >
+      <el-col :span="2" >
+      </el-col>
+      <el-col :span="20" >
         <el-row type="flex" justify="start" style="margin-left: 60px;">
           <p 
           style="color: #222; padding-top: 20px;font-weight: bold;font-size: 20px; margin: 8px; font-family:'Times New Roman', Times, serif;"
