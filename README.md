@@ -1,4 +1,49 @@
 
+# frontend for `gww` project
+
+`gww` stands for chinese: 乖娃娃（GuaiWaWa)
+
+Originally, it's a Android app for my nephew and niece
+
+looks like:
+
+![2023-02-12-19-45-06](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-12-19-45-06.png)
+
+However, for fast development(work together with the [backend](https://github.com/anonymity12/backend.git)), I use [Vue.js](https://vuejs.org/guide/introduction.html) to write a web version, so here is the repository.
+
+## UI
+
+![2023-02-12-19-59-11](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-12-19-59-11.png)
+
+
+## feature & ideas
+
+- finish task, to win butterfly, compete with others, to get top 1 in rank list
+- write life-log, reading notes
+- cherishing each day we live in this world: use life indicator to see how many days passed for your life, and how many days remind
+- more ideas to implements:
+    - chat
+    - records for exercise/habits
+    - family album
+    - eisenhower martix
+    - daily review
+    - world map log
+    - Android&iOS version!!
+
+## tech
+
+- Vue.js
+- Node.js
+- ElementUI
+- Linux/CentOs
+- Shell Script
+- Nginx
+
+---
+
+below just is my own notes for working proceeding, don't bother
+---
+
 # notice 
 
 prod port =  8089
@@ -31,7 +76,7 @@ should see dist
 - [x] add username in sixlog list page 2023-01-22 23:08:16 2023-01-22 23:52:29
 - [x] register page code
 - [x] register page test
-- [ ] sixlog 1,2,3,4 button for mobile update 2023-01-22 21:25:26
+- [x] sixlog 1,2,3,4 button for mobile update 2023-01-22 21:25:26
 
 2023-01-04 14:48:20
 
