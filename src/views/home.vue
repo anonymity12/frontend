@@ -2,23 +2,22 @@
   <el-container class="home-container">
     <!--顶部-->
     <el-header style="width: 100%; height: auto;" align="middle">
-      <el-col :span="2" style="padding-top: 20px;">
-        <p @click="avatarClick()">
+      <el-col :span="8" style="padding-top: 20px;">
+        <el-row @click="avatarClick()" type="flex" justify="center">
           <el-avatar
           :src="this.$store.state.user.userface"
           :size="100"
           >
-        </el-avatar>
-        </p>
+          </el-avatar>
+        </el-row>
       </el-col>
-      <el-col :span="2" >
-      </el-col>
-      <el-col :span="20" >
-        <el-row type="flex" justify="start" style="margin-left: 60px;">
+      
+      <el-col :span="16" >
+        <el-row type="flex" justify="start" style="margin-left: 20px;">
           <p 
-          style="color: #222; padding-top: 20px;font-weight: bold;font-size: 20px; margin: 8px; font-family:'Times New Roman', Times, serif;"
+          style="color: #222; padding-top: 20px;font-weight: bold;font-size: 20px; font-family:'Times New Roman', Times, serif;"
           >{{ this.$store.state.user.cname }}
-        </p>
+          </p>
         </el-row>
            <el-tag class="head-intro">
             {{this.$store.state.user.intro}}
@@ -94,7 +93,7 @@ export default {
 
 .head-intro {
   float: left;
-  margin-left: 60px;
+  margin-left: 20px;
 
   font-size: 10px;
   font-weight: bold;
