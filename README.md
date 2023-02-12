@@ -13,7 +13,23 @@ However, for fast development(work together with the [backend](https://github.co
 
 ## UI
 
+- home page:
+
 ![2023-02-12-19-59-11](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-12-19-59-11.png)
+
+- life log(浮生六记):
+
+an idea from [沈复](https://zh.wikipedia.org/wiki/%E6%B2%88%E5%BE%A9)
+
+![2023-02-12-20-15-25](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-12-20-15-25.png)
+
+![2023-02-12-20-16-23](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-12-20-16-23.png)
+
+- rank:
+
+![2023-02-12-20-18-24](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-12-20-18-24.png)
+
+
 
 
 ## feature & ideas
