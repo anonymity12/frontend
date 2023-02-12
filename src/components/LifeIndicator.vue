@@ -20,13 +20,13 @@
     </el-row>
     
     <div class="function-area">
-      <el-button type="primary" round @click="handleClick(1)" class="profile-span-text">
+      <el-button type="warning" size="small" round @click="handleClick(1)" class="profile-span-text">
         浮生六记
       </el-button>
-      <el-button type="primary" round @click="handleClick(2)" class="profile-span-text">
+      <el-button type="warning" size="small" round @click="handleClick(2)" class="profile-span-text">
         {{ this.musicState? '暂停音乐':'播放音乐' }}
       </el-button>
-      <el-button type="primary" round @click="handleClick(3)" class="profile-span-text">
+      <el-button type="warning" size="small" round @click="handleClick(3)" class="profile-span-text">
         查看百宝箱
       </el-button>
     </div>
