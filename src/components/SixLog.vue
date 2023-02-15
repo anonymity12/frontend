@@ -7,7 +7,7 @@
       active-text-color="red"
       >
       <el-menu-item>
-        <a href="#/home">返回主站</a>
+        <a href="#/home">⬅️</a>
       </el-menu-item>
       <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">
         浮生六记
@@ -172,6 +172,9 @@ export default({
             type: 'info',
             message: "已为您成功录入浮生记录"
           })
+          this.sixlog.articleTitle = ""
+          this.sixlog.articleAbstract = ""
+          this.sixlog.articleCover = ""
         }
       })
     },
