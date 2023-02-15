@@ -3,13 +3,13 @@
     <!--顶部-->
     <el-header style="width: 100%; height: auto;" align="middle">
       <el-col :span="8" style="padding-top: 20px;">
-        <el-row @click="avatarClick()" type="flex" justify="center">
+        <span @click="avatarClick()" type="flex" justify="center">
           <el-avatar
           :src="this.$store.state.user.userface"
           :size="100"
           >
           </el-avatar>
-        </el-row>
+        </span>
       </el-col>
       
       <el-col :span="16" >
