@@ -3,6 +3,7 @@
     class="img-upload"
     ref="upload"
     action=""
+    list-type="picture-card"
     with-credentials
     :on-preview="handlePreview"
     :on-remove="handleRemove"
@@ -14,14 +15,20 @@
     :on-exceed="handleExceed"
     :file-list="fileList"
     :http-request="uploadImage">
-    
-    <el-button size="small" type="primary">点击上传</el-button>
-    <div slot="tip" class="el-upload__tip">只能上传一张jpg/png文件，且不超过500kb</div>
+    <i slot="default" class="el-icon-plus"></i>
+    <div slot="tip" class="el-upload__tip">只能上传一张jpg/png文件，且不超过2MB</div>
+    <div slot="file" slot-scope="{file}">
+      <img
+        class="el-upload-list__item-thumbnail"
+        :src="file.url" alt=""
+      >
+    </div>
   </el-upload>
 </template>
 
 <script>
 import { uploadImageToServer } from "@/api/user"
+import { compression } from "@/utils/compression"
   export default {
     name: 'ImgUpload',
     data () {
@@ -42,7 +49,7 @@ import { uploadImageToServer } from "@/api/user"
       },
       handleExceed (files, fileList) {
         this.$message({type: "warning",
-                      message: `当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`
+                      message: `服务器比较穷😭，当前限制选择 1 个图片`
                       })
       },
       beforeRemove (file, fileList) {
@@ -52,7 +59,7 @@ import { uploadImageToServer } from "@/api/user"
         this.url = response
         console.log("img uploaded to" , this.url)
         this.$emit('onUpload')
-        this.$message('上传成功')
+        this.$message('图片已保存😊')
       },
       handleError(response) {
         console.log("err: ", response)
@@ -64,41 +71,41 @@ import { uploadImageToServer } from "@/api/user"
         var that = this,
         file = params.file,
         fileType = file.type,
-        isImage = fileType.indexOf('image') != -1,
-        file_url = that.$refs.upload.uploadFiles[0].url;
+        isImage = fileType.indexOf('image') != -1
         console.log("file is ", file)
-        var isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-          alert("图片大小不能超过2M");
-          that.$refs.upload.uploadFiles=[];
-          return;
-        }
         if (!isImage) {
           alert("请选择图片文件");
           that.$refs.upload.uploadFiles=[];
           return;
         }
-        if (isImage) {
-          console.log("ready to upload imge")
-          var formData = new FormData();
-          formData.append("file", file)
-          console.log("before img send, formData: ", formData)
-          uploadImageToServer(formData).then((res)=>{
-            console.log("server resp: ", res)
-            /*
-            config:Object
-            data:"http://101.43.166.211:8081/api/img/offj5o.jpg"
-            headers:Object
-            request:XMLHttpRequest
-            status:200
-            statusText:""
-            */
-            that.url = res.data
-            that.$emit('onUpload')
-            that.$message('上传成功')
-          })
-          
+        var isLt3M = file.size / 1024 / 1024 < 3;
+        console.log("original file size: ", file.size)
+
+        var transferToFile = async(blobFile, fileName, fileType) => {
+          return new window.File([blobFile], fileName, {type: fileType})
         }
+
+        if (!isLt3M) {
+          // 图片大小不能超过3M，现在超了，需要压缩
+          console.log("need compression")
+          compression(file, function(resp) {
+            console.log("use callback receiver for resp: ", resp.size)
+            let newFileAsync = transferToFile(resp, file.name, "image/jpeg")
+            newFileAsync.then((res) => {
+              file = res
+              console.log("inside: after async: new file size: ", file.size)
+              var formData = new FormData();
+              formData.append("file", file)
+              console.log("before img send, formData: ", formData)
+              uploadImageToServer(formData).then((res)=>{
+                that.url = res.data
+                that.$emit('onUpload')
+                that.$message('上传成功')
+              })
+            })
+          })
+        }
+        return // delete this line later
       }
     }
   }
