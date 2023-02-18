@@ -1,12 +1,13 @@
 <template>
+  <div>
   <el-upload
     class="img-upload"
     ref="upload"
     action=""
+    v-loading="loading"
     list-type="picture-card"
     with-credentials
     :on-preview="handlePreview"
-    :on-remove="handleRemove"
     :before-remove="beforeRemove"
     :on-success="handleSuccess"
     :on-error="handleError"
@@ -16,14 +17,32 @@
     :file-list="fileList"
     :http-request="uploadImage">
     <i slot="default" class="el-icon-plus"></i>
-    <div slot="tip" class="el-upload__tip">只能上传一张jpg/png文件，且不超过2MB</div>
+    <div slot="tip" class="el-upload__tip">只能上传一张图，大于1M会自动被压缩哦</div>
     <div slot="file" slot-scope="{file}">
       <img
         class="el-upload-list__item-thumbnail"
         :src="file.url" alt=""
       >
+      <span class="el-upload-list__item-actions">
+        <span
+          class="el-upload-list__item-preview"
+          @click="this.handlePictureCardPreview(file)"
+        >
+          <i class="el-icon-zoom-in"></i>
+        </span>
+        <span
+          class="el-upload-list__item-delete"
+          @click="handleRemove(file)"
+        >
+          <i class="el-icon-delete"></i>
+        </span>
+      </span>
     </div>
   </el-upload>
+  <el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+  </el-dialog>
+</div>
 </template>
 
 <script>
@@ -35,12 +54,23 @@ import { compression } from "@/utils/compression"
       return {
         fileList: [],
         api_endpoint: "http://101.43.166.211:8081/api/sixlog/covers",
-        url: ''
+        url: '',
+        loading: false,
+        dialogImageUrl: '',
+        dialogVisible: false,
       }
     },
     methods: {
+      handlePictureCardPreview(file) {
+        this.$message({type: "warning",
+                      message: `现在预览功能还不能用`
+                      })
+        this.dialogImageUrl = file.url
+        this.dialogVisible = true
+      },
       handleRemove (file, fileList) {
         console.log(file, fileList)
+        this.$refs.upload.clearFiles()
       },
       handlePreview (file) {
         console.log(file)
@@ -72,40 +102,67 @@ import { compression } from "@/utils/compression"
         file = params.file,
         fileType = file.type,
         isImage = fileType.indexOf('image') != -1
+        let isHeic = fileType.indexOf('heic') != -1
         console.log("file is ", file)
         if (!isImage) {
           alert("请选择图片文件");
           that.$refs.upload.uploadFiles=[];
           return;
         }
-        var isLt3M = file.size / 1024 / 1024 < 3;
-        console.log("original file size: ", file.size)
+        that.loading = true
+        console.log("start compression, upload")
+        var isLt1M = file.size / 1024 / 1024 < 1;
+        console.log("original file: ", file)
 
         var transferToFile = async(blobFile, fileName, fileType) => {
           return new window.File([blobFile], fileName, {type: fileType})
         }
+        if (isHeic) {
+          this.$message("苹果的heic格式照片现在有问题啊")
+          return 
+          var formData = new FormData();
+          formData.append("file", file)
+          console.log("it's heic send, formData: ", formData)
+          uploadImageToServer(formData).then((res)=>{
+            that.url = res.data
+            that.$emit('onUpload')
+            that.$message('上传成功')
+            that.loading = false
+          })
+          return 
+        }
 
-        if (!isLt3M) {
-          // 图片大小不能超过3M，现在超了，需要压缩
+        if (!isLt1M) {
+          // 图片大小不能超过1M，现在超了，需要压缩
           console.log("need compression")
           compression(file, function(resp) {
-            console.log("use callback receiver for resp: ", resp.size)
-            let newFileAsync = transferToFile(resp, file.name, "image/jpeg")
+            console.log("use callback receiver for resp obj: ", resp)
+            let newFileAsync = transferToFile(resp, "imageJsConverted.jpeg", "image/jpeg")
             newFileAsync.then((res) => {
               file = res
-              console.log("inside: after async: new file size: ", file.size)
+              console.log("inside: after async: new file obj: ", file)
               var formData = new FormData();
               formData.append("file", file)
               console.log("before img send, formData: ", formData)
               uploadImageToServer(formData).then((res)=>{
                 that.url = res.data
                 that.$emit('onUpload')
-                that.$message('上传成功')
+                that.$message('上传大图片成功')
+                that.loading = false
               })
             })
           })
+        } else {
+          var formData = new FormData();
+          formData.append("file", file)
+          console.log("small img send, formData: ", formData)
+          uploadImageToServer(formData).then((res)=>{
+            that.url = res.data
+            that.$emit('onUpload')
+            that.$message('上传小图片成功')
+            that.loading = false
+          })
         }
-        return // delete this line later
       }
     }
   }

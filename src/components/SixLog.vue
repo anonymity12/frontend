@@ -47,21 +47,23 @@
       <el-dialog
         :visible.sync="dialogVisible"
         width="90%">
+        <el-divider content-position="left">封面</el-divider>
+        <div style="margin-top: 20px">
+          <el-input v-model="sixlog.articleCover" autocomplete="off" placeholder="上传成功这里就会有链接的"></el-input>
+          <img-upload @onUpload="uploadImg" ref="imgUpload" style="margin-top: 5px"></img-upload>
+        </div>
         <el-divider content-position="left">详情</el-divider>
         <el-input
           type="textarea"
           v-model="sixlog.articleAbstract"
           rows="4"
           maxlength="4096"
+          placeholder="这里填写更多额外的文字内容"
           show-word-limit>
         </el-input>
-        <el-divider content-position="left">封面</el-divider>
-        <div style="margin-top: 20px">
-          <el-input v-model="sixlog.articleCover" autocomplete="off" placeholder="图片 URL"></el-input>
-          <img-upload @onUpload="uploadImg" ref="imgUpload" style="margin-top: 5px"></img-upload>
-        </div>
+        
         <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button @click="dialogCancel">放弃图片上传</el-button>
           <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
         </span>
       </el-dialog>
@@ -89,7 +91,7 @@
       </div>
       <el-pagination
         background
-        layout="total, prev, pager, next, jumper"
+        layout="total, prev, next"
         @current-change="handleCurrentChange"
         :page-size="pageSize"
         :total="total">
@@ -123,6 +125,11 @@ export default({
     this.loadLogsAmount()
   },
   methods: {
+    dialogCancel() {
+      this.dialogVisible = false
+      this.sixlog.articleCover = ""
+      this.articleAbstract = ""
+    },
     // these methods require backend to support pagination api
     loadArticles() {
       var _this = this 
