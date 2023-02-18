@@ -6,8 +6,8 @@ export function compression(original, receive) {
         image.src = URL.createObjectURL(original)
         image.onload = function() {
             const that = this 
-            let w = that.width / 3
-            let h = that.height / 3
+            let w = that.width / 2
+            let h = that.height / 2
             const scale = w / h 
             w = original.width || w 
             h = original.height || (w/scale) 
@@ -25,7 +25,7 @@ export function compression(original, receive) {
             // console.log("dataurl: ", data)
             newFile  = convertBase64ToBlob(data)
             console.log("in compression: finally got newfile len: ", newFile.size)
-            receive(newFile) // use callback,  advice from: https://stackoverflow.com/questions/7434371/image-onload-function-with-return
+            receive(newFile) // use callback,  advice from: https://stackoverflow.com/questions/7434371/image-onload-function-with-return   
         }
     } catch (e) {
         console.log("compression failed: " + e)
