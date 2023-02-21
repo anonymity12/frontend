@@ -19,10 +19,23 @@
           >{{ this.$store.state.user.cname }}
           </p>
         </el-row>
-           <el-tag class="head-intro">
-            {{this.$store.state.user.intro}}
-           </el-tag>
-       </el-col>
+        <el-row type="flex" justify="start" style="margin-left: 20px;">
+          <el-tag>
+          {{this.$store.state.user.intro}}
+          </el-tag>
+        </el-row>
+        <el-row type="flex" justify="start" style="margin-left: 20px;">
+          <el-tag>
+            🦋{{ this.growFlyCnt }}
+          </el-tag>
+          <el-tag>
+            🥚{{ this.babyFlyCnt }}
+          </el-tag>
+          <el-tag>
+            🐛{{ this.diedFlyCnt }}
+          </el-tag>
+        </el-row>
+      </el-col>
     </el-header>
     <!-- 主体 -->
     <el-container>
@@ -37,7 +50,7 @@
 
 <script>
 import ButterFlyInfo from '@/components/ButterFlyInfo'
-import { pingpong } from "@/api/user"
+import { apiGetMyCntOverview } from "@/api/user"
 import LifeIndicator from '../components/LifeIndicator.vue'
 import Tasks from '../components/Tasks.vue'
 export default {
@@ -45,7 +58,9 @@ export default {
   data() {
     return {
       pageOwner: 'gg',
-      
+      growFlyCnt: 0,
+      diedFlyCnt: 0,
+      babyFlyCnt: 0,
       user: {
         birthday: '',
         name: '',
@@ -64,8 +79,16 @@ export default {
         console.log("wow ping return: ", resp)
       })
     },
-    setOwner() {
+    setUpOwner() {
       this.pageOwner = this.$store.state.user.name
+      apiGetMyCntOverview().then((resp)=> {
+        if (resp.data.status == 200) {
+          console.log("getMyCntOverview ok: ", resp.data.obj)
+          this.growFlyCnt = resp.data.obj.growFlyCnt
+          this.babyFlyCnt = resp.data.obj.babyFlyCnt
+          this.diedFlyCnt = resp.data.obj.diedFlyCnt
+        }
+      })
     },
     avatarClick() {
       console.log("avatar clicked")
@@ -73,7 +96,7 @@ export default {
     },
   },
   created() {
-    this.setOwner()
+    this.setUpOwner()
   },
   components: {
     ButterFlyInfo,

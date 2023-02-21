@@ -239,4 +239,11 @@ export function apiGetRankList() {
   })
 }
 
+export function apiGetMyCntOverview() {
+  return request({
+    url: '/api/user/getMyCntOverview',
+    method: 'get'
+  })
+}
+
 // ---- rank related api end ----
