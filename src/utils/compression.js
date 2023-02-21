@@ -16,7 +16,7 @@ export function compression(original, receive) {
             w = original.width || w 
             h = original.height || (w/scale) 
             let quality = 0.1
-        console.log("inside compression2")
+            console.log("inside compression2")
 
             const canvas = document.createElement('canvas') 
             const ctx = canvas.getContext('2d')
@@ -27,7 +27,7 @@ export function compression(original, receive) {
             canvas.setAttributeNode(anw)
             canvas.setAttributeNode(anh) 
             ctx.drawImage(that, 0, 0, w, h)
-        console.log("inside compression3")
+            console.log("inside compression3")
 
             const data = canvas.toDataURL('image/jpeg', quality)
             // console.log("dataurl: ", data)

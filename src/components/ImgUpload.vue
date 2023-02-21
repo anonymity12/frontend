@@ -103,6 +103,8 @@ import { compression } from "@/utils/compression"
         fileType = file.type,
         isImage = fileType.indexOf('image') != -1
         let isHeic = fileType.indexOf('heic') != -1
+        // 2023-02-20 08:52:01 iPhone has heif, which is permit to upload, and Sister say it's fine
+        //                     when I send heif to Mac, it become heic, which might no ok, so heic is not permitted
         console.log("file is ", file)
         if (!isImage) {
           alert("请选择图片文件");
