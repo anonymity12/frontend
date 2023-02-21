@@ -7,7 +7,7 @@
       active-text-color="red"
       >
       <el-menu-item>
-        <a href="#/home">⬅️</a>
+        <a style="font-size: xx-large;" href="#/home">⬅️</a>
       </el-menu-item>
       <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">
         浮生六记

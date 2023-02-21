@@ -7,7 +7,7 @@
       active-text-color="red"
       >
       <el-menu-item>
-        <a href="#/home"> ⬅️ </a>
+        <a style="font-size: xx-large;" href="#/home"> ⬅️ </a>
       </el-menu-item>
       <span style="position: absolute;padding-top: 20px;font-size: 15px;font-weight: bold">
         排名

@@ -27,7 +27,7 @@
         {{ this.musicState? '暂停音乐':'播放音乐' }}
       </el-button>
       <el-button type="warning" size="small" round @click="handleClick(3)" class="profile-span-text">
-        查看百宝箱
+        查看排名
       </el-button>
     </div>
     <Baibao :boxShow="boxShow"></Baibao>
@@ -95,7 +95,7 @@ export default {
           }
           break 
         case 3:
-          this.boxShow.show = true 
+          this.$router.push({path: '/ranks'})
           break
         default:
           break 
