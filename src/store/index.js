@@ -26,8 +26,8 @@ export default new Vuex.Store({
         REMOVE_INFO : (state) => {
             state.token = ''
             state.user = {}
-            localStorage.setItem("token", '')
-            localStorage.setItem("user", JSON.stringify(''))
+            localStorage.removeItem("token")
+            localStorage.removeItem("user")
         }
     },
     getters: {

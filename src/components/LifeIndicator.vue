@@ -20,14 +20,17 @@
     </el-row>
     
     <div class="function-area">
-      <el-button type="warning" size="small" round @click="handleClick(1)" class="profile-span-text">
-        浮生六记
+      <el-button type="warning"  round @click="handleClick(1)" class="profile-span-text">
+        📓浮生六记
+      </el-button>
+      <el-button type="primary"  round @click="handleClick(3)" class="profile-span-text">
+        🥇查看排名
       </el-button>
       <el-button type="warning" size="small" round @click="handleClick(2)" class="profile-span-text">
         {{ this.musicState? '暂停音乐':'播放音乐' }}
       </el-button>
-      <el-button type="warning" size="small" round @click="handleClick(3)" class="profile-span-text">
-        查看排名
+      <el-button type="danger" size="small" round @click="handleClick(4)" class="profile-span-text">
+        🔓重新登陆
       </el-button>
     </div>
     <Baibao :boxShow="boxShow"></Baibao>
@@ -49,8 +52,7 @@ export default {
       msg: '生命指示器 ⏳',
       // who: '天天', todo: remove all comment `who` later 0201 12:17
     //   calcPercent: 1,
-       
-      dayLeft: 22580,
+      dayLeft: 36500,
       lifeIndicator: {
         dayPassed: 1,
         dayAll: 33000,
@@ -97,11 +99,15 @@ export default {
         case 3:
           this.$router.push({path: '/ranks'})
           break
+        case 4:
+          // re-login
+          // clear local storage
+          this.$store.commit("REMOVE_INFO")
+          // to /login
+          this.$router.push({path: '/login'})
         default:
           break 
-
       }
-       
     }
   },
   created() {
