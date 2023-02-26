@@ -18,6 +18,7 @@ export default new Vuex.Store({
             state.user = user
             localStorage.setItem("user", JSON.stringify(user))
         },
+        // 0226 not used by anyone now
         SET_USER_COSMOS_ID: (state, cosmosId) => {
             state.user.name = cosmosId // this is work fine
             localStorage.setItem("user", JSON.stringify(state.user)) // work fine

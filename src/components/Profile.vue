@@ -105,7 +105,8 @@ export default {
                 apiUpdateUserInfo(this.currentUser).then(res => {
                     console.log("after api update user, res: ", res)
                     if (res.data.status == 200) {
-                        this.$store.commit('SET_USER_COSMOS_ID', this.currentUser.cosmosId);
+                        // backend will give us user's new profile, so we set it in localStorage
+                        this.$store.commit('SET_USER', res.data.obj);
                         // ok 
                         this.$message({
                             type: "success",
