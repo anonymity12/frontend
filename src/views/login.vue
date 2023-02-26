@@ -63,6 +63,8 @@ export default {
           console.log(_this.$store.state.token);
           var path = this.$route.query.redirect
           this.$router.replace({path: path === '/' || path === undefined ? '/' : path})
+        } else {
+          this.$message("账号或密码错误，请再检查一下")
         }
       });
     },
