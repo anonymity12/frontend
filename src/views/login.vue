@@ -51,16 +51,16 @@ export default {
         password: this.loginForm.password,
       }).then((resp) => {
         console.log("login ok", resp)
-        let code=resp.data.code;
-        if(code===200){
-          let data=resp.data.data;
-          let token=data.token;
-          let user=data.user;
+        let status =resp.data.status;
+        if(status===200){
+          let obj = resp.data.obj;
+          let token = obj.token;
+          let user = obj.user;
           //存储token
           _this.$store.commit('SET_TOKENN', token);
           //存储user，优雅一点的做法是token和user分开获取
           _this.$store.commit('SET_USER', user);
-          console.log(_this.$store.state.token);
+          console.log("current user token: ", _this.$store.state.token);
           var path = this.$route.query.redirect
           this.$router.replace({path: path === '/' || path === undefined ? '/' : path})
         } else {
