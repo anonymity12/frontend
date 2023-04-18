@@ -90,7 +90,7 @@
           <el-button type="info" size="small" 
                   icon="el-icon-star-off" 
                   @click="handleLikeBtnClicked(article.id)">
-                  点赞
+                  {{article.likeCounts}} 赞
           </el-button>
         </el-card>
       </div>
@@ -116,6 +116,7 @@ export default({
     return {
       articles: [],
       pageSize: 19,
+      curPage: 1,
       total: 0,
       keywords: '',
       sixlog: {
@@ -132,9 +133,15 @@ export default({
   },
   methods: {
     handleLikeBtnClicked(articleId) {
+      var _this = this 
       console.log("ready to like the sixlog: ", articleId)
       const sixLogIdBody = {'sixLogId': articleId}
       apiLikeASixLog(sixLogIdBody)
+      getLogs(this.pageSize, this.curPage).then(resp => {
+        if (resp && resp.status === 200) {
+          _this.articles = resp.data
+        }
+      })
     },
     dialogCancel() {
       this.dialogVisible = false
@@ -162,6 +169,7 @@ export default({
     },
     handleCurrentChange(page) {
       var _this = this 
+      this.curPage = page
       getLogs(this.pageSize, page).then(resp => {
         if (resp && resp.status === 200) {
           _this.articles = resp.data
