@@ -87,6 +87,11 @@
             :src="article.articleCover"
             fit="cover">
           </el-image>
+          <el-button type="info" size="small" 
+                  icon="el-icon-star-off" 
+                  @click="handleLikeBtnClicked(article.id)">
+                  点赞
+          </el-button>
         </el-card>
       </div>
       <el-pagination
@@ -104,6 +109,7 @@ import { getLogs } from "@/api/user"
 import { getSixLogTotalAmount } from "@/api/user"
 import ImgUpload from './ImgUpload'
 import { callSendSixLogApi } from "@/api/user"
+import { apiLikeASixLog } from "../api/sixlog"
 export default({
   name: 'SixLog',
   data() {
@@ -125,6 +131,11 @@ export default({
     this.loadLogsAmount()
   },
   methods: {
+    handleLikeBtnClicked(articleId) {
+      console.log("ready to like the sixlog: ", articleId)
+      const sixLogIdBody = {'sixLogId': articleId}
+      apiLikeASixLog(sixLogIdBody)
+    },
     dialogCancel() {
       this.dialogVisible = false
       this.sixlog.articleCover = ""
