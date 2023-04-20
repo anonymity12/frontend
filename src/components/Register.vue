@@ -85,6 +85,11 @@ export default {
         let statusCode = resp.data.status;
         if(statusCode == 200){
           this.$router.replace({path: 'login'})
+        } else if (statusCode == 500) {
+          this.$message({
+            type: "warning",
+            message: resp.data.msg
+          })
         }
       });
     },
