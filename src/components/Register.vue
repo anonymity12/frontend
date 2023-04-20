@@ -82,7 +82,7 @@ export default {
         birthday: this.registerForm.birthday,
       }).then((resp) => {
         console.log("register resp", resp)
-        let statusCode = resp.data.status;
+        let statusCode = resp.data.status
         if(statusCode == 200){
           this.$router.replace({path: 'login'})
         } else if (statusCode == 500) {
