@@ -59,6 +59,8 @@
             </el-table>
             
         </div>
+        <!-- ensure updatingRoutine can be update by this dialog -->
+        <RoutineEditDialog :dialogEdit="dialogEdit" :routineTobeEdit="updatingRoutine" ></RoutineEditDialog>
     </div>
 </template>
 
@@ -69,12 +71,24 @@ import { apiAddRoutine } from "../api/routine";
 import { apiDeleteRoutine } from "../api/routine";
 import { apiUpdateRoutine } from "../api/routine";
 
+import RoutineEditDialog from '.RoutineEditDialog'
+/*
+routineObj:
+    routineTitle
+    routineId
+    routineOwner
+*/
+
 export default({
     name: 'RoutinePage',
     data() {
         return {
             routineData: [],
             newRoutine: '',// just title, user info will generate in backend
+            updatingRoutine: {},
+            dialogEdit: {
+                show: false 
+            },
         }
     },
     methods: {
@@ -96,13 +110,74 @@ export default({
                     }
                 })
         },
-        handleDelete() {},
-        handleUpdate() {},
+        handleDelete(index, row) {
+            apiDeleteRoutine(`${row.routineId}`)
+                .then(resp => {
+                    if (resp && resp.status === 200) {
+                        this.$message({
+                            type: 'info',
+                            message: resp.data.msg
+                        })
+                    } else {
+                        console.log(resp)
+                        this.$message({
+                            type: 'warning',
+                            message: resp.data.msg
+                        })
+                    }
+                })
+            apiQueryAllRoutineOfMine()
+                .then(resp => {
+                    if (resp && resp.status === 200) {
+                        this.routineData = resp.data.obj
+                    }
+                })
+        },
+        handleUpdate(index, row) {
+            // todo 2023-04-29 22:46:59 transfer old routine data between dialog and page
+            this.updatingRoutine = {
+                routineId: `${row.routineId}`,
+                routineTitle: `${row.routineTitle}`
+            }
+            // showUpdateRoutineDialog(`${row.routineId}`, `${row.routineTitle}`)
+            this.dialogEdit.show = true 
+            apiUpdateRoutine(updatingRoutine)
+                .then(resp => {
+                    if (resp.status != 200) {
+                        this.$message({
+                            type: 'warning',
+                            message: '服务器通信不畅'
+                        })
+                    }
+                    else if (resp.data.status == 200) {
+                        this.$message({
+                            type: 'success',
+                            message: resp.data.msg
+                        })
+                    } else {
+                        this.$message({
+                            type: 'warning',
+                            message: resp.data.msg
+                        })
+                    }
+                })
+            apiQueryAllRoutineOfMine()
+                .then(resp => {
+                    if (resp && resp.status === 200) {
+                        this.routineData = resp.data.obj
+                    }
+                })
+        },
         handleSandClick() {},
         handleStepClick() {}
     },
     created() {
         apiQueryAllRoutineOfMine()
+            .then(resp => {
+                if (resp && resp.status === 200) {
+                    this.routineData = resp.data.obj
+                }
+            })
     },
     components: {}
 })
