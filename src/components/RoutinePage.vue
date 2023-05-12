@@ -72,6 +72,7 @@ import { apiDeleteRoutine } from "../api/routine";
 import { apiUpdateRoutine } from "../api/routine";
 
 import RoutineEditDialog from '.RoutineEditDialog'
+import RoutineAddDialog from '.RoutineAddDialog'
 /*
 routineObj:
     routineTitle
