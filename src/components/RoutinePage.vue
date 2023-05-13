@@ -60,19 +60,20 @@
             
         </div>
         <!-- ensure updatingRoutine can be update by this dialog -->
-        <RoutineEditDialog :dialogEdit="dialogEdit" :routineTobeEdit="updatingRoutine" ></RoutineEditDialog>
+        <RoutineEditDialog :routineEditDialog="dialogEdit" :routineTobeEdit="updatingRoutine" ></RoutineEditDialog>
+        <RoutineAddDialog :routineAddDialog="dialogAdd"></RoutineAddDialog>
     </div>
 </template>
 
 <script>
 
 import { apiQueryAllRoutineOfMine } from "../api/routine"
-import { apiAddRoutine } from "../api/routine";
-import { apiDeleteRoutine } from "../api/routine";
-import { apiUpdateRoutine } from "../api/routine";
+import { apiAddRoutine } from "../api/routine"
+import { apiDeleteRoutine } from "../api/routine"
+import { apiUpdateRoutine } from "../api/routine"
 
-import RoutineEditDialog from '.RoutineEditDialog'
-import RoutineAddDialog from '.RoutineAddDialog'
+import RoutineEditDialog from './RoutineEditDialog'
+import RoutineAddDialog from "./RoutineAddDialog"
 /*
 routineObj:
     routineTitle
@@ -89,6 +90,9 @@ export default({
             updatingRoutine: {},
             dialogEdit: {
                 show: false 
+            },
+            dialogAdd: {
+                show: false
             },
         }
     },
@@ -180,6 +184,6 @@ export default({
                 }
             })
     },
-    components: {}
+    components: { RoutineAddDialog }
 })
 </script>
