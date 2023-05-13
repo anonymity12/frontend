@@ -35,6 +35,15 @@ export default (await import('vue')).defineComponent({
             routineFormData: {
                 routineContent: ""
             },
+            formNewRoutineRules: {
+                routineContent: [
+                    {
+                        required: true,
+                        message: "惯例内容不能为空",
+                        trigger: "blur"
+                    }
+                ]
+            }
         }
     },
     methods: {
@@ -44,9 +53,25 @@ export default (await import('vue')).defineComponent({
                     var routineObject = {
                         routineContent: this.routineFormData.routineContent
                     }
-                    apiAddRoutine(routineObject).then(res=>{
-                        // todo 2023-05-12 09:12:18
+                    apiAddRoutine(routineObject).then(resp=>{
+                        if (resp.status === 200) {
+                            this.$message({
+                                type: 'info',
+                                message: "添加惯例成功"
+                            })
+                            this.routineFormData.routineContent = ""
+                            this.routineAddDialog.show = false 
+                            this.$emit("addFinish")
+                        } else {
+                            this.$message({
+                                type: 'info',
+                                message: "添加惯例失败，code:" + resp.status
+                            })
+                        }
                     })
+                } else {
+                    this.$message("表单校验不通过")
+                    return false
                 }
             })
         }
