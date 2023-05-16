@@ -98,22 +98,7 @@ export default({
     },
     methods: {
         handleAdd() {
-            apiAddRoutine(this.newRoutine)
-                .then(resp => {
-                    if (resp && resp.status === 200) {
-                        this.$message({
-                            type: 'info',
-                            message: '添加新惯例成功😊'
-                        })
-                    } else {
-                        console.log(resp)
-                        this.$message({
-                            type: 'warning',
-                            message: '添加失败，错误是：' + resp.data.msg
-                        })
-
-                    }
-                })
+            this.dialogAdd.show = true
         },
         handleDelete(index, row) {
             apiDeleteRoutine(`${row.routineId}`)
