@@ -37,3 +37,11 @@ http://101.43.166.211:8089/#/jiapuoperation
 2023-04-19 21:20:25
 
 - [x] sixlog: like func complete
+
+2023-05-16 17:32:03
+
+- [x] routine edit module
+
+2023-05-16 17:32:51
+
+- [ ] double check the whole logic of routine in this front prj
