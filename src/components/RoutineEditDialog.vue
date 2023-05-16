@@ -33,7 +33,7 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button type='info' @click="routineAddDialog.show=false">取 消</el-button>
+                <el-button type='info' @click="routineEditDialog.show=false">取 消</el-button>
                 <el-button type="primary" @click="confirmUpdateRoutine()" >确 定</el-button>
             </div>
         </el-dialog>
@@ -50,9 +50,29 @@ export default {
         confirmUpdateRoutine() {
             this.$refs["formNewRoutine"].validate(valid=>{
                 if (valid) {
-                    // todo 2023-05-13 22:12:11
-                    // 1、construct routine obj
-                    // 2、send new routine obj to api-end-point
+                    console.log("ready to update routine: ", routineTobeEdit)
+                    apiUpdateRoutine(routineTobeEdit)
+                        .then(resp => {
+                            if (resp.status != 200) {
+                                this.$message({
+                                    type: 'warning',
+                                    message: '服务器通信不畅'
+                                })
+                            }
+                            else if (resp.data.status == 200) {
+                                this.$message({
+                                    type: 'success',
+                                    message: resp.data.msg
+                                })
+                                this.routineEditDialog.show = false
+                                this.$emit("updateOk")
+                            } else {
+                                this.$message({
+                                    type: 'warning',
+                                    message: resp.data.msg
+                                })
+                            }
+                        })
                 }  else {
                     this.$message("表单校验不通过")
                     return false

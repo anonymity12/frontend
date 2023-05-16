@@ -76,7 +76,7 @@ import RoutineEditDialog from './RoutineEditDialog'
 import RoutineAddDialog from "./RoutineAddDialog"
 /*
 routineObj:
-    routineTitle
+    routineContent
     routineId
     routineOwner
 */
@@ -127,30 +127,11 @@ export default({
             // todo 2023-04-29 22:46:59 transfer old routine data between dialog and page
             this.updatingRoutine = {
                 routineId: `${row.routineId}`,
-                routineTitle: `${row.routineTitle}`
+                routineContent: `${row.routineContent}`
             }
             // showUpdateRoutineDialog(`${row.routineId}`, `${row.routineTitle}`)
             this.dialogEdit.show = true 
-            apiUpdateRoutine(updatingRoutine)
-                .then(resp => {
-                    if (resp.status != 200) {
-                        this.$message({
-                            type: 'warning',
-                            message: '服务器通信不畅'
-                        })
-                    }
-                    else if (resp.data.status == 200) {
-                        this.$message({
-                            type: 'success',
-                            message: resp.data.msg
-                        })
-                    } else {
-                        this.$message({
-                            type: 'warning',
-                            message: resp.data.msg
-                        })
-                    }
-                })
+            
             apiQueryAllRoutineOfMine()
                 .then(resp => {
                     if (resp && resp.status === 200) {
