@@ -60,7 +60,7 @@
             
         </div>
         <!-- ensure updatingRoutine can be update by this dialog -->
-        <RoutineEditDialog :routineEditDialog="dialogEdit" :routineTobeEdit="updatingRoutine" ></RoutineEditDialog>
+        <RoutineEditDialog :routineEditDialog="dialogEdit" :routineTobeEdit="updatingRoutine" @updateOk="refreshRoutineList"></RoutineEditDialog>
         <RoutineAddDialog :routineAddDialog="dialogAdd"></RoutineAddDialog>
     </div>
 </template>
@@ -124,14 +124,14 @@ export default({
                 })
         },
         handleUpdate(index, row) {
-            // todo 2023-04-29 22:46:59 transfer old routine data between dialog and page
+            // transfer routine data from page to dialog
             this.updatingRoutine = {
                 routineId: `${row.routineId}`,
                 routineContent: `${row.routineContent}`
             }
-            // showUpdateRoutineDialog(`${row.routineId}`, `${row.routineTitle}`)
             this.dialogEdit.show = true 
-            
+        },
+        refreshRoutineList() {
             apiQueryAllRoutineOfMine()
                 .then(resp => {
                     if (resp && resp.status === 200) {
@@ -150,6 +150,6 @@ export default({
                 }
             })
     },
-    components: { RoutineAddDialog }
+    components: { RoutineAddDialog, RoutineEditDialog }
 })
 </script>
