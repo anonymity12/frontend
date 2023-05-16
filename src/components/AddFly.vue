@@ -256,7 +256,7 @@ export default {
           });
           this.formDate = {};
         } else {
-          console.log("error when submit: not valid input in form");
+          this.$message("表单验证不通过")
           return false;
         }
       });
