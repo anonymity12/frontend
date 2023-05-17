@@ -43,3 +43,6 @@ new background
 
 ![2023-02-06-13-17-14](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-02-06-13-17-14.png)
 
+## user avatar new
+
+![2023-05-17-10-23-29](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-05-17-10-23-29.png)
