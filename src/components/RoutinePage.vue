@@ -142,6 +142,7 @@ export default({
     created() {
         apiQueryAllRoutineOfMine()
             .then(resp => {
+                console.log("routine all:" , resp)
                 if (resp && resp.status === 200) {
                     this.routineData = resp.data.obj
                 }
