@@ -23,10 +23,9 @@ export function apiUpdateRoutine(routineData) {
     })
 }
 
-export function apiQueryAllRoutineOfMine(userId) {
+export function apiQueryAllRoutineOfMine() {
     return request({
         url: '/api/routine/queryAll',
-        method: 'get',
-        data: userId
+        method: 'get'
     })
 }
