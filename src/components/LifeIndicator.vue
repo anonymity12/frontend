@@ -32,6 +32,9 @@
       <el-button type="danger" size="small" round @click="handleClick(4)" class="profile-span-text">
         🔓重新登陆
       </el-button>
+      <el-button type="warning" round @click="handleClick(5)" class="profile-span-text">
+        管理惯例
+      </el-button>
     </div>
     <Baibao :boxShow="boxShow"></Baibao>
 
@@ -87,7 +90,6 @@ export default {
           break 
         case 2:
           var audio = document.getElementById("bg-music")
-
           if (this.musicState == false) {
             audio.play()
             this.musicState = true
@@ -100,11 +102,12 @@ export default {
           this.$router.push({path: '/ranks'})
           break
         case 4:
-          // re-login
-          // clear local storage
           this.$store.commit("REMOVE_INFO")
-          // to /login
           this.$router.push({path: '/login'})
+          break 
+        case 5:
+          this.$router.push({path: '/routine'})
+          break
         default:
           break 
       }
