@@ -47,7 +47,7 @@
             <el-table :data="routineData" border style="width: 100%">
                 <el-table-column label="我有一件小事是" align="center" width="100%">
                     <template slot-scope="scope">
-                        <span>{{ scope.row.detail }}</span>
+                        <span>{{ scope.row.routineContent }}</span>
                     </template>
                 </el-table-column>
                 <el-table-column label="操作">
