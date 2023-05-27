@@ -61,7 +61,7 @@ export default (await import('vue')).defineComponent({
                             })
                             this.routineFormData.routineContent = ""
                             this.routineAddDialog.show = false 
-                            this.$emit("addFinish")
+                            this.$emit("addOk")
                         } else {
                             this.$message({
                                 type: 'info',

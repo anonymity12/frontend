@@ -61,17 +61,14 @@
         </div>
         <!-- ensure updatingRoutine can be update by this dialog -->
         <RoutineEditDialog :routineEditDialog="dialogEdit" :routineTobeEdit="updatingRoutine" @updateOk="refreshRoutineList"></RoutineEditDialog>
-        <RoutineAddDialog :routineAddDialog="dialogAdd"></RoutineAddDialog>
+        <RoutineAddDialog :routineAddDialog="dialogAdd" @addOk="refreshRoutineList"></RoutineAddDialog>
     </div>
 </template>
 
 <script>
 
 import { apiQueryAllRoutineOfMine } from "../api/routine"
-import { apiAddRoutine } from "../api/routine"
 import { apiDeleteRoutine } from "../api/routine"
-import { apiUpdateRoutine } from "../api/routine"
-
 import RoutineEditDialog from './RoutineEditDialog'
 import RoutineAddDialog from "./RoutineAddDialog"
 /*
@@ -97,9 +94,6 @@ export default({
         }
     },
     methods: {
-        handleAdd() {
-            this.dialogAdd.show = true
-        },
         handleDelete(index, row) {
             apiDeleteRoutine(`${row.routineId}`)
                 .then(resp => {
@@ -122,6 +116,9 @@ export default({
                         this.routineData = resp.data.obj
                     }
                 })
+        },
+        handleAdd() {
+            this.dialogAdd.show = true
         },
         handleUpdate(index, row) {
             // transfer routine data from page to dialog
