@@ -144,7 +144,7 @@ export default({
             .then(resp => {
                 console.log("routine all:" , resp)
                 if (resp && resp.status === 200) {
-                    this.routineData = resp.data.obj
+                    this.routineData = resp.data
                 }
             })
     },
