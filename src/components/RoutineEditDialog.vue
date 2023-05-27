@@ -7,7 +7,7 @@
                 :model="routineTobeEdit"
                 ref="formNewRoutine"
                 label-width="100px"
-                :rules="formNewRoutineRules">
+                :rules="formRoutineRules">
                 <el-form-item
                     label="惯例内容："
                     prop="routineContent">
@@ -79,6 +79,19 @@ export default {
                 }
             })
         }
-    }
+    },
+    data() {
+        return {
+            formRoutineRules: {
+                routineContent: [
+                    {
+                        required: true,
+                        message: "惯例内容不能为空",
+                        trigger: "blur"
+                    }
+                ]
+            }
+        }
+    },
 }
 </script>
