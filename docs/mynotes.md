@@ -46,3 +46,14 @@ new background
 ## user avatar new
 
 ![2023-05-17-10-23-29](https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-05-17-10-23-29.png)
+
+# response 的平常返回，非RespBean返回
+
+结构如下：
+
+- config
+- data
+- headers: content-type:"application/json"
+- request
+- status: 200
+- statusText: ""
