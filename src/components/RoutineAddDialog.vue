@@ -24,7 +24,7 @@
     </div>
 </template>
 <script>
-import { apiAddRoutine } from '@api/routine.js'
+import { apiAddRoutine } from '../api/routine.js'
 export default (await import('vue')).defineComponent({
     name: "RoutineAddDialog",
     props: {

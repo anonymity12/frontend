@@ -40,7 +40,7 @@
     </div>
 </template>
 <script>
-import { apiUpdateRoutine } from '@api/routine.js'
+import { apiUpdateRoutine } from '../api/routine.js'
 export default {
     name: "RoutineEditDialog",
     props: {
