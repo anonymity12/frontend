@@ -9,9 +9,8 @@ export function apiAddRoutine(routineObject) {
 }
 export function apiDeleteRoutine(routineId) {
     return request({
-        url: '/api/routine/deleteRoutine',
-        method: 'delete',
-        data: routineId
+        url: '/api/routine/deleteRoutine/' + routineId,
+        method: 'delete'
     })
 }
 
