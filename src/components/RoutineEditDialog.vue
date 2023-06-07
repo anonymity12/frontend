@@ -4,7 +4,7 @@
         <el-dialog title="修改惯例" :visible.sync="routineEditDialog.show"
             width="100%">
             <el-form
-                :model="routineTobeEdit"
+                :model="routineToBeEdit"
                 ref="formNewRoutine"
                 label-width="100px"
                 :rules="formRoutineRules">
@@ -45,14 +45,14 @@ export default {
     name: "RoutineEditDialog",
     props: {
         routineEditDialog: Object,
-        routineTobeEdit: Object
+        routineToBeEdit: Object
     },
     methods: {
         confirmUpdateRoutine() {
             this.$refs["formNewRoutine"].validate(valid=>{
                 if (valid) {
-                    console.log("ready to update routine: ", routineTobeEdit)
-                    apiUpdateRoutine(routineTobeEdit)
+                    console.log("ready to update routine: ", this.routineToBeEdit)
+                    apiUpdateRoutine(this.routineToBeEdit)
                         .then(resp => {
                             if (resp.status != 200) {
                                 this.$message({
