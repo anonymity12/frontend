@@ -60,7 +60,7 @@
             
         </div>
         <!-- ensure updatingRoutine can be update by this dialog -->
-        <RoutineEditDialog :routineEditDialog="dialogEdit" :routineTobeEdit="updatingRoutine" @updateOk="refreshRoutineList"></RoutineEditDialog>
+        <RoutineEditDialog :routineEditDialog="dialogEdit" :routineToBeEdit="updatingRoutine" @updateOk="refreshRoutineList"></RoutineEditDialog>
         <RoutineAddDialog :routineAddDialog="dialogAdd" @addOk="refreshRoutineList"></RoutineAddDialog>
     </div>
 </template>
@@ -84,7 +84,10 @@ export default({
         return {
             routineData: [],
             newRoutine: '',// just title, user info will generate in backend
-            updatingRoutine: {},
+            updatingRoutine: {
+                routineId:0,
+                routineContent: ''
+            },
             dialogEdit: {
                 show: false 
             },
@@ -95,13 +98,20 @@ export default({
     },
     methods: {
         handleDelete(index, row) {
-            apiDeleteRoutine(`${row.routineId}`)
+            var deleteId = `${row.routineId}`
+            apiDeleteRoutine(deleteId)
                 .then(resp => {
                     if (resp && resp.status === 200) {
                         this.$message({
-                            type: 'info',
+                            type: 'success',
                             message: resp.data.msg
                         })
+                        apiQueryAllRoutineOfMine()
+                            .then(resp => {
+                                if (resp && resp.status === 200) {
+                                    this.routineData = resp.data
+                                }
+                            })
                     } else {
                         console.log(resp)
                         this.$message({
@@ -110,29 +120,26 @@ export default({
                         })
                     }
                 })
-            apiQueryAllRoutineOfMine()
-                .then(resp => {
-                    if (resp && resp.status === 200) {
-                        this.routineData = resp.data.obj
-                    }
-                })
+            
         },
         handleAdd() {
             this.dialogAdd.show = true
         },
         handleUpdate(index, row) {
             // transfer routine data from page to dialog
+            // console.log("bef: update routine: ", this.updatingRoutine)
             this.updatingRoutine = {
                 routineId: `${row.routineId}`,
                 routineContent: `${row.routineContent}`
             }
+            // console.log("update routine: ", this.updatingRoutine)
             this.dialogEdit.show = true 
         },
         refreshRoutineList() {
             apiQueryAllRoutineOfMine()
                 .then(resp => {
                     if (resp && resp.status === 200) {
-                        this.routineData = resp.data.obj
+                        this.routineData = resp.data
                     }
                 })
         },
