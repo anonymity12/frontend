@@ -5,7 +5,6 @@
             <el-form
                 :model="routineFormData"
                 ref="formNewRoutine"
-                label-width="100px"
                 :rules="formNewRoutineRules">
                 <el-form-item
                     label="要每日做的事情是："
@@ -56,7 +55,7 @@ export default {
                     apiAddRoutine(routineObject).then(resp=>{
                         if (resp.status === 200) {
                             this.$message({
-                                type: 'info',
+                                type: 'success',
                                 message: "添加惯例成功"
                             })
                             this.routineFormData.routineContent = ""
@@ -64,7 +63,7 @@ export default {
                             this.$emit("addOk")
                         } else {
                             this.$message({
-                                type: 'info',
+                                type: 'warning',
                                 message: "添加惯例失败，code:" + resp.status
                             })
                         }
