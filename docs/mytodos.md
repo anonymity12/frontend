@@ -45,3 +45,11 @@ http://101.43.166.211:8089/#/jiapuoperation
 2023-05-16 17:32:51
 
 - [x] double check the whole logic of routine in this front prj
+
+2023-06-07 16:10:08
+
+- [x] fix bugs of routine module
+
+2023-05-30 18:51:52
+
+- [ ] less butter-fly transmit
