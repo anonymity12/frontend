@@ -28,18 +28,7 @@
                             添加新的小事
                         </el-button>
                     </el-form-item>
-                    <el-form-item style="float: center">
-                        <el-button type="primary" size="large" 
-                            @click="handleSandClick()">
-                            聚沙成塔
-                        </el-button>
-                    </el-form-item>
-                    <el-form-item style="float: right">
-                        <el-button type="primary" size="large" 
-                            @click="handleStepClick()">
-                            逐步改善
-                        </el-button>
-                    </el-form-item>
+                    
                 </el-form>
             </div>
         </el-row>
