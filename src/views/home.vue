@@ -42,6 +42,27 @@
       <el-main>
         <life-indicator></life-indicator>
         <tasks></tasks>
+        <vue-hm-calendar
+          mode="year"
+          :yearNumber="2022"
+          cellSize=""
+          firstWeekDay="Monday"
+          :hideWeekNames="false"
+          :hideHeader="false"
+          :eventDays="{
+            '2022-12-31': 10,
+            '2022-01-01': 2,
+            '2022-03-21': 1,
+            '2022-03-24': 1,
+            '2022-03-25': 1,
+            '2022-03-26': 1000,
+            '2022-01-05': 2,
+            '2022-08-05': 1,
+            '2022-08-06': 2,
+            '2022-08-07': 3,
+          }"
+          :futureEventsColor="['#42A5F5','#1976D2', '#0D47A1']"
+          />
         <ButterFlyInfo :fly-owner="pageOwner"></ButterFlyInfo>
       </el-main>
     </el-container>
@@ -50,6 +71,7 @@
 
 <script>
 import ButterFlyInfo from '@/components/ButterFlyInfo'
+import VueHmCalendar from '@/components/VueHmCalendar'
 import { apiGetMyCntOverview } from "@/api/user"
 import LifeIndicator from '../components/LifeIndicator.vue'
 import Tasks from '../components/Tasks.vue'
@@ -101,7 +123,8 @@ export default {
   components: {
     ButterFlyInfo,
     LifeIndicator,
-    Tasks
+    Tasks,
+    VueHmCalendar
   }
 };
 </script>
