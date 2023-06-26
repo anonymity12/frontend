@@ -66,6 +66,8 @@ export default {
         } else {
           this.$message("账号或密码错误，请再检查一下")
         }
+      }, (reason) => {
+        this.$message("服务器错误，请联系天天")
       });
     },
   },

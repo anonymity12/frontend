@@ -13,6 +13,7 @@ import JiaPuOperationUI from '@/components/JiaPuOperationUI'
 import Register from '@/components/Register'
 import Profile from '@/components/Profile'
 import RankList from '@/components/RankList'
+import RoutinePage from '@/components/RoutinePage'
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
       path: '/sixlog',
       name: 'SixLog',
       component: SixLog
+    },
+    {
+      path: '/routine',
+      name: 'Routine',
+      component: RoutinePage
     },
     {
       path: '/sixlog/article',

@@ -245,7 +245,7 @@ export default {
             evaluate: _eva,
             image: this.formDate.evaluate > 100 ? this.good_one : this.bad_one
           };
-          
+          // will delete this method support both in front and end 2023-05-12 09:12:15
           addNewFly(this.owner, myData).then(res => {
             this.$message({
               type: "success",
@@ -256,7 +256,7 @@ export default {
           });
           this.formDate = {};
         } else {
-          console.log("error when submit: not valid input in form");
+          this.$message("表单验证不通过")
           return false;
         }
       });
