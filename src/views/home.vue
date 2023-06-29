@@ -49,7 +49,7 @@
           firstWeekDay="Monday"
           :hideWeekNames="false"
           :hideHeader="false"
-          :eventDays="{
+          :eventsDays="{
             '2022-12-31': 10,
             '2022-01-01': 2,
             '2022-03-21': 1,
