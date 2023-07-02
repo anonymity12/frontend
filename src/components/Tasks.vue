@@ -195,7 +195,7 @@ export default {
 }
 
 .box-card {
-    margin: 30px;
+    margin: 5px;
 }
 
 .text {
