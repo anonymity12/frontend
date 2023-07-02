@@ -6,12 +6,12 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 import Day from './Day.vue'
 
 export default {
-    name: 'OneMonth',
+    name: 'Month',
     components: {
         Day,
     },
@@ -63,7 +63,7 @@ export default {
                 let row = []
                 for (let j = 0; j < 7; j++) {
                     const selectedYearDay = this.selectedMonthDate.date(date).dayOfYear()
-                    const eventsCount = this.eventsDays?.[this.selectedMonthDate.date(date).format('YYYY-MM-DD')]
+                    const eventsCount = this.eventsDays && this.eventsDays[this.selectedMonthDate.date(date).format('YYYY-MM-DD')];
                     const dayOptions = {
                         style: '',
                         date: this.selectedMonthDate.date(date).format('ddd, MMM D, YYYY'),
