@@ -21,9 +21,7 @@ export default {
             }
             return `${
                 this.day.eventsCount
-                    ? +this.day.eventsCount === 1
-                        ? this.day.eventsCount + ' event on <br/>'
-                        : this.day.eventsCount + ' events on <br/>'
+                    ? '做了' + this.day.eventsCount + ' 件事在 <br/>'
                     : ''
             }${this.day.date}`
         },
@@ -32,7 +30,7 @@ export default {
             if (this.day.dayOfYear > 309) {
                 className = 'from_left_hand'
             }
-            if (this.day?.monthWeekday || this.day?.monthWeekday === 0) {
+            if (this.day.monthWeekday || this.day.monthWeekday === 0) {
                 className = 'day' + this.day.monthWeekday
             }
             return className 
