@@ -5,7 +5,7 @@
             :hideHeader="hideHeader"
             :firstWeekDay="firstWeekDay"
             :monthNumber="monthNumber"
-            :eventDays="eventsDays"
+            :eventsDays="eventsDays"
             :pastEventsColors="pastEventsColors"
             :cellSize="cellSize"
             :yearNumber="yearNumber"
@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script>
+<script> 
 
 import dayjs from 'dayjs'
 const dayOfYear = require('dayjs/plugin/dayOfYear')
