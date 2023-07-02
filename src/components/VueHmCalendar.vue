@@ -53,13 +53,13 @@ export default{
         pastEventsColors: {
             type: Array,
             default: function() {
-                return ['#66BB6A', '#388E3C', '#1B5E20']
+                return ['#FBEAFF', '#B39CD0', '#A281D1','#845EC2']
             },
         },
         futureEventsColors: {
             type: Array,
             default: function() {
-                return ['#BDBDBD', '#616161', '#212121']
+                return ['#d4bbeb', '#C0A5E1', '#A281D1','#845EC2']
             },
         },
         hideHeader: Boolean,
