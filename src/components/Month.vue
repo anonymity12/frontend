@@ -2,13 +2,14 @@
     <div style="display: inline-block">
         <div v-if="!hideHeader" class="header" v-html="selectedMonthDate.format('MMM')"></div>
         <div style="display: flex; flex-direction: row" v-for="(week, i) in month" :key="i">
-            <day v-for="(day, i) in week" :key="i" :cellStyle="cellStyle" :day="day"></day>
+            <day v-for="(day, i) in week" :key="i" :cellStyle="cellStyle" :day="day"> </day>
         </div>
     </div>
 </template>
-
+  
 <script>
 import Day from './Day.vue'
+
 export default {
     name: 'OneMonth',
     components: {
@@ -33,35 +34,33 @@ export default {
             return this.dayjs().year(this.yearNumber).month(this.monthNumber).date(1)
         },
         firstDay() {
-            //https://dayjs.gitee.io/docs/zh-CN/get-set/day
-            // get the day of the week
             let firstDay = this.selectedMonthDate.day()
-            switch(this.firstWeekDay) {
+            switch (this.firstWeekDay) {
                 case 'monday':
                     if (firstDay === 0) {
                         firstDay = 6
                     } else {
                         firstDay--
                     }
-                break 
+                    break
                 case 'saturday':
                     if (firstDay === 6) {
                         firstDay = 0
                     } else {
                         firstDay++
                     }
-                break 
+                    break
             }
-            return firstDay 
+            return firstDay
         },
         month() {
-            const currentYearDay = this.dayjs().dayOfYear()
-            // get the number of days in the current month
-            const daysInMonth = this.selectedMonthDate.daysInMonth()
+            const curentYearDay = this.dayjs().dayOfYear()
+            // daysInMonth: Get the number of days in the current month.
+            const daysInMonth = this.selectedMonthDate.daysInMonth() //https://day.js.org/docs/en/display/days-in-month
             let date = 1
-            const month = [] 
+            const month = []
             for (let i = 0; i < 6; i++) {
-                let row = [] 
+                let row = []
                 for (let j = 0; j < 7; j++) {
                     const selectedYearDay = this.selectedMonthDate.date(date).dayOfYear()
                     const eventsCount = this.eventsDays?.[this.selectedMonthDate.date(date).format('YYYY-MM-DD')]
@@ -78,13 +77,13 @@ export default {
                         dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
                         dayOptions.date = null
                         date++
-                    } else if (currentYearDay > selectedYearDay) {
+                    } else if (curentYearDay > selectedYearDay) {
                         dayOptions.style = this.calcColor(eventsCount)
                         date++
-                    } else if (currentYearDay < selectedYearDay) {
+                    } else if (curentYearDay < selectedYearDay) {
                         dayOptions.style = this.calcColor(eventsCount, true)
                         date++
-                    } else if (currentYearDay === selectedYearDay) {
+                    } else if (curentYearDay === selectedYearDay) {
                         if (this.yearNumber === this.dayjs().year()) {
                             dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid black; border-radius: 4px;`
                         }
@@ -118,6 +117,6 @@ export default {
 
 <style scoped>
 .header {
-    text-align:center;
+    text-align: center;
 }
 </style>
