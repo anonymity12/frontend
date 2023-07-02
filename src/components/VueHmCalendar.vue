@@ -20,7 +20,7 @@ import dayjs from 'dayjs'
 const dayOfYear = require('dayjs/plugin/dayOfYear')
 dayjs.extend(dayOfYear)
 import Month from './Month.vue'
-import Year from './Year.vue'
+// import Year from './Year.vue'
 import { dinamicLoader } from '../utils/dinamicLoader'
 
 export default{

@@ -63,7 +63,7 @@ export default {
             for (let i = 0; i < 6; i++) {
                 let row = [] 
                 for (let j = 0; j < 7; j++) {
-                    const selectedYearDay = this.selectedMonthDate.date(date).dayOfYear() 
+                    const selectedYearDay = this.selectedMonthDate.date(date).dayOfYear()
                     const eventsCount = this.eventsDays?.[this.selectedMonthDate.date(date).format('YYYY-MM-DD')]
                     const dayOptions = {
                         style: '',
