@@ -1,6 +1,6 @@
 <template>
     <div style="display: inline-block">
-        <div v-if="!hideHeader" class="header" v-html="selectedMonthDate.format('MMM')"></div>
+        <div v-if="!hideHeader" class="header" v-html="selectedMonthDate.format('MMMM')"></div>
         <div style="display: flex; flex-direction: row" v-for="(week, i) in month" :key="i">
             <day v-for="(day, i) in week" :key="i" :cellStyle="cellStyle" :day="day"> </day>
         </div>
@@ -31,7 +31,8 @@ export default {
     },
     computed: {
         selectedMonthDate() {
-            return this.dayjs().year(this.yearNumber).month(this.monthNumber).date(1)
+            const zhCn = require('dayjs/locale/zh-cn')
+            return this.dayjs().locale(zhCn).year(this.yearNumber).month(this.monthNumber).date(1)
         },
         firstDay() {
             let firstDay = this.selectedMonthDate.day()
@@ -106,8 +107,10 @@ export default {
                 color = isFuture ? this.futureEventsColors[0] : this.pastEventsColors[0]
             } else if (eventsCount === 2) {
                 color = isFuture ? this.futureEventsColors[1] : this.pastEventsColors[1]
-            } else if (eventsCount > 2) {
+            } else if (eventsCount > 2 && eventsCount < 5) {
                 color = isFuture ? this.futureEventsColors[2] : this.pastEventsColors[2]
+            } else if (eventsCount > 5) {
+                color = isFuture ? this.futureEventsColors[3] : this.pastEventsColors[3]
             }
             return `background-color: ${color};`
         },
