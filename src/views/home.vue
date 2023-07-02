@@ -43,15 +43,15 @@
         <life-indicator></life-indicator>
         <tasks></tasks>
         <vue-hm-calendar
-          mode="month"
+          mode="year"
           :yearNumber="2023"
           cellSize=""
-          firstWeekDay="Monday"
+          firstWeekDay="monday"
           :hideWeekNames="false"
           :hideHeader="false"
           :eventsDays="{
             '2023-12-31': 10,
-            '2023-01-01': 2,
+            '2023-07-01': 5,
             '2023-03-21': 1,
             '2023-03-27': 1,
             '2023-06-28': 1,
