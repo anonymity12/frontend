@@ -42,6 +42,7 @@
       <el-main>
         <life-indicator></life-indicator>
         <tasks></tasks>
+        <h2>任务完成统计</h2>
         <vue-hm-calendar
           mode="year"
           :yearNumber="2023"
@@ -49,21 +50,9 @@
           firstWeekDay="monday"
           :hideWeekNames="false"
           :hideHeader="false"
-          :eventsDays="{
-            '2023-12-31': 10,
-            '2023-07-01': 5,
-            '2023-03-21': 1,
-            '2023-03-27': 1,
-            '2023-07-08': 9,
-            '2023-06-29': 1000,
-            '2023-07-02': 2,
-            '2023-07-05': 1,
-            '2023-07-06': 2,
-            '2023-07-07': 3,
-          }"
+          :eventsDays="commitEvents"
           :futureEventsColor="['#42A5F5','#1976D2', '#0D47A1']"
           />
-        <ButterFlyInfo :fly-owner="pageOwner"></ButterFlyInfo>
       </el-main>
     </el-container>
   </el-container>
@@ -73,6 +62,7 @@
 import ButterFlyInfo from '@/components/ButterFlyInfo'
 import VueHmCalendar from '@/components/VueHmCalendar'
 import { apiGetMyCntOverview } from "@/api/user"
+import { apiQueryAllCommitOfMine } from "@/api/commitsView"
 import LifeIndicator from '../components/LifeIndicator.vue'
 import Tasks from '../components/Tasks.vue'
 export default {
@@ -92,15 +82,10 @@ export default {
         address: '',
         phone: '',
       },
+      commitEvents: Object,
     };
   },
   methods: {
-    ping() {
-      var _this = this;
-      pingpong().then((resp) => {
-        console.log("wow ping return: ", resp)
-      })
-    },
     setUpOwner() {
       this.pageOwner = this.$store.state.user.name
       apiGetMyCntOverview().then((resp)=> {
@@ -116,12 +101,27 @@ export default {
       console.log("avatar clicked")
       this.$router.push({path: '/profile'})
     },
+    constructCommitView() {
+      apiQueryAllCommitOfMine().then(resp => {
+        if (resp.data.status == 200) {
+          var pureBean = resp.data.obj 
+          var convertedBean = {}
+          pureBean.forEach(function(item) {
+            convertedBean[item.simplifiedDateString] = item.count
+          })
+          console.log("converted bean then are: ", convertedBean)
+          this.commitEvents = convertedBean
+        } else {
+          console.log("get commit view err: ", resp)
+        }
+      })
+    }
   },
   created() {
     this.setUpOwner()
+    this.constructCommitView()
   },
   components: {
-    ButterFlyInfo,
     LifeIndicator,
     Tasks,
     VueHmCalendar

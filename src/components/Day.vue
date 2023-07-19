@@ -21,7 +21,7 @@ export default {
             }
             return `${
                 this.day.eventsCount
-                    ? '做了' + this.day.eventsCount + ' 件事在 <br/>'
+                    ? '你做了' + this.day.eventsCount + ' 件事在 <br/>'
                     : ''
             }${this.day.date}`
         },
