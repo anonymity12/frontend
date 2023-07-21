@@ -78,10 +78,10 @@ export default {
                         dayOptions.style = 'background-color: rgba(0,0,0,0.0)'
                         dayOptions.date = null
                         date++
-                    } else if (curentYearDay > selectedYearDay) {
+                    } else if (curentYearDay > selectedYearDay) { // user select a previous day box
                         dayOptions.style = this.calcColor(eventsCount)
                         date++
-                    } else if (curentYearDay < selectedYearDay) {
+                    } else if (curentYearDay < selectedYearDay) { // user click a future day box
                         dayOptions.style = this.calcColor(eventsCount, true)
                         date++
                     } else if (curentYearDay === selectedYearDay) {
@@ -109,7 +109,7 @@ export default {
                 color = isFuture ? this.futureEventsColors[1] : this.pastEventsColors[1]
             } else if (eventsCount > 2 && eventsCount < 5) {
                 color = isFuture ? this.futureEventsColors[2] : this.pastEventsColors[2]
-            } else if (eventsCount > 5) {
+            } else if (eventsCount >= 5) {
                 color = isFuture ? this.futureEventsColors[3] : this.pastEventsColors[3]
             }
             return `background-color: ${color};`

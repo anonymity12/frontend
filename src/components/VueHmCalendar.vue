@@ -30,11 +30,13 @@ export default{
             validator: function(value) {
                 return ['month', 'year'].includes(value)
             },
+            default: 'year'
         },
         firstWeekDay: {
             validator: function (value) {
                 return ['monday', 'saturday'].includes(value)
             },
+            default: 'monday'
         },
         monthNumber: {
             type: Number,
@@ -50,6 +52,7 @@ export default{
             },
             default: dayjs().year(),
         },
+        // we mainly use the previous:pastEventsColors color array
         pastEventsColors: {
             type: Array,
             default: function() {
@@ -62,10 +65,10 @@ export default{
                 return ['#d4bbeb', '#C0A5E1', '#A281D1','#845EC2']
             },
         },
-        hideHeader: Boolean,
+        hideHeader: {type: Boolean, default: false},
+        hideWeekNames: {type: Boolean, default: false},
         eventsDays: Object,
         cellSize: String,
-        hideWeekNames: Boolean,
         locale: String,
         tooltipTranslation: String,
     },

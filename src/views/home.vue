@@ -44,14 +44,7 @@
         <tasks></tasks>
         <h2>任务完成统计</h2>
         <vue-hm-calendar
-          mode="year"
-          :yearNumber="2023"
-          cellSize=""
-          firstWeekDay="monday"
-          :hideWeekNames="false"
-          :hideHeader="false"
           :eventsDays="commitEvents"
-          :futureEventsColor="['#42A5F5','#1976D2', '#0D47A1']"
           />
       </el-main>
     </el-container>
