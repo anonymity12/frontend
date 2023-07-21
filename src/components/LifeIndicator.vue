@@ -19,23 +19,25 @@
       
     </el-row>
     
-    <div class="function-area">
-      <el-button type="warning"  round @click="handleClick(1)" class="profile-span-text">
-        📓浮生六记
-      </el-button>
-      <el-button type="primary"  round @click="handleClick(3)" class="profile-span-text">
-        🥇查看排名
-      </el-button>
-      <el-button type="warning" size="small" round @click="handleClick(2)" class="profile-span-text">
-        {{ this.musicState? '暂停音乐':'播放音乐' }}
-      </el-button>
-      <el-button type="danger" size="small" round @click="handleClick(4)" class="profile-span-text">
-        🔓重新登陆
-      </el-button>
-      <el-button type="warning" round @click="handleClick(5)" class="profile-span-text">
-        管理惯例
-      </el-button>
-    </div>
+    <el-card>
+      <div>
+        <el-button type="warning"  round @click="handleClick(1)" class="profile-span-text">
+          📓浮生六记
+        </el-button>
+        <el-button type="primary"  round @click="handleClick(3)" class="profile-span-text">
+          🥇查看排名
+        </el-button>
+        <el-button type="warning" size="small" round @click="handleClick(2)" class="profile-span-text">
+          {{ this.musicState? '暂停音乐':'播放音乐' }}
+        </el-button>
+        <el-button type="danger" size="small" round @click="handleClick(4)" class="profile-span-text">
+          🔓重新登陆
+        </el-button>
+        <el-button type="primary" round @click="handleClick(5)" class="profile-span-text">
+          管理惯例
+        </el-button>
+      </div>
+    </el-card>
     <Baibao :boxShow="boxShow"></Baibao>
 
   </div>
@@ -143,6 +145,7 @@ a {
 
 .profile-span-text{
   font-family: cursive;
+  margin: 3px;
 }
 
 </style>

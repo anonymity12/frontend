@@ -6,14 +6,13 @@
                     font-weight: bold;">
                     不断的小成功，是大成功的催化剂
                 </span>
-
             </div>
             <el-row type="flex" class="width: 100%;">
                 <textarea cols="50" rows="5" @keyup.enter="addTask"
                     style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
                     placeholder="有什么事要搞定？"></textarea>
             </el-row>
-            <a href="#" class="toggleButton" @click="showTasksToggle()">{{ this.toggleArrow }}</a>
+            <a class="toggleButton" @click="showTasksToggle()">{{ this.toggleArrow }}</a>
             <el-table :data="tasks" v-show="tasksShow">
                 <!-- when u are just view a item, not editing -->
                 <el-table-column label="最近一周的事儿：">
@@ -193,7 +192,7 @@ export default {
 }
 
 .box-card {
-    margin: 1px;
+    margin-top: 8px;
 }
 
 .text {

@@ -1,16 +1,18 @@
 <template>
     <div v-if="dayjs">
-        <month
-            :dayjs="dayjs"
-            :hideHeader="hideHeader"
-            :firstWeekDay="firstWeekDay"
-            :monthNumber="monthNumber"
-            :eventsDays="eventsDays"
-            :pastEventsColors="pastEventsColors"
-            :cellSize="cellSize"
-            :yearNumber="yearNumber"
-            :futureEventsColors="futureEventsColors"
-        />
+        <el-card>
+            <month
+                :dayjs="dayjs"
+                :hideHeader="hideHeader"
+                :firstWeekDay="firstWeekDay"
+                :monthNumber="monthNumber"
+                :eventsDays="eventsDays"
+                :pastEventsColors="pastEventsColors"
+                :cellSize="cellSize"
+                :yearNumber="yearNumber"
+                :futureEventsColors="futureEventsColors"
+            />
+        </el-card>
     </div>
 </template>
 
