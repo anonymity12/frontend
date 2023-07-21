@@ -11,9 +11,10 @@
             <el-row type="flex" class="width: 100%;">
                 <textarea cols="50" rows="5" @keyup.enter="addTask"
                     style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
-                    placeholder="有什么事要搞定？回车确定要做这件事"></textarea>
+                    placeholder="有什么事要搞定？"></textarea>
             </el-row>
-            <el-table :data="tasks">
+            <a href="#" class="toggleButton" @click="showTasksToggle()">{{ this.toggleArrow }}</a>
+            <el-table :data="tasks" v-show="tasksShow">
                 <!-- when u are just view a item, not editing -->
                 <el-table-column label="最近一周的事儿：">
                     <template slot-scope="scope">
@@ -48,7 +49,9 @@ export default {
             tasks: [],
             newTaskTitle: '',
             cancelBoxShow: false,
-            currentCancelRow: {}
+            currentCancelRow: {},
+            tasksShow: false,
+            toggleArrow: "▼"
         }
     },
     mounted() {
@@ -165,6 +168,14 @@ export default {
                     }
                 })
             }
+        },
+        showTasksToggle: function() {
+            this.tasksShow = !this.tasksShow
+            if (this.tasksShow) {
+                this.toggleArrow = "▲"
+            } else {
+                this.toggleArrow = "▼"
+            }
         }
     }
 }
@@ -278,5 +289,9 @@ input[type=checkbox] {
 .checkboxThree input[type=checkbox]:checked + label {
     left: 23px;
     background: #00ff51;
+}
+
+.toggleButton {
+    font-size: larger;
 }
 </style>
