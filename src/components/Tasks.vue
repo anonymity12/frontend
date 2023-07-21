@@ -2,10 +2,9 @@
     <div>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span style="float: left;font-size: x-large;
-                    text-shadow: gray 6px 6px 4px;
+                <span style="float: left;font-size: large;
                     font-weight: bold;">
-                    解决事情，获得蝴蝶
+                    不断的小成功，是大成功的催化剂
                 </span>
 
             </div>
@@ -18,30 +17,19 @@
                 <!-- when u are just view a item, not editing -->
                 <el-table-column label="最近一周的事儿：">
                     <template slot-scope="scope">
-                        <label style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
+                        <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
                             :class="{ 'done': scope.row.status==2 }">
-                            <input type="checkbox" aria-label="Checkbox for following text input" :disabled="scope.row.status==0"
-                                @click="onCheckBoxClicked(scope.row)" :checked="scope.row.status==2">
+                            <div class="checkboxThree" @click="onCheckBoxClicked(scope.row)" style="display: inline-block;">
+                                <input type="checkbox" :disabled="scope.row.status==0" id="checkboxThreeInput"
+                                    :checked="scope.row.status==2"/>
+                                <label for="checkboxThreeInput"></label>
+                            </div>
                             {{ scope.row.title }}
-                        </label>
-                        <button type="button" class="cancel-task" :disabled="scope.row.status==0" @click="cancelTask(scope.row)">
-                            X
-                        </button>
+                        </div>
                     </template>
                 </el-table-column>
             </el-table>
         </el-card>
-        <el-dialog title="关闭这件事情？" :visible.sync="cancelBoxShow">
-            <p style="font-size:x-large">
-                😭 将会得到一个死去的黑蝴蝶 🐛
-            </p>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="cancelBoxShow = false">取 消</el-button>
-                <el-button type="primary" @click="dialogCancelConfirm()"
-                >确 定</el-button
-                >
-            </div>
-        </el-dialog>
     </div>
 </template>
 
@@ -195,7 +183,7 @@ export default {
 }
 
 .box-card {
-    margin: 5px;
+    margin: 1px;
 }
 
 .text {
@@ -236,5 +224,60 @@ export default {
     background: #d10c0c89;
     margin-left: 10px;
     padding: 2px;
+}
+.checkboxThree{
+    width: 45px;
+    height: 24px;
+    background: #333;
+    margin: 5px 15px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+.checkboxThree:before {
+    content: 'OK';
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    height: 2px;
+    color: #26ca28;
+    font-size: 12px;
+    font-weight: bolder;
+
+}
+.checkboxThree:after {
+    content: 'No';
+    position: absolute;
+    top: 2px;
+    left: 25px;
+    height: 2px;
+    color: #ddd;
+    font-size: 12px;
+    font-weight: bolder;
+}
+.checkboxThree label {
+    display: block;
+    width: 20px;
+    height: 18px;
+    border-radius: 5px;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top:3px;
+    z-index: 1;
+    left: 2px;
+    background: #cec3a1;
+}
+
+input[type=checkbox] {
+    visibility: hidden;
+}
+.checkboxThree input[type=checkbox]:checked + label {
+    left: 23px;
+    background: #00ff51;
 }
 </style>
