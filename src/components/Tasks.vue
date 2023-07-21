@@ -126,45 +126,44 @@ export default {
         onCheckBoxClicked: function (row) {
             console.log("box clicked for row:", row)
             if (row.status == 1) {
-              var taskDto = {
-                status: 2,
-                id: row.id
-              }
-              apiDoneTask(taskDto).then(res => {
-                if (res.data.status == 200) {
-                  this.$message({
-                    type: 'success',
-                    message: res.data.msg
-                  })
-                  row.status = 2
+                var taskDto = {
+                    status: 2,
+                    id: row.id
                 }
-                else {
-                  this.$message({
-                    type: 'warning',
-                    message: res.data.msg
-                  })
-                }
-              })
+                apiDoneTask(taskDto).then(res => {
+                    if (res.data.status == 200) {
+                        this.$message({
+                            type: 'success',
+                            message: res.data.msg
+                            })
+                        row.status = 2
+                    } else {
+                        this.$message({
+                            type: 'warning',
+                            message: res.data.msg
+                            })
+                    }
+                })
             } else if (row.status == 2) {
-              var taskDto = {
-                status: 1,
-                id: row.id
-              }
-              apiDoneTask(taskDto).then(res => {
-                if (res.data.status == 200) {
-                  this.$message({
-                    type: 'success',
-                    message: res.data.msg
-                  })
-                  row.status = 1
+                var taskDto = {
+                    status: 1,
+                    id: row.id
                 }
-                else {
-                  this.$message({
-                    type: 'warning',
-                    message: res.data.msg
-                  })
-                }
-              })
+                apiDoneTask(taskDto).then(res => {
+                    if (res.data.status == 200) {
+                        this.$message({
+                            type: 'success',
+                            message: res.data.msg
+                            })
+                        row.status = 1
+                    }
+                    else {
+                        this.$message({
+                            type: 'warning',
+                            message: res.data.msg
+                            })
+                    }
+                })
             }
         }
     }
