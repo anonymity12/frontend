@@ -6,7 +6,7 @@
                 <div class="quadrant">
                     <div class="quadrant-content">
                         <el-table :data="tasks" height="100%">
-                            <el-table-column label="重要但不紧急col" align="left">
+                            <el-table-column label="重要但不紧急" align="left">
                                 <template slot-scope="scope">
                                     <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
                                         :class="{ 'done': scope.row.status == 2 }">
@@ -207,7 +207,15 @@ input[type=checkbox] {
     position: absolute;
     top: -10px;
     bottom: -10px;
-    left: -10px;
+    left: -30px;
     right: -10px;
+}
+.larger-click-area::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -30px;
 }
 </style>

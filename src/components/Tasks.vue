@@ -5,7 +5,6 @@
                 <span style="float: left;font-size: large;
                     font-weight: bold;">
                     任务面板
-import TaskMatrix from './TaskMatrix.vue'
                 </span>
             </div>
             <el-row type="flex" class="width: 100%;">
