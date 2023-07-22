@@ -97,7 +97,7 @@ export default {
             return month
         },
         cellStyle() {
-            return `width: ${this.cellSize || '2rem'}; height: ${this.cellSize || '2rem'}; box-sizing: border-box;`
+            return `width: ${this.cellSize || '1rem'}; height: ${this.cellSize || '1rem'}; box-sizing: border-box;`
         },
     },
     methods: {

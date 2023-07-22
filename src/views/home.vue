@@ -101,7 +101,6 @@ export default {
           pureBean.forEach(function(item) {
             convertedBean[item.simplifiedDateString] = item.count
           })
-          console.log("converted bean then are: ", convertedBean)
           this.commitEvents = convertedBean
         } else {
           console.log("get commit view err: ", resp)
