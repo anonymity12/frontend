@@ -19,10 +19,10 @@
                     <template slot-scope="scope">
                         <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
                             :class="{ 'done': scope.row.status==2 }">
-                            <div class="checkboxThree" @click="onCheckBoxClicked(scope.row)" style="display: inline-block;">
-                                <input type="checkbox" :disabled="scope.row.status==0" id="checkboxThreeInput"
+                            <div class="checkboxThree" style="display: inline-block;">
+                                <input type="checkbox" :disabled="scope.row.status==0" :id="'row'+scope.row.id"
                                     :checked="scope.row.status==2"/>
-                                <label for="checkboxThreeInput"></label>
+                                <label :for="'row'+scope.row.id" class="larger-click-area" @click="onCheckBoxClicked(scope.row)"></label>
                             </div>
                             {{ scope.row.title }}
                         </div>
@@ -293,5 +293,14 @@ input[type=checkbox] {
 .toggleButton {
     float: left;
     margin: 3px;
+}
+
+.larger-click-area::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
 }
 </style>
