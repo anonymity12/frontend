@@ -5,6 +5,7 @@
                 <span style="float: left;font-size: large;
                     font-weight: bold;">
                     任务面板
+import TaskMatrix from './TaskMatrix.vue'
                 </span>
             </div>
             <el-row type="flex" class="width: 100%;">
@@ -12,54 +13,39 @@
                     style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
                     placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
             </el-row>
-            <a class="toggleButton" @click="showTasksToggle()">最近一周的事儿：{{ this.toggleArrow }}</a>
-            <el-table :data="tasks" v-show="tasksShow">
-                <!-- when u are just view a item, not editing -->
-                <el-table-column>
-                    <template slot-scope="scope">
-                        <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
-                            :class="{ 'done': scope.row.status==2 }">
-                            <div class="checkboxThree" style="display: inline-block;">
-                                <input type="checkbox" :disabled="scope.row.status==0" :id="'row'+scope.row.id"
-                                    :checked="scope.row.status==2"/>
-                                <label :for="'row'+scope.row.id" class="larger-click-area" @click="onCheckBoxClicked(scope.row)"></label>
-                            </div>
-                            {{ scope.row.title }}
-                        </div>
-                    </template>
-                </el-table-column>
-            </el-table>
+            <task-matrix></task-matrix>
         </el-card>
     </div>
 </template>
 
 <script>
+import TaskMatrix from './TaskMatrix.vue'
 import { apiAddTask } from '@/api/user'
 import { apiCancelTask } from '@/api/user'
 import { apiDoneTask } from '@/api/user'
 import { apiGetTasks } from '@/api/user'
 export default {
-    name: 'Tasks',
+    name: "Tasks",
     props: {
-        'taskTitle': String,
+        "taskTitle": String,
     },
     data() {
         return {
             tasks: [],
-            newTaskTitle: '',
+            newTaskTitle: "",
             cancelBoxShow: false,
             currentCancelRow: {},
             tasksShow: false,
             toggleArrow: "▼"
-        }
+        };
     },
     mounted() {
-        this.getAllTasks()
+        this.getAllTasks();
     },
     watch: {
         tasks: {
             handler() {
-                localStorage.setItem('matrix2', JSON.stringify({
+                localStorage.setItem("matrix2", JSON.stringify({
                     tasks: this.tasks
                 }));
             },
@@ -69,114 +55,117 @@ export default {
     methods: {
         getAllTasks: function () {
             apiGetTasks().then(res => {
-                console.log("get all tasks: ", res)
+                console.log("get all tasks: ", res);
                 var apiReady = true;
                 if (apiReady) {
-                    this.tasks = res.data
-                } else {
-                    console.log("api not ready")
+                    this.tasks = res.data;
                 }
-            })
+                else {
+                    console.log("api not ready");
+                }
+            });
         },
-
         addTask: function () {
-            var title = this.newTaskTitle && this.newTaskTitle.trim()
-            if (title !== '') {
-                console.log("front: title: ", title)
+            var title = this.newTaskTitle && this.newTaskTitle.trim();
+            if (title !== "") {
+                console.log("front: title: ", title);
                 apiAddTask(title).then(res => {
-                    console.log("ret res for add new task: ", res)
+                    console.log("ret res for add new task: ", res);
                     if (res.data.status == 200) {
                         this.$message({
-                            type: 'success',
+                            type: "success",
                             message: res.data.msg
-                        })
+                        });
                         apiGetTasks().then(res => {
-                                this.tasks = res.data
-                            }
-                        )
-                        this.newTaskTitle = ''
-                    } else {
-                        console.log("apiAddTask failed")
+                            this.tasks = res.data;
+                        });
+                        this.newTaskTitle = "";
                     }
-                })
+                    else {
+                        console.log("apiAddTask failed");
+                    }
+                });
             }
             else {
                 this.$message({
-                    type: 'warning',
+                    type: "warning",
                     message: "任务不能空白"
-                })
+                });
             }
-            this.newTaskTitle = ''
+            this.newTaskTitle = "";
         },
         cancelTask: function (row) {
-            this.cancelBoxShow = true 
-            this.currentCancelRow = row
+            this.cancelBoxShow = true;
+            this.currentCancelRow = row;
         },
-        dialogCancelConfirm: function() {
-            apiCancelTask(this.currentCancelRow.id).then(res=>{
-                    if (res.data.status == 200) {
-                        this.cancelBoxShow = false 
-
-                        this.$message({
-                            type: 'success',
-                            message: res.data.msg
-                        })
-                        this.currentCancelRow.status = 0
-                    }
-                })
+        dialogCancelConfirm: function () {
+            apiCancelTask(this.currentCancelRow.id).then(res => {
+                if (res.data.status == 200) {
+                    this.cancelBoxShow = false;
+                    this.$message({
+                        type: "success",
+                        message: res.data.msg
+                    });
+                    this.currentCancelRow.status = 0;
+                }
+            });
         },
-        onCheckBoxClicked: function(row) {
-            console.log("box clicked for row:", row)
+        onCheckBoxClicked: function (row) {
+            console.log("box clicked for row:", row);
             if (row.status == 1) {
                 var taskDto = {
                     status: 2,
                     id: row.id
-                }
+                };
                 apiDoneTask(taskDto).then(res => {
                     if (res.data.status == 200) {
                         this.$message({
-                            type: 'info',
+                            type: "info",
                             message: "任务已完成✅"
-                            })
-                        row.status = 2
-                    } else {
-                        this.$message({
-                            type: 'warning',
-                            message: "后端错误"
-                            })
-                    }
-                })
-            } else if (row.status == 2) {
-                var taskDto = {
-                    status: 1,
-                    id: row.id
-                }
-                apiDoneTask(taskDto).then(res => {
-                    if (res.data.status == 200) {
-                        this.$message({
-                            type: 'info',
-                            message: "任务没完成❌"
-                            })
-                        row.status = 1
+                        });
+                        row.status = 2;
                     }
                     else {
                         this.$message({
-                            type: 'warning',
+                            type: "warning",
                             message: "后端错误"
-                            })
+                        });
                     }
-                })
+                });
+            }
+            else if (row.status == 2) {
+                var taskDto = {
+                    status: 1,
+                    id: row.id
+                };
+                apiDoneTask(taskDto).then(res => {
+                    if (res.data.status == 200) {
+                        this.$message({
+                            type: "info",
+                            message: "任务没完成❌"
+                        });
+                        row.status = 1;
+                    }
+                    else {
+                        this.$message({
+                            type: "warning",
+                            message: "后端错误"
+                        });
+                    }
+                });
             }
         },
-        showTasksToggle: function() {
-            this.tasksShow = !this.tasksShow
+        showTasksToggle: function () {
+            this.tasksShow = !this.tasksShow;
             if (this.tasksShow) {
-                this.toggleArrow = "▲"
-            } else {
-                this.toggleArrow = "▼"
+                this.toggleArrow = "▲";
+            }
+            else {
+                this.toggleArrow = "▼";
             }
         }
-    }
+    },
+    components: { TaskMatrix }
 }
 </script>
 

@@ -5,18 +5,70 @@ instead of current one: just one list
 
 how to finish this work?
 
-1. we really need to apply the task_matrix properties. for now, all tasks are in matrix 2 by default.
-    later, we have 1,2,3,4 four matrix
-    when we add task, we need classify the task. 
-    we provide a select option: this task belongs to matrix 1,2,3or4; 7 habits of highly effecient people
-    ?   maybe we should re-define the matrix meaning: 
-            1: life_essential_time_task: eating, washing, purchase, family_time
-            2: charge_time_task: reading, exercise, learning
-            3: create_time_task: work, communication, writing, sale
-            4: wasted_time_task: play game, watch TV
-2. do frontend coding.
-    after decide 1, we figure out how to programming:
-        VUE实现列表的折叠效果: 
-            https://blog.csdn.net/xingchen678/article/details/101689387
- 
+1. 【后端】we really need to apply the task_matrix properties. for now, all tasks are in matrix 2 by default.
+   later, we have 1,2,3,4 four matrix
+   when we add task, we need classify the task.
+   we provide a select option: this task belongs to matrix 1,2,3or4; 7 habits of highly effecient people
+   ? maybe we should re-define the matrix meaning:
+   1: life_essential_time_task: eating, washing, purchase, family_time
+   2: charge_time_task: reading, exercise, learning
+   3: create_time_task: work, communication, writing, sale
+   4: wasted_time_task: play game, watch TV
+2. 【前端】do frontend coding.
+   after decide 1, we figure out how to programming:
+   ✅ VUE 实现列表的折叠效果:
+   https://blog.csdn.net/xingchen678/article/details/101689387
+   2.1 四象限
 
+```html
+<template>
+  <div>
+    <!-- 第一行，两列 -->
+    <el-row>
+      <el-col :span="12">
+        <div class="quadrant">
+          <!-- 重要且紧急 -->
+          <h2>Important and Urgent</h2>
+          <!-- 可以在这里添加重要且紧急的事项 -->
+        </div>
+      </el-col>
+      <el-col :span="12">
+        <div class="quadrant">
+          <!-- 重要但不紧急 -->
+          <h2>Important not Urgent</h2>
+          <!-- 可以在这里添加重要但不紧急的事项 -->
+        </div>
+      </el-col>
+    </el-row>
+
+    <!-- 第二行，两列 -->
+    <el-row>
+      <el-col :span="12">
+        <div class="quadrant">
+          <!-- 不重要且紧急 -->
+          <h2>Not Important and Urgent</h2>
+          <!-- 可以在这里添加不重要且紧急的事项 -->
+        </div>
+      </el-col>
+      <el-col :span="12">
+        <div class="quadrant">
+          <!-- 不重要且不紧急 -->
+          <h2>Not Important not Urgent</h2>
+          <!-- 可以在这里添加不重要且不紧急的事项 -->
+        </div>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
+<div class="quadrant">
+  <!-- 重要但不紧急 -->
+  <h2>Important not Urgent</h2>
+  <div class="quadrant-content">
+    <!-- 可以在这里添加重要但不紧急的事项 -->
+    <div v-for="item in importantNotUrgentItems" :key="item.id">
+      {{ item.name }}
+    </div>
+  </div>
+</div>
+```
