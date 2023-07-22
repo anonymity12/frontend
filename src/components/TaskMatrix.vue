@@ -8,7 +8,7 @@
                         <el-table :data="tasks" height="100%">
                             <el-table-column label="重要但不紧急" align="left">
                                 <template slot-scope="scope">
-                                    <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
+                                    <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
                                         :class="{ 'done': scope.row.status == 2 }">
                                         <div class="checkboxThree" style="display: inline-block;">
                                             <input type="checkbox" :disabled="scope.row.status == 0"
