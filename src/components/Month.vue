@@ -79,10 +79,10 @@ export default {
                         dayOptions.date = null
                         date++
                     } else if (curentYearDay > selectedYearDay) { // user select a previous day box
-                        dayOptions.style = this.calcColor(eventsCount)
+                        dayOptions.style = `${this.calcColor(eventsCount)} border: 1px solid; border-radius: 4px;`
                         date++
                     } else if (curentYearDay < selectedYearDay) { // user click a future day box
-                        dayOptions.style = this.calcColor(eventsCount, true)
+                        dayOptions.style = `${this.calcColor(eventsCount, true)} border: 1px none; border-radius: 4px;`
                         date++
                     } else if (curentYearDay === selectedYearDay) {
                         if (this.yearNumber === this.dayjs().year()) {

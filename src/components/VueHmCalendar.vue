@@ -64,7 +64,10 @@ export default{
         pastEventsColors: {
             type: Array,
             default: function() {
-                return ['#FBEAFF', '#B39CD0', '#A281D1','#845EC2']
+                // return ['#a8d5ff', '#709fff', '#3869ff','#0033ff'] // blue series
+                return ['#ffa99a','#ff7e67','#ff5233','#ff2700'] // red series
+                // return ['#FBEAFF', '#B39CD0', '#A281D1','#845EC2'] // purple series
+
             },
         },
         futureEventsColors: {

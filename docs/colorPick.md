@@ -2,4 +2,4 @@
 
 
 
-https://photokit.com/colors/color-calculator/?lang=zh
+https://photokit.com/colors/color-gradient/?lang=zh
