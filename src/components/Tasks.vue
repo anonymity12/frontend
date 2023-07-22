@@ -7,20 +7,15 @@
                     任务面板
                 </span>
             </div>
-            <el-row type="flex" style="width: 100%;" >
+            <el-row type="flex" style="width: 100%;" class="row-container">
+                <el-select v-model="matrixSelection" placeholder="请选择任务象限">
+                    <el-option v-for="item in matrixOptions" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
                 <textarea cols="50" rows="5" @keyup.enter="addTask"
                     style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
                     placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
-                <el-select v-model="matrixSelection" placeholder="请选择任务象限">
-                    <el-option
-                        v-for="item in matrixOptions"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                    >
-
-                    </el-option>
-                </el-select>
+                
             </el-row>
             <task-matrix></task-matrix>
         </el-card>
@@ -251,7 +246,8 @@ export default {
     margin-left: 10px;
     padding: 2px;
 }
-.checkboxThree{
+
+.checkboxThree {
     width: 45px;
     height: 24px;
     background: #333;
@@ -260,6 +256,7 @@ export default {
     position: relative;
     cursor: pointer;
 }
+
 .checkboxThree:before {
     content: 'OK';
     position: absolute;
@@ -271,6 +268,7 @@ export default {
     font-weight: bolder;
 
 }
+
 .checkboxThree:after {
     content: 'No';
     position: absolute;
@@ -281,6 +279,7 @@ export default {
     font-size: 12px;
     font-weight: bolder;
 }
+
 .checkboxThree label {
     display: block;
     width: 20px;
@@ -293,7 +292,7 @@ export default {
     transition: all .5s ease;
     cursor: pointer;
     position: absolute;
-    top:3px;
+    top: 3px;
     z-index: 1;
     left: 2px;
     background: #cec3a1;
@@ -302,7 +301,8 @@ export default {
 input[type=checkbox] {
     visibility: hidden;
 }
-.checkboxThree input[type=checkbox]:checked + label {
+
+.checkboxThree input[type=checkbox]:checked+label {
     left: 23px;
     background: #00ff51;
 }
@@ -319,5 +319,17 @@ input[type=checkbox] {
     bottom: -10px;
     left: -10px;
     right: -10px;
+}
+
+@media screen and (max-width:768px) {
+    .row-container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .row-container {
+        flex-direction: row;
+    }
 }
 </style>

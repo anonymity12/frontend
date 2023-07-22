@@ -110,4 +110,18 @@ how to finish this work?
     }
   }
 </script>
+
+/* 在手机端媒体查询 */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+/* 在电脑Web端媒体查询 */
+@media screen and (min-width: 769px) {
+  .container {
+    flex-direction: row;
+  }
+}
 ```
