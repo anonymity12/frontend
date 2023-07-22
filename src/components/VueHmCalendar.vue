@@ -1,6 +1,12 @@
 <template>
     <div v-if="dayjs">
-        <el-card>
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <span style="float: left;font-size: large;
+                    font-weight: bold;">
+                    任务完成统计
+                </span>
+            </div>
             <month
                 :dayjs="dayjs"
                 :hideHeader="hideHeader"
@@ -97,3 +103,18 @@ export default{
 }
 
 </script>
+<style>
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+.box-card {
+    margin-top: 8px;
+}
+
+</style>

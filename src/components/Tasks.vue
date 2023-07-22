@@ -4,18 +4,18 @@
             <div slot="header" class="clearfix">
                 <span style="float: left;font-size: large;
                     font-weight: bold;">
-                    不断的小成功，是大成功的催化剂
+                    任务面板
                 </span>
             </div>
             <el-row type="flex" class="width: 100%;">
                 <textarea cols="50" rows="5" @keyup.enter="addTask"
                     style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
-                    placeholder="有什么事要搞定？"></textarea>
+                    placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
             </el-row>
-            <a class="toggleButton" @click="showTasksToggle()">{{ this.toggleArrow }}</a>
+            <a class="toggleButton" @click="showTasksToggle()">最近一周的事儿：{{ this.toggleArrow }}</a>
             <el-table :data="tasks" v-show="tasksShow">
                 <!-- when u are just view a item, not editing -->
-                <el-table-column label="最近一周的事儿：">
+                <el-table-column>
                     <template slot-scope="scope">
                         <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px; font-size: large;"
                             :class="{ 'done': scope.row.status==2 }">
@@ -291,6 +291,7 @@ input[type=checkbox] {
 }
 
 .toggleButton {
-    font-size: larger;
+    float: left;
+    margin: 3px;
 }
 </style>

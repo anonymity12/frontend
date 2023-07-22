@@ -42,8 +42,6 @@
       <el-main>
         <life-indicator></life-indicator>
         <tasks></tasks>
-        <h2>任务完成统计</h2>
-        
         <vue-hm-calendar
           :eventsDays="commitEvents"
           />
