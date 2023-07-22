@@ -125,7 +125,7 @@ export default {
                     }
                 })
         },
-        onCheckBoxClicked: function (row) {
+        onCheckBoxClicked: function(row) {
             console.log("box clicked for row:", row)
             if (row.status == 1) {
                 var taskDto = {
@@ -135,14 +135,14 @@ export default {
                 apiDoneTask(taskDto).then(res => {
                     if (res.data.status == 200) {
                         this.$message({
-                            type: 'success',
-                            message: res.data.msg
+                            type: 'info',
+                            message: "任务已完成✅"
                             })
                         row.status = 2
                     } else {
                         this.$message({
                             type: 'warning',
-                            message: res.data.msg
+                            message: "后端错误"
                             })
                     }
                 })
@@ -154,15 +154,15 @@ export default {
                 apiDoneTask(taskDto).then(res => {
                     if (res.data.status == 200) {
                         this.$message({
-                            type: 'success',
-                            message: res.data.msg
+                            type: 'info',
+                            message: "任务没完成❌"
                             })
                         row.status = 1
                     }
                     else {
                         this.$message({
                             type: 'warning',
-                            message: res.data.msg
+                            message: "后端错误"
                             })
                     }
                 })
