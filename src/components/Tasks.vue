@@ -7,10 +7,20 @@
                     任务面板
                 </span>
             </div>
-            <el-row type="flex" class="width: 100%;">
+            <el-row type="flex" style="width: 100%;" >
                 <textarea cols="50" rows="5" @keyup.enter="addTask"
                     style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
                     placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
+                <el-select v-model="matrixSelection" placeholder="请选择任务象限">
+                    <el-option
+                        v-for="item in matrixOptions"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    >
+
+                    </el-option>
+                </el-select>
             </el-row>
             <task-matrix></task-matrix>
         </el-card>
@@ -35,7 +45,26 @@ export default {
             cancelBoxShow: false,
             currentCancelRow: {},
             tasksShow: false,
-            toggleArrow: "▼"
+            toggleArrow: "▼",
+            matrixOptions: [
+                {
+                    value: '第二象限',
+                    label: '重要不紧急'
+                },
+                {
+                    value: '第一象限',
+                    label: '重要且紧急'
+                },
+                {
+                    value: '第三象限',
+                    label: '紧急不重要'
+                },
+                {
+                    value: '第四象限',
+                    label: '不紧急不重要'
+                }
+            ],
+            matrixSelection: ''
         };
     },
     mounted() {

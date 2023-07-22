@@ -22,7 +22,6 @@
                             </el-table-column>
                         </el-table>
                     </div>
-
                 </div>
             </el-col>
             <el-col :span="12">
