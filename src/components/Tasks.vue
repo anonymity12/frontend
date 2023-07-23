@@ -167,6 +167,7 @@ export default {
                     }
                 })
             }
+            this.$emit('changeTaskStatusEvent', row.id)
         },
         showTasksToggle: function() {
             this.tasksShow = !this.tasksShow
