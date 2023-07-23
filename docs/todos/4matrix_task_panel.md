@@ -1,6 +1,11 @@
 i want 4 toggle task panel
 instead of current one: just one list
 
+
+## improve 
+
+调整任务面板的 margin ，padding， 让它显示更多文字
+
 ---
 
 how to finish this work?
@@ -127,4 +132,7 @@ how to finish this work?
 
 2023-07-22 18:12:58
 修改字体显示大小
+
+2023-07-22 18:14:57
+思考象限选择后的与后端进行代码交互的逻辑
 ```
