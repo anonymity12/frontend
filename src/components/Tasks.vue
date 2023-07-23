@@ -301,7 +301,15 @@ input[type=checkbox] {
     position: absolute;
     top: -10px;
     bottom: -10px;
-    left: -10px;
+    left: -30px;
     right: -10px;
+}
+.larger-click-area::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -30px;
 }
 </style>
