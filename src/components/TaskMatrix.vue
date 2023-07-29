@@ -137,20 +137,20 @@ export default {
 }
 
 .checkboxThree {
-    width: 45px;
-    height: 24px;
+    width: 30px;
+    height: 16px;
     background: #333;
-    margin: 5px 15px;
+    margin: 5px 5px;
     border-radius: 4px;
     position: relative;
     cursor: pointer;
 }
 
 .checkboxThree:before {
-    content: 'OK';
+    content: '';
     position: absolute;
-    top: 2px;
-    left: 3px;
+    top: 1px;
+    left: 2px;
     height: 2px;
     color: #26ca28;
     font-size: 12px;
@@ -159,9 +159,9 @@ export default {
 }
 
 .checkboxThree:after {
-    content: 'No';
+    content: '';
     position: absolute;
-    top: 2px;
+    top: 1px;
     left: 25px;
     height: 2px;
     color: #ddd;
@@ -171,9 +171,9 @@ export default {
 
 .checkboxThree label {
     display: block;
-    width: 20px;
-    height: 18px;
-    border-radius: 5px;
+    width: 13px;
+    height: 12px;
+    border-radius: 2px;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
     -o-transition: all .5s ease;
@@ -181,7 +181,7 @@ export default {
     transition: all .5s ease;
     cursor: pointer;
     position: absolute;
-    top: 3px;
+    top: 2px;
     z-index: 1;
     left: 2px;
     background: #cec3a1;
@@ -192,7 +192,7 @@ input[type=checkbox] {
 }
 
 .checkboxThree input[type=checkbox]:checked+label {
-    left: 23px;
+    left: 15px;
     background: #00ff51;
 }
 
