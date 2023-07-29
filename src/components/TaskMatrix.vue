@@ -6,7 +6,7 @@
                 <div class="quadrant">
                     <div class="quadrant-content">
                         <el-table :data="tasks" height="100%">
-                            <el-table-column label="重要但不紧急" align="left">
+                            <el-table-column label="充电蓄能" align="left">
                                 <template slot-scope="scope">
                                     <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
                                         :class="{ 'done': scope.row.status == 2 }">
@@ -26,7 +26,22 @@
             </el-col>
             <el-col :span="12">
                 <div class="quadrant">
-                    <h2>重要且紧急</h2>
+                    <el-table :data="tasks" height="100%">
+                        <el-table-column label="生活基础" align="left">
+                            <template slot-scope="scope">
+                                <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
+                                    :class="{ 'done': scope.row.status == 2 }">
+                                    <div class="checkboxThree" style="display: inline-block;">
+                                        <input type="checkbox" :disabled="scope.row.status == 0" :id="'row' + scope.row.id"
+                                            :checked="scope.row.status == 2" />
+                                        <label :for="'row' + scope.row.id" class="larger-click-area"
+                                            @click="onCheckBoxClicked(scope.row)"></label>
+                                    </div>
+                                    {{ scope.row.title }}
+                                </div>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </div>
             </el-col>
         </el-row>
@@ -35,12 +50,42 @@
         <el-row>
             <el-col :span="12">
                 <div class="quadrant">
-                    <h2>不重要且紧急</h2>
+                    <el-table :data="tasks" height="100%">
+                        <el-table-column label="创造产出" align="left">
+                            <template slot-scope="scope">
+                                <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
+                                    :class="{ 'done': scope.row.status == 2 }">
+                                    <div class="checkboxThree" style="display: inline-block;">
+                                        <input type="checkbox" :disabled="scope.row.status == 0" :id="'row' + scope.row.id"
+                                            :checked="scope.row.status == 2" />
+                                        <label :for="'row' + scope.row.id" class="larger-click-area"
+                                            @click="onCheckBoxClicked(scope.row)"></label>
+                                    </div>
+                                    {{ scope.row.title }}
+                                </div>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </div>
             </el-col>
             <el-col :span="12">
                 <div class="quadrant">
-                    <h2>不重要且不紧急</h2>
+                    <el-table :data="tasks" height="100%">
+                        <el-table-column label="娱乐休整" align="left">
+                            <template slot-scope="scope">
+                                <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
+                                    :class="{ 'done': scope.row.status == 2 }">
+                                    <div class="checkboxThree" style="display: inline-block;">
+                                        <input type="checkbox" :disabled="scope.row.status == 0" :id="'row' + scope.row.id"
+                                            :checked="scope.row.status == 2" />
+                                        <label :for="'row' + scope.row.id" class="larger-click-area"
+                                            @click="onCheckBoxClicked(scope.row)"></label>
+                                    </div>
+                                    {{ scope.row.title }}
+                                </div>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </div>
             </el-col>
         </el-row>
@@ -209,6 +254,7 @@ input[type=checkbox] {
     left: -30px;
     right: -10px;
 }
+
 .larger-click-area::after {
     content: "";
     position: absolute;

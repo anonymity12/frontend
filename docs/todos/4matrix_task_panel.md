@@ -15,7 +15,7 @@ how to finish this work?
 1. 【后端】we really need to apply the task_matrix properties. for now, all tasks are in matrix 2 by default.
    later, we have 1,2,3,4 four matrix
    when we add task, we need classify the task.
-   we provide a select option: this task belongs to matrix 1,2,3or4; 7 habits of highly effecient people
+   we provide a select option: this task belongs to matrix 1,2,3or4; <<7 habits of highly effecient people>>
    ? maybe we should re-define the matrix meaning:
    1: life_essential_time_task: eating, washing, purchase, family_time
    2: charge_time_task: reading, exercise, learning
