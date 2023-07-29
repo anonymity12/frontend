@@ -105,6 +105,20 @@ export default {
             toggleArrow: "▼"
         }
     },
+    computed: {
+        m1tasks: function() {
+            return this.tasks.filter(task => task.matrix === 1)
+        },
+        m2tasks: function() {
+            return this.tasks.filter(task => task.matrix === 2)
+        },
+        m3tasks: function() {
+            return this.tasks.filter(task => task.matrix === 3)
+        },
+        m4tasks: function() {
+            return this.tasks.filter(task => task.matrix === 4)
+        }
+    },
     mounted() {
         this.getAllTasks()
     },
