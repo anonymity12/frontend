@@ -45,6 +45,7 @@
         <vue-hm-calendar
           :eventsDays="commitEvents"
           />
+        <extra-area></extra-area>
       </el-main>
     </el-container>
   </el-container>
@@ -56,6 +57,7 @@ import VueHmCalendar from '@/components/VueHmCalendar'
 import { apiGetMyCntOverview } from "@/api/user"
 import { apiQueryAllCommitOfMine } from "@/api/commitsView"
 import LifeIndicator from '../components/LifeIndicator.vue'
+import ExtraArea from '../components/ExtraArea.vue'
 import Tasks from '../components/Tasks.vue'
 export default {
   name: "Home",
@@ -115,8 +117,9 @@ export default {
   components: {
     LifeIndicator,
     Tasks,
-    VueHmCalendar
-  }
+    VueHmCalendar,
+    ExtraArea
+}
 };
 </script>
 

@@ -4,7 +4,9 @@ instead of current one: just one list
 
 ## improve 
 
-调整任务面板的 margin ，padding， 让它显示更多文字
+- 调整任务面板的 margin ，padding， 让它显示更多文字
+
+- 分拆 lifeIndicator
 
 ---
 

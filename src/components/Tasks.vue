@@ -17,8 +17,8 @@
                     placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
                 
             </el-row>
-            <task-matrix></task-matrix>
         </el-card>
+        <task-matrix></task-matrix>
     </div>
 </template>
 
