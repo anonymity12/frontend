@@ -199,37 +199,7 @@ export function apiUpdateMyActions(data) {
 }
 // ---- (deprecated)actions related api end --- 
 
-// ---- task related api start ----
 
-export function apiGetTasks() {
-  return request({
-    url: '/api/task/getAll',
-    method: 'get'
-  })
-}
-export function apiAddTask(title) {
-  return request({
-    url: '/api/task/add?title='+title,
-    method: 'post'
-  })
-}
-
-export function apiCancelTask(taskId) {
-  return request({
-    url: '/api/task/cancel?taskId='+taskId,
-    method: 'post'
-  })
-}
-
-export function apiDoneTask(data) {
-  return request({
-    url: '/api/task/done',
-    method: 'post',
-    data
-  })
-}
-
-// ---- task related api end ----
 
 // ---- rank related api start ----
 export function apiGetRankList() {
