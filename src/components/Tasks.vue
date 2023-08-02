@@ -24,10 +24,10 @@
 
 <script>
 import TaskMatrix from './TaskMatrix.vue'
-import { apiAddTask } from '@/api/user'
-import { apiCancelTask } from '@/api/user'
-import { apiDoneTask } from '@/api/user'
-import { apiGetTasks } from '@/api/user'
+import { apiAddTask } from '@/api/task'
+import { apiCancelTask } from '@/api/task'
+import { apiDoneTask } from '@/api/task'
+import { apiGetTasks } from '@/api/task'
 export default {
     name: "Tasks",
     props: {
@@ -43,20 +43,20 @@ export default {
             toggleArrow: "▼",
             matrixOptions: [
                 {
-                    value: '第二象限',
-                    label: '重要不紧急'
+                    value: '2',
+                    label: '充电蓄能'
                 },
                 {
-                    value: '第一象限',
-                    label: '重要且紧急'
+                    value: '1',
+                    label: '生活基础'
                 },
                 {
-                    value: '第三象限',
-                    label: '紧急不重要'
+                    value: '3',
+                    label: '创造产出'
                 },
                 {
-                    value: '第四象限',
-                    label: '不紧急不重要'
+                    value: '4',
+                    label: '娱乐休整'
                 }
             ],
             matrixSelection: ''
@@ -92,7 +92,7 @@ export default {
             var title = this.newTaskTitle && this.newTaskTitle.trim();
             if (title !== "") {
                 console.log("front: title: ", title);
-                apiAddTask(title).then(res => {
+                apiAddTask(title, matrixSelection).then(res => {
                     console.log("ret res for add new task: ", res);
                     if (res.data.status == 200) {
                         this.$message({

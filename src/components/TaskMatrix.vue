@@ -5,7 +5,7 @@
             <el-col :span="12">
                 <div class="quadrant">
                     <div class="quadrant-content">
-                        <el-table :data="tasks" height="100%">
+                        <el-table :data="m2tasks" height="100%">
                             <el-table-column label="充电蓄能" align="left">
                                 <template slot-scope="scope">
                                     <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
@@ -26,7 +26,7 @@
             </el-col>
             <el-col :span="12">
                 <div class="quadrant">
-                    <el-table :data="tasks" height="100%">
+                    <el-table :data="m1tasks" height="100%">
                         <el-table-column label="生活基础" align="left">
                             <template slot-scope="scope">
                                 <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
@@ -50,7 +50,7 @@
         <el-row>
             <el-col :span="12">
                 <div class="quadrant">
-                    <el-table :data="tasks" height="100%">
+                    <el-table :data="m3tasks" height="100%">
                         <el-table-column label="创造产出" align="left">
                             <template slot-scope="scope">
                                 <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
@@ -70,7 +70,7 @@
             </el-col>
             <el-col :span="12">
                 <div class="quadrant">
-                    <el-table :data="tasks" height="100%">
+                    <el-table :data="m4tasks" height="100%">
                         <el-table-column label="娱乐休整" align="left">
                             <template slot-scope="scope">
                                 <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
@@ -92,10 +92,8 @@
     </div>
 </template>
 <script>
-import { apiAddTask } from '@/api/user'
-import { apiCancelTask } from '@/api/user'
-import { apiDoneTask } from '@/api/user'
-import { apiGetTasks } from '@/api/user'
+import { apiDoneTask } from '@/api/task'
+import { apiGetTasks } from '@/api/task'
 export default {
     name: 'TaskMatrix',
     data() {

@@ -138,3 +138,12 @@ how to finish this work?
 2023-07-22 18:14:57
 思考象限选择后的与后端进行代码交互的逻辑
 ```
+---
+
+# 添加任务
+
+按照选择的option
+发送一个 taskNewRequest 过去
+taskNewRequest:
+  taskTitle: "eat food"
+  taskMatrix: option
