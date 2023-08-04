@@ -92,7 +92,7 @@ export default {
             var title = this.newTaskTitle && this.newTaskTitle.trim();
             if (title !== "") {
                 console.log("front: title: ", title);
-                apiAddTask(title, matrixSelection).then(res => {
+                apiAddTask(title, this.matrixSelection).then(res => {
                     console.log("ret res for add new task: ", res);
                     if (res.data.status == 200) {
                         this.$message({
