@@ -41,7 +41,7 @@
     <el-container>
       <el-main>
         <life-indicator></life-indicator>
-        <tasks @changeTaskStatusEvent="onChangeTaskStatusEvent"></tasks>
+        <task-matrix @changeTaskStatusEvent="onChangeTaskStatusEvent"></task-matrix>
         <vue-hm-calendar
           :eventsDays="commitEvents"
           />
@@ -52,13 +52,12 @@
 </template>
 
 <script>
-import ButterFlyInfo from '@/components/ButterFlyInfo'
 import VueHmCalendar from '@/components/VueHmCalendar'
 import { apiGetMyCntOverview } from "@/api/user"
 import { apiQueryAllCommitOfMine } from "@/api/commitsView"
 import LifeIndicator from '../components/LifeIndicator.vue'
 import ExtraArea from '../components/ExtraArea.vue'
-import Tasks from '../components/Tasks.vue'
+import TaskMatrix from '../components/TaskMatrix.vue'
 export default {
   name: "Home",
   data() {
@@ -119,9 +118,9 @@ export default {
   },
   components: {
     LifeIndicator,
-    Tasks,
     VueHmCalendar,
-    ExtraArea
+    ExtraArea,
+    TaskMatrix
 }
 };
 </script>

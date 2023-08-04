@@ -1,5 +1,22 @@
 <template>
     <div>
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <span style="float: left;font-size: large;
+                    font-weight: bold;">
+                    任务面板
+                </span>
+            </div>
+            <el-row type="flex" style="width: 100%;" class="row-container">
+                <el-select v-model="matrixSelection" placeholder="请选择任务象限">
+                    <el-option v-for="item in matrixOptions" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+                <textarea cols="50" rows="5" @keyup.enter="addTask"
+                    style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
+                    placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
+            </el-row>
+        </el-card>
         <!-- 第一行，两列 -->
         <el-row>
             <el-col :span="12">
@@ -94,13 +111,35 @@
 <script>
 import { apiDoneTask } from '@/api/task'
 import { apiGetTasks } from '@/api/task'
+import { apiAddTask } from '@/api/task'
+
 export default {
     name: 'TaskMatrix',
     data() {
         return {
             tasks: [],
+            newTaskTitle: "",
             tasksShow: false,
-            toggleArrow: "▼"
+            toggleArrow: "▼",
+            matrixOptions: [
+                {
+                    value: '2',
+                    label: '充电蓄能'
+                },
+                {
+                    value: '1',
+                    label: '生活基础'
+                },
+                {
+                    value: '3',
+                    label: '创造产出'
+                },
+                {
+                    value: '4',
+                    label: '娱乐休整'
+                }
+            ],
+            matrixSelection: ''
         }
     },
     computed: {
@@ -123,14 +162,36 @@ export default {
     methods: {
         getAllTasks: function () {
             apiGetTasks().then(res => {
-                console.log("get all tasks: ", res)
-                var apiReady = true;
-                if (apiReady) {
-                    this.tasks = res.data
-                } else {
-                    console.log("api not ready")
-                }
+                this.tasks = res.data
             })
+        },
+        addTask: function () {
+            var title = this.newTaskTitle && this.newTaskTitle.trim();
+            if (title !== "") {
+                apiAddTask(title, this.matrixSelection).then(res => {
+                    console.log("ret res for add new task: ", res);
+                    if (res.data.status == 200) {
+                        this.$message({
+                            type: "success",
+                            message: res.data.msg
+                        });
+                        apiGetTasks().then(res => {
+                            this.tasks = res.data;
+                        });
+                        this.newTaskTitle = "";
+                    }
+                    else {
+                        console.log("apiAddTask failed");
+                    }
+                });
+            }
+            else {
+                this.$message({
+                    type: "warning",
+                    message: "任务不能空白"
+                });
+            }
+            this.newTaskTitle = "";
         },
         onCheckBoxClicked: function (row) {
             console.log("box clicked for row:", row)
@@ -174,6 +235,7 @@ export default {
                     }
                 })
             }
+            this.$emit('changeTaskStatusEvent', row.id)
         },
     }
 };
@@ -274,5 +336,17 @@ input[type=checkbox] {
     bottom: -10px;
     left: -10px;
     right: -30px;
+}
+
+@media screen and (max-width:768px) {
+    .row-container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .row-container {
+        flex-direction: row;
+    }
 }
 </style>
