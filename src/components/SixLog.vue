@@ -69,14 +69,14 @@
       </el-dialog>
       <div style="width: 100%; margin-top: 20px;">
         <el-card v-for="article in articles" :key="article.id" style="text-align: left;width: 100%; min-height: 200px; margin-bottom: 6px;">
-          <div style="float:left;width:65%;">
+          <div style="float:left;width:100%;">
             <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
               <span style="font-size: 20px">
               <strong>{{article.articleTitle}}</strong>
               </span>
             </router-link>
           </div>
-          <div style="float:left;width:65%;">
+          <div style="float:left;width:100%;">
             <el-divider content-position="left">{{article.articleDate | moment}} by {{ article.ownerName }}</el-divider>
             <router-link class="article-link" :to="{path:'sixlog/article',query:{id: article.id}}">
               <p>{{article.articleAbstract}}</p>

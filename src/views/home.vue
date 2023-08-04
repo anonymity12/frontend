@@ -41,7 +41,7 @@
     <el-container>
       <el-main>
         <life-indicator></life-indicator>
-        <tasks></tasks>
+        <tasks @changeTaskStatusEvent="onChangeTaskStatusEvent"></tasks>
         <vue-hm-calendar
           :eventsDays="commitEvents"
           />
@@ -108,6 +108,9 @@ export default {
           console.log("get commit view err: ", resp)
         }
       })
+    },
+    onChangeTaskStatusEvent(taskId) {
+      setTimeout(()=> {this.constructCommitView()},1000)
     }
   },
   created() {

@@ -177,6 +177,7 @@ export default {
                     }
                 });
             }
+            this.$emit('changeTaskStatusEvent', row.id)
         },
         showTasksToggle: function () {
             this.tasksShow = !this.tasksShow;
@@ -317,7 +318,7 @@ input[type=checkbox] {
     position: absolute;
     top: -10px;
     bottom: -10px;
-    left: -10px;
+    left: -30px;
     right: -10px;
 }
 
@@ -331,5 +332,13 @@ input[type=checkbox] {
     .row-container {
         flex-direction: row;
     }
+}
+.larger-click-area::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -30px;
 }
 </style>

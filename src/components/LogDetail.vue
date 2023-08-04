@@ -1,8 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essentiadsdfl Links</h2>s
- 
+    <h2>欢迎关注开发者公众号：非正经研究生</h2>
   </div>
 </template>
 
@@ -11,7 +10,7 @@ export default {
   name: 'LogDetail',
   data () {
     return {
-      msg: 'this is test page'
+      msg: '详情页还未实现，请等待程序员过段时间更新'
     }
   }
 }
