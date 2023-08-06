@@ -7,22 +7,14 @@
                     任务完成统计
                 </span>
             </div>
-            <month
-                :dayjs="dayjs"
-                :hideHeader="hideHeader"
-                :firstWeekDay="firstWeekDay"
-                :monthNumber="monthNumber"
-                :eventsDays="eventsDays"
-                :pastEventsColors="pastEventsColors"
-                :cellSize="cellSize"
-                :yearNumber="yearNumber"
-                :futureEventsColors="futureEventsColors"
-            />
+            <month :dayjs="dayjs" :hideHeader="hideHeader" :firstWeekDay="firstWeekDay" :monthNumber="monthNumber"
+                :eventsDays="eventsDays" :pastEventsColors="pastEventsColors" :cellSize="cellSize" :yearNumber="yearNumber"
+                :futureEventsColors="futureEventsColors" />
         </el-card>
     </div>
 </template>
 
-<script> 
+<script>
 
 import dayjs from 'dayjs'
 const dayOfYear = require('dayjs/plugin/dayOfYear')
@@ -31,11 +23,11 @@ import Month from './Month.vue'
 // import Year from './Year.vue'
 import { dinamicLoader } from '../utils/dinamicLoader'
 
-export default{
+export default {
     name: 'VueHmCalendar',
     props: {
         mode: {
-            validator: function(value) {
+            validator: function (value) {
                 return ['month', 'year'].includes(value)
             },
             default: 'year'
@@ -48,14 +40,14 @@ export default{
         },
         monthNumber: {
             type: Number,
-            validator: function(value) {
+            validator: function (value) {
                 return /^[0-9]|10|11$/.test(value.toString())
             },
             default: dayjs().month(),
         },
         yearNumber: {
             type: Number,
-            validator: function(value) {
+            validator: function (value) {
                 return /^[0-9]{1}|[0-9]{2}|[0-9]{3}|[0-9]{4}$/.test(value.toString())
             },
             default: dayjs().year(),
@@ -63,21 +55,21 @@ export default{
         // we mainly use the previous:pastEventsColors color array
         pastEventsColors: {
             type: Array,
-            default: function() {
+            default: function () {
                 // return ['#a8d5ff', '#709fff', '#3869ff','#0033ff'] // blue series
-                return ['#ffa99a','#ff7e67','#ff5233','#ff2700'] // red series
+                return ['#ffa99a', '#ff7e67', '#ff5233', '#ff2700'] // red series
                 // return ['#FBEAFF', '#B39CD0', '#A281D1','#845EC2'] // purple series
 
             },
         },
         futureEventsColors: {
             type: Array,
-            default: function() {
-                return ['#d4bbeb', '#C0A5E1', '#A281D1','#845EC2']
+            default: function () {
+                return ['#d4bbeb', '#C0A5E1', '#A281D1', '#845EC2']
             },
         },
-        hideHeader: {type: Boolean, default: false},
-        hideWeekNames: {type: Boolean, default: false},
+        hideHeader: { type: Boolean, default: false },
+        hideWeekNames: { type: Boolean, default: false },
         eventsDays: Object,
         cellSize: String,
         locale: String,
@@ -116,8 +108,8 @@ export default{
 .clearfix:after {
     clear: both
 }
+
 .box-card {
     margin-top: 8px;
 }
-
 </style>
