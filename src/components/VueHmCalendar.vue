@@ -159,7 +159,7 @@ export default {
     }
 
     100% {
-        transform: translateX(0);
+        transform: translateY(+400%);
         margin-inline: -6px
     }
 }
