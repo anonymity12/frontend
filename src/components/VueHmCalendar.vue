@@ -12,9 +12,13 @@
                 :futureEventsColors="futureEventsColors" />
         </el-card>
         <div class="container">
-            <div class="div1"></div>
-            <div class="div2"></div>
-            <div class="line"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
         </div>
     </div>
 </template>
@@ -120,33 +124,19 @@ export default {
 
 .container {
     position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.div1 {
-    width: 100px;
-    height: 100px;
-    background-color: red;
+.fire-block {
     position: relative;
-    top: 5px;
-    left: 5px;
-}
-
-.div2 {
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    position: relative;
-    top: 100px;
-    left: 200px;
-}
-
-.line {
-    position: relative;
+    margin: 0.3rem;
     top: 1px;
-    left: 150px;
-    width: 20px;
-    height: 20px;
-    background-color: rgb(14, 174, 163);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 4px;
+    background-color: rgba(136, 179, 6, 0.414);
     animation: waterFlow 2s infinite;
 }
 
@@ -160,11 +150,17 @@ export default {
         background-position: 100% 50%;
     } */
     0% {
-        transform: translateY(-100%);
+        transform: translateY(-500%);
+        margin-inline: 7px;
+    }
+    50% {
+        transform: translateY(-350%);
+        margin-inline: 7px;
     }
 
     100% {
         transform: translateX(0);
+        margin-inline: -6px
     }
 }
 </style>
