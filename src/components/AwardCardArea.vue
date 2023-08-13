@@ -1,7 +1,19 @@
 <template>
     <div class="glow-effect" >
-            <span class="glow-effect" >本月卡片</span>
-            <el-image  :src="src"></el-image>
+        <el-card style="width: 100%; height: 468px;">
+            <el-row>
+                <span class="glow-effect" >本月卡片</span>
+            </el-row>
+            <el-row style="padding-top: 2%; padding-bottom: 2%;">
+                <img style="width: 320px; height: 320px; object-fit: contain;" :src="src"/>
+            </el-row>
+            <el-row>
+                <span class="glow-effect" style="float: left; display: block;">五星檀健次</span>
+            </el-row>
+            <el-row>
+                <p class="glow-effect" style="float: left;">价值：¥550</p>
+            </el-row>
+        </el-card>
     </div>
 </template>
 
@@ -10,7 +22,10 @@ export default {
     name: 'AwardCardArea',
     data() {
         return {
-            src: 'https://img.zcool.cn/community/01109c5de75b1fa801209568d59209.jpg@1280w_1l_2o_100sh.jpg'
+            src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png' // tanjianci
+            // src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-12-09-29-11.png' // fairy lady
+            // src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-11-02-54.png' // girl with dragon, landscape
+            
         }
     }
 }
