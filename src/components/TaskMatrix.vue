@@ -139,7 +139,7 @@ export default {
                     label: '娱乐休整'
                 }
             ],
-            matrixSelection: ''
+            matrixSelection: '1'
         }
     },
     computed: {
