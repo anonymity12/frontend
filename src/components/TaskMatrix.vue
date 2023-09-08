@@ -8,7 +8,7 @@
                 </span>
             </div>
             <el-row type="flex" style="width: 100%;" class="row-container">
-                <el-select v-model="matrixSelection" placeholder="请选择任务象限">
+                <el-select v-if="show4Panel" v-model="matrixSelection" placeholder="请选择任务象限">
                     <el-option v-for="item in matrixOptions" :key="item.value" :label="item.label" :value="item.value">
                     </el-option>
                 </el-select>
