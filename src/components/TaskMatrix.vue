@@ -6,8 +6,8 @@
                     font-weight: bold;">
                     任务面板
                 </span>
-                <el-button @click="panelToggleClicked" style="float: right;font-size: large;
-                    font-weight: bold;">🔥</el-button>
+                <el-switch v-model="show4Panel" active-text="4象限" inactive-text="列表模式" style="float: right;">
+                </el-switch>
             </div>
             <el-row type="flex" style="width: 100%;" class="row-container">
                 <el-select v-if="show4Panel" v-model="matrixSelection" placeholder="请选择任务象限">
@@ -164,7 +164,7 @@ export default {
                 }
             ],
             matrixSelection: '1',
-            show4Panel: false
+            show4Panel: false,
         }
     },
     computed: {
