@@ -6,6 +6,8 @@
                     font-weight: bold;">
                     任务面板
                 </span>
+                <el-button @click="panelToggleClicked" style="float: right;font-size: large;
+                    font-weight: bold;">🔥</el-button>
             </div>
             <el-row type="flex" style="width: 100%;" class="row-container">
                 <el-select v-if="show4Panel" v-model="matrixSelection" placeholder="请选择任务象限">
@@ -260,6 +262,9 @@ export default {
             }
             this.$emit('changeTaskStatusEvent', row.id)
         },
+        panelToggleClicked: function () {
+            this.show4Panel = !this.show4Panel
+        }
     }
 };
 </script>
