@@ -17,13 +17,36 @@
                     placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
             </el-row>
         </el-card>
-        <!-- 第一行，两列 -->
-        <el-row>
-            <el-col :span="12">
-                <div class="quadrant">
-                    <div class="quadrant-content">
-                        <el-table :data="m2tasks" height="100%">
-                            <el-table-column label="充电蓄能" align="left">
+
+        <div v-if="show4Panel">
+            <!-- 第一行，两列 -->
+            <el-row>
+                <el-col :span="12">
+                    <div class="quadrant">
+                        <div class="quadrant-content">
+                            <el-table :data="m2tasks" height="100%">
+                                <el-table-column label="充电蓄能" align="left">
+                                    <template slot-scope="scope">
+                                        <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
+                                            :class="{ 'done': scope.row.status == 2 }">
+                                            <div class="checkboxThree" style="display: inline-block;">
+                                                <input type="checkbox" :disabled="scope.row.status == 0"
+                                                    :id="'row' + scope.row.id" :checked="scope.row.status == 2" />
+                                                <label :for="'row' + scope.row.id" class="larger-click-area"
+                                                    @click="onCheckBoxClicked(scope.row)"></label>
+                                            </div>
+                                            {{ scope.row.title }}
+                                        </div>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="quadrant">
+                        <el-table :data="m1tasks" height="100%">
+                            <el-table-column label="生活基础" align="left">
                                 <template slot-scope="scope">
                                     <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
                                         :class="{ 'done': scope.row.status == 2 }">
@@ -39,73 +62,72 @@
                             </el-table-column>
                         </el-table>
                     </div>
-                </div>
-            </el-col>
-            <el-col :span="12">
-                <div class="quadrant">
-                    <el-table :data="m1tasks" height="100%">
-                        <el-table-column label="生活基础" align="left">
-                            <template slot-scope="scope">
-                                <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
-                                    :class="{ 'done': scope.row.status == 2 }">
-                                    <div class="checkboxThree" style="display: inline-block;">
-                                        <input type="checkbox" :disabled="scope.row.status == 0" :id="'row' + scope.row.id"
-                                            :checked="scope.row.status == 2" />
-                                        <label :for="'row' + scope.row.id" class="larger-click-area"
-                                            @click="onCheckBoxClicked(scope.row)"></label>
+                </el-col>
+            </el-row>
+            <!-- 第二行，两列 -->
+            <el-row>
+                <el-col :span="12">
+                    <div class="quadrant">
+                        <el-table :data="m3tasks" height="100%">
+                            <el-table-column label="创造产出" align="left">
+                                <template slot-scope="scope">
+                                    <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
+                                        :class="{ 'done': scope.row.status == 2 }">
+                                        <div class="checkboxThree" style="display: inline-block;">
+                                            <input type="checkbox" :disabled="scope.row.status == 0"
+                                                :id="'row' + scope.row.id" :checked="scope.row.status == 2" />
+                                            <label :for="'row' + scope.row.id" class="larger-click-area"
+                                                @click="onCheckBoxClicked(scope.row)"></label>
+                                        </div>
+                                        {{ scope.row.title }}
                                     </div>
-                                    {{ scope.row.title }}
-                                </div>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </div>
-            </el-col>
-        </el-row>
-
-        <!-- 第二行，两列 -->
-        <el-row>
-            <el-col :span="12">
-                <div class="quadrant">
-                    <el-table :data="m3tasks" height="100%">
-                        <el-table-column label="创造产出" align="left">
-                            <template slot-scope="scope">
-                                <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
-                                    :class="{ 'done': scope.row.status == 2 }">
-                                    <div class="checkboxThree" style="display: inline-block;">
-                                        <input type="checkbox" :disabled="scope.row.status == 0" :id="'row' + scope.row.id"
-                                            :checked="scope.row.status == 2" />
-                                        <label :for="'row' + scope.row.id" class="larger-click-area"
-                                            @click="onCheckBoxClicked(scope.row)"></label>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="quadrant">
+                        <el-table :data="m4tasks" height="100%">
+                            <el-table-column label="娱乐休整" align="left">
+                                <template slot-scope="scope">
+                                    <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
+                                        :class="{ 'done': scope.row.status == 2 }">
+                                        <div class="checkboxThree" style="display: inline-block;">
+                                            <input type="checkbox" :disabled="scope.row.status == 0"
+                                                :id="'row' + scope.row.id" :checked="scope.row.status == 2" />
+                                            <label :for="'row' + scope.row.id" class="larger-click-area"
+                                                @click="onCheckBoxClicked(scope.row)"></label>
+                                        </div>
+                                        {{ scope.row.title }}
                                     </div>
-                                    {{ scope.row.title }}
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+        <div v-else>
+            <div class="quadrant">
+                <el-table :data="m1tasks" height="100%">
+                    <el-table-column label="生活基础" align="left">
+                        <template slot-scope="scope">
+                            <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
+                                :class="{ 'done': scope.row.status == 2 }">
+                                <div class="checkboxThree" style="display: inline-block;">
+                                    <input type="checkbox" :disabled="scope.row.status == 0" :id="'row' + scope.row.id"
+                                        :checked="scope.row.status == 2" />
+                                    <label :for="'row' + scope.row.id" class="larger-click-area"
+                                        @click="onCheckBoxClicked(scope.row)"></label>
                                 </div>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </div>
-            </el-col>
-            <el-col :span="12">
-                <div class="quadrant">
-                    <el-table :data="m4tasks" height="100%">
-                        <el-table-column label="娱乐休整" align="left">
-                            <template slot-scope="scope">
-                                <div style="text-shadow: rgba(168, 123, 151, 0.582) 6px 6px 4px;"
-                                    :class="{ 'done': scope.row.status == 2 }">
-                                    <div class="checkboxThree" style="display: inline-block;">
-                                        <input type="checkbox" :disabled="scope.row.status == 0" :id="'row' + scope.row.id"
-                                            :checked="scope.row.status == 2" />
-                                        <label :for="'row' + scope.row.id" class="larger-click-area"
-                                            @click="onCheckBoxClicked(scope.row)"></label>
-                                    </div>
-                                    {{ scope.row.title }}
-                                </div>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </div>
-            </el-col>
-        </el-row>
+                                {{ scope.row.title }}
+                            </div>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -139,20 +161,21 @@ export default {
                     label: '娱乐休整'
                 }
             ],
-            matrixSelection: '1'
+            matrixSelection: '1',
+            show4Panel: false
         }
     },
     computed: {
-        m1tasks: function() {
+        m1tasks: function () {
             return this.tasks.filter(task => task.matrix === 1)
         },
-        m2tasks: function() {
+        m2tasks: function () {
             return this.tasks.filter(task => task.matrix === 2)
         },
-        m3tasks: function() {
+        m3tasks: function () {
             return this.tasks.filter(task => task.matrix === 3)
         },
-        m4tasks: function() {
+        m4tasks: function () {
             return this.tasks.filter(task => task.matrix === 4)
         }
     },
