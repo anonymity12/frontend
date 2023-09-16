@@ -1,12 +1,14 @@
 <template>
     <div>
-        <h1>Pomodoro Timer</h1>
-        <p v-if="isWorking">Work Time</p>
-        <p v-else>Break Time</p>
-        <div>{{ timer }}</div>
-        <button @click="startTimer" v-if="!isRunning">Start</button>
-        <button @click="stopTimer" v-else>Stop</button>
-        <button @click="resetTimer">Reset</button>
+        <h1>🍅我的番茄钟🍅</h1>
+        <p v-if="isWorking">劳动时间</p>
+        <p v-else>安逸时间</p>
+        <el-button type="success" @click="startTimer" v-if="!isRunning">开始番茄钟计时</el-button>
+        <el-button type="danger" @click="stopTimer" v-else>停止番茄钟计时</el-button>
+        <div class="timer-text">{{ formattedTime }}</div>
+        <br>
+        <el-input v-model="timerLengthPreSetting" :style="{ width: '100px' }" placeholder="输入你自定义的时间"></el-input>
+        <el-button type="info" @click="resetTimer">重新设定番茄钟</el-button>
     </div>
 </template>
 
@@ -18,6 +20,7 @@ export default {
             isRunning: false,
             timer: 1500, // 25 minutes in seconds
             intervalId: null,
+            timerLengthPreSetting: 1500, // default 25min, user can set it
         };
     },
     methods: {
@@ -27,15 +30,20 @@ export default {
                 if (this.timer > 0) {
                     this.timer--;
                 } else {
+                    const timeType = this.isWorking ? "劳动时间" : "安逸时间"
                     this.isWorking = !this.isWorking;
-                    this.timer = this.isWorking ? 15 : 3; // Work time: 25 minutes, Break time: 5 minutes
+                    this.timer = this.isWorking ? this.timerLengthPreSetting : 300; // Work time: 25 minutes, Break time: 5 minutes
+                    const currentTime = new Date();
+                    const hour = currentTime.getHours();
+                    const min = currentTime.getMinutes();
+                    const millistone = `${timeType}结束于${hour}:${min}`
                     if ("Notification" in window) {
                         // Request permission to show notifications
                         Notification.requestPermission().then((permission) => {
                             if (permission === "granted") {
                                 // Create a notification
-                                new Notification("Timer Ended", {
-                                    body: "Your timer has ended!"
+                                new Notification("🍅番茄时间到啦！", {
+                                    body: millistone
                                 });
                             } else if (permission === "denied") {
                                 // 用户拒绝了通知权限，提供反馈
@@ -59,7 +67,7 @@ export default {
             this.isRunning = false;
             clearInterval(this.intervalId);
             this.isWorking = true;
-            this.timer = 15;
+            this.timer = this.timerLengthPreSetting;
         },
     },
     computed: {
@@ -73,5 +81,14 @@ export default {
 </script>
 
 <style>
-/* Add your CSS styles here */
-</style>
+.timer-text {
+    /* 例子：调整文本样式 */
+    font-size: 108px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体粗细 */
+    color: #ff5733;
+    /* 文本颜色（可以使用任何颜色值） */
+    text-align: center;
+    /* 文本水平居中对齐 */
+}</style>
