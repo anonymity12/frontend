@@ -14,6 +14,7 @@ import Register from '@/components/Register'
 import Profile from '@/components/Profile'
 import RankList from '@/components/RankList'
 import RoutinePage from '@/components/RoutinePage'
+import TomatoTimer from '@/components/TomatoTimer'
 
 Vue.use(Router)
 
@@ -98,6 +99,11 @@ export default new Router({
       path: '/ranks',
       name: 'RankList',
       component: RankList
+    },
+    {
+      path: '/tomato',
+      name: 'TomatoTimer',
+      component: TomatoTimer
     },
   ]
 })

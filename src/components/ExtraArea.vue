@@ -23,6 +23,9 @@
                 <el-button type="primary" round @click="handleClick(5)" class="profile-span-text">
                     管理惯例
                 </el-button>
+                <el-button type="primary" round @click="handleClick(6)" class="profile-span-text">
+                    番茄钟
+                </el-button>
             </div>
         </el-card>
         <el-row style="margin: 8px;" type="flex" justify="space-between" align="middle">
@@ -71,6 +74,9 @@ export default {
                     break
                 case 5:
                     this.$router.push({ path: '/routine' })
+                    break
+                case 6:
+                    this.$router.push({ path: '/tomato' })
                     break
                 default:
                     break
