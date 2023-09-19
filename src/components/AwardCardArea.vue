@@ -2,16 +2,16 @@
     <div class="glow-effect" >
         <el-card style="width: 100%; height: 468px;">
             <el-row>
-                <span class="glow-effect" >本月卡片</span>
+                <span class="glow-effect" >本周卡片</span>
             </el-row>
             <el-row style="padding-top: 2%; padding-bottom: 2%;">
-                <img style="width: 320px; height: 320px; object-fit: contain;" :src="src"/>
+                <img style="width: 320px; height: 320px; object-fit: contain;" :src="cardPicSrc"/>
             </el-row>
             <el-row>
-                <span class="glow-effect" style="float: left; display: block;">五星檀健次</span>
+                <span class="glow-effect" style="float: left; display: block;">{{ cardTitle }}</span>
             </el-row>
             <el-row>
-                <p class="glow-effect" style="float: left;">价值：¥550</p>
+                <p class="glow-effect" style="float: left;">价值：¥{{ cardValue }}</p>
             </el-row>
         </el-card>
     </div>
@@ -22,12 +22,29 @@ export default {
     name: 'AwardCardArea',
     data() {
         return {
-            src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png' // tanjianci
+            cardPicSrc: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png', // tanjianci
             // src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-12-09-29-11.png' // fairy lady
             // src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-11-02-54.png' // girl with dragon, landscape
-            
+            cardTitle: '五星檀健次',
+            cardValue: 500,
         }
-    }
+    },
+    methods: {
+        getMyWeekCard: function () {
+            /*
+            apiGetMyPrimaryCard().then(res => {
+                this.cardPicSrc = res.data.cardPicSrc
+                this.cardTitle = res.data.cardTitle
+                this.cardValue = res.data.cardValue
+            })
+            */
+        },
+        switchMyPrimaryCard: function() {
+            /*
+            apiSwitchMyPrimaryCard(newCardId).then()
+            */
+        }
+    },
 }
 </script>
 
