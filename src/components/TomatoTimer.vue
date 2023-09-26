@@ -13,7 +13,12 @@
 </template>
 
 <script>
+import { apiFinishTomato } from '../api/tomato';
+import { apiGetTodayTomatoCounts } from '../api/tomato';
+import { apiGetTotalTomatoCounts } from '../api/tomato';
+
 export default {
+    name: 'TomatoTimer',
     data() {
         return {
             isWorking: true, // Initially, it's work time
@@ -21,6 +26,8 @@ export default {
             timer: 1500, // 25 minutes in seconds
             intervalId: null,
             timerLengthPreSetting: 1500, // default 25min, user can set it
+            todayTomatoCounts: 1,
+            totalTomatoCounts: 1,
         };
     },
     methods: {
@@ -33,6 +40,20 @@ export default {
                     const timeType = this.isWorking ? "劳动时间" : "安逸时间"
                     this.isWorking = !this.isWorking;
                     this.timer = this.isWorking ? this.timerLengthPreSetting : 300; // Work time: 25 minutes, Break time: 5 minutes
+                    apiFinishTomato().then(res => {
+                        if (res.data.status == 200) {
+                            this.$message({
+                                type: "success",
+                                message: res.data.msg
+                            });
+                            apiGetTodayTomatoCounts().then(res => {
+                                this.todayTomatoCounts = res.data;
+                            })
+                            apiGetTotalTomatoCounts().then(res => {
+                                this.totalTomatoCounts = res.data;
+                            })
+                        }
+                    })
                     const currentTime = new Date();
                     const hour = currentTime.getHours();
                     const min = currentTime.getMinutes();
@@ -69,6 +90,14 @@ export default {
             this.isWorking = true;
             this.timer = this.timerLengthPreSetting;
         },
+        initPage() {
+            apiGetTodayTomatoCounts().then(res => {
+                this.todayTomatoCounts = res.data;
+            })
+            apiGetTotalTomatoCounts().then(res => {
+                this.totalTomatoCounts = res.data;
+            })
+        }
     },
     computed: {
         formattedTime() {
@@ -91,4 +120,5 @@ export default {
     /* 文本颜色（可以使用任何颜色值） */
     text-align: center;
     /* 文本水平居中对齐 */
-}</style>
+}
+</style>

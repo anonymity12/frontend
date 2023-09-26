@@ -29,20 +29,25 @@ the data structure:
         // frontend:
         apiFinishOneTomato().then(resp=>{"send to backend msg ok"});
         apiUpdateTomatoCounts().then(resp=>{this.tomatoCount...})
-2. in db
-    username:2023-09-01
-    username:alltime
+2. in redis db:
+    key:
+        username:2023-09-01
+        username:alltime
+    value:
+        4
+        33
 
-    tt:alltime
-    tt:2021-09-02
-    tt:2021-09-03
-    tt:2021-09-04
+    keys eg:
+        tt:alltime
+        tt:2021-09-02
+        tt:2021-09-03
+        tt:2021-09-04
 
-    yy:alltime
-    yy:2023-08-18
-    yy:2023-08-19
-    yy:2023-08-17
-    yy:2023-08-10
+        yy:alltime
+        yy:2023-08-18
+        yy:2023-08-19
+        yy:2023-08-17
+        yy:2023-08-10
 
 
 x. maybe long time after
