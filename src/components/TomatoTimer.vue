@@ -9,6 +9,8 @@
         <br>
         <el-input v-model="timerLengthPreSetting" :style="{ width: '100px' }" placeholder="输入你自定义的时间"></el-input>
         <el-button type="info" @click="resetTimer">重新设定番茄钟</el-button>
+        <p>今日完成：{{ todayTomatoCounts }}</p>
+        <p>全部完成：{{ totalTomatoCounts }}</p>
     </div>
 </template>
 
@@ -47,10 +49,10 @@ export default {
                                 message: res.data.msg
                             });
                             apiGetTodayTomatoCounts().then(res => {
-                                this.todayTomatoCounts = res.data;
+                                this.todayTomatoCounts = res.data.obj;
                             })
                             apiGetTotalTomatoCounts().then(res => {
-                                this.totalTomatoCounts = res.data;
+                                this.totalTomatoCounts = res.data.obj;
                             })
                         }
                     })
@@ -92,10 +94,10 @@ export default {
         },
         initPage() {
             apiGetTodayTomatoCounts().then(res => {
-                this.todayTomatoCounts = res.data;
+                this.todayTomatoCounts = res.data.obj;
             })
             apiGetTotalTomatoCounts().then(res => {
-                this.totalTomatoCounts = res.data;
+                this.totalTomatoCounts = res.data.obj;
             })
         }
     },
@@ -106,6 +108,10 @@ export default {
             return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
         },
     },
+    mounted() {
+        console.log("tomato timer mounted")
+        this.initPage()
+    }
 };
 </script>
 
