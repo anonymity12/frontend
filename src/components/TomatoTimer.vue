@@ -28,8 +28,8 @@ export default {
             timer: 1500, // 25 minutes in seconds
             intervalId: null,
             timerLengthPreSetting: 1500, // default 25min, user can set it
-            todayTomatoCounts: 1,
-            totalTomatoCounts: 1,
+            todayTomatoCounts: 0,
+            totalTomatoCounts: 0,
         };
     },
     methods: {
