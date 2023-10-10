@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { apiGetMainCard } from '../api/card';
 export default {
     name: 'AwardCardArea',
     data() {
