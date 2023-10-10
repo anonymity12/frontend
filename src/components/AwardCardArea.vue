@@ -5,13 +5,13 @@
                 <span class="glow-effect" >本周卡片</span>
             </el-row>
             <el-row style="padding-top: 2%; padding-bottom: 2%;">
-                <img style="width: 320px; height: 320px; object-fit: contain;" :src="cardPicSrc"/>
+                <img style="width: 320px; height: 320px; object-fit: contain;" :src="mainCard.imageUrl"/>
             </el-row>
             <el-row>
-                <span class="glow-effect" style="float: left; display: block;">{{ cardTitle }}</span>
+                <span class="glow-effect" style="float: left; display: block;">{{ mainCard.name }}</span>
             </el-row>
             <el-row>
-                <p class="glow-effect" style="float: left;">价值：¥{{ cardValue }}</p>
+                <p class="glow-effect" style="float: left;">价值：¥{{ mainCard.finalPrice }}</p>
             </el-row>
         </el-card>
     </div>
@@ -22,11 +22,11 @@ export default {
     name: 'AwardCardArea',
     data() {
         return {
-            cardPicSrc: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png', // tanjianci
-            // src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-12-09-29-11.png' // fairy lady
-            // src: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-11-02-54.png' // girl with dragon, landscape
-            cardTitle: '五星檀健次',
-            cardValue: 500,
+            mainCard: {
+                imageUrl: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png',
+                name: "五星檀健次",
+                finalPrice: 100
+            },
         }
     },
     methods: {
