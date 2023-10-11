@@ -31,14 +31,10 @@ export default {
         }
     },
     methods: {
-        getMyWeekCard: function () {
-            /*
-            apiGetMyPrimaryCard().then(res => {
-                this.cardPicSrc = res.data.cardPicSrc
-                this.cardTitle = res.data.cardTitle
-                this.cardValue = res.data.cardValue
+        getMyMainCard: function () {
+            apiGetMyMainCard().then(res => {
+                this.mainCard = res.data.obj
             })
-            */
         },
         switchMyPrimaryCard: function() {
             /*
