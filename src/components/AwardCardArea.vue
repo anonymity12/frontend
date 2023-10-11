@@ -44,6 +44,9 @@ export default {
             /*
             apiSwitchMyPrimaryCard(newCardId).then()
             */
+        },
+        openMyCardGallary: function() {
+            
         }
     },
 }
