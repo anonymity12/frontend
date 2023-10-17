@@ -15,7 +15,7 @@
 
 - [x] 100% sixlog ui 
 - [x] add UI layout update: submit text box, then, img, then ok, final: refresh
-- [ ] timer at user page
+- [x] timer at user page
 
 0105 todo? yes doing
 
@@ -52,4 +52,4 @@ http://101.43.166.211:8089/#/jiapuoperation
 
 2023-05-30 18:51:52
 
-- [ ] less butter-fly transmit
+- [x] less butter-fly transmit
