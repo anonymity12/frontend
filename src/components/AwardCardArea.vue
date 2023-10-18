@@ -14,6 +14,7 @@
                 <p class="glow-effect" style="float: left;">价值：¥{{ mainCard.finalPrice }}</p>
             </el-row>
         </el-card>
+        <AwardCardDetailDialog :cardContent
     </div>
 </template>
 
@@ -26,7 +27,8 @@ export default {
             mainCard: {
                 imageUrl: 'https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png',
                 name: "五星檀健次",
-                finalPrice: 100
+                finalPrice: 100,
+                desc:"a nice boy"
             },
         }
     },
@@ -36,13 +38,12 @@ export default {
                 this.mainCard = res.data.obj
             })
         },
-        switchMyPrimaryCard: function() {
-            /*
-            apiSwitchMyPrimaryCard(newCardId).then()
-            */
+        openCardDetail: function() {
+            apiOpenCardDetail()
         },
-        openMyCardGallary: function() {
-            
+        
+        openMyCardGallery: function() {
+
         }
     },
 }
