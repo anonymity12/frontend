@@ -1,25 +1,19 @@
 <template>
-    <div class="glow-effect" >
-        <el-card style="width: 100%; height: 468px;">
-            <el-row>
-                <span class="glow-effect" >本周卡片</span>
+    <div>
+        <el-card  style="width: 100%;">
+            <div @click="openCardDetail()">
+            <el-row class="glow-effect" style="padding-top: 2%; padding-bottom: 2%;">
+                <img style="width: 320px; height: 320px; object-fit: contain;" :src="mainCard.imageUrl" />
             </el-row>
-            <el-row style="padding-top: 2%; padding-bottom: 2%;">
-                <img style="width: 320px; height: 320px; object-fit: contain;" :src="mainCard.imageUrl"/>
-            </el-row>
-            <el-row>
-                <span class="glow-effect" style="float: left; display: block;">{{ mainCard.name }}</span>
-            </el-row>
-            <el-row>
-                <p class="glow-effect" style="float: left;">价值：¥{{ mainCard.finalPrice }}</p>
-            </el-row>
+            </div>
         </el-card>
-        <AwardCardDetailDialog :cardContent
+        <AwardCardDetailDialog :innerDialog="dialogCardDetail" :cardModel="mainCard"></AwardCardDetailDialog>
     </div>
 </template>
 
 <script>
 import { apiGetMainCard } from '../api/card';
+import AwardCardDetailDialog from './AwardCardDetailDialog.vue';
 export default {
     name: 'AwardCardArea',
     data() {
@@ -30,22 +24,28 @@ export default {
                 finalPrice: 100,
                 desc:"a nice boy"
             },
+            dialogCardDetail: {
+                show: false
+            },
         }
     },
     methods: {
-        getMyMainCard: function () {
+        getMyMainCard () {
             apiGetMyMainCard().then(res => {
                 this.mainCard = res.data.obj
             })
         },
-        openCardDetail: function() {
-            apiOpenCardDetail()
+        openCardDetail () {
+            this.dialogCardDetail.show = true
         },
         
-        openMyCardGallery: function() {
-
-        }
+        openMyCardGallery () {
+            // navigate to cardGallery todo 2023-10-18 21:49:30
+        },
     },
+    components: {
+        AwardCardDetailDialog
+    }
 }
 </script>
 
