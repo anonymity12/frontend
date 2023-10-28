@@ -1,6 +1,11 @@
 <template>
     <div>
         <!-- 第一行，两列 -->
+        <h2>
+            <p style="font-size: large;
+                    font-weight: bold;">能量检查区</p>
+        </h2>
+        
         <el-row>
             <el-col :span="12">
                 <div class="quadrant">
@@ -93,7 +98,7 @@
             <div slot="header" class="clearfix">
                 <span style="float: left;font-size: large;
                     font-weight: bold;">
-                    任务面板
+                    能量来源
                 </span>
             </div>
             <el-row type="flex" style="width: 100%;" class="row-container">

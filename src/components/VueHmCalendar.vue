@@ -13,7 +13,7 @@
             <div slot="header" class="clearfix">
                 <span style="float: left;font-size: large;
                     font-weight: bold;">
-                    任务完成统计
+                    能量块
                 </span>
             </div>
             <month :dayjs="dayjs" :hideHeader="hideHeader" :firstWeekDay="firstWeekDay" :monthNumber="monthNumber"
