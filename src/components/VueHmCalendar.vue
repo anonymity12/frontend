@@ -1,5 +1,14 @@
 <template>
     <div v-if="dayjs">
+        <div class="container">
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+            <div class="fire-block"></div>
+        </div>
         <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <span style="float: left;font-size: large;
@@ -11,15 +20,7 @@
                 :eventsDays="eventsDays" :pastEventsColors="pastEventsColors" :cellSize="cellSize" :yearNumber="yearNumber"
                 :futureEventsColors="futureEventsColors" />
         </el-card>
-        <div class="container">
-            <div class="fire-block"></div>
-            <div class="fire-block"></div>
-            <div class="fire-block"></div>
-            <div class="fire-block"></div>
-            <div class="fire-block"></div>
-            <div class="fire-block"></div>
-            <div class="fire-block"></div>
-        </div>
+        
     </div>
 </template>
 
@@ -138,7 +139,7 @@ export default {
     height: 1rem;
     border-radius: 4px;
     background-color: rgba(136, 179, 6, 0.414);
-    animation: waterFlow 2s infinite;
+    animation: waterFlow 5s infinite;
 }
 
 @keyframes waterFlow {
@@ -151,16 +152,16 @@ export default {
         background-position: 100% 50%;
     } */
     0% {
-        transform: translateY(-500%);
+        transform: translateY(+2000%);
         margin-inline: 7px;
     }
     50% {
-        transform: translateY(-350%);
+        transform: translateY(-220%);
         margin-inline: 7px;
     }
 
     100% {
-        transform: translateY(+180%);
+        transform: translateY(-220%);
         margin-inline: -6px
     }
 }

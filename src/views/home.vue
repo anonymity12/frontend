@@ -41,11 +41,11 @@
     <el-container>
       <el-main>
         <life-indicator></life-indicator>
-        <task-matrix @changeTaskStatusEvent="onChangeTaskStatusEvent"></task-matrix>
+        <award-card-area></award-card-area>
         <vue-hm-calendar
           :eventsDays="commitEvents"
           />
-        <award-card-area></award-card-area>
+        <task-matrix @changeTaskStatusEvent="onChangeTaskStatusEvent"></task-matrix>
         <extra-area></extra-area>
       </el-main>
     </el-container>
