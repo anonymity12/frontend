@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { apiGetMainCard } from '../api/card';
+import { apiGetMyMainCard } from '../api/card';
 import AwardCardDetailDialog from './AwardCardDetailDialog.vue';
 export default {
     name: 'AwardCardArea',
@@ -43,6 +43,9 @@ export default {
             // navigate to cardGallery todo 2023-10-18 21:49:30
         },
     },
+    mounted() {
+        this.getMyMainCard()
+    },
     components: {
         AwardCardDetailDialog
     }
@@ -62,7 +65,7 @@ export default {
     width: 100%;
     height: 100%;
     box-shadow: 0 0 10px 5px green;
-    animation: glow-animation 2s ease-in-out infinite;
+    animation: glow-animation 5s ease-in-out infinite;
 }
 
 @keyframes glow-animation {
@@ -71,7 +74,7 @@ export default {
     }
 
     50% {
-        box-shadow: 0 0 20px 10px green;
+        box-shadow: 0 0 10px 10px green;
     }
 
     100% {

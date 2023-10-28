@@ -160,7 +160,7 @@ export default {
     }
 
     100% {
-        transform: translateY(+400%);
+        transform: translateY(+180%);
         margin-inline: -6px
     }
 }
