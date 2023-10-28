@@ -74,7 +74,7 @@ export default {
     }
 
     50% {
-        box-shadow: 0 0 10px 10px green;
+        box-shadow: 0 0 10px 5px green;
     }
 
     100% {
