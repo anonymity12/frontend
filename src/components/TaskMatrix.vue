@@ -2,7 +2,7 @@
     <div>
         <!-- 第一行，两列 -->
         <h2>
-            <p style="font-size: large;
+            <p style="font-size: large;text-align: left;
                     font-weight: bold;">能量检查区</p>
         </h2>
         
