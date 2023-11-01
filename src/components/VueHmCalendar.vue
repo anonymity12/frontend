@@ -9,13 +9,11 @@
             <div class="fire-block"></div>
             <div class="fire-block"></div>
         </div>
+        <h2>
+            <p style="font-size: large;text-align: left;
+                    font-weight: bold;">能量块</p>
+        </h2>
         <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span style="float: left;font-size: large;
-                    font-weight: bold;">
-                    能量块
-                </span>
-            </div>
             <month :dayjs="dayjs" :hideHeader="hideHeader" :firstWeekDay="firstWeekDay" :monthNumber="monthNumber"
                 :eventsDays="eventsDays" :pastEventsColors="pastEventsColors" :cellSize="cellSize" :yearNumber="yearNumber"
                 :futureEventsColors="futureEventsColors" />

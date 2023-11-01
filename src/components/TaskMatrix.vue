@@ -94,13 +94,11 @@
                 </div>
             </el-col>
         </el-row>
+        <h2>
+            <p style="font-size: large;text-align: left;
+                    font-weight: bold;">能量来源区</p>
+        </h2>
         <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span style="float: left;font-size: large;
-                    font-weight: bold;">
-                    能量来源
-                </span>
-            </div>
             <el-row type="flex" style="width: 100%;" class="row-container">
                 <el-select v-model="matrixSelection" placeholder="请选择任务象限">
                     <el-option v-for="item in matrixOptions" :key="item.value" :label="item.label" :value="item.value">
