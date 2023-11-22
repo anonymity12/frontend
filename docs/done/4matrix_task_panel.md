@@ -1,14 +1,14 @@
 i want 4 toggle task panel
 instead of current one: just one list
 
-- [x] I think this 4 panel feat is all done; 0924
+finished and end @ 2023-08-13 10:34:54
 
 
 ## improve 
 
-- 调整任务面板的 margin ，padding， 让它显示更多文字
+-[x] 调整任务面板的 margin ，padding， 让它显示更多文字
 
-- 分拆 lifeIndicator
+-[x] 分拆 lifeIndicator
 
 ---
 

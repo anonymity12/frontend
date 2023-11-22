@@ -41,10 +41,11 @@
     <el-container>
       <el-main>
         <life-indicator></life-indicator>
-        <task-matrix @changeTaskStatusEvent="onChangeTaskStatusEvent"></task-matrix>
+        <award-card-area></award-card-area>
         <vue-hm-calendar
           :eventsDays="commitEvents"
           />
+        <task-matrix @changeTaskStatusEvent="onChangeTaskStatusEvent"></task-matrix>
         <extra-area></extra-area>
       </el-main>
     </el-container>
@@ -58,6 +59,7 @@ import { apiQueryAllCommitOfMine } from "@/api/commitsView"
 import LifeIndicator from '../components/LifeIndicator.vue'
 import ExtraArea from '../components/ExtraArea.vue'
 import TaskMatrix from '../components/TaskMatrix.vue'
+import AwardCardArea from '../components/AwardCardArea.vue'
 export default {
   name: "Home",
   data() {
@@ -120,7 +122,9 @@ export default {
     LifeIndicator,
     VueHmCalendar,
     ExtraArea,
-    TaskMatrix
+    AwardCardArea,
+    TaskMatrix,
+    AwardCardArea
 }
 };
 </script>

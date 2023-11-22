@@ -13,6 +13,9 @@ echo "ready to build new dist..."
 
 npm run build
 
-echo "build new dist done, move to nginx... (html/goodchild/)"
+echo "build new dist done, ready to deploy on nginx... (html/goodchild/)"
 
+echo "deploy(1): delete the old dist in goodchild first"
+sudo rm -rf /www/server/nginx/html/goodchild/dist
+echo "deploy(2): cp new dist into goodchild folder" 
 sudo cp -r dist/ /www/server/nginx/html/goodchild
