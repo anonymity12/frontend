@@ -9,11 +9,18 @@
         <br>
         <el-input v-model="timerLengthPreSetting" :style="{ width: '100px' }" placeholder="输入你自定义的时间"></el-input>
         <el-button type="info" @click="resetTimer">重新设定番茄钟</el-button>
+        <p>今日完成：{{ todayTomatoCounts }}</p>
+        <p>全部完成：{{ totalTomatoCounts }}</p>
     </div>
 </template>
 
 <script>
+import { apiFinishTomato } from '../api/tomato';
+import { apiGetTodayTomatoCounts } from '../api/tomato';
+import { apiGetTotalTomatoCounts } from '../api/tomato';
+
 export default {
+    name: 'TomatoTimer',
     data() {
         return {
             isWorking: true, // Initially, it's work time
@@ -21,6 +28,8 @@ export default {
             timer: 1500, // 25 minutes in seconds
             intervalId: null,
             timerLengthPreSetting: 1500, // default 25min, user can set it
+            todayTomatoCounts: 0,
+            totalTomatoCounts: 0,
         };
     },
     methods: {
@@ -33,6 +42,20 @@ export default {
                     const timeType = this.isWorking ? "劳动时间" : "安逸时间"
                     this.isWorking = !this.isWorking;
                     this.timer = this.isWorking ? this.timerLengthPreSetting : 300; // Work time: 25 minutes, Break time: 5 minutes
+                    apiFinishTomato().then(res => {
+                        if (res.data.status == 200) {
+                            this.$message({
+                                type: "success",
+                                message: res.data.msg
+                            });
+                            apiGetTodayTomatoCounts().then(res => {
+                                this.todayTomatoCounts = res.data.obj;
+                            })
+                            apiGetTotalTomatoCounts().then(res => {
+                                this.totalTomatoCounts = res.data.obj;
+                            })
+                        }
+                    })
                     const currentTime = new Date();
                     const hour = currentTime.getHours();
                     const min = currentTime.getMinutes();
@@ -69,6 +92,14 @@ export default {
             this.isWorking = true;
             this.timer = this.timerLengthPreSetting;
         },
+        initPage() {
+            apiGetTodayTomatoCounts().then(res => {
+                this.todayTomatoCounts = res.data.obj;
+            })
+            apiGetTotalTomatoCounts().then(res => {
+                this.totalTomatoCounts = res.data.obj;
+            })
+        }
     },
     computed: {
         formattedTime() {
@@ -77,6 +108,10 @@ export default {
             return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
         },
     },
+    mounted() {
+        console.log("tomato timer mounted")
+        this.initPage()
+    }
 };
 </script>
 
@@ -91,4 +126,5 @@ export default {
     /* 文本颜色（可以使用任何颜色值） */
     text-align: center;
     /* 文本水平居中对齐 */
-}</style>
+}
+</style>

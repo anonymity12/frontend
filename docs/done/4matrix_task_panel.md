@@ -1,6 +1,8 @@
 i want 4 toggle task panel
 instead of current one: just one list
 
+- [x] I think this 4 panel feat is all done; 0924
+
 
 ## improve 
 
