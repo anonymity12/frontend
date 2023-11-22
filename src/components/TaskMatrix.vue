@@ -1,22 +1,5 @@
 <template>
     <div>
-        <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span style="float: left;font-size: large;
-                    font-weight: bold;">
-                    任务面板
-                </span>
-            </div>
-            <el-row type="flex" style="width: 100%;" class="row-container">
-                <el-select v-model="matrixSelection" placeholder="请选择任务象限">
-                    <el-option v-for="item in matrixOptions" :key="item.value" :label="item.label" :value="item.value">
-                    </el-option>
-                </el-select>
-                <textarea cols="50" rows="5" @keyup.enter="addTask"
-                    style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
-                    placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
-            </el-row>
-        </el-card>
         <!-- 第一行，两列 -->
         <h2>
             <p style="font-size: large;text-align: left;
@@ -111,6 +94,21 @@
                 </div>
             </el-col>
         </el-row>
+        <h2>
+            <p style="font-size: large;text-align: left;
+                    font-weight: bold;">能量来源区</p>
+        </h2>
+        <el-card class="box-card">
+            <el-row type="flex" style="width: 100%;" class="row-container">
+                <el-select v-model="matrixSelection" placeholder="请选择任务象限">
+                    <el-option v-for="item in matrixOptions" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+                <textarea cols="50" rows="5" @keyup.enter="addTask"
+                    style="text-shadow: gray 4px 4px 6px; font-size: large; margin-bottom: 15px;" v-model="newTaskTitle"
+                    placeholder="不断的小成功，是大成功的催化剂。有什么事要搞定？"></textarea>
+            </el-row>
+        </el-card>
     </div>
 </template>
 <script>
