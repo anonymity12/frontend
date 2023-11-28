@@ -7,3 +7,10 @@ export function apiGetMyMainCard() {
         method: "get"
     });
 }
+
+export function apiGetCardSquareDisplay() {
+    return request({
+        url: "/api/card-square/listAll",
+        method: "get"
+    })
+}
