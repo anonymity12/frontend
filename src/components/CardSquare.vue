@@ -1,5 +1,6 @@
 <template>
     <div class="card-square">
+        <h3>万达卡片广场</h3>
         <el-row>
             <el-col :span="12">
                 <!-- 左侧列 -->
@@ -8,7 +9,7 @@
                     <img :src="card.imageUrl" alt="Photo">
                     <div class="card-info">
                         <p>{{ card.desc }}</p>
-                        <p>作者: {{ card.owner }}</p>
+                        <p>作者: {{ card.ownerName }}</p>
                         <p>价格: {{ card.finalPrice }}</p>
                     </div>
                 </div>
@@ -20,7 +21,7 @@
                     <img :src="card.imageUrl" alt="Photo">
                     <div class="card-info">
                         <p>{{ card.desc }}</p>
-                        <p>作者: {{ card.owner }}</p>
+                        <p>作者: {{ card.ownerName }}</p>
                         <p>价格: {{ card.finalPrice }}</p>
                     </div>
                 </div>
