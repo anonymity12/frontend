@@ -30,8 +30,9 @@
 </template>
 
 <script>
-import apiGetCardSquareDisplay from '../api/card'
+import { apiGetCardSquareDisplay } from '../api/card'
 export default {
+    name: 'CardSquare',
     data() {
         return {
             cards: [
