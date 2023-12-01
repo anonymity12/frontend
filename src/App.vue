@@ -1,12 +1,18 @@
 <template>
   <div id="app" style="background-color: rgba(235, 235, 235, 0.08)">
     <router-view/>
+    <bottom-navigation></bottom-navigation>
   </div>
 </template>
 
 <script>
+import BottomNavigation from './components/BottomNavigation.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    BottomNavigation
+  }
 }
 </script>
 
