@@ -34,6 +34,8 @@
         <extra-area></extra-area>
       </el-main>
     </el-container>
+    <div style="height: 40px;">
+    </div>
   </el-container>
 </template>
 
