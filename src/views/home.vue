@@ -4,36 +4,23 @@
     <el-header style="width: 100%; height: auto;" align="middle">
       <el-col :span="8" style="padding-top: 20px;">
         <span @click="avatarClick()" type="flex" justify="center">
-          <el-avatar
-          :src="this.$store.state.user.userface"
-          :size="100"
-          >
+          <el-avatar :src="this.$store.state.user.userface" :size="100">
           </el-avatar>
         </span>
       </el-col>
-      
-      <el-col :span="16" >
+
+      <el-col :span="16">
         <el-row type="flex" justify="start" style="margin-left: 20px;">
-          <p 
-          style="color: #222; padding-top: 20px;font-weight: bold;font-size: 20px; font-family:'Times New Roman', Times, serif;"
-          >{{ this.$store.state.user.cname }}
+          <p
+            style="color: #222; padding-top: 20px;font-weight: bold;font-size: 20px; font-family:'Times New Roman', Times, serif;">
+            {{ this.$store.state.user.cname }}
           </p>
         </el-row>
         <el-row type="flex" justify="start" style="margin-left: 20px;">
-          <el-tag>
-          {{this.$store.state.user.intro}}
-          </el-tag>
+          <p style="text-align: left">{{ this.$store.state.user.intro }}</p>
         </el-row>
         <el-row type="flex" justify="start" style="margin-left: 20px;">
-          <el-tag>
-            🦋{{ this.growFlyCnt }}
-          </el-tag>
-          <el-tag>
-            🥚{{ this.babyFlyCnt }}
-          </el-tag>
-          <el-tag>
-            🐛{{ this.diedFlyCnt }}
-          </el-tag>
+          💰：{{ this.balance }}
         </el-row>
       </el-col>
     </el-header>
@@ -42,9 +29,7 @@
       <el-main>
         <life-indicator></life-indicator>
         <award-card-area></award-card-area>
-        <vue-hm-calendar
-          :eventsDays="commitEvents"
-          />
+        <vue-hm-calendar :eventsDays="commitEvents" />
         <task-matrix @changeTaskStatusEvent="onChangeTaskStatusEvent"></task-matrix>
         <extra-area></extra-area>
       </el-main>
@@ -54,7 +39,7 @@
 
 <script>
 import VueHmCalendar from '@/components/VueHmCalendar'
-import { apiGetMyCntOverview } from "@/api/user"
+import { apiGetMyGold } from "@/api/gold"
 import { apiQueryAllCommitOfMine } from "@/api/commitsView"
 import LifeIndicator from '../components/LifeIndicator.vue'
 import ExtraArea from '../components/ExtraArea.vue'
@@ -65,9 +50,6 @@ export default {
   data() {
     return {
       pageOwner: 'gg',
-      growFlyCnt: 0,
-      diedFlyCnt: 0,
-      babyFlyCnt: 0,
       user: {
         birthday: '',
         name: '',
@@ -78,30 +60,28 @@ export default {
         phone: '',
       },
       commitEvents: Object,
+      balance: 0,
     };
   },
   methods: {
     setUpOwner() {
       this.pageOwner = this.$store.state.user.name
-      apiGetMyCntOverview().then((resp)=> {
+      apiGetMyGold().then((resp) => {
         if (resp.data.status == 200) {
-          console.log("getMyCntOverview ok: ", resp.data.obj)
-          this.growFlyCnt = resp.data.obj.growFlyCnt
-          this.babyFlyCnt = resp.data.obj.babyFlyCnt
-          this.diedFlyCnt = resp.data.obj.diedFlyCnt
+          this.balance = resp.data.obj.balance
         }
       })
     },
     avatarClick() {
       console.log("avatar clicked")
-      this.$router.push({path: '/profile'})
+      this.$router.push({ path: '/profile' })
     },
     constructCommitView() {
       apiQueryAllCommitOfMine().then(resp => {
         if (resp.data.status == 200) {
-          var pureBean = resp.data.obj 
+          var pureBean = resp.data.obj
           var convertedBean = {}
-          pureBean.forEach(function(item) {
+          pureBean.forEach(function (item) {
             convertedBean[item.simplifiedDateString] = item.count
           })
           this.commitEvents = convertedBean
@@ -111,7 +91,7 @@ export default {
       })
     },
     onChangeTaskStatusEvent(taskId) {
-      setTimeout(()=> {this.constructCommitView()},1000)
+      setTimeout(() => { this.constructCommitView() }, 1000)
     }
   },
   created() {
@@ -125,7 +105,7 @@ export default {
     AwardCardArea,
     TaskMatrix,
     AwardCardArea
-}
+  }
 };
 </script>
 
@@ -144,6 +124,4 @@ export default {
   font-size: 10px;
   font-weight: bold;
 }
-
-
 </style>
