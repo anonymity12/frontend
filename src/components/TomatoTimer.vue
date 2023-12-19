@@ -36,6 +36,7 @@ export default {
         startTimer() {
             this.isRunning = true;
             this.intervalId = setInterval(() => {
+		this.timer = apiCalcLeftTimer()
                 if (this.timer > 0) {
                     this.timer--;
                 } else {
@@ -128,3 +129,18 @@ export default {
     /* 文本水平居中对齐 */
 }
 </style>
+/*
+# i think a better way to setup a tomato timer, using redis
+
+redis:userName:tomato:newest: 2023-12-19 19:56
+
+## what is my pain for now? why is such solution?
+
+javascript.setInterval work not well when the tab was not active
+and my vue version is 2, not sure of my js version, but anyway, I cant use Worker in js, which is a good solution for background task
+
+so use redis to store a deadline/end-time, then when the gww tab is active, we can check the tomato from redis. 
+but here is another problem: we cant notify user immediately.so I search for websocket tech.
+
+then I think: notification is not that necessary. Since we cant notify on mobile App anyway, so let's just skip notification for now. users will leave gww app anyway, cause she/he is focus on the task.
+*/
