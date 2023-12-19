@@ -70,7 +70,7 @@ export default {
       this.pageOwner = this.$store.state.user.name
       apiGetMyGold().then((resp) => {
         if (resp.data.status == 200) {
-          this.balance = resp.data.obj.balance
+          this.balance = resp.data.obj
         }
       })
     },
