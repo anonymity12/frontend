@@ -17,6 +17,8 @@ import RoutinePage from '@/components/RoutinePage'
 import TomatoTimer from '@/components/TomatoTimer'
 import CardSquare from '@/components/CardSquare'
 import TrainStations from '@/components/TrainStations'
+import SleepRecord from '@/components/SleepRecord'
+
 
 Vue.use(Router)
 
@@ -116,6 +118,11 @@ export default new Router({
       path: '/trainstations',
       name: 'TrainStations',
       component: TrainStations
+    },
+    {
+      path: '/sleeprecord',
+      name: 'SleepRecord',
+      component: SleepRecord
     },
   ]
 })
