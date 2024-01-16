@@ -3,8 +3,8 @@
     <h1>旅程进度表</h1>
     <ul>
       <li v-for="station in stations" :key="station.id">
-        <h2>{{ station.name }}</h2>
-        <p>{{ station.description }}</p>
+        <h2 class="myh2class">{{ station.name }}</h2>
+        <p class="text-with-shadow">{{ station.desc }}</p>
         <el-button size="mini" @click="confirmArrival(station.id)">确认到站</el-button>
       </li>
     </ul>
@@ -28,30 +28,12 @@ export default {
     getStationsInfoList() {
         apiGetStationsInfoList().then(res => {
             console.log("stations info list res:", res)
-            this.stations = res.data
+            this.stations = res.data.obj
         })
     }
   },
   mounted() {
-    // 模拟从后端获取车站数据，这里使用示例数据
-    this.stations = [
-      {
-        id: 1,
-        name: '车站1',
-        description: '这是车站1的介绍。'
-      },
-      {
-        id: 2,
-        name: '车站2',
-        description: '这是车站2的介绍。'
-      },
-      {
-        id: 3,
-        name: '车站3',
-        description: '这是车站3的介绍。'
-      }
-      // 添加更多车站数据
-    ];
+    this.getStationsInfoList();
   }
 };
 </script>
@@ -71,5 +53,16 @@ export default {
   padding: 20px;
   /* 设置容器高度，以适应背景图内容 */
   min-height: 100vh;
+}
+.text-with-shadow {
+  white-space: normal; /* 使用 normal 值以允许文本自动换行 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加阴影效果，可以根据需要调整阴影的偏移和颜色 */
+  background-color: rgba(128, 128, 128, 0.5); /* 使用 rgba 设置半透明的灰色背景，最后一个参数控制透明度 */
+  padding: 10px; /* 添加一些内边距，使文本与背景之间有间隔 */
+}
+.myh2class {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加阴影效果，可以根据需要调整阴影的偏移和颜色 */
+  background-color: rgba(80, 80, 180, 0.6); /* 使用 rgba 设置半透明的灰色背景，最后一个参数控制透明度 */
+  padding: 10px; /* 添加一些内边距，使文本与背景之间有间隔 */
 }
 </style>
