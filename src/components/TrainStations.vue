@@ -5,13 +5,14 @@
       <li v-for="station in stations" :key="station.id">
         <h2>{{ station.name }}</h2>
         <p>{{ station.description }}</p>
-        <button @click="confirmArrival(station.id)">确认到站</button>
+        <el-button size="mini" @click="confirmArrival(station.id)">确认到站</el-button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { apiGetStationsInfoList } from "@/api/train"
 export default {
   data() {
     return {
@@ -23,6 +24,12 @@ export default {
     confirmArrival(stationId) {
       // 在实际应用中，你可以向后端发送请求来确认到站
       alert(`确认到达 ${this.stations.find(station => station.id === stationId).name}`);
+    },
+    getStationsInfoList() {
+        apiGetStationsInfoList().then(res => {
+            console.log("stations info list res:", res)
+            this.stations = res.data
+        })
     }
   },
   mounted() {
