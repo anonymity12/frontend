@@ -23,5 +23,5 @@ export function apiCalcLeftTimer() {
     return request({
         url: "/api/tomato/calcLeftTimer",
         method: "get"
-    }
+    })
 }

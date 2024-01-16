@@ -16,6 +16,7 @@ import RankList from '@/components/RankList'
 import RoutinePage from '@/components/RoutinePage'
 import TomatoTimer from '@/components/TomatoTimer'
 import CardSquare from '@/components/CardSquare'
+import TrainStations from '@/components/TrainStations'
 
 Vue.use(Router)
 
@@ -110,6 +111,11 @@ export default new Router({
       path: '/square',
       name: 'CardSquare',
       component: CardSquare
+    },
+    {
+      path: '/trainstations',
+      name: 'TrainStations',
+      component: TrainStations
     },
   ]
 })
