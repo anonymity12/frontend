@@ -7,7 +7,7 @@ echo "back up old dist now..."
 
 rm -rf dist-backup
 
-mv dist/ dist-backup/
+# mv dist/ dist-backup/
 
 echo "ready to build new dist..."
 
