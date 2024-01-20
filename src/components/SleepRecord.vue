@@ -7,7 +7,7 @@
                     <div>
                         <h2>过往睡觉记录</h2>
                         <ul>
-                            <li v-for="(time, index) in sleepTimes" :key="index">{{ time }}</li>
+                            <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.sleepDateTime }}</li>
                         </ul>
                     </div>
         </el-row>
@@ -15,18 +15,37 @@
 </template>
 
 <script>
+import { apiRecordSleepTime } from "@/api/sleeprecord"
+import { apiGetAllMySleepRecords } from "@/api/sleeprecord"
 export default {
     data() {
         return {
-            sleepTimes: [], // 存储睡觉时间的数组
+            sleepTimesArr: [], // 存储睡觉时间的数组
         };
     },
     methods: {
         recordSleepTime() {
             const currentTime = new Date().toLocaleString(); // 获取当前时间
-            this.sleepTimes.push(currentTime); // 将当前时间添加到数组中
+            var sleepTimeObj = {
+                dateTime: currentTime
+            }
+            apiRecordSleepTime(sleepTimeObj)
+            this.sleepTimesArr.push(currentTime); // 将当前时间添加到数组中
         },
+        getAllMySleepRecords() {
+            apiGetAllMySleepRecords().then(res => {
+                console.log("all sleep res:", res)
+                this.sleepTimesArr = res.data.obj
+                this.sleepTimesArr.forEach(function(item) {
+                    var utcDateTime = new Date(item.sleepDateTime);  // 将字符串转换为Date对象
+                    item.sleepDateTime = utcDateTime.toLocaleString();  // 更新数组中的sleepDateTime字段为本地时区时间字符串
+                });
+            })
+        }
     },
+    mounted(){
+        this.getAllMySleepRecords()
+    }
 };
 </script>
 
