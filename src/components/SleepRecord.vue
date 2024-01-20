@@ -1,15 +1,27 @@
 <template>
     <div>
+    <el-menu
+      mode="horizontal"
+      background-color="black"
+      text-color="#222"
+      active-text-color="red"
+      >
+      <el-menu-item>
+        <a style="font-size: xx-large;" href="#/home">⬅️</a>
+      </el-menu-item>
+      <span style="position: absolute;padding-top: 20px;right: 50%;font-size: 20px;font-weight: bold">
+        睡觉莲花楼
+      </span>
+      
+    </el-menu>
         <el-row class="lianhualou" :style="{ height: '100vh' }">
-            <h1>睡觉莲花楼</h1>
-                    <button @click="recordSleepTime">记录睡觉时间</button>
-
-                    <div>
-                        <h2>过往睡觉记录</h2>
-                        <ul>
-                            <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.sleepDateTime }}</li>
-                        </ul>
-                    </div>
+            <el-button @click="recordSleepTime">记录睡觉时间</el-button>
+            <div>
+                <h2>过往睡觉记录</h2>
+                <ul>
+                    <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.sleepDateTime }}</li>
+                </ul>
+            </div>
         </el-row>
     </div>
 </template>

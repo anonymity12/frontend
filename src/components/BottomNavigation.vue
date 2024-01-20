@@ -2,6 +2,7 @@
 <template>
     <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" @select="handleTabSelect">
         <el-menu-item index="home">主页</el-menu-item>
+        <el-menu-item index="sleeprecord">莲花楼</el-menu-item>
         <el-menu-item index="square">广场</el-menu-item>
         <el-menu-item index="tasks">任务</el-menu-item>
         <el-menu-item index="profile">我</el-menu-item>
@@ -37,6 +38,8 @@ export default {
                 case 'profile':
                     this.$router.push('/profile');
                     break;
+                case 'sleeprecord':
+                    this.$router.push('/sleeprecord');
                 default:
                     break;
             }

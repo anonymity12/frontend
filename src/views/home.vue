@@ -36,10 +36,12 @@
     </el-container>
     <div style="height: 40px;">
     </div>
+    <bottom-navigation></bottom-navigation>
   </el-container>
 </template>
 
 <script>
+import BottomNavigation from '@/components/BottomNavigation.vue'
 import VueHmCalendar from '@/components/VueHmCalendar'
 import { apiGetMyGold } from "@/api/gold"
 import { apiQueryAllCommitOfMine } from "@/api/commitsView"
@@ -106,7 +108,8 @@ export default {
     ExtraArea,
     AwardCardArea,
     TaskMatrix,
-    AwardCardArea
+    AwardCardArea,
+    BottomNavigation
   }
 };
 </script>
