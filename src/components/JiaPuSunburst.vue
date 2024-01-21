@@ -21,57 +21,51 @@ export default {
       "name": "郑庆合",
       "children": [
         {
-          "name": "郑",
+          "name": "郑国荣",
           "children": [
             {
-              "name": "郑",
+              "name": "郑献中",
               "value": 3938
-            },
-            {
-              "name": "郑",
-              "value": 3812
-            },
-            {
-              "name": "郑",
-              "value": 6714
-            },
-            {
-              "name": "郑",
-              "value": 743
             }
           ]
         },
         {
-          "name": "郑",
+          "name": "郑国栋",
           "children": [
             {
-              "name": "郑国祥",
-              "value": 3534
-            },
-            {
-              "name": "郑国兴",
-              "value": 5731
-            },
-            {
-              "name": "MaxFlowMinCut",
-              "value": 7840
-            },
-            {
-              "name": "ShortestPaths",
-              "value": 5914
-            },
-            {
-              "name": "SpanningTree",
-              "value": 3416
-            }
-          ]
-        },
-        {
-          "name": "optimization",
-          "children": [
-            {
-              "name": "AspectRatioBanker",
-              "value": 7074
+              "name": "郑祥友",
+              "children": [
+                {
+                  "name": "郑四孩",
+                  "value": 1972,
+                  "children": [
+                    {
+                      "name": "郑龙龙",
+                      "value": 2001
+                    },
+                    {
+                      "name": "郑登登",
+                      "value": 1995
+                    }
+                  ]
+                },
+                {
+                  "name": "郑红菊",
+                  "value": 999
+                },
+                {
+                  "name": "郑红运",
+                  "value": 999
+                },
+                {
+                  "name": "郑广东",
+                  "value": 999
+                },
+                {
+                  "name": "郑西生",
+                  "value": 999
+                },
+              ]
             }
           ]
         }
@@ -79,91 +73,127 @@ export default {
     },
     {
       "name": "郑庆魁",
+      "value": 999,
       "children": [
         {
-          "name": "Easing",
-          "value": 17010
-        },
-        {
-          "name": "FunctionSequence",
-          "value": 5842
-        },
-        {
-          "name": "interpolate",
+          "name": "郑国祥",
+          "value": 999,
           "children": [
             {
-              "name": "ArrayInterpolator",
-              "value": 1983
+              "name": "郑祥玲"
             },
             {
-              "name": "ColorInterpolator",
-              "value": 2047
+              "name": "郑祥芝"
             },
             {
-              "name": "DateInterpolator",
-              "value": 1375
+              "name": "郑祥军"
             },
             {
-              "name": "Interpolator",
-              "value": 8746
+              "name": "郑祥民"
             },
             {
-              "name": "MatrixInterpolator",
-              "value": 2202
+              "name": "郑祥林"
             },
             {
-              "name": "NumberInterpolator",
-              "value": 1382
-            },
-            {
-              "name": "ObjectInterpolator",
-              "value": 1629
-            },
-            {
-              "name": "PointInterpolator",
-              "value": 1675
-            },
-            {
-              "name": "RectangleInterpolator",
-              "value": 2042
+              "name": "郑祥云"
             }
           ]
         },
         {
-          "name": "ISchedulable",
-          "value": 1041
-        },
-        {
-          "name": "Parallel",
-          "value": 5176
-        },
-        {
-          "name": "Pause",
-          "value": 449
-        },
-        {
-          "name": "Scheduler",
-          "value": 5593
-        },
-        {
-          "name": "Sequence",
-          "value": 5534
-        },
-        {
-          "name": "Transition",
-          "value": 9201
-        },
-        {
-          "name": "Transitioner",
-          "value": 19975
-        },
-        {
-          "name": "TransitionEvent",
-          "value": 1116
-        },
-        {
-          "name": "Tween",
-          "value": 6006
+          "name": "郑国兴",
+          "value": 999,
+          "children": [
+            {
+              "name": "郑祥廷",
+              "value": 999,
+              "children": [
+                {
+                  "name": "郑玉振",
+                },
+                {
+                  "name": "郑巧珍",
+                },
+                {
+                  "name": "郑锁成",
+                },
+                {
+                  "name": "郑权",
+                },
+                {
+                  "name": "郑巧英",
+                }
+              ]
+            },
+            {
+              "name": "郑祥玉",
+              "value": 999,
+              "children": [
+                {
+                  "name": "郑富真",
+                  "value": 999,
+                },
+                {
+                  "name": "郑保成",
+                  "value": 999,
+                },
+                {
+                  "name": "郑春英",
+                  "value": 999,
+                },
+                {
+                  "name": "郑海成",
+                  "value": 999,
+                }
+              ]
+            },
+            {
+              "name": "郑祥治",
+              "value": 999,
+              "children": [
+                {
+                  "name": "郑金成",
+                  "value": 999,
+                },
+                {
+                  "name": "郑巧红",
+                  "value": 999,
+                },
+                {
+                  "name": "郑红英",
+                  "value": 999,
+                },
+              ]
+            },
+            {
+              "name": "郑祥成",
+              "value": 999,
+              "children": [
+                {
+                  "name": "郑巧丽",
+                  "value": 999,
+                },
+                {
+                  "name": "郑红丽",
+                  "value": 999,
+                },
+              ]
+            },
+            {
+              "name": "郑祥民",
+              "value": 999,
+              "children": [
+                {
+                  "name": "郑运成",
+                },
+                {
+                  "name": "郑伟成",
+                },
+                {
+                  "name": "郑新伟",
+                },
+              ]
+            }
+          ]
         }
       ]
     },
@@ -179,7 +209,7 @@ export default {
             // Specify the chart’s dimensions.
             const width = 928;
             const height = width;
-            const radius = width / 6;
+            const radius = width / 10;
 
             // Create the color scale.
             const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, this.data.children.length + 1));
@@ -285,11 +315,11 @@ export default {
             }
 
             function arcVisible(d) {
-                return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0;
+                return d.y1 <= 8 && d.y0 >= 1 && d.x1 > d.x0;
             }
 
             function labelVisible(d) {
-                return d.y1 <= 3 && d.y0 >= 0 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
+                return d.y1 <= 8 && d.y0 >= 0 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
             }
 
             function labelTransform(d) {
