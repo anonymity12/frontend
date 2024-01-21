@@ -53,6 +53,7 @@ export default {
     methods: {
         getAllCardsOnSquare() {
             apiGetCardSquareDisplay().then(res => {
+                console.log("apiGetCardSquareDisplay return:", res)
                 this.cards = res.data.obj
             })
         },

@@ -18,7 +18,7 @@ import TomatoTimer from '@/components/TomatoTimer'
 import CardSquare from '@/components/CardSquare'
 import TrainStations from '@/components/TrainStations'
 import SleepRecord from '@/components/SleepRecord'
-
+import JiaPuSunburst from '@/components/JiaPuSunburst'
 
 Vue.use(Router)
 
@@ -124,5 +124,10 @@ export default new Router({
       name: 'SleepRecord',
       component: SleepRecord
     },
+    {
+      path: '/jiapusunburst',
+      name: 'JiaPuSunburst',
+      component: JiaPuSunburst
+    }, 
   ]
 })
