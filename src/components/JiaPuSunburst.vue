@@ -237,6 +237,7 @@ export default {
                 .attr("dy", "0.35em")
                 .attr("fill-opacity", d => +labelVisible(d.current))
                 .attr("transform", d => labelTransform(d.current))
+                .style("font-size", d => `${3.5 - d.depth * 0.5}em`)
                 .text(d => d.data.name);
 
             const parent = svg.append("circle")
@@ -244,18 +245,18 @@ export default {
                 .attr("r", radius)
                 .attr("fill", "none")
                 .attr("pointer-events", "all")
+                .text(d => d.data.name)
                 .on("click", clicked);
 
             // Handle zoom on click.
-            function clicked(event, p) {
-                return
+            function clicked(p) {
                 parent.datum(p.parent || root);
 
                 root.each(d => d.target = {
-                x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
-                x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
-                y0: Math.max(0, d.y0 - p.depth),
-                y1: Math.max(0, d.y1 - p.depth)
+                    x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+                    x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+                    y0: Math.max(0, d.y0 - p.depth),
+                    y1: Math.max(0, d.y1 - p.depth)
                 });
 
                 const t = svg.transition().duration(750);
@@ -288,11 +289,11 @@ export default {
             }
 
             function labelVisible(d) {
-                return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
+                return d.y1 <= 3 && d.y0 >= 0 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
             }
 
             function labelTransform(d) {
-                console.log("d is : ", d)
+                // console.log("d is : ", d)
                 if (d.depth == 0) {
                     return `rotate(0) translate(0,0)`
                 }
