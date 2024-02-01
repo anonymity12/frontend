@@ -18,7 +18,7 @@
             <el-button @click="recordSleepTime">记录睡觉时间</el-button>
             <div>
                 <h2>过往睡觉记录</h2>
-                <ul>
+                <ul class="record-list">
                     <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.sleepDateTime }}</li>
                 </ul>
             </div>
@@ -41,6 +41,7 @@ export default {
             var sleepTimeObj = {
                 dateTime: currentTime
             }
+            console.log("sleep: ", currentTime) //sleep:  2/1/2024, 9:41:08 PM
             apiRecordSleepTime(sleepTimeObj)
             this.sleepTimesArr.push(currentTime); // 将当前时间添加到数组中
         },
@@ -52,6 +53,7 @@ export default {
                     var utcDateTime = new Date(item.sleepDateTime);  // 将字符串转换为Date对象
                     item.sleepDateTime = utcDateTime.toLocaleString();  // 更新数组中的sleepDateTime字段为本地时区时间字符串
                 });
+                this.sleepTimesArr.reverse();
             })
         }
     },
@@ -76,4 +78,15 @@ export default {
     /* 去除页面默认的内边距 */
     /* 让body元素填充整个视口高度 */
 }
+.record-list {
+    display: flex;
+    flex-direction: column; /* 让子元素垂直排列 */
+    list-style: none; /* 去掉列表默认样式 */
+    padding: 0; /* 去掉内边距 */
+  }
+.record-list li {
+    /* 可选样式，增加一些间距或其他样式 */
+    margin-bottom: 5px;
+}
+  
 </style>
