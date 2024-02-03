@@ -37,13 +37,25 @@ export default {
     },
     methods: {
         recordSleepTime() {
-            const currentTime = new Date().toLocaleString(); // 获取当前时间
+            const currentTime = new Date();
+            const options = {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+                };
+            const formattedDate = currentTime.toLocaleString('en-US', options);
             var sleepTimeObj = {
-                dateTime: currentTime
+                dateTime: formattedDate
             }
-            console.log("sleep: ", currentTime) //sleep:  2/1/2024, 9:41:08 PM
-            apiRecordSleepTime(sleepTimeObj)
-            this.sleepTimesArr.push(currentTime); // 将当前时间添加到数组中
+            console.log("sleep: ", formattedDate) //sleep:  
+            apiRecordSleepTime(sleepTimeObj).then(res => {
+                console.log("record sleep time done: res:", res)
+                this.getAllMySleepRecords(); // 将当前时间添加到数组中
+            });
         },
         getAllMySleepRecords() {
             apiGetAllMySleepRecords().then(res => {
