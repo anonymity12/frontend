@@ -3,23 +3,23 @@
     <el-menu
       mode="horizontal"
       background-color="black"
-      text-color="#222"
+      text-color="#fff"
       active-text-color="red"
       >
       <el-menu-item>
         <a style="font-size: xx-large;" href="#/home">⬅️</a>
       </el-menu-item>
-      <span style="position: absolute;padding-top: 20px;right: 50%;font-size: 20px;font-weight: bold">
+      <span style="position: absolute;padding-top: 20px;right: 50%;font-size: 20px;font-weight: bold;color: white;text-shadow: 0 0 10px red;">
         蓝天拉屎房
       </span>
       
     </el-menu>
         <el-row class="lianhualou" :style="{ height: '100vh' }">
-            <el-button @click="recordSleepTime">记录拉屎时间</el-button>
+            <el-button @click="recordShitTime">记录拉屎时间</el-button>
             <div>
                 <h2>过往拉屎记录</h2>
                 <ul class="record-list">
-                    <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.sleepDateTime }}</li>
+                    <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.shitDateTime }}</li>
                 </ul>
             </div>
         </el-row>
@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import { apiRecordSleepTime } from "@/api/sleeprecord"
-import { apiGetAllMySleepRecords } from "@/api/sleeprecord"
+import { apiRecordShitTime } from "@/api/shitrecord"
+import { apiGetAllMyShitRecords } from "@/api/shitrecord"
 export default {
     data() {
         return {
-            sleepTimesArr: [], // 存储睡觉时间的数组
+            shitTimesArr: [], // 存储shit时间的数组
         };
     },
     methods: {
-        recordSleepTime() {
+        recordShitTime() {
             const currentTime = new Date();
             const options = {
                 year: 'numeric',
@@ -48,36 +48,36 @@ export default {
                 hour12: true
                 };
             const formattedDate = currentTime.toLocaleString('en-US', options);
-            var sleepTimeObj = {
+            var shitTimeObj = {
                 dateTime: formattedDate
             }
-            console.log("sleep: ", formattedDate) //sleep:  
-            apiRecordSleepTime(sleepTimeObj).then(res => {
-                console.log("record sleep time done: res:", res)
-                this.getAllMySleepRecords(); // 将当前时间添加到数组中
+            console.log("shit: ", formattedDate) 
+            apiRecordShitTime(shitTimeObj).then(res => {
+                console.log("record shit time done: res:", res)
+                this.getAllMyShitRecords(); // 将当前时间添加到数组中
             });
         },
-        getAllMySleepRecords() {
-            apiGetAllMySleepRecords().then(res => {
-                console.log("all sleep res:", res)
-                this.sleepTimesArr = res.data.obj
-                this.sleepTimesArr.forEach(function(item) {
-                    var utcDateTime = new Date(item.sleepDateTime);  // 将字符串转换为Date对象
-                    item.sleepDateTime = utcDateTime.toLocaleString();  // 更新数组中的sleepDateTime字段为本地时区时间字符串
+        getAllMyShitRecords() {
+            apiGetAllMyShitRecords().then(res => {
+                console.log("all shit res:", res)
+                this.shitTimesArr = res.data.obj
+                this.shitTimesArr.forEach(function(item) {
+                    var utcDateTime = new Date(item.shitDateTime);  // 将字符串转换为Date对象
+                    item.shitDateTime = utcDateTime.toLocaleString();  // 更新数组中的shitDateTime字段为本地时区时间字符串
                 });
-                this.sleepTimesArr.reverse();
+                this.shitTimesArr.reverse();
             })
         }
     },
     mounted(){
-        this.getAllMySleepRecords()
+        this.getAllMyShitRecords()
     }
 };
 </script>
 
 <style>
 .lianhualou {
-    background-image: url("../assets/girlOutOfToilet.jpg");
+    background-image: url("../assets/blueSkyWC.JPG");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
