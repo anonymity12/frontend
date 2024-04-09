@@ -42,10 +42,13 @@ export default {
                     break;
                 case 'shitrecord':
                     this.$router.push('/shitrecord');
+                    break;
                 case 'sleeprecord':
                     this.$router.push('/sleeprecord');
+                    break;
                 case 'xuanguan':
                     this.$router.push('/xuanguan');
+                    break;
                 default:
                     break;
             }
