@@ -19,7 +19,7 @@
             <div>
                 <h2>过往拉屎记录</h2>
                 <ul class="record-list">
-                    <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.shitDateTime }}</li>
+                    <li v-for="(time, index) in shitTimesArr" :key="index">{{ time.shitDateTime }}</li>
                 </ul>
             </div>
         </el-row>
@@ -77,7 +77,7 @@ export default {
 
 <style>
 .lianhualou {
-    background-image: url("../assets/blueSkyWC.JPG");
+    background-image: url("../assets/girlOutOfToilet.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
