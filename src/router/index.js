@@ -6,6 +6,7 @@ import Guoguo from '@/components/Guoguo'
 import PostLine from '@/components/PostLine'
 import Login from '@/views/login.vue'
 import Home from '@/views/home.vue'
+import XuanGuan from '@/components/XuanGuan'
 import SixLog from '@/components/SixLog'
 import LogDetail from '@/components/LogDetail'
 import JiaPu from '@/components/JiaPu'
@@ -36,6 +37,15 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home,
+      meta: {
+        requireAuth: true
+      },
+    }, 
+    {
+      // xuanguan 类似于玄关，中台，它是你进入大门 gate1 后，想进一步探索 gww 世界的 gate2
+      path: '/xuanguan',
+      name: 'XuanGuan',
+      component: XuanGuan,
       meta: {
         requireAuth: true
       },

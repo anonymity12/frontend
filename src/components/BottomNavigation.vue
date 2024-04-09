@@ -1,7 +1,8 @@
 <!-- BottomNavigation.vue -->
 <template>
     <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" @select="handleTabSelect">
-        <el-menu-item index="home">主页</el-menu-item>
+        <el-menu-item index="home">宝岛</el-menu-item>
+        <el-menu-item index="xuanguan">玄关</el-menu-item>
         <el-menu-item index="sleeprecord">莲花楼</el-menu-item>
         <el-menu-item index="square">广场</el-menu-item>
         <el-menu-item index="tasks">任务</el-menu-item>
@@ -40,6 +41,8 @@ export default {
                     break;
                 case 'sleeprecord':
                     this.$router.push('/sleeprecord');
+                case 'xuanguan':
+                    this.$router.push('/xuanguan');
                 default:
                     break;
             }

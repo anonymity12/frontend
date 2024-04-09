@@ -1,9 +1,9 @@
 <template>
   <el-container class="home-container">
-    <!-- 主体： 入门玄关 -->
+    <!-- 主体， 宝岛：脸面，一进来 就是 pet 与 小星星 数量 页面 -->
     <el-container>
       <el-main>
-        <extra-area></extra-area>
+        <award-card-area></award-card-area>
       </el-main>
     </el-container>
     <div style="height: 40px;">
@@ -13,14 +13,8 @@
 </template>
 
 <script>
-import BottomNavigation from '@/components/BottomNavigation.vue'
-import VueHmCalendar from '@/components/VueHmCalendar'
-import { apiGetMyGold } from "@/api/gold"
-import { apiQueryAllCommitOfMine } from "@/api/commitsView"
-import LifeIndicator from '../components/LifeIndicator.vue'
-import ExtraArea from '../components/ExtraArea.vue'
-import TaskMatrix from '../components/TaskMatrix.vue'
 import AwardCardArea from '../components/AwardCardArea.vue'
+import BottomNavigation from '@/components/BottomNavigation.vue'
 export default {
   name: "Home",
   data() {
@@ -42,44 +36,12 @@ export default {
   methods: {
     setUpOwner() {
       this.pageOwner = this.$store.state.user.name
-      apiGetMyGold().then((resp) => {
-        if (resp.data.status == 200) {
-          this.balance = resp.data.obj
-        }
-      })
     },
-    avatarClick() {
-      console.log("avatar clicked")
-      this.$router.push({ path: '/profile' })
-    },
-    constructCommitView() {
-      apiQueryAllCommitOfMine().then(resp => {
-        if (resp.data.status == 200) {
-          var pureBean = resp.data.obj
-          var convertedBean = {}
-          pureBean.forEach(function (item) {
-            convertedBean[item.simplifiedDateString] = item.count
-          })
-          this.commitEvents = convertedBean
-        } else {
-          console.log("get commit view err: ", resp)
-        }
-      })
-    },
-    onChangeTaskStatusEvent(taskId) {
-      setTimeout(() => { this.constructCommitView() }, 1000)
-    }
   },
   created() {
     this.setUpOwner()
-    this.constructCommitView()
   },
   components: {
-    LifeIndicator,
-    VueHmCalendar,
-    ExtraArea,
-    AwardCardArea,
-    TaskMatrix,
     AwardCardArea,
     BottomNavigation
   }
