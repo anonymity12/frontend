@@ -63,22 +63,34 @@ export default new Router({
     {
       path: '/valley',
       name: 'PostLine',
-      component: PostLine
+      component: PostLine,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/sixlog',
       name: 'SixLog',
-      component: SixLog
+      component: SixLog,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/routine',
       name: 'Routine',
-      component: RoutinePage
+      component: RoutinePage,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/sixlog/article',
       name: 'LogDetail',
-      component: LogDetail
+      component: LogDetail,
+      meta: {
+        requireAuth: true
+      },
     },    
     {
       path: '/jiapu',
@@ -98,42 +110,66 @@ export default new Router({
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile
+      component: Profile,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/ranks',
       name: 'RankList',
-      component: RankList
+      component: RankList,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/tomato',
       name: 'TomatoTimer',
-      component: TomatoTimer
+      component: TomatoTimer,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/square',
       name: 'CardSquare',
-      component: CardSquare
+      component: CardSquare,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/trainstations',
       name: 'TrainStations',
-      component: TrainStations
+      component: TrainStations,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/sleeprecord',
       name: 'SleepRecord',
-      component: SleepRecord
+      component: SleepRecord,
+      meta: {
+        requireAuth: true
+      },
     },
     {
       path: '/jiapusunburst',
       name: 'JiaPuSunburst',
-      component: JiaPuSunburst
+      component: JiaPuSunburst,
+      meta: {
+        requireAuth: true
+      },
     }, 
     {
       path: '/shitrecord',
       name: 'ShitRecord',
-      component: ShitRecord
+      component: ShitRecord,
+      meta: {
+        requireAuth: true
+      },
     },
   ]
 })
