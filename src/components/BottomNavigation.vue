@@ -3,6 +3,7 @@
     <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" @select="handleTabSelect">
         <el-menu-item index="home">宝岛</el-menu-item>
         <el-menu-item index="xuanguan">玄关</el-menu-item>
+        <el-menu-item index="shitrecord">蓝天房</el-menu-item>
         <el-menu-item index="sleeprecord">莲花楼</el-menu-item>
         <el-menu-item index="square">广场</el-menu-item>
         <el-menu-item index="tasks">任务</el-menu-item>
@@ -39,6 +40,8 @@ export default {
                 case 'profile':
                     this.$router.push('/profile');
                     break;
+                case 'shitrecord':
+                    this.$router.push('/shitrecord');
                 case 'sleeprecord':
                     this.$router.push('/sleeprecord');
                 case 'xuanguan':
