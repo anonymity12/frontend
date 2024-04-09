@@ -1,6 +1,6 @@
 <template>
   <el-container class="home-container">
-    <!--顶部-->
+    <!--顶部: 用户的 头像-->
     <el-header style="width: 100%; height: auto;" align="middle">
       <el-col :span="8" style="padding-top: 20px;">
         <span @click="avatarClick()" type="flex" justify="center">
@@ -24,7 +24,7 @@
         </el-row>
       </el-col>
     </el-header>
-    <!-- 主体 -->
+    <!-- 主体： 生命展示器，宠物展示区， 热力图，任务管理器 -->
     <el-container>
       <el-main>
         <life-indicator></life-indicator>
