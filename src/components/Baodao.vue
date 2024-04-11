@@ -4,6 +4,7 @@
     <el-container>
       <el-main>
         <award-card-area></award-card-area>
+        <stars-area></stars-area>
       </el-main>
     </el-container>
     <div style="height: 40px;">
@@ -14,6 +15,7 @@
 
 <script>
 import AwardCardArea from '../components/AwardCardArea.vue'
+import StarsArea from '../components/StarsArea.vue'
 import BottomNavigation from '@/components/BottomNavigation.vue'
 export default {
   name: "Home",
@@ -23,6 +25,7 @@ export default {
   },
   components: {
     AwardCardArea,
+    StarsArea,
     BottomNavigation
   }
 };
