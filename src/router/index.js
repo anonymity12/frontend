@@ -5,7 +5,7 @@ import Xinxin from '@/components/Xinxin'
 import Guoguo from '@/components/Guoguo'
 import PostLine from '@/components/PostLine'
 import Login from '@/views/login.vue'
-import Home from '@/views/home.vue'
+import Baodao from '@/components/Baodao'
 import XuanGuan from '@/components/XuanGuan'
 import SixLog from '@/components/SixLog'
 import LogDetail from '@/components/LogDetail'
@@ -29,14 +29,14 @@ export default new Router({
     {
       path: '/',
       name: 'Default',
-      redirect: '/home',
-      component: Home
+      redirect: '/baodao',
+      component: Baodao
     },
     {
-       // home页面并不需要被访问，只是作为其它组件的父组件
-      path: '/home',
-      name: 'Home',
-      component: Home,
+       // baodao 是第一个页面，装载宠物和奖励
+      path: '/baodao',
+      name: 'Baodao',
+      component: Baodao,
       meta: {
         requireAuth: true
       },
