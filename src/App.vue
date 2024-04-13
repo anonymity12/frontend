@@ -1,6 +1,7 @@
 <template>
   <div id="app" style="background-color: rgba(235, 235, 235, 0.08)">
     <router-view/>
+    <bottom-navigation></bottom-navigation>
   </div>
 </template>
 

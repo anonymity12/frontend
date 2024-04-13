@@ -1,12 +1,7 @@
-<!-- BottomNavigation.vue -->
 <template>
     <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" @select="handleTabSelect">
         <el-menu-item index="baodao">宝岛</el-menu-item>
         <el-menu-item index="xuanguan">玄关</el-menu-item>
-        <el-menu-item index="shitrecord">蓝天房</el-menu-item>
-        <el-menu-item index="sleeprecord">莲花楼</el-menu-item>
-        <el-menu-item index="square">广场</el-menu-item>
-        <el-menu-item index="tasks">任务</el-menu-item>
         <el-menu-item index="profile">我</el-menu-item>
     </el-menu>
 </template>
@@ -61,6 +56,8 @@ export default {
 .bottom-navigation {
     position: fixed;
     bottom: 0;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 </style>

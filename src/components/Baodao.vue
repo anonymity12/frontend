@@ -9,7 +9,6 @@
     </el-container>
     <div style="height: 40px;">
     </div>
-    <bottom-navigation></bottom-navigation>
   </el-container>
 </template>
 
