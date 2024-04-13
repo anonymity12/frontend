@@ -58,6 +58,7 @@ export default {
     bottom: 0;
     display: flex;
     justify-content: space-between;
+    background-color: #1DEFFD;
     width: 100%;
 }
 </style>

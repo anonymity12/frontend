@@ -31,4 +31,7 @@ export default {
 </script>
 
 <style >
+.home-container {
+  background-color: #FFF1CB;
+}
 </style>

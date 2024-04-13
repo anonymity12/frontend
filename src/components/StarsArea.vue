@@ -1,6 +1,6 @@
 <template>
     <div id="stars-container">
-        <el-button size="small"> 加星 </el-button>
+        <el-button type="primary" icon="el-icon-plus"></el-button>
         <div class="all-stars">
             <div v-for="star in stars" :key="star.createTime">
                 <img src="../assets/starSmile.jpg" alt="星星图" style="width: 60px; height: 60px;">
