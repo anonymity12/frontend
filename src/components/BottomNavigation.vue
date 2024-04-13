@@ -1,7 +1,7 @@
 <!-- BottomNavigation.vue -->
 <template>
     <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" @select="handleTabSelect">
-        <el-menu-item index="home">宝岛</el-menu-item>
+        <el-menu-item index="baodao">宝岛</el-menu-item>
         <el-menu-item index="xuanguan">玄关</el-menu-item>
         <el-menu-item index="shitrecord">蓝天房</el-menu-item>
         <el-menu-item index="sleeprecord">莲花楼</el-menu-item>
@@ -15,7 +15,7 @@
 export default {
     data() {
         return {
-            activeTab: 'home' // 默认选中的标签
+            activeTab: 'baodao' // 默认选中的标签
         };
     },
     methods: {
@@ -28,7 +28,7 @@ export default {
 
             // 根据选中的标签进行路由跳转
             switch (index) {
-                case 'home':
+                case 'baodao':
                     this.$router.push('/');
                     break;
                 case 'square':
