@@ -1,10 +1,5 @@
 <template>
     <div>
-	<h2>
-		<p style="front-size: large;text-align: left; font-weight: bold;">
-			能量卡片
-		</p>
-	</h2>
         <el-card  style="width: 100%;">
             <div @click="openCardDetail()">
             <el-row class="glow-effect" style="padding-top: 2%; padding-bottom: 2%;">
