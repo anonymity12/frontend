@@ -2,7 +2,7 @@
     <div id="stars-container">
         <el-progress :percentage="56"></el-progress>
         <el-row class="progress-star">
-            <p>宇宙时间：2024-0413 16:14</p>
+            <p>宇宙时间：2056</p><p>COUNT：246</p>
             <el-progress type="circle" :width="40" :stroke-width="3" :percentage="30" color="#32A937"></el-progress>
             <el-progress type="circle" :width="40" :stroke-width="3" :percentage="70" color="#f56c6c"></el-progress>
             <el-progress type="circle" :width="40" :stroke-width="3" :percentage="80" color="#EFCF75"></el-progress>
