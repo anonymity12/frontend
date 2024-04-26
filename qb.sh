@@ -1,6 +1,9 @@
 #!/bin/bash
 # quick build for front end
 
+todayDate=$(date +%Y%m%d%H%M)
+echo "今日日期是：${todayDate}"
+
 echo "now quick build and then deploy to nginx"
 
 echo "back up old dist now..."
@@ -12,6 +15,9 @@ rm -rf dist-backup
 echo "ready to build new dist..."
 
 npm run build
+
+echo "build ok, making git tag"
+git tag -a "${todayDate}" -m "make it online"
 
 echo "build new dist done, ready to deploy on nginx... (html/goodchild/)"
 
