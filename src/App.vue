@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="background-color: rgba(235, 235, 235, 0.08)">
+  <div id="app">
     <router-view/>
     <bottom-navigation></bottom-navigation>
   </div>
@@ -23,6 +23,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #FFF1CB;
 }
 .class1{
   background: #444;
