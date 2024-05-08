@@ -1,5 +1,5 @@
 <template>
-    <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" @select="handleTabSelect">
+    <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" active-text-color="#00FF00" @select="handleTabSelect">
         <el-menu-item index="baodao">宝岛</el-menu-item>
         <el-menu-item index="xuanguan">玄关</el-menu-item>
         <el-menu-item index="profile">我</el-menu-item>
@@ -54,11 +54,13 @@ export default {
 
 <style scoped>
 .bottom-navigation {
+    border: 4mm rgba(211, 220, 50, .6);
+    border-radius: 5%;
     position: fixed;
     bottom: 0;
     display: flex;
     justify-content: space-between;
-    background-color: #1DEFFD;
+    background-color: #FFF1CB;
     width: 100%;
 }
 </style>

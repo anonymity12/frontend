@@ -1,10 +1,8 @@
 <template>
     <div>
-        <el-card  style="width: 100%;">
-            <div @click="openCardDetail()">
-            <el-row class="glow-effect" style="padding-top: 2%; padding-bottom: 2%;">
-                <img style="width: 240px; height: 240px; object-fit: contain;" src="../assets/butterFlyStars.jpeg" />
-            </el-row>
+        <el-card  >
+            <div @click="openCardDetail()" class="glow-effect">
+                <img style="width: 100%; height: 100%; object-fit: contain;" src="../assets/butterFlyStars.jpeg" />
             </div>
         </el-card>
         <!-- <AwardCardDetailDialog :innerDialog="dialogCardDetail" :cardModel="mainCard"></AwardCardDetailDialog> -->
@@ -55,30 +53,33 @@ export default {
 <style>
 .glow-effect {
     position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #FFF1CB;
 }
 
-.glow-effect::after {
+.glow-effect::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: 0 0 10px 5px green;
-    animation: glow-animation 5s ease-in-out infinite;
+    box-shadow: 0 0 10px 15px #FFF1CB;
+    animation: glow-animation 3s ease-in-out infinite;
 }
 
 @keyframes glow-animation {
     0% {
-        box-shadow: 0 0 10px 5px green;
+        box-shadow: 0 0 10px 10px #FFF1CB;
     }
 
     50% {
-        box-shadow: 0 0 10px 5px green;
+        box-shadow: 0 0 20px 25px #FFF1CB;
     }
 
     100% {
-        box-shadow: 0 0 10px 15px green;
+        box-shadow: 0 0 10px 10px #FFF1CB;
     }
 }
 </style>

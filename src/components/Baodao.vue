@@ -4,6 +4,7 @@
       <el-main>
         <stars-area></stars-area>
         <award-card-area></award-card-area>
+        <div style="height: 60px;"></div>
       </el-main>
   </el-container>
 </template>
