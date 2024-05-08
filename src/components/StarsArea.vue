@@ -1,23 +1,22 @@
 <template>
     <div id="stars-container">
         <el-row type="flex" class="progress-star" justify="space-between">
-            <el-col :span="8">
-                <el-button type="primary" icon="el-icon-plus" @click="recordOneStar"></el-button>
+            <el-progress class="day-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.dayProgress" color="#32A937"></el-progress>
+            <el-progress class="month-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.monthProgress" color="#f56c6c"></el-progress>
+            <el-progress class="year-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.yearProgress" color="#BCA849"></el-progress>
+        </el-row>
+        <el-row style="font-size:11px;">
+            <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
+            <p>乖娃娃第 {{ this.cosmosTime }} 天👍获得星星 {{ this.starCounts }} 个</p>
+        </el-row>
+        <el-row align="bottom">
+            <el-col :span="22" class="i-need-margin">
+                <el-progress :stroke-width="8" :percentage="this.starCounts" :color="myColor"></el-progress>
             </el-col>
-            <el-col :span="16" style="text-align: left; font-size:10px;">
-                <el-row>
-                    <el-progress class="day-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.dayProgress" color="#32A937"></el-progress>
-                    <el-progress class="month-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.monthProgress" color="#f56c6c"></el-progress>
-                    <el-progress class="year-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.yearProgress" color="#EFCF75"></el-progress>
-                </el-row>
-                <el-row>
-                    <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
-                    <p>乖娃娃第 {{ this.cosmosTime }} 天👍获得星星 {{ this.starCounts }} 个</p>
-                </el-row>
+            <el-col :span="2">
+                <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:20px; margin-top: 2px;" @click="recordOneStar"></i>
             </el-col>
         </el-row>
-        <el-progress :percentage="this.starCounts"></el-progress>
-
         <div class="all-stars">
             <div v-for="star in stars" :key="star.starDateTime">
                 <img src="../assets/starSmile.jpg"  @click="openStarDetail(star)" alt="星星图" style="width: 60px; height: 60px;">
@@ -66,7 +65,8 @@ export default {
             clickedStarModel: {
                 imageUrl: require("../assets/starSmile.jpg"),
                 reason: '今天做了10个深蹲'
-            }
+            },
+            myColor: "#00FF00",
         }
     },
     methods: {
@@ -185,7 +185,7 @@ export default {
   background-color: #FFF1CB88; /* 黑色背景，50%的透明度 */
   color: rgba(1, 1, 1, 0.5); /* 文字颜色 */
   text-align: center;
-  line-height: 20px; /* 根据实际进度条高度调整 */
+  line-height: 2em; /* 根据实际进度条高度调整 */
   font-size: 14px; /* 根据需要调整字体大小 */
   pointer-events: none; /* 防止伪元素影响点击事件 */
 }
@@ -199,7 +199,7 @@ export default {
   background-color: #FFF1CB88; /* 黑色背景，50%的透明度 */
   color: rgba(1, 1, 1, 0.5); /* 文字颜色 */
   text-align: center;
-  line-height: 20px; /* 根据实际进度条高度调整 */
+  line-height: 2em; /* 根据实际进度条高度调整 */
   font-size: 14px; /* 根据需要调整字体大小 */
   pointer-events: none; /* 防止伪元素影响点击事件 */
 }
@@ -213,8 +213,11 @@ export default {
   background-color: #FFF1CB88; /* 黑色背景，50%的透明度 */
   color: rgba(1, 1, 1, 0.5); /* 文字颜色 */
   text-align: center;
-  line-height: 20px; /* 根据实际进度条高度调整 */
+  line-height: 2em; /* 根据实际进度条高度调整 */
   font-size: 14px; /* 根据需要调整字体大小 */
   pointer-events: none; /* 防止伪元素影响点击事件 */
+}
+.i-need-margin {
+    margin-top: 3px;
 }
 </style>
