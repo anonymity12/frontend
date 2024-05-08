@@ -1,18 +1,23 @@
 <template>
     <div id="stars-container">
-        <el-progress :percentage="this.starCounts"></el-progress>
         <el-row type="flex" class="progress-star" justify="space-between">
-            <el-col :span="16">
-                <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
-                <p>乖娃娃第 {{ this.cosmosTime }} 天👍获得星星 {{ this.starCounts }} 个</p>
-            </el-col>
-                <el-progress class="day-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.dayProgress" color="#32A937"></el-progress>
-                <el-progress class="month-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.monthProgress" color="#f56c6c"></el-progress>
-                <el-progress class="year-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.yearProgress" color="#EFCF75"></el-progress>
-            <el-col :span="4" style="text-align: right; font-size: 12px">
+            <el-col :span="8">
                 <el-button type="primary" icon="el-icon-plus" @click="recordOneStar"></el-button>
             </el-col>
+            <el-col :span="16" style="text-align: left; font-size:10px;">
+                <el-row>
+                    <el-progress class="day-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.dayProgress" color="#32A937"></el-progress>
+                    <el-progress class="month-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.monthProgress" color="#f56c6c"></el-progress>
+                    <el-progress class="year-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.yearProgress" color="#EFCF75"></el-progress>
+                </el-row>
+                <el-row>
+                    <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
+                    <p>乖娃娃第 {{ this.cosmosTime }} 天👍获得星星 {{ this.starCounts }} 个</p>
+                </el-row>
+            </el-col>
         </el-row>
+        <el-progress :percentage="this.starCounts"></el-progress>
+
         <div class="all-stars">
             <div v-for="star in stars" :key="star.starDateTime">
                 <img src="../assets/starSmile.jpg"  @click="openStarDetail(star)" alt="星星图" style="width: 60px; height: 60px;">
