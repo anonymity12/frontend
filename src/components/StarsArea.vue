@@ -19,7 +19,7 @@
         </el-row>
         <div class="all-stars">
             <div v-for="star in stars" :key="star.starDateTime">
-                <img src="../assets/starSmile.jpg"  @click="openStarDetail(star)" alt="星星图" style="width: 60px; height: 60px;">
+                <img src="../assets/starSmile.jpg"  @click="openStarDetail(star)" alt="星星图" style="width: 50px; height: 50px;">
             </div>
         </div>
         <div class="botton-divider"/>
@@ -167,6 +167,7 @@ export default {
 .all-stars {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .botton-divider {
     height: 80px;
@@ -182,8 +183,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #FFF1CB88; /* 黑色背景，50%的透明度 */
-  color: rgba(1, 1, 1, 0.5); /* 文字颜色 */
+  background-color: #FFF1CB00; /* 黑色背景，50%的透明度 */
+  color: rgba(1, 1, 1, 0.7); /* 文字颜色 */
   text-align: center;
   line-height: 2em; /* 根据实际进度条高度调整 */
   font-size: 14px; /* 根据需要调整字体大小 */
@@ -196,8 +197,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #FFF1CB88; /* 黑色背景，50%的透明度 */
-  color: rgba(1, 1, 1, 0.5); /* 文字颜色 */
+  background-color: #FFF1CB00; /* 黑色背景，50%的透明度 */
+  color: rgba(1, 1, 1, 0.7); /* 文字颜色 */
   text-align: center;
   line-height: 2em; /* 根据实际进度条高度调整 */
   font-size: 14px; /* 根据需要调整字体大小 */
@@ -210,8 +211,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #FFF1CB88; /* 黑色背景，50%的透明度 */
-  color: rgba(1, 1, 1, 0.5); /* 文字颜色 */
+  background-color: #FFF1CB00; /* 黑色背景，50%的透明度 */
+  color: rgba(1, 1, 1, 0.7); /* 文字颜色 */
   text-align: center;
   line-height: 2em; /* 根据实际进度条高度调整 */
   font-size: 14px; /* 根据需要调整字体大小 */

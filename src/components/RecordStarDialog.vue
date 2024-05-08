@@ -1,9 +1,9 @@
 <template>
     <div>
-        <el-dialog title="奖励新星星" :visible.sync="dialogStatus.show" width="100%">
-            <p>获星🌟的理由:</p>
-            <el-input placeholder="我深蹲了10个 / 我读了5分钟书 / 我站起来走了2分钟" v-model="awardReason"></el-input>
-            <el-button @click=recordOneStar>✅</el-button>
+        <el-dialog title="奖励新星星" :visible.sync="dialogStatus.show" width="85%">
+            <el-input placeholder="我深蹲了10个 / 我读了5分钟书" v-model="awardReason">
+                <el-button type="text" slot="append" icon="el-icon-s-promotion" style="color: green;" @click=recordOneStar></el-button>
+            </el-input>
         </el-dialog>
     </div>
 </template>
