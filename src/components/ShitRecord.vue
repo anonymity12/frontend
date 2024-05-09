@@ -7,7 +7,7 @@
       active-text-color="red"
       >
       <el-menu-item>
-        <a style="font-size: xx-large;" href="#/home">⬅️</a>
+        <a style="font-size: xx-large;" href="#/xuanguan">⬅️</a>
       </el-menu-item>
       <span style="position: absolute;padding-top: 20px;right: 50%;font-size: 20px;font-weight: bold;color: white;text-shadow: 0 0 10px red;">
         蓝天拉屎房

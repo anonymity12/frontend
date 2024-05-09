@@ -1,13 +1,22 @@
 <template>
     <div>
-        <el-card>
+        <el-card style="background-color: #FFF1CB;">
             <div slot="header" class="clearfix">
                 <span style="float: left;font-size: large;
                     font-weight: bold;">
-                    额外功能
+                    更多功能
                 </span>
             </div>
-            <div>
+            <div type="flex">
+                <el-button type="danger" round @click="handleClick(4)" class="profile-span-text">
+                    🔓重新登陆
+                </el-button>
+                <el-button type="primary" round @click="handleClick(8)" class="profile-span-text">
+                    蓝天拉屎房
+                </el-button>
+                <el-button type="warning" round @click="handleClick(9)" class="profile-span-text">
+                    睡觉莲花楼
+                </el-button>
                 <el-button type="warning" round @click="handleClick(1)" class="profile-span-text">
                     📓浮生六记
                 </el-button>
@@ -17,8 +26,8 @@
                 <el-button type="warning" size="small" round @click="handleClick(2)" class="profile-span-text">
                     {{ this.musicState ? '暂停音乐' : '播放音乐' }}
                 </el-button>
-                <el-button type="danger" size="small" round @click="handleClick(4)" class="profile-span-text">
-                    🔓重新登陆
+                <el-button type="warning" round @click="handleClick(7)" class="profile-span-text">
+                    任务面板
                 </el-button>
                 <el-button type="primary" round @click="handleClick(5)" class="profile-span-text">
                     管理惯例
@@ -77,6 +86,12 @@ export default {
                     break
                 case 6:
                     this.$router.push({ path: '/tomato' })
+                    break
+                case 8:
+                    this.$router.push({ path: '/shitrecord' })
+                    break
+                case 9:
+                    this.$router.push({ path: '/sleeprecord' })
                     break
                 default:
                     break

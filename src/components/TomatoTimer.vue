@@ -1,5 +1,6 @@
 <template>
     <div>
+        <a style="font-size: xx-large;" href="#/xuanguan">⬅️</a>
         <h1>🍅我的番茄钟🍅</h1>
         <p v-if="isWorking">劳动时间</p>
         <p v-else>安逸时间</p>

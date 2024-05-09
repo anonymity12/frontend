@@ -10,7 +10,7 @@
                         :size="150">
                     </el-avatar>
                 </el-form-item>
-                <el-form-item>
+                <!-- <el-form-item>
                     <el-upload
                         class="img-upload"
                         ref="upload"
@@ -28,7 +28,7 @@
                         :disabled="widgetDisable">
                         <el-button size="small" type="primary">点击上传新头像</el-button>
                     </el-upload>
-                </el-form-item>
+                </el-form-item> -->
                 <el-form-item label="名字" prop="name">
                     <el-input v-model="currentUser.name" :disabled="widgetDisable"></el-input>
                 </el-form-item>
@@ -48,7 +48,7 @@
                     </el-date-picker>
                 </el-form-item>
                 
-                <el-form-item label="自我定位" prop="intro">
+                <el-form-item label="个人签名" prop="intro">
                     <el-input v-model="currentUser.intro" :disabled="widgetDisable"></el-input>
                 </el-form-item>
                 <el-form-item label="预期寿命">
@@ -58,7 +58,7 @@
                     <label>用户数据库id: {{ currentUser.id }}</label>
                 </el-form-item>
             </el-form>
-            <el-button @click="enterEditStatus()">{{ buttonText }}</el-button>
+            <!-- <el-button @click="enterEditStatus()">{{ buttonText }}</el-button> -->
             </el-col>
         </el-row>
 
