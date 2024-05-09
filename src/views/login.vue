@@ -1,7 +1,7 @@
 <template>
   <body id="login-page">
     <el-form class="login-container" label-position="left" label-width="0px">
-      <h3 class="login_title">系统登录</h3>
+      <h3 class="login_title">进入乖娃娃宝岛</h3>
       <el-form-item>
         <el-input
           type="text"
@@ -82,6 +82,9 @@ export default {
   width: 100%;
   background-size: cover;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 body {
   margin: 0px;
@@ -89,12 +92,11 @@ body {
 .login-container {
   border-radius: 15px;
   background-clip: padding-box;
-  margin: 90px auto;
-  width: 350px;
-  padding: 35px 35px 15px 35px;
-  background: #fff;
+  width: 50%;
+  background: #FFF1CB;
   border: 1px solid #eaeaea;
-  box-shadow: 0 0 25px #cac6c6;
+  padding: 35px 35px 15px 35px;
+  box-shadow: 5px 10px 25px #cac6c6;
 }
 
 .login_title {

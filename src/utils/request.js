@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import router from '../router'
 
 // http://101.43.166.211:8981/api
 const _baseURL= 'http://101.43.166.211:8081' //"http://localhost:8091/api"
@@ -27,35 +28,18 @@ service.interceptors.request.use(
 )
 
 //response响应拦截
-axios.interceptors.response.use(response => {
-
+service.interceptors.response.use(
+  response => {
+    // console.log("utils.request.js say:", response)
     return response 
-    /*
-    // omit, cause: when request aliyun, it's undefine
-    let res = response.data;
-    console.log(res)
-
-    if (res.code === 200) {
-      console.log("res.code === 200")
-      return response
-    } else {
-      console.log("res.code != 200, it's ", res.code)// when request aliyun, it's undefine
-      return Promise.reject(response.data.msg)
-    }
-    */
   },
   error => {
-    console.log(error)
-    if (error.response.data) {
-      error.message = error.response.data.msg
-    }
-
+    console.log("tt>>> error:",error)
     if (error.response.status === 401) {
       router.push("/login")
     }
     return Promise.reject(error)
   }
 )
-
 
 export default service
