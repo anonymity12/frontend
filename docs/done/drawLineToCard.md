@@ -1,0 +1,1 @@
+I want to draw line or add effect(now doing) to card area
