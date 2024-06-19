@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>家谱日升图</h1>
-    <svg ref="sunburst"></svg>
+    <svg class="jiapu-svg" ref="sunburst"></svg>
   </div>
 </template>
 
@@ -359,8 +359,8 @@ export default {
   }
 }
 </script>
-<style>
-svg {
+<style scoped>
+.jiapu-svg {
   border: 1px solid black;
 }
 </style>

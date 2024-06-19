@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>家谱</h1>
-    <svg width="700" height="1000"></svg>
+    <svg class="jiapu-plain-svg" width="700" height="1000"></svg>
   </div>
 </template>
 
@@ -238,8 +238,8 @@ export default {
   }
 }
 </script>
-<style>
-  svg {
+<style scoped>
+  .jiapu-plain-svg {
     border: 1px solid black;
   }
   .node circle {
