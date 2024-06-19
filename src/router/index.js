@@ -22,6 +22,9 @@ import SleepRecord from '@/components/SleepRecord'
 import ShitRecord from '@/components/ShitRecord'
 import SportCompetition from '@/components/SportCompetition'
 import JiaPuSunburst from '@/components/JiaPuSunburst'
+import TaskMatrix from '@/components/TaskMatrix'
+import StarBubbleBay from '@/components/StarBubbleBay'
+import UseStarImageCircle from '@/components/UseStarImageCircle'
 
 Vue.use(Router)
 
@@ -190,5 +193,29 @@ export default new Router({
         requireAuth: true
       },
     },
+    {
+      path: '/taskmatrix',
+      name: 'TaskMatrix',
+      component: TaskMatrix,
+      meta: {
+        requireAuth: true
+      },
+    },
+    {
+      path: '/starbubblebay',
+      name: 'StarBubbleBay',
+      component: StarBubbleBay,
+      meta: {
+        requireAuth: true
+      },
+    },
+    {
+      path: '/starimage',
+      name: 'UseStarImageCircle',
+      component: UseStarImageCircle,
+      meta: {
+        requireAuth: true
+      },
+    }
   ]
 })

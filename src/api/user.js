@@ -174,6 +174,13 @@ export function apiGetUserInfo() {
   })
 }
 
+export function apiGetOtherUserInfo(otherUserId) {
+  return request({
+    url: '/api/user/getOtherUserInfo/' + otherUserId,
+    method: 'get'
+  })
+}
+
 export function apiUpdateUserInfo(data) {
   return request({
     url: '/api/user/profile',

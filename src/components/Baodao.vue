@@ -3,7 +3,8 @@
     <!-- 主体， 宝岛：脸面，一进来 就是 pet 与 小星星 数量 页面 -->
       <el-main>
         <stars-area></stars-area>
-        <award-card-area></award-card-area>
+        <StarBubbleBay></StarBubbleBay>
+        <!-- StarRacingBay? -->
         <div style="height: 60px;"></div>
       </el-main>
   </el-container>
@@ -11,6 +12,7 @@
 
 <script>
 import AwardCardArea from '../components/AwardCardArea.vue'
+import StarBubbleBay from '@/components/StarBubbleBay.vue'
 import StarsArea from '../components/StarsArea.vue'
 import BottomNavigation from '@/components/BottomNavigation.vue'
 export default {
@@ -20,7 +22,7 @@ export default {
     };
   },
   components: {
-    AwardCardArea,
+    StarBubbleBay,
     StarsArea,
     BottomNavigation
   }

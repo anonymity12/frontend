@@ -14,7 +14,7 @@
                 <el-progress :stroke-width="8" :percentage="this.starCounts" :color="myColor"></el-progress>
             </el-col>
             <el-col :span="2">
-                <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:20px; margin-top: 2px;" @click="recordOneStar"></i>
+                <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:20px; margin-top: 2px; float: right;" @click="recordOneStar"></i>
             </el-col>
         </el-row>
         <div class="all-stars">
