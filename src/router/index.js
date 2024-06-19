@@ -20,6 +20,7 @@ import CardSquare from '@/components/CardSquare'
 import TrainStations from '@/components/TrainStations'
 import SleepRecord from '@/components/SleepRecord'
 import ShitRecord from '@/components/ShitRecord'
+import SportCompetition from '@/components/SportCompetition'
 import JiaPuSunburst from '@/components/JiaPuSunburst'
 
 Vue.use(Router)
@@ -177,6 +178,14 @@ export default new Router({
       path: '/shitrecord',
       name: 'ShitRecord',
       component: ShitRecord,
+      meta: {
+        requireAuth: true
+      },
+    },
+    {
+      path: '/sportcompetition',
+      name: 'SportCompetition',
+      component: SportCompetition,
       meta: {
         requireAuth: true
       },
