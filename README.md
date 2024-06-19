@@ -57,6 +57,31 @@ an idea from [沈复](https://zh.wikipedia.org/wiki/%E6%B2%88%E5%BE%A9)
 
 ---
 
+# notice 
+
+prod port =  8089
+
+dev port = 8091
+
+# how to build and move to nginx
+
+first we need back up old dist
+
+rm -rf dist-backup
+
+mv dist/ dist-backup/
+
+npm run build
+
+sudo cp -r dist/ /www/server/nginx/html/goodchild
+
+
+see:
+
+ls /www/server/nginx/html/goodchild
+
+should see dist
+
 
 
 
