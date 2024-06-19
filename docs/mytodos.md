@@ -57,7 +57,7 @@ http://101.43.166.211:8089/#/jiapuoperation
 
 2024-01-13 23:54:05
 
-- [ ] SleepRecord.vue 这是一个记录睡觉时间的页面
+- [x] SleepRecord.vue 这是一个记录睡觉时间的页面
         用户点击按钮就记录了自己睡觉的时间；睡觉广场可以比较睡觉时间
 
 ![2024-01-14-00-10-07](https://picgorepo.oss-cn-beijing.aliyuncs.com/2024-01-14-00-10-07.png)       
