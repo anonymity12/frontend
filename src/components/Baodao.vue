@@ -3,7 +3,7 @@
     <!-- 主体， 宝岛：脸面，一进来 就是 我的本周小星 数量 和 其他人 本周小星 数量 页面 -->
       <el-main>
         <stars-area></stars-area>
-        <!-- StarRacingBay? -->
+        <StarRaceBay/>
         <div style="height: 60px;"></div>
       </el-main>
   </el-container>
@@ -11,6 +11,7 @@
 
 <script>
 import StarsArea from '../components/StarsArea.vue'
+import StarRaceBay from '../components/StarRaceBay.vue'
 import BottomNavigation from '@/components/BottomNavigation.vue'
 export default {
   name: "Baodao",
@@ -20,7 +21,8 @@ export default {
   },
   components: {
     StarsArea,
-    BottomNavigation
+    BottomNavigation,
+    StarRaceBay
   }
 };
 </script>

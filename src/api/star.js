@@ -27,3 +27,10 @@ export function apiRecordOneStar(starObj) {
         data: starObj
     });
 }
+
+export function apiGetStarRaceBayData() {
+    return request({
+        url: "/api/star/getStarRaceBayData",
+        method: "get"
+    });
+}

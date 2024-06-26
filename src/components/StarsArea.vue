@@ -7,7 +7,7 @@
         </el-row>
         <el-row style="font-size:11px;">
             <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
-            <p>乖娃娃第 {{ this.cosmosTime }} 天👍获得星星 {{ this.starCounts }} 个</p>
+            <p>乖娃娃第 {{ this.cosmosTime }} 天👍 本周获得星星 {{ this.starCounts }} 个</p>
         </el-row>
         <el-row align="bottom">
             <el-col :span="22" class="i-need-margin">
