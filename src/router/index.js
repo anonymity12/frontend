@@ -37,6 +37,12 @@ export default new Router({
       component: Baodao
     },
     {
+      path: '/home',
+      name: 'Home',
+      redirect: '/baodao',
+      component: Baodao
+    },
+    {
        // baodao 是第一个页面，装载宠物和奖励
       path: '/baodao',
       name: 'Baodao',
