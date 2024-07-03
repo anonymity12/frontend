@@ -24,7 +24,9 @@ Vue.prototype.$axios = axios
 //钩子函数，访问路由前调用
 router.beforeEach((to, from, next) => {
   //路由需要认证
-  if (to.meta.requireAuth) {
+  if (to.fullPath === from.fullPath) {
+    next(false)
+  } else if (to.meta.requireAuth) {
     //判断store里是否有token
     if (store.state.token) {
       next()

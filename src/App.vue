@@ -17,8 +17,12 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'MaShanZheng-Regular';
+  src: url('./assets/MaShanZheng-Regular.ttf') format('truetype');
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -29,4 +33,5 @@ export default {
   background: #444;
   color: #eee;
 }
+
 </style>

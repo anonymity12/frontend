@@ -3,26 +3,24 @@
     <el-menu
       mode="horizontal"
       background-color="black"
-      text-color="#fff"
-      active-text-color="red"
+      text-color="#FFF"
       >
       <el-menu-item>
-        <a style="font-size: xx-large;" href="#/xuanguan">⬅️</a>
+        <a style="font-size: xx-large;" @click="goBack">X</a>
       </el-menu-item>
-      <span style="position: absolute;padding-top: 20px;right: 50%;font-size: 20px;font-weight: bold;color: white;text-shadow: 0 0 10px red;">
+      <span style="position: absolute;padding-top: 20px;right: 35%;font-size: 20px;font-weight: bold;color: white;text-shadow: 0 0 10px red;">
         蓝天拉屎房
       </span>
-      
     </el-menu>
-        <el-row class="lianhualou" :style="{ height: '100vh' }">
-            <el-button @click="recordShitTime">记录拉屎时间</el-button>
-            <div>
-                <h2>过往拉屎记录</h2>
-                <ul class="record-list">
-                    <li v-for="(time, index) in shitTimesArr" :key="index">{{ time.shitDateTime }}</li>
-                </ul>
-            </div>
-        </el-row>
+    <el-row class="lianhualou" :style="{ height: '100vh' }">
+        <el-button @click="recordShitTime">记录拉屎时间</el-button>
+        <div>
+            <h2>过往拉屎记录</h2>
+            <ul class="record-list">
+                <li v-for="(time, index) in shitTimesArr" :key="index">{{ time.shitDateTime }}</li>
+            </ul>
+        </div>
+    </el-row>
     </div>
 </template>
 
@@ -67,7 +65,10 @@ export default {
                 });
                 this.shitTimesArr.reverse();
             })
-        }
+        },
+        goBack() {
+            window.history.back();
+        },
     },
     mounted(){
         this.getAllMyShitRecords()

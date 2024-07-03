@@ -1,8 +1,18 @@
 <template>
     <div>
         <el-dialog title="奖励新星星" :visible.sync="dialogStatus.show" width="85%">
+            <div >
+                <el-tag
+                    class="record-star-tags"
+                    v-for="(suggestion, index) in suggestions" 
+                    :key="index" 
+                    :closable="false" 
+                    @click="updateInput(suggestion)">
+                    {{ suggestion }}
+                </el-tag>
+            </div>
             <el-input placeholder="我深蹲了10个 / 我读了5分钟书" v-model="awardReason">
-                <el-button type="text" slot="append" icon="el-icon-s-promotion" style="color: green;" @click=recordOneStar></el-button>
+                <el-button type="text" slot="append" icon="el-icon-check" style="color: green; font-size: 28px;" @click=recordOneStar></el-button>
             </el-input>
         </el-dialog>
     </div>
@@ -18,7 +28,8 @@ export default {
     },
     data() {
         return {
-            awardReason: ''
+            awardReason: '',
+            suggestions: ['我运动了1分钟', '我做饭了', '我洗碗了','我扫地了','我读书了3分钟'],
         }
     },
     methods: {
@@ -58,7 +69,17 @@ export default {
                     })
                 }
             })
-        }
+        },
+        updateInput(value) {
+            this.awardReason = value;
+        },
     }
 }
 </script>
+
+<style>
+.record-star-tags {
+  margin: 5px;
+  font-size: 22px;
+}
+</style>

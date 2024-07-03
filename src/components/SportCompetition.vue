@@ -1,6 +1,19 @@
 
 <template>
   <div class="page">
+    <el-menu
+      mode="horizontal"
+      background-color="white"
+      text-color="#222"
+      active-text-color="red"
+      >
+      <el-menu-item>
+        <a style="font-size: xx-large;" @click="goBack">X</a>
+      </el-menu-item>
+      <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">
+        运动大竞赛
+      </span>
+    </el-menu>
     <el-row>
       <el-col :span="12">
         <div class="left-card">
@@ -124,6 +137,9 @@ export default {
         console.log("fetched other user(competitor) info as: ", res);
         this.competitorUser = res.data.obj;
       })
+    },
+    goBack() {
+      window.history.back();
     },
   },
   mounted() {

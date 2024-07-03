@@ -5,16 +5,16 @@
             <el-progress class="month-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.monthProgress" color="#f56c6c"></el-progress>
             <el-progress class="year-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.yearProgress" color="#BCA849"></el-progress>
         </el-row>
-        <el-row style="font-size:11px;">
+        <el-row class="today-description">
             <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
-            <p>乖娃娃第 {{ this.cosmosTime }} 天👍 本周获得星星 {{ this.starCounts }} 个</p>
+            <p>乖娃娃第 {{ this.cosmosTime }} 天👍 总计获得星星 {{ this.starCounts }} 个</p>
         </el-row>
         <el-row align="bottom">
-            <el-col :span="22" class="i-need-margin">
-                <el-progress :stroke-width="8" :percentage="this.starCounts" :color="myColor"></el-progress>
+            <el-col :span="20" class="i-need-margin">
+                <el-progress :stroke-width="12" :percentage="this.starCounts" :color="myColor"></el-progress>
             </el-col>
-            <el-col :span="2">
-                <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:20px; margin-top: 2px; float: right;" @click="recordOneStar"></i>
+            <el-col :span="4">
+                <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:40px; margin-top: 2px; float: right; text-shadow: 2px 2px 3px red;" @click="recordOneStar"></i>
             </el-col>
         </el-row>
         <div class="all-stars">
@@ -41,18 +41,6 @@ export default {
                 {
                     starDateTime: '2024-04-12',
                     starDescription: 'stay happy',
-                },
-                {
-                    starDateTime: '2024-04-13',
-                    starDescription: 'stay foolish',
-                },
-                {
-                    starDateTime: '2024-04-13',
-                    starDescription: 'stay real',
-                },
-                {
-                    starDateTime: '2024-04-13',
-                    starDescription: 'stay foolish',
                 },
             ],
             starConfirmDialogStatus: {
@@ -104,7 +92,7 @@ export default {
         dayProgress() {
             let now = new Date()
             let curHour = now.getHours()
-            return ((curHour / 24) * 100).toFixed(2);
+            return Number(((curHour / 24) * 100).toFixed(2));
         },
         monthProgress() {
             let today = new Date(); // 获取当前日期
@@ -115,7 +103,7 @@ export default {
             let totalDaysInMonth = lastDayOfMonth.getDate(); // 本月的总天数,31
             let dayOfMonth = today.getDate(); // 当前日期是本月的第几天， 5月7日，返回7
             let percentage = (dayOfMonth / totalDaysInMonth) * 100; // 计算百分比
-            return percentage.toFixed(2); // 保留两位小数
+            return Number(percentage.toFixed(2)); // 保留两位小数
         },
         yearProgress() {
             let today = new Date(); // 获取当前日期
@@ -131,7 +119,7 @@ export default {
             let totalDaysInYear = isLeapYear ? 366 : 365;
             // 计算百分比
             let percentage = (daysPassed / totalDaysInYear) * 100;
-            return percentage.toFixed(2); // 保留两位小数
+            return Number(percentage.toFixed(2)); // 保留两位小数
         },
         today5StarProgress() {
             return 10 // todo
@@ -219,6 +207,10 @@ export default {
   pointer-events: none; /* 防止伪元素影响点击事件 */
 }
 .i-need-margin {
-    margin-top: 3px;
+    margin-top: 16px;
+}
+.today-description {
+    font-size:14px;
+    font-family: 'MaShanZheng-Regular', sans-serif;
 }
 </style>

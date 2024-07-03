@@ -1,8 +1,7 @@
 <template>
     <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" active-text-color="#00FF00" @select="handleTabSelect">
-        <el-menu-item index="baodao">宝岛</el-menu-item>
-        <el-menu-item index="xuanguan">玄关</el-menu-item>
-        <el-menu-item index="profile">我</el-menu-item>
+        <el-menu-item index="baodao">🌟宝岛</el-menu-item>
+        <el-menu-item index="profile">🌞我</el-menu-item>
     </el-menu>
 </template>
 
@@ -24,25 +23,25 @@ export default {
             // 根据选中的标签进行路由跳转
             switch (index) {
                 case 'baodao':
-                    this.$router.push('/');
+                    this.$router.replace('/');
                     break;
                 case 'square':
-                    this.$router.push('/square');
+                    this.$router.replace('/square');
                     break;
                 case 'tasks':
-                    this.$router.push('/tomato');
+                    this.$router.replace('/tomato');
                     break;
                 case 'profile':
-                    this.$router.push('/profile');
+                    this.$router.replace('/profile');
                     break;
                 case 'shitrecord':
-                    this.$router.push('/shitrecord');
+                    this.$router.replace('/shitrecord');
                     break;
                 case 'sleeprecord':
-                    this.$router.push('/sleeprecord');
+                    this.$router.replace('/sleeprecord');
                     break;
                 case 'xuanguan':
-                    this.$router.push('/xuanguan');
+                    this.$router.replace('/xuanguan');
                     break;
                 default:
                     break;
@@ -59,6 +58,7 @@ export default {
     position: fixed;
     bottom: 0;
     display: flex;
+    font-size: 24px;
     justify-content: space-between;
     background-color: #FFF1CB;
     width: 100%;

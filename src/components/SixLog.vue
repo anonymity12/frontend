@@ -4,15 +4,13 @@
       mode="horizontal"
       background-color="white"
       text-color="#222"
-      active-text-color="red"
-      >
+      active-text-color="red">
       <el-menu-item>
-        <a style="font-size: xx-large;" href="#/xuanguan">⬅️</a>
+        <a style="font-size: xx-large;" @click="goBack">X</a>
       </el-menu-item>
       <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">
         浮生六记
       </span>
-      
     </el-menu>
 
 
@@ -206,7 +204,10 @@ export default({
     },
     uploadImg () {
       this.sixlog.articleCover = this.$refs.imgUpload.url
-    }
+    },
+    goBack() {
+      window.history.back();
+    },
   },
   components: {ImgUpload}
 })
@@ -231,6 +232,7 @@ export default({
   /* border: 3px solid #73AD21; */
   padding: 10px;
   margin-top: 30px;
+  font-family: 'Roboto', sans-serif,'MaShanZheng-Regular';
 }
 
  

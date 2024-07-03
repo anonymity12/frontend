@@ -1,8 +1,7 @@
 <template>
     <div>
-        <el-row type="flex" justify="center">
-            <el-col :span="18">
-            <el-form v-model="currentUser" ref="dataForm">
+        <div class="container">
+            <el-form style="width: 100%" v-model="currentUser" ref="dataForm">
                 <el-form-item prop="userface">
                     <el-avatar 
                         style="color: #222; margin-top: 20px"
@@ -29,39 +28,24 @@
                         <el-button size="small" type="primary">点击上传新头像</el-button>
                     </el-upload>
                 </el-form-item> -->
-                <el-form-item label="名字" prop="name">
-                    <el-input v-model="currentUser.name" :disabled="widgetDisable"></el-input>
-                </el-form-item>
-                <el-form-item label="登陆ID" prop="cosmosId">
-                    <el-input v-model="currentUser.cosmosId" :disabled="widgetDisable"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input v-model="currentUser.password" :disabled="widgetDisable" ></el-input>
-                </el-form-item>
-                <el-form-item label="生命起始日" prop="birthday">
-                    <el-date-picker
-                    v-model="currentUser.birthday"
-                    align="right"
-                    type="date"
-                    placeholder="选择出生日期"
-                    >
-                    </el-date-picker>
-                </el-form-item>
-                
-                <el-form-item label="个人签名" prop="intro">
-                    <el-input v-model="currentUser.intro" :disabled="widgetDisable"></el-input>
-                </el-form-item>
-                <el-form-item label="预期寿命">
-                    <label> 100年 </label>
-                </el-form-item>
-                <el-form-item prop="id">
-                    <label>用户数据库id: {{ currentUser.id }}</label>
-                </el-form-item>
+                <p class="user-info" style="font-size: 26px;font-weight: bold;">{{ currentUser.name }}</p>
+                <span class="user-info">{{ currentUser.intro }}</span>
+                <p class="user-info" style="font-size: 10px;width: 100%;float: right;">{{ currentUser.birthday }}</p>
+
+                <div class="user-info-footer"></div>
+                <ul class="menu">
+                    <li class="menu-item" @click="gotoSport">运动打卡</li>
+                    <li class="menu-item">血压记录(还没做）</li>
+                    <li class="menu-item" @click="gotoSleep">睡觉打卡</li>
+                    <li class="menu-item" @click="gotoDabian">大便打卡</li>
+                    <li class="menu-item" @click="gotoSixLog">朋友圈</li>
+                    <li class="menu-item">设置</li>
+                </ul>
             </el-form>
             <!-- <el-button @click="enterEditStatus()">{{ buttonText }}</el-button> -->
-            </el-col>
-        </el-row>
-
+        </div>
+        <div style="height: 40px;">
+        </div>
     </div>
 </template>
 
@@ -191,7 +175,19 @@ export default {
             })
             
             }
-        }
+        },
+        gotoSixLog() {
+            this.$router.push("/sixlog")
+        },
+        gotoDabian() {
+            this.$router.push("/shitrecord")
+        },
+        gotoSleep() {
+            this.$router.push("/sleeprecord")
+        },
+        gotoSport() {
+            this.$router.push("/sportcompetition")
+        },
     },
     mounted() {
         apiGetUserInfo().then(res => {
@@ -201,3 +197,47 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.user-info {
+    margin: 10px;
+    padding: 1px;
+    width: 90%;
+    border: none;
+    font-family: 'MaShanZheng-Regular', sans-serif;
+}
+.user-info-footer {
+    height: 1px;
+    margin-bottom: 20px;
+}
+.menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column; /* 设置为列排列 */
+    justify-content: space-around;
+}
+.menu-item {
+    margin: 10px;
+    padding: 5px;
+    width: 90%;
+    border: none;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(to top, #FFF1CB,#FFFFFF, #FFFFFF, transparent);
+}
+li::after {
+  content: ">";
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>

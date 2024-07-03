@@ -30,7 +30,15 @@ export function apiRecordOneStar(starObj) {
 
 export function apiGetStarRaceBayData() {
     return request({
-        url: "/api/star/getStarRaceBayData",
+        url: "/api/star/getStarWeeklyData",
         method: "get"
     });
 }
+
+export function apiGetStarWeeklyData() {
+    return request({
+        url: "/api/star/getStarWeeklyData",
+        method: "get"
+    });
+}
+

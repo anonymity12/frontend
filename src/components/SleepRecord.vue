@@ -1,28 +1,25 @@
 <template>
     <div>
     <el-menu
-      mode="horizontal"
-      background-color="black"
-      text-color="#222"
-      active-text-color="red"
-      >
-      <el-menu-item>
-        <a style="font-size: xx-large;" href="#/xuanguan">⬅️</a>
-      </el-menu-item>
-      <span style="position: absolute;padding-top: 20px;right: 50%;font-size: 20px;font-weight: bold">
-        睡觉莲花楼
-      </span>
-      
+        mode="horizontal"
+        background-color="black"
+        text-color="#FFF">
+        <el-menu-item>
+            <a style="font-size: xx-large;" @click="goBack">X</a>
+        </el-menu-item>
+        <span style="position: absolute;padding-top: 20px;right: 35%;font-size: 20px;font-weight: bold;color: white;text-shadow: 0 0 10px red;">
+            睡觉莲花楼
+        </span>
     </el-menu>
-        <el-row class="lianhualou" :style="{ height: '100vh' }">
-            <el-button @click="recordSleepTime">记录睡觉时间</el-button>
-            <div>
-                <h2>过往睡觉记录</h2>
-                <ul class="record-list">
-                    <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.sleepDateTime }}</li>
-                </ul>
-            </div>
-        </el-row>
+    <el-row class="lianhualou" :style="{ height: '100vh' }">
+        <el-button @click="recordSleepTime">记录睡觉时间</el-button>
+        <div>
+            <h2>过往睡觉记录</h2>
+            <ul class="record-list">
+                <li v-for="(time, index) in sleepTimesArr" :key="index">{{ time.sleepDateTime }}</li>
+            </ul>
+        </div>
+    </el-row>
     </div>
 </template>
 
@@ -67,7 +64,10 @@ export default {
                 });
                 this.sleepTimesArr.reverse();
             })
-        }
+        },
+        goBack() {
+            window.history.back();
+        },
     },
     mounted(){
         this.getAllMySleepRecords()
@@ -77,7 +77,7 @@ export default {
 
 <style>
 .lianhualou {
-    background-image: url("https://picgorepo.oss-cn-beijing.aliyuncs.com/2024-01-14-00-10-07.png");
+    background-image: url("../assets/sleepLotusRoom.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -99,6 +99,8 @@ export default {
 .record-list li {
     /* 可选样式，增加一些间距或其他样式 */
     margin-bottom: 5px;
+    text-shadow: 3px 3px 3px blue;
+    font-weight: bold;
 }
   
 </style>

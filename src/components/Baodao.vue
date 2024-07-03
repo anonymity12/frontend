@@ -12,7 +12,6 @@
 <script>
 import StarsArea from '../components/StarsArea.vue'
 import StarRaceBay from '../components/StarRaceBay.vue'
-import BottomNavigation from '@/components/BottomNavigation.vue'
 export default {
   name: "Baodao",
   data() {
@@ -21,14 +20,14 @@ export default {
   },
   components: {
     StarsArea,
-    BottomNavigation,
     StarRaceBay
   }
 };
 </script>
 
-<style >
+<style>
 .home-container {
   background-color: #FFF1CB;
 }
+
 </style>
