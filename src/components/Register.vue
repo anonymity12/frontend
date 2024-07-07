@@ -1,7 +1,7 @@
 <template>
   <body id="register-page">
-    <el-form class="login-container" label-position="left">
-      <h3 class="login_title">加入🦋元宇宙</h3>
+    <el-form class="register-container" label-position="left">
+      <h3 class="login_title">加入🦋乖娃娃App</h3>
       <el-form-item>
         <el-input
           type="text"
@@ -27,6 +27,14 @@
         :picker-options="pickerOptions">
         </el-date-picker>
       </el-form-item>
+      <el-form-item>
+        <el-input
+          type="text"
+          v-model="registerForm.inviteCode"
+          auto-complete="off"
+          placeholder="邀请码,找天天要"
+        ></el-input>
+      </el-form-item>
       
       <el-form-item style="width: 100%">
         <el-button
@@ -49,7 +57,8 @@ export default {
       registerForm: {
         name: "",
         password: "",
-        birthday: new Date()
+        birthday: new Date(),
+        inviteCode: "",
       },
       pickerOptions: {
         disabledDate(time) {
@@ -69,7 +78,28 @@ export default {
               date.setTime(date.getTime() - 20 * 365 * 3600 * 1000 * 24);
               picker.$emit('pick', date);
             }
-        }]
+        }, {
+          text: '30年前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 30 * 365 * 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+        }, {
+          text: '40年前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 40 * 365 * 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+        }, {
+          text: '50年前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 50 * 365 * 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+        },]
       }
     };
   },
@@ -80,6 +110,7 @@ export default {
         name: this.registerForm.name,
         password: this.registerForm.password,
         birthday: this.registerForm.birthday,
+        inviteCode: this.registerForm.inviteCode,
       }).then((resp) => {
         console.log("register resp", resp)
         let statusCode = resp.data.status
@@ -87,8 +118,10 @@ export default {
           this.$router.replace({path: 'login'})
         } else if (statusCode == 500) {
           this.$message({
-            type: "warning",
-            message: resp.data.msg
+            type: "danger",
+            message: resp.data.msg,
+            offset: window.screen.height / 2,
+            duration: 6000
           })
         }
       });
@@ -109,13 +142,13 @@ export default {
 body {
   margin: 0px;
 }
-.login-container {
+.register-container {
   border-radius: 15px;
   background-clip: padding-box;
   margin: 90px auto;
-  width: 350px;
+  width: 60%;
   padding: 35px 35px 15px 35px;
-  background: #fff;
+  background: #FFF1CB;
   border: 1px solid #eaeaea;
   box-shadow: 0 0 25px #cac6c6;
 }

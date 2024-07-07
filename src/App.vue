@@ -33,5 +33,8 @@ export default {
   background: #444;
   color: #eee;
 }
+.el-message__content {
+  font-size: 28px; /* 设置您想要的字体大小 */
+}
 
 </style>

@@ -26,6 +26,14 @@
           >登录</el-button
         >
       </el-form-item>
+      <el-form-item style="width: 100%">
+        <el-button
+          type="danger"
+          style="width: 100%; border: none;margin-top: 10px;"
+          @click="toRegister"
+          >没有账号？去注册</el-button
+        >
+      </el-form-item>
     </el-form>
   </body>
 </template>
@@ -64,12 +72,26 @@ export default {
           var path = this.$route.query.redirect
           this.$router.replace({path: path === '/' || path === undefined ? '/' : path})
         } else {
-          this.$message("账号或密码错误，请再检查一下")
+          this.$message({
+            type: "danger",
+            message: "账号或密码错误",
+            offset: window.screen.height / 2,
+            duration: 4000
+          })
+          
         }
       }, (reason) => {
-        this.$message("服务器错误，请联系天天")
+        this.$message({
+          type: "warning",
+          message: "服务器错误，请联系天天",
+          offset: window.screen.height / 3,
+          duration: 4000,
+        })
       });
     },
+    toRegister() {
+      this.$router.replace({path: '/register'})
+    }
   },
 };
 </script>
