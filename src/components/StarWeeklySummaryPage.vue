@@ -49,13 +49,13 @@ export default {
         return {
             userAndTheirStarCount: [
                 {
-                    userId: 15,
+                    userId: 0,
                     username: 'tt1',
                     userface: '../assets/starSmile.jpg',
                     cnt: 3
                 },
                 {
-                    userId: 14,
+                    userId: 1,
                     username: 'tt2',
                     userface: '../assets/starSmile.jpg',
                     cnt: 5

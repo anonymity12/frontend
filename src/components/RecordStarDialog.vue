@@ -12,7 +12,7 @@
                 </el-tag>
             </div>
             <el-input placeholder="我深蹲了10个 / 我读了5分钟书" v-model="awardReason">
-                <el-button type="text" slot="append" icon="el-icon-check" style="color: green; font-size: 28px;" @click=recordOneStar></el-button>
+                <el-button type="text" slot="append" icon="el-icon-check" style="color: green; font-size: 28px;" v-if="awardReason" @click=recordOneStar></el-button>
             </el-input>
         </el-dialog>
     </div>
