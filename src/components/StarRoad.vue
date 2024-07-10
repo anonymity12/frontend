@@ -101,15 +101,15 @@ export default {
       data.forEach(item => {
         userfaceList.push(item.userface)
         usernameList.push(item.username)
-        starRow0.push(item.stars[0]? (item.stars[0]['starDescription']?item.stars[0]['starDescription']:"--"):"xx")
-        starRow1.push(item.stars[1]? (item.stars[1]['starDescription']?item.stars[1]['starDescription']:"--"):"xx")
-        starRow2.push(item.stars[2]? (item.stars[2]['starDescription']?item.stars[2]['starDescription']:"--"):"xx")
-        starRow3.push(item.stars[3]? (item.stars[3]['starDescription']?item.stars[3]['starDescription']:"--"):"xx")
-        starRow4.push(item.stars[4]? (item.stars[4]['starDescription']?item.stars[4]['starDescription']:"--"):"xx")
-        starRow5.push(item.stars[5]? (item.stars[5]['starDescription']?item.stars[5]['starDescription']:"--"):"xx")
-        starRow6.push(item.stars[6]? (item.stars[6]['starDescription']?item.stars[6]['starDescription']:"--"):"xx")
-        starRow7.push(item.stars[7]? (item.stars[7]['starDescription']?item.stars[7]['starDescription']:"--"):"xx")
-        starRow8.push(item.stars[8]? (item.stars[8]['starDescription']?item.stars[8]['starDescription']:"--"):"xx")
+        starRow0.push(item.stars[0]?item.stars[0]['starDateTime'].substring(0,10)+"⏰"+item.stars[0]['starDescription']:"xx")
+        starRow1.push(item.stars[1]?item.stars[1]['starDateTime'].substring(0,10)+"⏰"+item.stars[1]['starDescription']:"xx")
+        starRow2.push(item.stars[2]?item.stars[2]['starDateTime'].substring(0,10)+"⏰"+item.stars[2]['starDescription']:"xx")
+        starRow3.push(item.stars[3]?item.stars[3]['starDateTime'].substring(0,10)+"⏰"+item.stars[3]['starDescription']:"xx")
+        starRow4.push(item.stars[4]?item.stars[4]['starDateTime'].substring(0,10)+"⏰"+item.stars[4]['starDescription']:"xx")
+        starRow5.push(item.stars[5]?item.stars[5]['starDateTime'].substring(0,10)+"⏰"+item.stars[5]['starDescription']:"xx")
+        starRow6.push(item.stars[6]?item.stars[6]['starDateTime'].substring(0,10)+"⏰"+item.stars[6]['starDescription']:"xx")
+        starRow7.push(item.stars[7]?item.stars[7]['starDateTime'].substring(0,10)+"⏰"+item.stars[7]['starDescription']:"xx")
+        starRow8.push(item.stars[8]?item.stars[8]['starDateTime'].substring(0,10)+"⏰"+item.stars[8]['starDescription']:"xx")
         // special task mask for mom
         if (item.username == "小花") {
           //splice(-1, 1)[0];
