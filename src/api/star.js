@@ -42,3 +42,10 @@ export function apiGetStarWeeklyData() {
     });
 }
 
+export function apiGetStarRoad() {
+    return request({
+        url: "/api/star/getStarRoad",
+        method: "get"
+    });
+}
+

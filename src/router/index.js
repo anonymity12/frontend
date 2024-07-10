@@ -26,6 +26,7 @@ import TaskMatrix from '@/components/TaskMatrix'
 import StarBubbleBay from '@/components/StarBubbleBay'
 import UseStarImageCircle from '@/components/UseStarImageCircle'
 import StarWeeklySummaryPage from '@/components/StarWeeklySummaryPage'
+import StarRoad from '@/components/StarRoad'
 
 Vue.use(Router)
 
@@ -231,6 +232,12 @@ export default new Router({
       meta: {
         requireAuth: true
       },
+    },
+    {
+      path: '/starRoad',
+      name: 'StarRoad',
+      component: StarRoad,
+      
     },
   ]
 })

@@ -50,7 +50,7 @@ export default {
         },
         openWeeklySummaryPage() {
             console.log("openWeeklySummaryPage")
-            this.$router.push({ path: '/weeklySummary' })
+            this.$router.push({ path: '/starRoad' })
         },
     },
     mounted() {
