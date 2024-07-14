@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <el-dialog title="星星细节" :visible.sync="dialogStatus.show" width="100%">
+    <div >
+        <el-dialog custom-class="my-dialog" title="这颗星星的档案" :visible.sync="dialogStatus.show" width="80%" height="40%" >
             <img :src="starModel.imageUrl" alt="星图" style="width: 60px; height: 60px;" />
-            <p><strong>缘由：</strong> {{ starModel.reason }} </p>
+            <p><strong>星语:</strong> {{ starModel.reason }} </p>
         </el-dialog>
     </div>
 </template>
@@ -21,3 +21,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.my-dialog {
+  background: #FFF1CB; 
+}
+</style>

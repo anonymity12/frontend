@@ -1,6 +1,6 @@
 <template>
     <div id="statistic-container">
-    <span><b>🏅️本周排行榜🏅️</b></span>
+    <span><b>🏅️星汉灿烂榜🏅️</b></span>
         <div class="all-statistic" v-for="item in userAndTheirStarCount" :key="item.userId">
             <div style="display: flex; justify-content: right;align-items: center;" @click="openWeeklySummaryPage()">
                 <el-avatar 
@@ -50,7 +50,7 @@ export default {
         },
         openWeeklySummaryPage() {
             console.log("openWeeklySummaryPage")
-            this.$router.push({ path: '/starRoad' })
+            this.$router.push({ path: '/weeklySummary' })
         },
     },
     mounted() {

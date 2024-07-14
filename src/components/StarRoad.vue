@@ -24,6 +24,7 @@
     </el-table-column>
   </el-table>
   <el-button>100金币查看所有神秘任务</el-button>
+  <el-button @click="this.$router.push({ path: '/weeklySummary' })">一周星进展</el-button>
   <div style="height: 80px"/>
   </div>
 </template>
@@ -87,8 +88,8 @@ export default {
     },
     formatSettings(data) {
       if (!data || !data.length) return []
-      let userfaceList = ['面部识别']
-      let usernameList = ['世界代号']
+      let userfaceList = ['头像']
+      let usernameList = ['名称代号']
       let starRow0 = ['🌟']
       let starRow1 = ['🌟']
       let starRow2 = ['🌟']

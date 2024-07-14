@@ -1,6 +1,6 @@
 <template>
     <el-menu class="bottom-navigation" mode="horizontal" :default-active="activeTab" active-text-color="#00FF00" @select="handleTabSelect">
-        <el-menu-item index="baodao">🌟宝岛</el-menu-item>
+        <el-menu-item index="baodao">🌟星海湾</el-menu-item>
         <el-menu-item index="profile">🌞我</el-menu-item>
     </el-menu>
 </template>

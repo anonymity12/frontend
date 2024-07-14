@@ -27,16 +27,18 @@
 
 根据排名,本周大奖金额 💴 分配如下:
 
-<img style="width: 50px; height: 50px;border-radius: 50%;" :src="firstManFace"/> {{ firstManName }} : $120
+<img style="width: 50px; height: 50px;border-radius: 50%;" :src="firstManFace"/> {{ firstManName }} : $58
  
-<img style="width: 50px; height: 50px;border-radius: 50%;" :src="secondManFace"/> {{ secondManName }} : $88
+<img style="width: 50px; height: 50px;border-radius: 50%;" :src="secondManFace"/> {{ secondManName }} : $19
  
-<img style="width: 50px; height: 50px;border-radius: 50%;" :src="thirdManFace"/> {{ thirdManName }} : $66
+<img style="width: 50px; height: 50px;border-radius: 50%;" :src="thirdManFace"/> {{ thirdManName }} : $5.5
 
-其他人 : {{ othersName }} 分别得到 $5
+其他人 : {{ othersName }} 分别得到 $2
 
 一个人一旦全身心投入，就会触动冥冥中的天意 --- 《高效能人士的七个习惯》
  
+
+<el-button @click="gotoStarRoad">一路星光🌟</el-button>
 </p>
 </div>
 </template>
@@ -103,6 +105,9 @@ export default {
         },
         goBack() {
             window.history.back();
+        },
+        gotoStarRoad() {
+            this.$router.push("/starRoad")
         },
     },
     mounted() {
