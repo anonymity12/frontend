@@ -21,7 +21,7 @@
             <el-avatar :size="50" :src="currentUser.userface">
             </el-avatar>
           </el-row>
-          <el-table :data="sportTimesArr" style="width: 100%">
+          <el-table :data="sportTimesArr" >
             <el-table-column prop="sportDateTime" label="时间"></el-table-column>
             <el-table-column prop="sportContent" label="内容"></el-table-column>
           </el-table>
@@ -75,6 +75,9 @@ export default {
     };
   },
   methods: {
+    tableRowClassName({row, rowIndex}) {
+      return 'success-row';
+    },
     showChangeCompetitorDialog() {
       console.log("change dialog showed");
       this.changeCompetitorDialog.show = true;
@@ -103,6 +106,10 @@ export default {
     handleSelectCompetitor(competitorId) {
       this.competitorId = competitorId;
       this.fetchOtherUserInfo();
+      this.getCompetitorRecords()
+    },
+    goBack() {
+      window.history.back();
     },
     // ---- mounted() methods: -------
     getAllMySportRecords() {
@@ -138,9 +145,6 @@ export default {
         this.competitorUser = res.data.obj;
       })
     },
-    goBack() {
-      window.history.back();
-    },
   },
   mounted() {
     this.getAllMySportRecords();
@@ -170,5 +174,8 @@ export default {
   margin-left: auto;
   margin-right: auto;
   text-align:center;
+}
+.el-table .success-row {
+  background: #ffcccc;
 }
 </style>

@@ -51,6 +51,7 @@ export default {
     methods: {
         fetchAllUserInfo() {
             apiGetAllUserForSportList().then(res => {
+                console.log("tt>>> fetchAllUserInfo: res: ", res)
                 this.allUserList = res.data.obj;
                 // todo should filter out myself
             });
@@ -67,8 +68,12 @@ export default {
         },
         handleSelectCompetitor(selectedCompetitor) {
             this.$emit('competitorSelected', selectedCompetitor.userId);
-            dialogState.show = false;
+            this.dialogState.show = false;
         },
+    },
+    mounted() {
+        console.log("mounted!!!")
+        this.fetchAllUserInfo();
     }
 }
 </script>
