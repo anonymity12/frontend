@@ -60,6 +60,7 @@ export default {
                         type: "success",
                         message: res.data.msg
                     })
+                    this.awardReason = ""
                     // todo emit a signal to let StarArea to refresh
                     this.$emit("recordDone");
                 } else {

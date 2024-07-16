@@ -7,16 +7,20 @@
         </el-row>
         <el-row class="today-description">
             <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
-            <p>乖娃娃第 {{ this.cosmosTime }} 天👍 总计获得星星 {{ this.starCounts }} 个</p>
+            <p>也是你和这个世界互动的第 {{ this.userLifePassed }} 天 ⌚️, 总计获得星星 {{ this.starCounts }} 个。 继续加油获得星星吧</p>
         </el-row>
         <el-row align="bottom">
-            <el-col :span="20" class="i-need-margin">
+            <el-col :span="24" class="i-need-margin">
                 <el-progress :stroke-width="12" :percentage="this.starCounts" :color="myColor"></el-progress>
             </el-col>
-            <el-col :span="4">
-                <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:40px; margin-top: 2px; float: right; text-shadow: 2px 2px 3px red;" @click="recordOneStar"></i>
-            </el-col>
         </el-row>
+        <el-row>
+            <p style="float: left; margin-top: 5px;"> </p>
+            <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:50px; margin-top: 2px; text-shadow: 2px 2px 3px red;" @click="recordOneStar"></i>
+            <p style="float: right;margin-top: 5px; "> </p>
+
+        </el-row>
+
         <div class="all-stars">
             <div v-for="star in stars" :key="star.starDateTime">
                 <img src="../assets/starSmile.jpg"  @click="openStarDetail(star)" alt="星星图" style="width: 50px; height: 50px;">
@@ -30,6 +34,7 @@
 
 <script>
 import { apiGetAllMyStarRecords } from "@/api/star"
+import { getLifeIndicator } from '@/api/user'
 import RecordStarDialog from './RecordStarDialog'
 import ReviewStarDialog from './ReviewStarDialog'
 
@@ -55,6 +60,7 @@ export default {
                 reason: '今天做了10个深蹲'
             },
             myColor: "#00FF00",
+            userLifePassed: 10000,
         }
     },
     methods: {
@@ -65,6 +71,7 @@ export default {
             apiGetAllMyStarRecords().then(res => {
                 console.log("apiGetAllMyStarRecords return: ", res)
                 this.stars = res.data.obj
+                this.$emit("refreshStarRaceBay")
             })
         },
         openStarDetail(star) {
@@ -73,10 +80,21 @@ export default {
                 reason: star.starDescription
             }
             this.starReviewDialogStatus.show = true
+        },
+        callGetLifeIndicator() {
+            getLifeIndicator().then(resp => {
+                if (resp.status === 200) {
+                    this.userLifePassed = resp.data.obj.dayPassed
+                    console.log("this.userLifePassed", this.userLifePassed)
+                } else {
+                    console.log("can not get user life day passed from backend")
+                }
+            })
         }
     },
     mounted() {
         this.getAllMyStarRecords();
+        this.callGetLifeIndicator();
     },
     computed: {
         cosmosTime() {

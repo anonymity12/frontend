@@ -2,8 +2,8 @@
   <el-container class="home-container">
     <!-- 主体， 宝岛：脸面，一进来 就是 我的本周小星 数量 和 其他人 本周小星 数量 页面 -->
       <el-main>
-        <stars-area></stars-area>
-        <StarRaceBay/>
+        <stars-area @refreshStarRaceBay="refreshRaceCondition" ref="childA"/>
+        <StarRaceBay ref="childB"/>
         <div style="height: 60px;"></div>
       </el-main>
   </el-container>
@@ -17,6 +17,12 @@ export default {
   data() {
     return {
     };
+  },
+  methods: {
+    refreshRaceCondition() {
+      console.log("refresh childB starRaceBay")
+      this.$refs.childB.getStarRecordsOfAllUsersRecently();
+    }
   },
   components: {
     StarsArea,
