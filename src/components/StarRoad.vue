@@ -80,10 +80,15 @@ export default {
   },
   methods: {
     getStarRoad() {
+      const loading = this.$loading({
+                lock: true,
+                text: '请稍候...',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+                });
       apiGetStarRoad().then(res => {
-        console.log(res.data.obj);
         this.tableData = this.formatSettings(res.data.obj);
-        console.log(this.tableData);
+        loading.close()
       })
     },
     formatSettings(data) {

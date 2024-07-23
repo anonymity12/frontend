@@ -29,12 +29,17 @@ export default {
     data() {
         return {
             awardReason: '',
-            suggestions: ['我运动了1分钟', '我做饭了', '我洗碗了','我扫地了','我读书了3分钟'],
+            suggestions: ['我买菜了','我运动了', '我做饭了', '我洗碗了','我扫地了','我读书了3分钟','我洗澡了', '我刷牙了', '我按摩了','我深蹲了','我抬起胳膊了'],
         }
     },
     methods: {
         recordOneStar() {
-            // construct a starObj
+            const loading = this.$loading({
+                lock: true,
+                text: '请稍候...',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+                });
             const currentTime = new Date();
             const options = {
                 year: 'numeric',
@@ -55,13 +60,13 @@ export default {
             apiRecordOneStar(starObj).then(res => {
                 console.log("apiRecordOneStar return: ", res)
                 this.dialogStatus.show = false
+                loading.close()
                 if (res.data.status == 200) {
                     this.$message({
                         type: "success",
                         message: res.data.msg
                     })
                     this.awardReason = ""
-                    // todo emit a signal to let StarArea to refresh
                     this.$emit("recordDone");
                 } else {
                     this.$message({
