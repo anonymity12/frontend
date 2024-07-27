@@ -29,15 +29,15 @@
 
 根据排名,本周金币 💴 分配如下:
 
-<img style="width: 50px; height: 50px;border-radius: 50%;" :src="firstManFace"/> {{ firstManName }} :  💴 58 
+<img style="width: 50px; height: 50px;border-radius: 50%;" :src="firstManFace"/> {{ firstManName }} :  💴 32
  
-<img style="width: 50px; height: 50px;border-radius: 50%;" :src="secondManFace"/> {{ secondManName }} :💴 19  
+<img style="width: 50px; height: 50px;border-radius: 50%;" :src="secondManFace"/> {{ secondManName }} :💴 18  
  
-<img style="width: 50px; height: 50px;border-radius: 50%;" :src="thirdManFace"/> {{ thirdManName }} :💴  5.5  
+<img style="width: 50px; height: 50px;border-radius: 50%;" :src="thirdManFace"/> {{ thirdManName }} :💴  8  
 
 其他人 : {{ othersName }} 分别得到 💴 2
 
-一个人一旦全身心投入，就会触动冥冥中的天意 --- 《高效能人士的七个习惯》
+蒙台梭利所认为的正常孩子是：智慧早熟、已学会克制自我、平静地生活，以及宁可有秩序地工作而不愿无所事事 --- 《读懂孩子的心》樊登
 
 </p>
 <el-button type="danger" style="margin-bottom: 50px;" @click="gotoStarRoad">👉去往一路星光🌟</el-button>
