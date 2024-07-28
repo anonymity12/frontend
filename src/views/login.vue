@@ -7,7 +7,7 @@
           type="text"
           v-model="loginForm.loginName"
           auto-complete="off"
-          placeholder="账号"
+          placeholder="你的名字"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -15,7 +15,7 @@
           type="password"
           v-model="loginForm.password"
           auto-complete="off"
-          placeholder="密码"
+          placeholder="进岛口令"
         ></el-input>
       </el-form-item>
       <el-form-item style="width: 100%">
