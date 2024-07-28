@@ -40,7 +40,7 @@
 蒙台梭利所认为的正常孩子是：智慧早熟、已学会克制自我、平静地生活，以及宁可有秩序地工作而不愿无所事事 --- 《读懂孩子的心》樊登
 
 </p>
-<el-button type="danger" style="margin-bottom: 50px;" @click="gotoStarRoad">👉去往一路星光🌟</el-button>
+<el-button type="danger" style="margin-bottom: 50px;" @click="gotoStarRoad">👉去往星海栈道🌟</el-button>
 
 </div>
 </template>

@@ -35,11 +35,13 @@
                 <div class="user-info-footer"></div>
                 <ul class="menu">
                     <li class="menu-item" @click="gotoSport">运动打卡</li>
-                    <li class="menu-item">血压记录(还没做）</li>
                     <li class="menu-item" @click="gotoSleep">睡觉打卡</li>
                     <li class="menu-item" @click="gotoDabian">大便打卡</li>
                     <li class="menu-item" @click="gotoSixLog">朋友圈</li>
-                    <li class="menu-item">设置</li>
+                    <li class="menu-item" @click="gotoLogin">重新登陆</li>
+                    <li class="menu-item">血压记录(还没做）</li>
+                    <li class="menu-item">体重记录(还没做）</li>
+                    <li class="menu-item">更多设置(还没做）</li>
                 </ul>
             </el-form>
             <!-- <el-button @click="enterEditStatus()">{{ buttonText }}</el-button> -->
@@ -188,6 +190,9 @@ export default {
         gotoSport() {
             this.$router.push("/sportcompetition")
         },
+        gotoLogin() {
+            this.$router.push("/login")
+        }
     },
     mounted() {
         apiGetUserInfo().then(res => {
