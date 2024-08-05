@@ -1,9 +1,9 @@
 <template>
     <div id="stars-container">
         <el-row type="flex" class="progress-star" justify="space-between">
-            <el-progress class="day-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.dayProgress" color="#32A937"></el-progress>
-            <el-progress class="month-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.monthProgress" color="#f56c6c"></el-progress>
-            <el-progress class="year-progress" type="circle" :width="60" :stroke-width="3" :percentage="this.yearProgress" color="#BCA849"></el-progress>
+            <el-progress class="day-progress" type="circle" :width="60" :stroke-width="7" :percentage="this.dayProgress" :color="customColors"></el-progress>
+            <el-progress class="month-progress" type="circle" :width="60" :stroke-width="7" :percentage="this.monthProgress" :color="customColors"></el-progress>
+            <el-progress class="year-progress" type="circle" :width="60" :stroke-width="7" :percentage="this.yearProgress" :color="customColors"></el-progress>
         </el-row>
         <el-row class="today-description">
             <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
@@ -61,6 +61,11 @@ export default {
             },
             myColor: "#00FF00",
             userLifePassed: 10000,
+            customColors: [
+                {color: '#f56c6c', percentage: 20},
+                {color: '#e6a23c', percentage: 40},
+                {color: '#5cb87a', percentage: 100},
+            ],
         }
     },
     methods: {
@@ -110,7 +115,7 @@ export default {
         dayProgress() {
             let now = new Date()
             let curHour = now.getHours()
-            return Number(((curHour / 24) * 100).toFixed(2));
+            return Number((100 - ((curHour / 24) * 100)).toFixed(2));
         },
         monthProgress() {
             let today = new Date(); // 获取当前日期
@@ -120,7 +125,7 @@ export default {
             let lastDayOfMonth = new Date(year, month + 1, 0); // 获取本月最后一天,5月31日
             let totalDaysInMonth = lastDayOfMonth.getDate(); // 本月的总天数,31
             let dayOfMonth = today.getDate(); // 当前日期是本月的第几天， 5月7日，返回7
-            let percentage = (dayOfMonth / totalDaysInMonth) * 100; // 计算百分比
+            let percentage = 100 - (dayOfMonth / totalDaysInMonth) * 100; // 计算百分比
             return Number(percentage.toFixed(2)); // 保留两位小数
         },
         yearProgress() {
@@ -136,7 +141,7 @@ export default {
             let isLeapYear = (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
             let totalDaysInYear = isLeapYear ? 366 : 365;
             // 计算百分比
-            let percentage = (daysPassed / totalDaysInYear) * 100;
+            let percentage = 100 - (daysPassed / totalDaysInYear) * 100;
             return Number(percentage.toFixed(2)); // 保留两位小数
         },
         today5StarProgress() {

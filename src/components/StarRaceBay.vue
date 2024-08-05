@@ -1,6 +1,6 @@
 <template>
     <div id="statistic-container">
-    <span><b>🏅️星汉灿烂榜🏅️</b></span>
+    <span><b>🏅️星星银行🏅️</b></span>
         <div class="all-statistic" v-for="item in userAndTheirStarCount" :key="item.userId">
             <div style="display: flex; justify-content: right;align-items: center;" @click="openWeeklySummaryPage()">
                 <el-avatar 
