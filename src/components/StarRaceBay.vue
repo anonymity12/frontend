@@ -2,7 +2,7 @@
     <div id="statistic-container">
     <span><b>🏅️星星银行🏅️</b></span>
         <div class="all-statistic" v-for="item in userAndTheirStarCount" :key="item.userId">
-            <div style="display: flex; justify-content: right;align-items: center;" @click="openWeeklySummaryPage()">
+            <div style="display: flex; justify-content: right;align-items: center;" @click="gotoStarRoad()">
                 <el-avatar 
                     style="color: #fff; margin: 20px;"
                     :src="item.userface"
@@ -49,8 +49,10 @@ export default {
             })
         },
         openWeeklySummaryPage() {
-            console.log("openWeeklySummaryPage")
             this.$router.push({ path: '/weeklySummary' })
+        },
+        gotoStarRoad() {
+            this.$router.push("/starRoad")
         },
     },
     mounted() {

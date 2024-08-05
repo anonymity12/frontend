@@ -24,7 +24,7 @@
     </el-table-column>
   </el-table>
   <el-button>100金币查看所有神秘任务</el-button>
-  <el-button @click="this.$router.push({ path: '/weeklySummary' })">一周星进展</el-button>
+  <el-button @click="openWeeklySummaryPage()">一周星进展</el-button>
   <div style="height: 80px"/>
   </div>
 </template>
@@ -134,6 +134,9 @@ export default {
     },
     goBack() {
       window.history.back();
+    },
+    openWeeklySummaryPage() {
+      this.$router.push({ path: '/weeklySummary' })
     },
   },
   mounted() {
