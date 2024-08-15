@@ -11,7 +11,7 @@
         </el-row>
         <el-row align="bottom">
             <el-col :span="24" class="i-need-margin">
-                <el-progress :stroke-width="12" :percentage="this.starCounts" :color="myColor"></el-progress>
+                <el-progress :stroke-width="12" :percentage="this.starToThousandPrecentage" :color="myColor"></el-progress>
             </el-col>
         </el-row>
         <el-row>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { apiGetAllMyStarRecords } from "@/api/star"
+import { apiGetMyThisWeekStarRecords } from "@/api/star"
 import { getLifeIndicator } from '@/api/user'
 import RecordStarDialog from './RecordStarDialog'
 import ReviewStarDialog from './ReviewStarDialog'
@@ -73,8 +73,8 @@ export default {
             this.starConfirmDialogStatus.show = true
         },
         getAllMyStarRecords() {
-            apiGetAllMyStarRecords().then(res => {
-                console.log("apiGetAllMyStarRecords return: ", res)
+            apiGetMyThisWeekStarRecords().then(res => {
+                console.log("apiGetMyThisWeekStarRecords return: ", res)
                 this.stars = res.data.obj
                 this.$emit("refreshStarRaceBay")
             })
@@ -111,6 +111,9 @@ export default {
         },
         starCounts() {
             return this.stars.length;
+        },
+        starToThousandPrecentage() {
+            return this.stars.length / 10;
         },
         dayProgress() {
             let now = new Date()
