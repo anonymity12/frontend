@@ -7,7 +7,7 @@
         </el-row>
         <el-row class="today-description">
             <p>今天是 {{ this.yearString }} 年 第 {{ this.xthWeek }} 周, 第 {{ this.xthDay }} 天</p>
-            <p>也是你和这个世界互动的第 {{ this.userLifePassed }} 天 ⌚️, 总计获得星星 {{ this.starCounts }} 个。 继续加油获得星星吧</p>
+            <p>也是你和这个世界互动的第 {{ this.userLifePassed }} 天 ⌚️, 总计获得星星 {{ this.starCnts }} 个。 继续加油获得星星吧</p>
         </el-row>
         <el-row align="bottom">
             <el-col :span="24" class="i-need-margin">
@@ -27,13 +27,14 @@
             </div>
         </div>
         <div class="botton-divider"/>
-        <RecordStarDialog @recordDone="getAllMyStarRecords" :dialogStatus="starConfirmDialogStatus" :reason="awardReason"></RecordStarDialog>
+        <RecordStarDialog @recordDone="getMyThisWeekRecords" :dialogStatus="starConfirmDialogStatus" :reason="awardReason"></RecordStarDialog>
         <ReviewStarDialog :dialogStatus="starReviewDialogStatus" :starModel="clickedStarModel"></ReviewStarDialog>
     </div>
 </template>
 
 <script>
 import { apiGetMyThisWeekStarRecords } from "@/api/star"
+import { apiGetAllMyStarCnts } from "@/api/star"
 import { getLifeIndicator } from '@/api/user'
 import RecordStarDialog from './RecordStarDialog'
 import ReviewStarDialog from './ReviewStarDialog'
@@ -48,6 +49,7 @@ export default {
                     starDescription: 'stay happy',
                 },
             ],
+            starCnts: 1,
             starConfirmDialogStatus: {
                 show: false
             },
@@ -72,11 +74,14 @@ export default {
         recordOneStar() {
             this.starConfirmDialogStatus.show = true
         },
-        getAllMyStarRecords() {
+        getMyThisWeekRecords() {
             apiGetMyThisWeekStarRecords().then(res => {
                 console.log("apiGetMyThisWeekStarRecords return: ", res)
                 this.stars = res.data.obj
                 this.$emit("refreshStarRaceBay")
+            })
+            apiGetAllMyStarCnts().then(res => {
+                this.starCnts = res.data.obj
             })
         },
         openStarDetail(star) {
@@ -98,7 +103,7 @@ export default {
         }
     },
     mounted() {
-        this.getAllMyStarRecords();
+        this.getMyThisWeekRecords();
         this.callGetLifeIndicator();
     },
     computed: {
@@ -109,11 +114,8 @@ export default {
             console.log(`今天到2021年6月6日共计 ${diffInDays} 天`);
             return diffInDays
         },
-        starCounts() {
-            return this.stars.length;
-        },
         starToThousandPrecentage() {
-            return this.stars.length / 10;
+            return this.starCnts / 10;
         },
         dayProgress() {
             let now = new Date()
@@ -236,7 +238,7 @@ export default {
     margin-top: 16px;
 }
 .today-description {
-    font-size:14px;
-    font-family: 'MaShanZheng-Regular', sans-serif;
+    font-size: 14px;
+    font-family: sans-serif;
 }
 </style>

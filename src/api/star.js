@@ -13,6 +13,12 @@ export function apiGetAllMyStarRecords() {
         method: "get"
     });
 }
+export function apiGetAllMyStarCnts() {
+    return request({
+        url: "/api/star/getAllMyStarCnts",
+        method: "get"
+    });
+}
 export function apiGetMyThisWeekStarRecords() {
     return request({
         url: "/api/star/getMyThisWeekStarRecords",
