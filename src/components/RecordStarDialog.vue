@@ -124,10 +124,6 @@ export default {
   height: 220px; /* 根据需要调整高度 */
 }
 
-.scroll-content {
-  animation: scroll 10s linear infinite;
-}
-
 @keyframes scroll {
   0% { transform: translateX(90%); }
   100% { transform: translateX(-90%); }
