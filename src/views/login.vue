@@ -118,7 +118,7 @@ body {
   background: #FFF1CB;
   border: 1px solid #eaeaea;
   padding: 35px 35px 15px 35px;
-  box-shadow: 5px 10px 25px #cac6c6;
+  box-shadow: 5px 5px 5px #fac6c6;
 }
 
 .login_title {

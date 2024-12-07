@@ -103,12 +103,12 @@ body {
 .register-container {
   border-radius: 15px;
   background-clip: padding-box;
-  margin: 90px auto;
+  margin: 10px auto;
   width: 60%;
-  padding: 35px 35px 15px 35px;
+  padding: 5px 15px 5px 15px;
   background: #FFF1CB;
   border: 1px solid #eaeaea;
-  box-shadow: 0 0 25px #cac6c6;
+  box-shadow: 5px 5px 5px #fac6c6;
 }
 
 .login_title {
