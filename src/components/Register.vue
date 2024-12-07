@@ -7,7 +7,7 @@
           type="text"
           v-model="registerForm.name"
           auto-complete="off"
-          placeholder="账号"
+          placeholder="你的名字"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -15,17 +15,16 @@
           type="password"
           v-model="registerForm.password"
           auto-complete="off"
-          placeholder="密码"
+          placeholder="乖娃娃群组口令，默认是123"
         ></el-input>
       </el-form-item>
-      <el-form-item label="出生日期">
-        <el-date-picker
-        v-model="registerForm.birthday"
-        align="right"
-        type="date"
-        placeholder="选择出生日期"
-        :picker-options="pickerOptions">
-        </el-date-picker>
+      <el-form-item>
+        <el-input
+          type="text"
+          v-model="registerForm.birthday"
+          auto-complete="off"
+          placeholder="1984-01-30"
+        ></el-input>
       </el-form-item>
       <el-form-item>
         <el-input
@@ -57,50 +56,9 @@ export default {
       registerForm: {
         name: "",
         password: "",
-        birthday: new Date(),
+        birthday: "",
         inviteCode: "",
       },
-      pickerOptions: {
-        disabledDate(time) {
-            return time.getTime() > Date.now();
-        },
-        shortcuts: [{
-            text: '10年前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 10 * 365 * 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-        }, {
-            text: '20年前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 20 * 365 * 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-        }, {
-          text: '30年前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 30 * 365 * 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-        }, {
-          text: '40年前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 40 * 365 * 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-        }, {
-          text: '50年前',
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 50 * 365 * 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-        },]
-      }
     };
   },
   methods: {
@@ -109,7 +67,7 @@ export default {
       userRegister({
         name: this.registerForm.name,
         password: this.registerForm.password,
-        birthday: this.registerForm.birthday,
+        birthday: new Date(this.registerForm.birthday),
         inviteCode: this.registerForm.inviteCode,
       }).then((resp) => {
         console.log("register resp", resp)
