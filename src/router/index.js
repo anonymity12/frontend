@@ -27,6 +27,7 @@ import StarBubbleBay from '@/components/StarBubbleBay'
 import UseStarImageCircle from '@/components/UseStarImageCircle'
 import StarWeeklySummaryPage from '@/components/StarWeeklySummaryPage'
 import StarRoad from '@/components/StarRoad'
+import SixLog2 from '@/components/SixLog2'
 
 Vue.use(Router)
 
@@ -238,6 +239,14 @@ export default new Router({
       name: 'StarRoad',
       component: StarRoad,
       
+    },
+    {
+      path: '/sixlog2',
+      name: 'SixLog2',
+      component: SixLog2,
+      meta: {
+        requireAuth: true
+      },
     },
   ]
 })
