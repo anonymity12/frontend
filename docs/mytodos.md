@@ -25,12 +25,12 @@ https://blog.csdn.net/ZYS10000/article/details/107601130
 
 howto visit family tree
 
-http://101.43.166.211:8089/#/jiapu
+http://myIp:8089/#/jiapu
 
 
 family tree operation ui:
 
-http://101.43.166.211:8089/#/jiapuoperation
+http://myIp:8089/#/jiapuoperation
 
 ---
 

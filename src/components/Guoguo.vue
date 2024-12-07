@@ -55,14 +55,14 @@ export default {
       this.boxShow.show = true 
     },
     getUsername() {
-      var _usernameUrl = 'http://101.43.166.211:8081/users/currentUsername'
+      var _usernameUrl = 'http://myIp:8081/users/currentUsername'
       this.$axios.get(_usernameUrl).then(res => {
         console.log("request for user name from: " + _usernameUrl)
         console.log("and response for username: " + res.data)
       })
     },
     getOwnerInfo() {
-      var _userInfoUrl = 'http://101.43.166.211:8081/users/' + this.pageOwner + '/getInfo'
+      var _userInfoUrl = 'http://myIp:8081/users/' + this.pageOwner + '/getInfo'
       this.$axios.get(_userInfoUrl).then(res => {
         console.log("request for user info from: " + _userInfoUrl)
         this.user = res.data

@@ -24,28 +24,28 @@ export function pingpong(data) {
   })
 }
 
-// http://101.43.166.211:8081/flies/yy/getAll
+// http://myIp:8081/flies/yy/getAll
 export function getFlyInfo(data) {
   return request({
     url: '/flies/' + data + '/getAll',
     method: 'get'
   })
 }
-// http://101.43.166.211:8081/ranks/' + this.flyOwner + '/getMyRank'
+// http://myIp:8081/ranks/' + this.flyOwner + '/getMyRank'
 export function getMyRank(who) {
   return request({
     url: '/ranks/' + who + '/getMyRank',
     method: 'get',
   })
 }
-// this.$axios.post(`http://101.43.166.211:8081/flies/growStatus/${row.id}`)
+// this.$axios.post(`http://myIp:8081/flies/growStatus/${row.id}`)
 export function postGrowCmd(itemId) {
   return request({
     url: '/flies/growStatus/' + itemId,
     method: 'post',
   })
 }
-// this.$axios.post(`http://101.43.166.211:8081/flies/releaseStatus/${row.id}`)
+// this.$axios.post(`http://myIp:8081/flies/releaseStatus/${row.id}`)
 export function postReleaseCmd(itemId) {
   return request({
     url: '/flies/releaseStatus/' + itemId,
@@ -53,7 +53,7 @@ export function postReleaseCmd(itemId) {
   })
 }
 
-// "http://101.43.166.211:8081/flies/" + this.owner + "/newItem";
+// "http://myIp:8081/flies/" + this.owner + "/newItem";
 export function addNewFly(owner, data) {
   return request({
     url: '/flies/' + owner + '/newItem',
@@ -62,7 +62,7 @@ export function addNewFly(owner, data) {
   })
 
 }
-// "http://101.43.166.211:8081/users/validParent"
+// "http://myIp:8081/users/validParent"
 export function validParent(data) {
   return request({
     url: '/users/validParent',

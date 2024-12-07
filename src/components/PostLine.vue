@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         initPostLine() {
-            var allPostsUrl = 'http://101.43.166.211:8081/posts/all'
+            var allPostsUrl = 'http://myIp:8081/posts/all'
             this.$axios.get(allPostsUrl).then(res => {
                 console.log("request for all posts: " + allPostsUrl)
                 this.items = res.data
