@@ -1,18 +1,13 @@
 <template>
   <div id="app">
     <router-view/>
-    <bottom-navigation></bottom-navigation>
   </div>
 </template>
 
 <script>
-import BottomNavigation from './components/BottomNavigation.vue'
 
 export default {
-  name: 'App',
-  components: {
-    BottomNavigation
-  }
+  name: 'App'
 }
 </script>
 

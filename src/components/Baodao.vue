@@ -6,12 +6,14 @@
         <StarRaceBay ref="childB"/>
         <div style="height: 60px;"></div>
       </el-main>
+      <bottom-navigation></bottom-navigation>
   </el-container>
 </template>
 
 <script>
 import StarsArea from '../components/StarsArea.vue'
 import StarRaceBay from '../components/StarRaceBay.vue'
+import BottomNavigation from '../components/BottomNavigation.vue'
 export default {
   name: "Baodao",
   data() {
@@ -26,7 +28,8 @@ export default {
   },
   components: {
     StarsArea,
-    StarRaceBay
+    StarRaceBay,
+    BottomNavigation
   }
 };
 </script>

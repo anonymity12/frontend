@@ -47,6 +47,7 @@
             <!-- <el-button @click="enterEditStatus()">{{ buttonText }}</el-button> -->
         </div>
         <div style="height: 40px;">
+        <bottom-navigation></bottom-navigation>
         </div>
     </div>
 </template>
@@ -55,6 +56,7 @@
 import { apiGetUserInfo } from "@/api/user"
 import { apiUpdateUserInfo } from "@/api/user"
 import { uploadImageToServer } from "@/api/user"
+import BottomNavigation from '../components/BottomNavigation.vue'
 
 export default {
     name: 'Profile',
@@ -199,6 +201,9 @@ export default {
                 console.log("profile :get : res:", res)
                 this.currentUser = res.data.obj
             })
+    },
+    components: {
+        BottomNavigation
     }
 }
 </script>
