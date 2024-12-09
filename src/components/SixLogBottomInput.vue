@@ -15,15 +15,33 @@
       </el-row>
 
       <el-row>
-        <div v-if="images.length" class="image-preview">
+        <el-row v-if="images.length" class="image-preview">
             <div v-for="(image, index) in images" :key="index" class="image-container">
                 <img :src="image" alt="Preview" class="preview-image" />
                 <span class="close-btn" @click="removeImage(index)">x</span>
             </div>
-        </div>
-        <el-button @click="addTag('TagA')" type="warning" icon="el-icon-price-tag" circle></el-button>
+        </el-row>
+        <el-row type="flex" justify="end" >
+        <el-col :span="8">
+        <el-select size="small" v-model="value" placeholder="#标签" style="width: 60px;" @change="handleSelectChange">
+          <template slot="prefix">
+            <i class="el-icon-price-tag" style="font-size: 20px; margin-top: 5px;"></i>
+          </template>
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
         <el-button @click="addPic" type="warning" icon="el-icon-picture" circle></el-button>
+        </el-col>
+        <el-col :span="8" >
+        </el-col>
+        <el-col :span="8" >
         <el-button @click="sendLog" type="warning" icon="el-icon-s-promotion" circle></el-button>
+        </el-col>
+        </el-row>
       </el-row>
     </div>
 </template>
@@ -39,18 +57,37 @@ export default({
             },
             images: ["https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png"],
             text: "sld",
+            options: [{
+              value: 'Option1',
+                label: 'Option1'
+              }, {
+                value: 'Option2',
+                label: 'Option2'
+              }, {
+                value: 'Option3',
+                label: 'Option3'
+              }, {
+                value: 'Option4',
+                label: 'Option4'
+              }, {
+                value: 'Option5',
+                label: 'Option5'
+              }],
+            value: '',
         }
     },
     methods: {
         removeImage(index) {
-            // 从数组中移除图片
             this.images.splice(index, 1);
+        },
+        handleSelectChange(selectedValue) {
+          this.addTag(selectedValue); // 当选择改变时，调用addTag函数
         },
         addTag(tag) {
             this.$refs.mytextarea.focus(); 
             const cursorPos = this.$refs.mytextarea.selectionStart;
             const textAreaText = this.sixlog.articleTitle;
-            const tagText = `#${tag} `; 
+            const tagText = ` #${tag} `; 
             this.sixlog.articleTitle = textAreaText.substring(0, cursorPos) + tagText
         },
         addPic() {
