@@ -46,7 +46,7 @@
         :total="total">
       </el-pagination>
     </div>
-    <el-button class="bottom_button" @click="toggleBottomInput" ref="toggleInputBtn">+</el-button>
+    <el-button type="success" icon="el-icon-plus"  class="bottom_button" @click="toggleBottomInput" ref="toggleInputBtn"></el-button>
 
     <transition name="slide">
     <SixLogBottomInput v-show="showBottomInput" ref="sixLogBottomInput"/>
@@ -211,7 +211,9 @@ export default({
 }
 .bottom_button {
     position: fixed;
-    bottom: 0;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .slide-enter-active, .slide-leave-active {
   transition: transform 0.3s ease;
