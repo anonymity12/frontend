@@ -56,7 +56,6 @@
 <script>
 import { getLogs } from "@/api/user"
 import { getSixLogTotalAmount } from "@/api/user"
-import ImgUpload from './ImgUpload'
 import SixLogBottomInput from './SixLogBottomInput'
 import { callSendSixLogApi } from "@/api/user"
 import { apiLikeASixLog } from "../api/sixlog"
@@ -183,7 +182,7 @@ export default({
       window.history.back();
     },
   },
-  components: {ImgUpload,SixLogBottomInput}
+  components: {SixLogBottomInput}
 })
 </script>
 <style scoped>
