@@ -12,12 +12,11 @@
     :on-success="handleSuccess"
     :on-error="handleError"
     multiple
-    :limit="1"
+    :limit="2"
     :on-exceed="handleExceed"
     :file-list="fileList"
     :http-request="uploadImage">
-    <i slot="default" class="el-icon-plus"></i>
-    <div slot="tip" class="el-upload__tip">只能上传一张图，大于1M会自动被压缩哦</div>
+    <i slot="default" :class="iconClass"></i>
     <div slot="file" slot-scope="{file}">
       <img
         class="el-upload-list__item-thumbnail"
@@ -26,7 +25,7 @@
       <span class="el-upload-list__item-actions">
         <span
           class="el-upload-list__item-preview"
-          @click="this.handlePictureCardPreview(file)"
+          @click="handlePictureCardPreview(file)"
         >
           <i class="el-icon-zoom-in"></i>
         </span>
@@ -39,7 +38,7 @@
       </span>
     </div>
   </el-upload>
-  <el-dialog :visible.sync="dialogVisible">
+  <el-dialog :visible.sync="dialogVisible" style="width: 100%; height: 100%;" append-to-body fullscreen>
     <img width="100%" :src="dialogImageUrl" alt="">
   </el-dialog>
 </div>
@@ -53,7 +52,6 @@ import { compression } from "@/utils/compression"
     data () {
       return {
         fileList: [],
-        api_endpoint: "http://101.43.166.211:8081/api/sixlog/covers",
         url: '',
         loading: false,
         dialogImageUrl: '',
@@ -62,9 +60,6 @@ import { compression } from "@/utils/compression"
     },
     methods: {
       handlePictureCardPreview(file) {
-        this.$message({type: "warning",
-                      message: `现在预览功能还不能用`
-                      })
         this.dialogImageUrl = file.url
         this.dialogVisible = true
       },
@@ -74,8 +69,6 @@ import { compression } from "@/utils/compression"
       },
       handlePreview (file) {
         console.log(file)
-        // 此处的 file 是整个文件
-        // console.log(file.response)
       },
       handleExceed (files, fileList) {
         this.$message({type: "warning",
@@ -127,6 +120,7 @@ import { compression } from "@/utils/compression"
           console.log("it's heic send, formData: ", formData)
           uploadImageToServer(formData).then((res)=>{
             that.url = res.data
+            that.fileList.splice(0,1,{"name": "randName","url":res.data})
             that.$emit('onUpload')
             that.$message('上传成功')
             that.loading = false
@@ -148,6 +142,7 @@ import { compression } from "@/utils/compression"
               console.log("before img send, formData: ", formData)
               uploadImageToServer(formData).then((res)=>{
                 that.url = res.data
+                that.fileList.splice(0,1,{"name": "randName","url":res.data})
                 that.$emit('onUpload')
                 that.$message('上传大图片成功')
                 that.loading = false
@@ -160,10 +155,21 @@ import { compression } from "@/utils/compression"
           console.log("small img send, formData: ", formData)
           uploadImageToServer(formData).then((res)=>{
             that.url = res.data
+            that.fileList.splice(0,1,{"name": "randName","url":res.data})
             that.$emit('onUpload')
             that.$message('上传小图片成功')
             that.loading = false
           })
+        }
+      }
+    },
+    computed: {
+      // 计算属性，根据fileList的长度来确定图标
+      iconClass() {
+        if (this.fileList.length >= 1) {
+          return 'el-icon-refresh'; // 如果文件数大于等于1，显示刷新图标
+        } else {
+          return 'el-icon-plus'; // 否则显示加号图标
         }
       }
     }
