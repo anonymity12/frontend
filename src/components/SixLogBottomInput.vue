@@ -5,7 +5,7 @@
         <el-input
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 6}"
-          v-model="sixlog.articleTitle"
+          v-model="sixlog.logContent"
           style="margin: 0px 0px;font-size: 20px;"
           placeholder="现在的想法是..."
           ref="mytextarea"
@@ -81,16 +81,16 @@
 <script>
 import { uploadImageToServer } from "@/api/user"
 import { compression } from "@/utils/compression"
+import { apiSendSixLog } from "@/api/sixlog2"
 export default({
   name: 'SixLogBottomInput',
   data() {
     return {
       sixlog: {
-          articleAbstract: "",
-          articleCover: "",
-          articleTitle: ""
+          logContent: "",
+          logCover: "",
+          logTags: ""
       },
-      imagesUrl: [],
       text: "sld",
       fileList: [],
       dialogImageUrl: '',
@@ -119,24 +119,45 @@ export default({
     }
   },
   methods: {
-    removeImage(index) {
-        this.imagesUrl.splice(index, 1);
-    },
     handleSelectChange(selectedValue) {
-      this.addTag(selectedValue); // 当选择改变时，调用addTag函数
+      this.addTag(selectedValue);
     },
     addTag(tag) {
         this.$refs.mytextarea.focus(); 
         const cursorPos = this.$refs.mytextarea.selectionStart;
-        const textAreaText = this.sixlog.articleTitle;
+        const textAreaText = this.sixlog.logContent;
         const tagText = ` #${tag} `; 
-        this.sixlog.articleTitle = textAreaText.substring(0, cursorPos) + tagText
-    },
-    addPic() {
-        this.images.push("https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png")
+        this.sixlog.logContent = textAreaText.substring(0, cursorPos) + tagText
     },
     sendLog() {
-        this.images.push("https://picgorepo.oss-cn-beijing.aliyuncs.com/2023-08-13-10-47-25.png")
+      console.log("ready to send sixlog2 to main server")
+      if(this.sixlog.logContent == '') {
+        this.$message({
+          type: 'info',
+          message: '内容不可为空'
+        })
+        return
+      }
+      // process all # start text, and make them into a string(logTags)
+      const regex = /#([\w\u4e00-\u9fa5]+)/g;
+      const tagArray = this.sixlog.logContent.match(regex) || [];
+      this.sixlog.logTags = tagArray.map(tag => tag.slice(1)).join(', ');
+      apiSendSixLog({
+        "logContent": this.sixlog.logContent,
+        "logTags": this.sixlog.logTags,
+        "logCover": this.sixlog.logCover
+      }).then(resp => {
+        if (resp && resp.status === 200) {
+          this.$message({
+            type: 'info',
+            message: "已为您成功录入浮生记录"
+          })
+          this.sixlog.logContent = ""
+          this.sixlog.logTags = ""
+          this.sixlog.logCover = ""
+          this.$emit("onSentSixLog")
+        }
+      })
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
@@ -161,8 +182,7 @@ export default({
         that.$refs.upload.uploadFiles=[];
         return;
       }
-      that.loading = true
-      console.log("start compression, upload")
+      console.log("starting compression(if possible) and upload")
       var isLt1M = file.size / 1024 / 1024 < 1;
       console.log("original file: ", file)
 
@@ -176,12 +196,10 @@ export default({
         formData.append("file", file)
         console.log("it's heic send, formData: ", formData)
         uploadImageToServer(formData).then((res)=>{
-          that.url = res.data
+          that.sixlog.logCover = res.data
           that.fileList.splice(0,1,{"name": "randName","url":res.data})
-          that.alreadyUploadedOnePic = that.fileList.length >= 1;
           that.$emit('onUpload')
           that.$message('上传成功')
-          that.loading = false
         })
         return 
       }
@@ -199,12 +217,10 @@ export default({
             formData.append("file", file)
             console.log("before img send, formData: ", formData)
             uploadImageToServer(formData).then((res)=>{
-              that.url = res.data
+              that.sixlog.logCover = res.data
               that.fileList.splice(0,1,{"name": "randName","url":res.data})
-              that.alreadyUploadedOnePic = that.fileList.length >= 1;
               that.$emit('onUpload')
               that.$message('上传大图片成功')
-              that.loading = false
             })
           })
         })
@@ -213,12 +229,10 @@ export default({
         formData.append("file", file)
         console.log("small img send, formData: ", formData)
         uploadImageToServer(formData).then((res)=>{
-          that.url = res.data
+          that.sixlog.logCover = res.data
           that.fileList.splice(0,1,{"name": "randName","url":res.data})
-          that.alreadyUploadedOnePic = that.fileList.length >= 1;
           that.$emit('onUpload')
           that.$message('上传小图片成功')
-          that.loading = false
         })
       }
     }

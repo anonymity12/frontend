@@ -16,26 +16,27 @@
 
     <!-- main list for posts: -->
     <div class="main_list"   :class="{ 'blur': showBottomInput }" @click="handleContainerClick">
-      <div style="width: 100%; margin-top: 20px;">
-        <el-card v-for="article in articles" :key="article.id" style="text-align: left;width: 100%; min-height: 200px; margin-bottom: 6px;">
+      <div style="width: 100%;">
+        <el-card v-for="article in articles" :key="article.id" style="text-align: left;width: 100%;  margin-bottom: 6px;">
           <div style="float:left;width:100%;">
             <span style="font-size: 20px">
-            <strong>{{article.articleTitle}}</strong>
+            <strong>{{article.logContent}}</strong>
             </span>
           </div>
           <div style="float:left;width:100%;">
-            <el-divider content-position="left">{{article.articleDate | moment}} by {{ article.ownerName }}</el-divider>
+            <el-divider content-position="right"> {{ article.ownerName }} 于 {{article.logDate | moment}} 在 中国</el-divider>
           </div>
-          <el-image v-if="article.articleCover!=''"
+          <el-image v-show="article.logCover!=''"
             style="margin:8px 0 0 8px;width:auto;"
-            :src="article.articleCover"
+            :src="article.logCover"
             fit="cover">
           </el-image>
-          <el-button type="info" size="small" 
+          
+          <!-- <el-button type="info" size="small" 
                   icon="el-icon-star-off" 
                   @click="handleLikeBtnClicked(article.id)">
                   {{article.likeCounts}} 赞
-          </el-button>
+          </el-button> -->
         </el-card>
       </div>
       <el-pagination
@@ -46,19 +47,18 @@
         :total="total">
       </el-pagination>
     </div>
+    <div style="min-height: 100px;"></div>
     <el-button type="success" icon="el-icon-plus"  class="bottom_button" @click="toggleBottomInput" ref="toggleInputBtn"></el-button>
 
     <transition name="slide">
-    <SixLogBottomInput v-show="showBottomInput" ref="sixLogBottomInput"/>
+    <SixLogBottomInput v-show="showBottomInput" @onSentSixLog="childComponentSentSixLog" ref="sixLogBottomInput"/>
     </transition>
   </div>
 </template>
 <script>
-import { getLogs } from "@/api/user"
-import { getSixLogTotalAmount } from "@/api/user"
+import { api_getAllLogByPage } from "@/api/sixlog2" // todo 12-14 continue work on me when u back from dinner
+import { api_getTotalAmount } from "@/api/sixlog2"
 import SixLogBottomInput from './SixLogBottomInput'
-import { callSendSixLogApi } from "@/api/user"
-import { apiLikeASixLog } from "../api/sixlog"
 export default({
   name: 'SixLog2',
   data() {
@@ -82,6 +82,15 @@ export default({
     this.loadLogsAmount()
   },
   methods: {
+    childComponentSentSixLog() {
+      console.log("close bottom input, cause user click send btn in bottom input, we need to refresh the sixlog list")
+      this.showBottomInput = !this.showBottomInput;
+      api_getAllLogByPage(this.pageSize, this.curPage).then(resp => {
+        if (resp && resp.status === 200) {
+          this.articles = resp.data
+        }
+      })
+    },
     handleContainerClick(event) {
       if (!this.showBottomInput) {
         console.log("not show input, dismiss this click")
@@ -103,27 +112,11 @@ export default({
       this.showBottomInput = !this.showBottomInput; // 切换SixLogBottomInput的显示状态
       console.log("now showBottom?:" , this.showBottomInput)
     },
-    handleLikeBtnClicked(articleId) {
-      var _this = this 
-      console.log("ready to like the sixlog: ", articleId)
-      const sixLogIdBody = {'sixLogId': articleId}
-      apiLikeASixLog(sixLogIdBody)
-      getLogs(this.pageSize, this.curPage).then(resp => {
-        if (resp && resp.status === 200) {
-          _this.articles = resp.data
-        }
-      })
-    },
-    dialogCancel() {
-      this.dialogVisible = false
-      this.sixlog.articleCover = ""
-      this.articleAbstract = ""
-    },
-    // these methods require backend to support pagination api
+
     loadArticles() {
       var _this = this 
-      getLogs(this.pageSize, 1).then(resp => {
-        console.log("api/sixlog return: ", resp)
+      api_getAllLogByPage(this.pageSize, 1).then(resp => {
+        console.log("api/sixlog2 return: ", resp)
         if (resp && resp.status === 200) {
           _this.articles = resp.data
         }
@@ -131,7 +124,7 @@ export default({
     },
     loadLogsAmount() {
       var _this = this 
-      getSixLogTotalAmount().then(resp => {
+      api_getTotalAmount().then(resp => {
         console.log("/api/sixlog/getTotalAmount return: ", resp)
         if (resp && resp.status === 200) {
           _this.total = resp.data.obj
@@ -141,43 +134,17 @@ export default({
     handleCurrentChange(page) {
       var _this = this 
       this.curPage = page
-      getLogs(this.pageSize, page).then(resp => {
+      api_getAllLogByPage(this.pageSize, page).then(resp => {
         if (resp && resp.status === 200) {
           _this.articles = resp.data
         }
       })
-      getSixLogTotalAmount().then(resp => {
+      api_getTotalAmount().then(resp => {
         _this.total = resp.data.obj 
       })
     },
-    sendSixLog() {
-      console.log("ready to send sixlog to main server")
-      if(this.sixlog.articleTitle == '') {
-        this.$message({
-          type: 'info',
-          message: '内容不可为空'
-        })
-        return
-      }
-      callSendSixLogApi({
-        "articleTitle": this.sixlog.articleTitle,
-        "articleAbstract": this.sixlog.articleAbstract,
-        "articleCover": this.sixlog.articleCover
-      }).then(resp => {
-        if (resp && resp.status === 200) {
-          this.$message({
-            type: 'info',
-            message: "已为您成功录入浮生记录"
-          })
-          this.sixlog.articleTitle = ""
-          this.sixlog.articleAbstract = ""
-          this.sixlog.articleCover = ""
-        }
-      })
-    },
-    uploadImg () {
-      this.sixlog.articleCover = this.$refs.imgUpload.url
-    },
+
+
     goBack() {
       window.history.back();
     },
@@ -202,9 +169,8 @@ export default({
 .main_list {
   margin: auto;
   width: 90%;
-  /* border: 3px solid #73AD21; */
   padding: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
   font-family: 'Roboto', sans-serif,'MaShanZheng-Regular';
   transition: filter 0.3s ease; /* 平滑过渡滤镜效果 */
 }
