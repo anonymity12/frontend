@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/apis': {
-        target: 'http://101.43.166.211:8081',
+        target: 'http://101.43.166.211:8081', // 这里不用改为 9001 也可以 访问 测试后段 9001，似乎是在 request.js 里面 改了就好
         changeOrigin: true,
         pathRewrite: {
           '^/apis': ''
