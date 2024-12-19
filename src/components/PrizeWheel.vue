@@ -12,13 +12,13 @@ export default {
   data() {
     return {
       prizes: [
-        '奖品1',
-        '奖品2',
-        '奖品3',
-        '奖品4',
-        '奖品5',
-        '奖品6',
-        '奖品7'
+        '再接再厉',
+        '保持健康',
+        '1个金币',
+        '2个金币',
+        '5个金币',
+        '谢谢参与',
+        '3个金币'
       ],
       spinning: false,
       rotateDegree: 0
@@ -66,29 +66,43 @@ export default {
   height: 100%;
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   font-size: 18px;
 }
+
 .prize:nth-child(1) {
   transform: rotate(0deg);
+  background-color: #FF573388; /* 橙色 */
 }
+
 .prize:nth-child(2) {
-  transform: rotate(51.43deg);  // 360/7约为51.43度，划分7个区域
+  transform: rotate(51.43deg);
+  background-color: #8833FF82; /* 绿色 */
 }
+
 .prize:nth-child(3) {
   transform: rotate(102.86deg);
+  background-color: #5733FF82; /* 蓝色 */
 }
+
 .prize:nth-child(4) {
   transform: rotate(154.29deg);
+  background-color: #FF33E782; /* 粉色 */
 }
+
 .prize:nth-child(5) {
   transform: rotate(205.72deg);
+  background-color: #33e7ff82; /* 浅蓝色 */
 }
+
 .prize:nth-child(6) {
   transform: rotate(257.15deg);
+  background-color: #E7FF3388; /* 黄色 */
 }
+
 .prize:nth-child(7) {
   transform: rotate(308.58deg);
+  background-color: #FF335788; /* 红色 */
 }
 </style>
