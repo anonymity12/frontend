@@ -93,8 +93,8 @@ export default new Router({
     },
     {
       path: '/sixlog',
-      name: 'SixLog',
-      component: SixLog,
+      name: 'SixLog2',
+      component: SixLog2,
       meta: {
         requireAuth: true
       },
