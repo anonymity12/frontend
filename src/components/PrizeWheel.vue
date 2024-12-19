@@ -1,9 +1,20 @@
 <template>
-  <div id="wheel-container">
-    <div class="wheel" ref="wheel">
-      <div class="prize" v-for="(prize, index) in prizes" :key="index">{{ prize }}</div>
+  <div class="wheel-container">
+    <div class="wheel" :style="wheelStyle">
+      <!-- 中心按钮 -->
+      <div class="wheel-center">
+        <button @click="startSpin">点击抽奖</button>
+      </div>
+      
+      <!-- 10个奖品扇区 -->
+      <div class="prize-section" v-for="(prize, index) in prizes" :key="index"
+           :style="{ transform: `rotate(${index * 36}deg)` }">
+        <div class="prize-content">
+          <img v-if="prize.icon" :src="prize.icon" :alt="prize.name">
+          <span class="prize-text">{{ prize.name }}</span>
+        </div>
+      </div>
     </div>
-    <el-button @click="startSpin">开始抽奖</el-button>
   </div>
 </template>
 
@@ -12,97 +23,119 @@ export default {
   data() {
     return {
       prizes: [
-        '再接再厉',
-        '保持健康',
-        '1个金币',
-        '2个金币',
-        '5个金币',
-        '谢谢参与',
-        '3个金币'
+        { name: 'iPhone X', icon: 'path/to/iphone-icon.png' },
+        { name: '100元现金', icon: 'path/to/cash-icon.png' },
+        { name: '10元现金', icon: 'path/to/cash-icon.png' },
+        { name: '5元现金', icon: 'path/to/cash-icon.png' },
+        { name: '50元现金', icon: 'path/to/cash-icon.png' },
+        { name: '20元现金', icon: 'path/to/cash-icon.png' },
+        { name: '30-50元现金', icon: 'path/to/cash-icon.png' },
+        { name: '20元现金', icon: 'path/to/cash-icon.png' },
+        { name: '50元现金', icon: 'path/to/cash-icon.png' },
+        { name: '5元现金', icon: 'path/to/cash-icon.png' },
       ],
-      spinning: false,
-      rotateDegree: 0
+      isSpinning: false,
+      rotationDegrees: 0
+    }
+  },
+  computed: {
+    wheelStyle() {
+      return {
+        transform: `rotate(${this.rotationDegrees}deg)`,
+        transition: this.isSpinning ? 'transform 5s cubic-bezier(0.2, 0.8, 0.3, 1)' : 'none'
+      }
     }
   },
   methods: {
     startSpin() {
-      if (!this.spinning) {
-        this.spinning = true;
-        const totalDegrees = 360 * 5 + Math.floor(Math.random() * 360);  // 转动几圈后随机停在一个角度，这里转5圈多
-        const duration = 5000;  // 转动总时长（5秒），可根据实际调整
-        const step = (totalDegrees / (duration / 16.67));  // 每16.67ms（一帧的大致时间）转动的角度，计算步长
-        const spinInterval = setInterval(() => {
-          this.rotateDegree += step;
-          this.$refs.wheel.style.transform = `rotate(${this.rotateDegree}deg)`;
-          if (this.rotateDegree >= totalDegrees) {
-            clearInterval(spinInterval);
-            this.spinning = false;
-            this.rotateDegree = 0;
-          }
-        }, 16.67);
-      }
+      if (this.isSpinning) return;
+      
+      this.isSpinning = true;
+      // 随机旋转5-10圈（1800-3600度）再加上一个随机角度
+      const extraSpins = Math.floor(Math.random() * 5 + 5) * 360;
+      const extraDegrees = Math.floor(Math.random() * 360);
+      this.rotationDegrees += extraSpins + extraDegrees;
+
+      // 动画结束后重置状态
+      setTimeout(() => {
+        this.isSpinning = false;
+      }, 5000);
     }
   }
 }
 </script>
 
 <style scoped>
-#wheel-container {
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
+.wheel-container {
+  width: 400px;
+  height: 400px;
   position: relative;
+  margin: auto;
 }
+
 .wheel {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  background-color: #f0f0f0;
   position: relative;
-  overflow: hidden;
+  border-radius: 50%;
+  background: #FFB800;
+  border: 8px solid #FFB800;
+  box-shadow: 0 0 0 15px rgba(255, 184, 0, 0.3);
 }
-.prize {
-  width: 100%;
-  height: 100%;
+
+.wheel-center {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: #FF4444;
+  border-radius: 50%;
+  z-index: 2;
   display: flex;
-  justify-content: right;
   align-items: center;
-  font-size: 18px;
+  justify-content: center;
 }
 
-.prize:nth-child(1) {
-  transform: rotate(0deg);
-  background-color: #FF573388; /* 橙色 */
+.wheel-center button {
+  border: none;
+  background: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.prize:nth-child(2) {
-  transform: rotate(51.43deg);
-  background-color: #8833FF82; /* 绿色 */
+.prize-section {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
+  left: 50%;
+  top: 0;
+  border-left: 2px solid #FFB800;
 }
 
-.prize:nth-child(3) {
-  transform: rotate(102.86deg);
-  background-color: #5733FF82; /* 蓝色 */
+.prize-content {
+  position: absolute;
+  left: 30px;
+  top: 35px;
+  transform: rotate(90deg);
+  text-align: center;
+  width: 100px;
 }
 
-.prize:nth-child(4) {
-  transform: rotate(154.29deg);
-  background-color: #FF33E782; /* 粉色 */
+.prize-text {
+  color: #FF4444;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
 }
 
-.prize:nth-child(5) {
-  transform: rotate(205.72deg);
-  background-color: #33e7ff82; /* 浅蓝色 */
-}
-
-.prize:nth-child(6) {
-  transform: rotate(257.15deg);
-  background-color: #E7FF3388; /* 黄色 */
-}
-
-.prize:nth-child(7) {
-  transform: rotate(308.58deg);
-  background-color: #FF335788; /* 红色 */
+.prize-content img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 </style>
