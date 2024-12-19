@@ -28,6 +28,7 @@ import UseStarImageCircle from '@/components/UseStarImageCircle'
 import StarWeeklySummaryPage from '@/components/StarWeeklySummaryPage'
 import StarRoad from '@/components/StarRoad'
 import SixLog2 from '@/components/SixLog2'
+import PrizeWheel from '@/components/PrizeWheel'
 
 Vue.use(Router)
 
@@ -247,6 +248,11 @@ export default new Router({
       meta: {
         requireAuth: true
       },
+    },
+    {
+      path: '/prizeWheel',
+      name: 'PrizeWheel',
+      component: PrizeWheel,
     },
   ]
 })
