@@ -1,12 +1,6 @@
 <template>
   <div class="wheel-container">
     <div class="wheel" :style="wheelStyle">
-      <!-- 中心按钮 -->
-      <div class="wheel-center">
-        <button @click="startSpin">点击抽奖</button>
-      </div>
-      
-      <!-- 10个奖品扇区 -->
       <div class="prize-section" v-for="(prize, index) in prizes" :key="index"
            :style="{ transform: `rotate(${index * 36}deg)` }">
         <div class="prize-content">
@@ -14,6 +8,10 @@
           <span class="prize-text">{{ prize.name }}</span>
         </div>
       </div>
+    </div>
+    <div class="wheel-center">
+      <div class="pointer"></div>
+      <button @click="startSpin">点击抽奖</button>
     </div>
   </div>
 </template>
@@ -23,16 +21,16 @@ export default {
   data() {
     return {
       prizes: [
-        { name: 'iPhone X', icon: 'path/to/iphone-icon.png' },
-        { name: '100元现金', icon: 'path/to/cash-icon.png' },
-        { name: '10元现金', icon: 'path/to/cash-icon.png' },
-        { name: '5元现金', icon: 'path/to/cash-icon.png' },
-        { name: '50元现金', icon: 'path/to/cash-icon.png' },
-        { name: '20元现金', icon: 'path/to/cash-icon.png' },
-        { name: '30-50元现金', icon: 'path/to/cash-icon.png' },
-        { name: '20元现金', icon: 'path/to/cash-icon.png' },
-        { name: '50元现金', icon: 'path/to/cash-icon.png' },
-        { name: '5元现金', icon: 'path/to/cash-icon.png' },
+        { name: '感谢参与', icon: require('@/assets/img/gratitude-1024.png') },
+        { name: '收3元红包', icon: require('@/assets/img/money_icon.png') },
+        { name: '发2元红包', icon: require('@/assets/img/red_packet.png') },
+        { name: '感谢参与', icon: require('@/assets/img/gratitude-1024.png') },
+        { name: '收1元红包', icon: require('@/assets/img/money_icon.png') },
+        { name: '再接再厉', icon: require('@/assets/img/gratitude-1024.png') },
+        { name: '收2元红包', icon: require('@/assets/img/money_icon.png') },
+        { name: '发1元红包', icon: require('@/assets/img/red_packet.png') },
+        { name: '发2元红包', icon: require('@/assets/img/red_packet.png') },
+        { name: '收1元红包', icon: require('@/assets/img/money_icon.png') },
       ],
       isSpinning: false,
       rotationDegrees: 0
@@ -67,16 +65,19 @@ export default {
 
 <style scoped>
 .wheel-container {
-  width: 400px;
-  height: 400px;
+  width: 90vh;
+  height: 90vh;
   position: relative;
   margin: auto;
+  max-width: 90vw;
+  max-height: 90vw;
 }
 
 .wheel {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  position: absolute;
+  padding: 3%;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
   background: #FFB800;
   border: 8px solid #FFB800;
@@ -113,29 +114,44 @@ export default {
   transform-origin: 0% 100%;
   left: 50%;
   top: 0;
-  border-left: 2px solid #FFB800;
+  border-left: 2px solid #000000;
 }
 
 .prize-content {
   position: absolute;
-  left: 30px;
-  top: 35px;
-  transform: rotate(90deg);
+  left: 50%;
+  top: 50%;
+  transform: rotate(45deg) translateX(-50%);
   text-align: center;
-  width: 100px;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .prize-text {
   color: #FF4444;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
-  display: block;
   margin-top: 5px;
+  white-space: nowrap;
 }
 
 .prize-content img {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   object-fit: contain;
+}
+
+.pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #FF4444;
 }
 </style>
