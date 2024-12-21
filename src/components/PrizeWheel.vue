@@ -1,10 +1,13 @@
 <template>
   <div class="tips-and-wheel-container">
     <div class="background-section">
-        <div class="status-bar">
-            <span class="user-name">{{ userName }}</span>
-            <span class="coins">💰 {{ coins }}</span>
-        </div>
+      <div class="goback-button">
+        <a style="font-size: large;" @click="goBack">⬅</a>
+      </div>
+      <div class="status-bar">
+        <span class="user-name">{{ this.$store.state.user.cname }}</span>
+        <span class="coins">💰 {{ this.$store.state.coins }}</span>
+      </div>
     </div>
     <div class="wheel-container">
       <div class="wheel" :style="wheelStyle">
@@ -105,6 +108,9 @@ export default {
       setTimeout(() => {
         this.dialogVisible = true;
       }, 11000);
+    },
+    goBack() {
+      this.$router.push('/');
     }
   }
 }
@@ -122,6 +128,17 @@ export default {
     position: absolute;
     top: 20px;
     right: 20px;
+    display: flex;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.goback-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     display: flex;
     gap: 15px;
     background: rgba(255, 255, 255, 0.8);

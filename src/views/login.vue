@@ -50,7 +50,6 @@ export default {
         loginName: this.loginForm.loginName,
         password: this.loginForm.password,
       }).then((resp) => {
-        console.log("login ok", resp)
         let status =resp.data.status;
         if(status===200){
           let obj = resp.data.obj;

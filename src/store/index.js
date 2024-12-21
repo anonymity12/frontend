@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         token: localStorage.getItem("token"),
-        user: JSON.parse(localStorage.getItem("user"))
+        user: JSON.parse(localStorage.getItem("user")),
+        coins: localStorage.getItem("coins")
     },
     mutations: {
         // set
@@ -28,6 +29,10 @@ export default new Vuex.Store({
             state.user = {}
             localStorage.removeItem("token")
             localStorage.removeItem("user")
+        },
+        SET_COINS: (state, coins) => {
+            state.coins = coins
+            localStorage.setItem("coins", coins)
         }
     },
     getters: {
