@@ -243,14 +243,6 @@ export default new Router({
       
     },
     {
-      path: '/sixlog2',
-      name: 'SixLog2',
-      component: SixLog2,
-      meta: {
-        requireAuth: true
-      },
-    },
-    {
       path: '/prizeWheel',
       name: 'PrizeWheel',
       component: PrizeWheel,

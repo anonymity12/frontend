@@ -1,19 +1,46 @@
 <template>
-  <div class="wheel-container">
-    <div class="wheel" :style="wheelStyle">
-      <div class="prize-section" v-for="(prize, index) in prizes" :key="index"
-           :style="{ transform: `rotate(${index * 36}deg)` }">
-        <div class="prize-content">
-          <img v-if="prize.icon" :src="prize.icon" :alt="prize.name">
-          <span class="prize-text">{{ prize.name }}</span>
+  <div class="tips-and-wheel-container">
+    <div class="background-section">
+        <div class="status-bar">
+            <span class="user-name">{{ userName }}</span>
+            <span class="coins">💰 {{ coins }}</span>
+        </div>
+    </div>
+    <div class="wheel-container">
+      <div class="wheel" :style="wheelStyle">
+        <div class="prize-section" v-for="(prize, index) in prizes" :key="index"
+            :style="{ transform: `rotate(${index * 36}deg)` }">
+          <div class="prize-content">
+            <img v-if="prize.icon" :src="prize.icon" :alt="prize.name">
+            <span class="prize-text">{{ prize.name }}</span>
+          </div>
         </div>
       </div>
+      <div class="wheel-center">
+        <div class="pointer"></div>
+        <button @click="startSpin">点击抽奖</button>
+      </div>
     </div>
-    <div class="wheel-center">
-      <div class="pointer"></div>
-      <button @click="startSpin">点击抽奖</button>
-    </div>
+    <el-dialog
+      :visible.sync="dialogVisible"
+      width="70vw"
+      center
+      :show-close="false"
+      >
+      <div class="prize-dialog-content">
+        <h3>恭喜您获得</h3>
+        <br>
+        <br>
+        <img :src="selectedPrize.icon" :alt="selectedPrize.name" class="prize-dialog-img">
+        <p>{{ selectedPrize.name }}</p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogVisible = false">确定</el-button>
+      </span>
+    </el-dialog>
   </div>
+  
+
 </template>
 
 <script>
@@ -27,13 +54,20 @@ export default {
         { name: '感谢参与', icon: require('@/assets/img/gratitude-1024.png') },
         { name: '收1元红包', icon: require('@/assets/img/money_icon.png') },
         { name: '再接再厉', icon: require('@/assets/img/gratitude-1024.png') },
-        { name: '收2元红包', icon: require('@/assets/img/money_icon.png') },
+        { name: '商业家', icon: require('@/assets/img/money_icon.png') },
         { name: '发1元红包', icon: require('@/assets/img/red_packet.png') },
-        { name: '发2元红包', icon: require('@/assets/img/red_packet.png') },
-        { name: '收1元红包', icon: require('@/assets/img/money_icon.png') },
+        { name: '战争领主', icon: require('@/assets/img/red_packet.png') },
+        { name: '宗教教主', icon: require('@/assets/img/money_icon.png') },
       ],
       isSpinning: false,
-      rotationDegrees: 0
+      rotationDegrees: 0,
+      userName: '张三',
+      coins: 100,
+      dialogVisible: false,
+      selectedPrize: {
+        name: '感谢参与',
+        icon: require('@/assets/img/gratitude-1024.png')
+      },
     }
   },
   computed: {
@@ -65,21 +99,41 @@ export default {
       // 动画结束后重置状态
       setTimeout(() => {
         this.isSpinning = false;
-        console.log('选中的奖品:', this.prizes[finalPrizeIndex-1].name);
+        this.selectedPrize = this.prizes[finalPrizeIndex-1];
+        
       }, 10000);
+      setTimeout(() => {
+        this.dialogVisible = true;
+      }, 11000);
     }
   }
 }
 </script>
 
 <style scoped>
-.wheel-container {
-  width: 90vh;
-  height: 90vh;
+.tips-and-wheel-container {
+  width: 100vw;
+  height: 100vh;
   position: relative;
   margin: auto;
-  max-width: 90vw;
-  max-height: 90vw;
+}
+
+.status-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 20px;
+}
+.wheel-container {
+  width: 90vw;
+  height: 90vw;
+  top: 100px;
+  position: relative;
+  margin: auto;
 }
 
 .wheel {
@@ -165,4 +219,17 @@ export default {
   border-right: 10px solid transparent;
   border-bottom: 20px solid #FF4444;
 }
+
+/* Add new styles for dialog content */
+.prize-dialog-content {
+  text-align: center;
+}
+
+.prize-dialog-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
 </style>
