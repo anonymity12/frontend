@@ -30,6 +30,7 @@
       <p>每周获得4星，就会开启幸运转盘</p>
       <p>小赌怡情</p>
       <p>每次20金币</p>
+      <p>恭喜发财</p>
     </div>
     <transition name="fade">
       <p v-if="showTip" class="cost-tip">抽奖消耗20金币</p>
@@ -327,7 +328,6 @@ export default {
 
 .chalkboard p {
   color: white;
-  font-family: "Comic Sans MS", cursive, sans-serif;
   text-align: center;
   font-size: 18px;
   margin: 0;
