@@ -11,7 +11,9 @@
 
         <!-- Center avatar section -->
         <div class="avatar-section">
+            <button class="circle-button">+</button>
             <img :src="userAvatar" alt="User Avatar" class="user-avatar">
+            <button class="circle-button">🎲</button>
         </div>
 
         <!-- Rankings list -->
@@ -74,6 +76,10 @@ export default {
     margin-top: -50px;
     text-align: center;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 .user-avatar {
@@ -112,5 +118,24 @@ export default {
 
 .rank-score {
     font-weight: bold;
+}
+
+.circle-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.circle-button:hover {
+    background-color: #45a049;
 }
 </style>
