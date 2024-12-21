@@ -7,7 +7,6 @@ import PostLine from '@/components/PostLine'
 import Login from '@/views/login.vue'
 import Baodao from '@/components/Baodao'
 import XuanGuan from '@/components/XuanGuan'
-import SixLog from '@/components/SixLog'
 import LogDetail from '@/components/LogDetail'
 import JiaPu from '@/components/JiaPu'
 import JiaPuOperationUI from '@/components/JiaPuOperationUI'
@@ -29,6 +28,8 @@ import StarWeeklySummaryPage from '@/components/StarWeeklySummaryPage'
 import StarRoad from '@/components/StarRoad'
 import SixLog2 from '@/components/SixLog2'
 import PrizeWheel from '@/components/PrizeWheel'
+import Today from '@/components/Today'
+import MeAndFriendsRanks from '@/components/MeAndFriendsRanks'
 
 Vue.use(Router)
 
@@ -140,7 +141,7 @@ export default new Router({
       },
     },
     {
-      path: '/ranks',
+      path: '/ranksOld',
       name: 'RankList',
       component: RankList,
       meta: {
@@ -253,6 +254,22 @@ export default new Router({
       path: '/prizeWheel',
       name: 'PrizeWheel',
       component: PrizeWheel,
+    },
+    {
+      path: '/today',
+      name: 'Today',
+      component: Today,
+      meta: {
+        requireAuth: true
+      },
+    },
+    {
+      path: '/ranks',
+      name: 'MeAndFriendsRanks',
+      component: MeAndFriendsRanks,
+      meta: {
+        requireAuth: true
+      },
     },
   ]
 })
