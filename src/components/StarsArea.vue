@@ -15,10 +15,13 @@
             </el-col>
         </el-row>
         <el-row>
-            <p style="float: left; margin-top: 5px;"> </p>
             <i class="el-icon-circle-plus-outline" style="color: #00FF00; font-size:50px; margin-top: 2px; text-shadow: 2px 2px 3px red;" @click="recordOneStar"></i>
-            <p style="float: right;margin-top: 5px; "> </p>
-
+            <img 
+                v-show="stars.length >= 4" 
+                src="../assets/img/gamble.png" 
+                @click="handleGamble" 
+                style="width: 50px; height: 50px; margin-left: 10px; cursor: pointer;"
+            >
         </el-row>
 
         <div class="all-stars">
@@ -100,6 +103,9 @@ export default {
                     console.log("can not get user life day passed from backend")
                 }
             })
+        },
+        handleGamble() {
+            this.$router.push('/prizeWheel')
         }
     },
     mounted() {

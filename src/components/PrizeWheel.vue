@@ -40,7 +40,7 @@ export default {
     wheelStyle() {
       return {
         transform: `rotate(${this.rotationDegrees}deg)`,
-        transition: this.isSpinning ? 'transform 5s cubic-bezier(0.2, 0.8, 0.3, 1)' : 'none'
+        transition: this.isSpinning ? 'transform 10s cubic-bezier(0,1.0,0,.99)' : 'none'
       }
     }
   },
@@ -54,10 +54,19 @@ export default {
       const extraDegrees = Math.floor(Math.random() * 360);
       this.rotationDegrees += extraSpins + extraDegrees;
 
+      // 计算最终选中的奖品索引
+      // 1. 获取最终角度（对360取模，得到最后的角度）
+      const finalAngle = this.rotationDegrees % 360;
+      // 2. 由于轮盘顺时针旋转，需要用360度减去最终角度
+      const normalizedAngle = (360 - finalAngle) % 360;
+      // 3. 每个奖品占36度(360/10)，除以36得到索引
+      const finalPrizeIndex = Math.floor(normalizedAngle / 36);
+
       // 动画结束后重置状态
       setTimeout(() => {
         this.isSpinning = false;
-      }, 5000);
+        console.log('选中的奖品:', this.prizes[finalPrizeIndex-1].name);
+      }, 10000);
     }
   }
 }
@@ -126,14 +135,16 @@ export default {
   width: 60px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .prize-text {
-  color: #FF4444;
+  color: #f4cfcf;
+  background-color: #000000;
   font-size: 12px;
   font-weight: bold;
   margin-top: 5px;
+  margin-left: 3px;
   white-space: nowrap;
 }
 
