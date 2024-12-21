@@ -1,5 +1,6 @@
 <template>
   <div class="tips-and-wheel-container">
+    
     <div class="background-section">
       <div class="goback-button">
         <a style="font-size: large;" @click="goBack">⬅</a>
@@ -9,13 +10,14 @@
         <span class="coins">💰 {{ this.$store.state.coins }}</span>
       </div>
     </div>
+    
     <div class="wheel-container">
       <div class="wheel" :style="wheelStyle">
         <div class="prize-section" v-for="(prize, index) in prizes" :key="index"
             :style="{ transform: `rotate(${index * 36}deg)` }">
           <div class="prize-content">
-            <img v-if="prize.icon" :src="prize.icon" :alt="prize.name">
             <span class="prize-text">{{ prize.name }}</span>
+            <img v-if="prize.icon" :src="prize.icon" :alt="prize.name">
           </div>
         </div>
       </div>
@@ -24,6 +26,14 @@
         <button @click="startSpin">点击抽奖</button>
       </div>
     </div>
+    <div class="chalkboard">
+      <p>每周获得4星，就会开启幸运转盘</p>
+      <p>小赌怡情</p>
+      <p>每次20金币</p>
+    </div>
+    <transition name="fade">
+      <p v-if="showTip" class="cost-tip">抽奖消耗20金币</p>
+    </transition>
     <el-dialog
       :visible.sync="dialogVisible"
       width="70vw"
@@ -35,7 +45,8 @@
         <br>
         <br>
         <img :src="selectedPrize.icon" :alt="selectedPrize.name" class="prize-dialog-img">
-        <p>{{ selectedPrize.name }}</p>
+        <p> <strong>《{{ selectedPrize.name }}》 </strong></p>
+        <p>{{ selectedPrize.intro }}</p>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogVisible = false">确定</el-button>
@@ -47,20 +58,23 @@
 </template>
 
 <script>
+import { apiDecreaseMyGold } from '@/api/gold'
+import { apiIncreaseMyGold } from '@/api/gold'
+import { apiGetMyGold } from '@/api/gold'
 export default {
   data() {
     return {
       prizes: [
-        { name: '感谢参与', icon: require('@/assets/img/gratitude-1024.png') },
-        { name: '收3元红包', icon: require('@/assets/img/money_icon.png') },
-        { name: '发2元红包', icon: require('@/assets/img/red_packet.png') },
-        { name: '感谢参与', icon: require('@/assets/img/gratitude-1024.png') },
-        { name: '收1元红包', icon: require('@/assets/img/money_icon.png') },
-        { name: '再接再厉', icon: require('@/assets/img/gratitude-1024.png') },
-        { name: '商业家', icon: require('@/assets/img/money_icon.png') },
-        { name: '发1元红包', icon: require('@/assets/img/red_packet.png') },
-        { name: '战争领主', icon: require('@/assets/img/red_packet.png') },
-        { name: '宗教教主', icon: require('@/assets/img/money_icon.png') },
+        {intro: '这次感谢你的参与，请再转一次吧', name: '最乖宝宝奖', icon: require('@/assets/img/gratitude-1024.png') },
+        {intro: '截图可向天天领取3元红包', name: '幸运小马奖', icon: require('@/assets/img/money_icon.png') },
+        {intro: '请你在群里发送3元红包', name: '无私施主奖', icon: require('@/assets/img/red_packet.png') },
+        {intro: '这次感谢你的参与，祝你新年喜气洋洋', name: '喜气洋洋奖', icon: require('@/assets/img/gratitude-1024.png') },
+        {intro: '用20金币换来40金币，很值得啊！', name: '+40金币', icon: require('@/assets/img/money_icon.png') },
+        {intro: '葫芦娃，葫芦娃，一根藤上七朵花，请心里感恩生活一次：健康活着就好！', name: '最乖娃娃奖', icon: require('@/assets/img/gratitude-1024.png') },
+        {intro: '总要期待美好的事情发生呀！恭喜你获得100金币', name: '+100金币', icon: require('@/assets/img/money_icon.png') },
+        {intro: '请你在群里发送1元红包', name: '鲤鱼奖', icon: require('@/assets/img/red_packet.png') },
+        {intro: '请你在群里发送2元红包', name: '劳动模范奖', icon: require('@/assets/img/red_packet.png') },
+        {intro: '截图可以获得大家的 祝你健康 的祝福', name: '海鸥奖', icon: require('@/assets/img/money_icon.png') },
       ],
       isSpinning: false,
       rotationDegrees: 0,
@@ -69,8 +83,10 @@ export default {
       dialogVisible: false,
       selectedPrize: {
         name: '感谢参与',
-        icon: require('@/assets/img/gratitude-1024.png')
+        icon: require('@/assets/img/gratitude-1024.png'),
+        intro: '仅仅是个安慰奖'
       },
+      showTip: false,
     }
   },
   computed: {
@@ -84,8 +100,13 @@ export default {
   methods: {
     startSpin() {
       if (this.isSpinning) return;
-      
       this.isSpinning = true;
+
+      // decrease gold
+      var goldAmountHolder = {
+        goldAmount: 20
+      }
+      apiDecreaseMyGold(goldAmountHolder)
       // 随机旋转5-10圈（1800-3600度）再加上一个随机角度
       const extraSpins = Math.floor(Math.random() * 5 + 5) * 360;
       const extraDegrees = Math.floor(Math.random() * 360);
@@ -97,17 +118,40 @@ export default {
       // 2. 由于轮盘顺时针旋转，需要用360度减去最终角度
       const normalizedAngle = (360 - finalAngle) % 360;
       // 3. 每个奖品占36度(360/10)，除以36得到索引
-      const finalPrizeIndex = Math.floor(normalizedAngle / 36);
-
+      const finalPrizeIndex = Math.floor(normalizedAngle / 36) -1;
+      if (finalPrizeIndex == 4) {
+        goldAmountHolder = {
+          goldAmount: 40
+        }
+        apiIncreaseMyGold(goldAmountHolder).then(res => {
+          console.log("resp mesg:  ", res)
+        });
+      }
+      if (finalPrizeIndex == 6) {
+        goldAmountHolder = {
+          goldAmount: 100
+        }
+        apiIncreaseMyGold(goldAmountHolder).then(res => {
+          console.log("resp mesg:  ", res)
+        });
+      }
       // 动画结束后重置状态
       setTimeout(() => {
         this.isSpinning = false;
-        this.selectedPrize = this.prizes[finalPrizeIndex-1];
-        
+        this.selectedPrize = this.prizes[finalPrizeIndex];
+        apiGetMyGold().then(res => {
+          this.$store.commit('SET_COINS', res.data.obj);
+        });
       }, 10000);
       setTimeout(() => {
         this.dialogVisible = true;
       }, 11000);
+
+      // Show the tip
+      this.showTip = true;
+      setTimeout(() => {
+        this.showTip = false;
+      }, 4000);
     },
     goBack() {
       this.$router.push('/');
@@ -151,6 +195,7 @@ export default {
   top: 100px;
   position: relative;
   margin: auto;
+  margin-bottom: 120px;
 }
 
 .wheel {
@@ -215,11 +260,11 @@ export default {
   font-size: 12px;
   font-weight: bold;
   margin-top: 5px;
-  margin-left: 3px;
   white-space: nowrap;
 }
 
 .prize-content img {
+  margin-top: 10px;
   width: 25px;
   height: 25px;
   object-fit: contain;
@@ -247,6 +292,57 @@ export default {
   height: 60px;
   object-fit: contain;
   margin-bottom: 15px;
+}
+
+.cost-tip {
+  position: fixed;
+  font-size: 26px;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.chalkboard {
+  width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #2c3e50;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  position: relative;
+  bottom: 0;
+}
+
+.chalkboard p {
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.chalkboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.05);
+  pointer-events: none;
 }
 
 </style>

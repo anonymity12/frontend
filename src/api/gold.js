@@ -6,3 +6,19 @@ export function apiGetMyGold() {
         method: "get"
     });
 }
+
+export function apiDecreaseMyGold(goldAmountHolder) {
+    return request({
+        url: "/api/gold/decrease",
+        method: "post",
+        data: goldAmountHolder
+    });
+}
+
+export function apiIncreaseMyGold(goldAmountHolder) {
+    return request({
+        url: "/api/gold/increase",
+        method: "post",
+        data: goldAmountHolder
+    });
+}

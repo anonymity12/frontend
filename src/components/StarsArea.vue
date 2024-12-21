@@ -86,6 +86,9 @@ export default {
             apiGetAllMyStarCnts().then(res => {
                 this.starCnts = res.data.obj
             })
+            apiGetMyGold().then(res => {
+                this.$store.commit('SET_COINS', res.data.obj);
+            })
         },
         openStarDetail(star) {
             this.clickedStarModel = {
