@@ -38,6 +38,7 @@
 <script>
 import { apiGetMyThisWeekStarRecords } from "@/api/star"
 import { apiGetAllMyStarCnts } from "@/api/star"
+import { apiGetMyGold } from '@/api/gold'
 import { getLifeIndicator } from '@/api/user'
 import RecordStarDialog from './RecordStarDialog'
 import ReviewStarDialog from './ReviewStarDialog'
