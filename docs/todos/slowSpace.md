@@ -1,6 +1,8 @@
 # purpose 
 
-communication is quick sometimes is bad
+communication is quick recent years
+
+sometimes is bad
 
 we want a slow evolop to transfer to her/him
 
