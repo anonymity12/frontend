@@ -9,6 +9,7 @@
     </div>
     <div ref="cardContainer" class="card-container"></div>
     <div v-if="selectedCard" class="card-tooltip">
+      <button @click="selectedCard = null" class="close-btn">&times;</button>
       <h3>{{ selectedCard.name }} <span class="level-badge">Lv.{{ selectedCard.level }}</span></h3>
       <p class="card-description">{{ selectedCard.description }}</p>
       <div class="card-stats">
@@ -69,14 +70,14 @@ export default {
         { id: 3, name: '用户C', power: 1000 }
       ],
       waveParams: {
-        speed: 0.02,    // 波动速度
-        amplitude: 0.2, // 波动幅度  
-        frequency: 2    // 波动频率
+        speed: 0.005,    // 波动速度
+        amplitude: 0.15, // 波动幅度  
+        frequency: 0.5    // 波动频率
       },
       cardConfig: {
-        width: 1.5,     // 卡牌宽度
-        height: 2,      // 卡牌高度
-        spacing: 2      // 卡牌间距
+        width: 4,     // 卡牌宽度
+        height: 3.8,      // 卡牌高度
+        spacing: 4.5      // 卡牌间距
       },
       cardsData: [
         { 
@@ -781,6 +782,8 @@ export default {
   width: 80%;
   max-width: 400px;
   color: white;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
 }
 
 .card-tooltip h3 {
@@ -873,5 +876,28 @@ export default {
 .upgrade-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 </style>
