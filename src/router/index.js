@@ -30,6 +30,7 @@ import SixLog2 from '@/components/SixLog2'
 import PrizeWheel from '@/components/PrizeWheel'
 import Today from '@/components/Today'
 import MeAndFriendsRanks from '@/components/MeAndFriendsRanks'
+import HomePage from '@/views/HomePage'
 
 Vue.use(Router)
 
@@ -38,14 +39,13 @@ export default new Router({
     {
       path: '/',
       name: 'Default',
-      redirect: '/baodao',
-      component: Baodao
+      redirect: '/home',
+      component: HomePage
     },
     {
       path: '/home',
       name: 'Home',
-      redirect: '/baodao',
-      component: Baodao
+      component: HomePage
     },
     {
        // baodao 是第一个页面，装载宠物和奖励
