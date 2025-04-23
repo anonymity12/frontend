@@ -31,6 +31,8 @@ import PrizeWheel from '@/components/PrizeWheel'
 import Today from '@/components/Today'
 import MeAndFriendsRanks from '@/components/MeAndFriendsRanks'
 import HomePage from '@/views/HomePage'
+import ReaddingNoteShare from '@/components/ReaddingNoteShare'
+import { path } from 'd3'
 
 Vue.use(Router)
 
@@ -263,5 +265,10 @@ export default new Router({
         requireAuth: true
       },
     },
+    {
+      path: '/readdingNoteShare',
+      name: 'ReaddingNoteShare',
+      component: ReaddingNoteShare
+    }
   ]
 })
